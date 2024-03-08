@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html> 
 <html lang="es">
 
@@ -151,6 +149,26 @@ mysqli_close($enlace);
           </a>
         </li>
 
+
+
+        <li 
+        class="nav-item separacionpequenaa hovering" data-toggle="tooltip" data-placement="right" title="Staff">
+          <a class="nav-link" style="color:#FFFFFF;"   href="lodging.php">
+            <i class="fa-solid fa-cart-flatbed-suitcase fa-lg"></i>  
+            <span class="nav-link-text">&nbsp;Lodging</span> 
+          </a>
+        </li>
+
+
+
+        <li 
+        class="nav-item separacionpequenaa hovering" data-toggle="tooltip" data-placement="right" title="Staff">
+          <a class="nav-link" style="color:#45acb3;" href="services.php">
+            <i class="fa-solid fa-store fa-lg"></i>  
+            <span class="nav-link-text">&nbsp;Services</span> 
+          </a>
+        </li>
+
       
 
 
@@ -161,6 +179,27 @@ mysqli_close($enlace);
           <a class="nav-link" style="color:#FFFFFF;"    href="hostel.php">
             <i class="fa-solid fa-hotel fa-lg"></i>
             <span class="nav-link-text">&nbsp;Hostel</span>  
+          </a>
+        </li>
+
+
+        <li 
+         class="nav-item hovering" data-toggle="tooltip" data-placement="right" title="Hostel">
+          <a class="nav-link" style="color:#c49674;"    href="rooms.php">
+            <i class="fa-solid fa-door-open fa-lg"></i>
+            <span class="nav-link-text">&nbsp;Rooms</span>   <i class=""></i>
+          </a>
+        </li>
+
+
+
+   
+
+        <li 
+         class="nav-item hovering" data-toggle="tooltip" data-placement="right" title="Hostel">
+          <a class="nav-link" style="color:#45acb3;"    href="procedures.php">
+            <i class="fa-solid fa-book-bookmark fa-lg"></i>
+            <span class="nav-link-text">&nbsp;Procedures</span>  
           </a>
         </li>
 

@@ -4,146 +4,180 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title text-secondary" id="exampleModalLabel">
-        <i class="far fa-bell-slash fa-lg"></i> </h5>
+        
+      <h5 class="modal-title text-secondary" id="exampleModalLabel">
+        <i class="far fa-bell-slash fa-lg"></i> - Registered for the first time on
+ <?php $fecha_de_primer_registro_formateada = date('d-m-Y', strtotime($row_usuarios['creado_el']));
+ echo $fecha_de_primer_registro_formateada;
+ ?>, by &nbsp;<b><?php echo $row_usuarios_whoL['p_surname_per'];?></b>&nbsp;<?php echo $row_usuarios_whoL['p_name_per'];?>.
+  </h5>
+  
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
 
+
       <form method="post">
       <div class="modal-body">
 
-<div class="form-row">
-<div class="input-group col-lg-12 mb-2">
+      <?php
 
+$id_del_reg = $row_usuarios['id_per'];      
+include ("../conectar.php");    // me da la info si existe de la tabla quien y cuando per
 
-<?php
+$queryFHL_status_changes = "SELECT * FROM quien_y_cuando_per, tb_personal                    
+WHERE  quien_y_cuando_per.id_quien_act_o_desact = tb_personal.id_per        
+and  quien_y_cuando_per.id_per_act_o_desact = '$id_del_reg' 
+order by fecha_act_o_desact DESC";
 
-$id_del_reg = $row_usuarios['id_per'];
-
-include ("../conectar.php");
-
-$query_registros_act_o_desact = "SELECT * FROM quien_y_cuando_per, tb_personal                    
-         WHERE  quien_y_cuando_per.id_quien_act_o_desact = tb_personal.id_per        
-         and  quien_y_cuando_per.id_per_act_o_desact = '$id_del_reg' 
-         order by fecha_act_o_desact";
-
-$datos_registros_act_o_desact = mysqli_query($enlace, $query_registros_act_o_desact) or die(mysqli_error());
-
-$row_datos_registros_act_o_desact = mysqli_fetch_array($datos_registros_act_o_desact); 
-
-$totalRows_datos_quien_y = mysqli_num_rows($datos_registros_act_o_desact); 
+$usuarios_status_changes = mysqli_query($enlace, $queryFHL_status_changes) or die(mysqli_error());
+$row_usuarios_status_changes = mysqli_fetch_assoc($usuarios_status_changes);
+$totalRows_usuarios_status_changes = mysqli_num_rows($usuarios_status_changes);
 
 mysqli_close($enlace);
-
-$fecha_formateada = date('d-m-Y', strtotime($row_datos_registros_act_o_desact['fecha_act_o_desact']));
 
 ?>
 
 
 
-
-
-
-</div>
-
-<div class="input-group col-lg-12"> 
- Fue incorporado al sistema el
- <?php
- echo $fecha_formateada;
- ?>, por el &nbsp;<b><?php echo $row_datos_quien_y['cargo'] ;?></b>&nbsp; <?php echo $row_datos_quien_y['apellidos'] ;?>.
- </div>
-
-</div>
-
-<div class="form-row">
-<div class="input-group col-md-12 mt-2 mb-1 text-muted ">
- <b>Indicar fecha de retiro:</b>
-</div>
-</div>
-
-
-<div class="form-row">
-<div class="input-group col-md-4 mb-1">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-minus fa-lg"></i></span>  
-                  </div>
-<input type="date" class="form-control importantex" id="retiro_date" name="retiro_date" required>
-
-</div>
-</div>
-
-
-<div class="form-row">
-<div class="input-group col-md-8 mt-2 mb-1 text-muted ">
- <b>Agregar nota relacionada con el retiro:</b>
-</div>
-</div>
-
-
-
-<div class="form-row ">
-<div class="col-md-12">
-<textarea maxlength="250" class="form-control" id="nota_text<?php echo $row_datos_control['id_estud']; ?>" name="nota_text" rows="2" required></textarea>
-<span id="chars<?php echo $row_datos_control['id_estud']; ?>">250</span> caracteres restantes.
-</div>
-</div> <!-- cierre row  de nota -->
-
-
-<script type="text/javascript">
+<table class="table table-hover mt-3" <?php if ( $totalRows_usuarios_status_changes == '0' ){?>style="display:none"<?php } ?>  >
+  <thead>
+   
+    <tr>
+      <th colspan="4"><b>Historical:</b></th>
+      
+    </tr>
+   
   
-var maxLength = 250;
-$('#nota_text<?php echo $row_datos_control['id_estud']; ?>').keyup(function() {
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Status</th>
+      <th scope="col">By</th>
+      <th scope="col">Observations</th>
+    </tr>
+
+
+  </thead>
+
+
+  <tbody>
+
+  <?php do{?>  <!-- va a generarme tantas filas como datos tenga esta BD -->   
+
+
+    <tr>
+      <td><?php
+
+$fecha_formateada = date('d-m-Y', strtotime($row_usuarios_status_changes['fecha_act_o_desact']));
+
+echo $fecha_formateada; ?></td>
+
+     
+     
+     <td><?php
+      
+$statuto_cc = $row_usuarios_status_changes['historial_status'];
+
+
+if ($statuto_cc == '0') { $el_esta_asi = 'Inactive'; }
+
+else {$el_esta_asi = 'Active';}
+            
+      echo $el_esta_asi; ?></td>
+
+
+      <td> <b><?php
+    
+
+      $id_del_responsable = $row_usuarios_status_changes['id_quien_act_o_desact'];      
+      include ("../conectar.php");    // me da la info si existe de la tabla quien y cuando per
+      
+      $queryFHL_fue = "SELECT id_per, p_name_per, p_surname_per FROM tb_personal                    
+      WHERE  id_per = '$id_del_responsable' limit 1";
+      
+      $usuarios_fue = mysqli_query($enlace, $queryFHL_fue) or die(mysqli_error());
+      $row_usuarios_fue = mysqli_fetch_assoc($usuarios_fue);
+      $totalRows_usuarios_fue = mysqli_num_rows($usuarios_fue);
+      
+      mysqli_close($enlace);              
+      
+      echo $row_usuarios_fue['p_name_per']; ?></b> <?php echo $row_usuarios_fue['p_surname_per']; ?>.</td>
+
+      
+      <td><?php echo $row_usuarios_status_changes['text_act_o_desact']; ?></td>
+
+
+    </tr>
+    
+ <?php } while ($row_usuarios_status_changes = mysqli_fetch_assoc($usuarios_status_changes)); ?>
+
+  </tbody>
+</table>
+
+
+
+
+<div class="form-row mt-5">
+  <div class="input-group col-md-8 mt-2 mb-1 text-muted ">
+   <b>Add Obs:</b>
+  </div>
+  </div>
+
+
+  <div class="form-row ">
+  <div class="col-md-11">    
+
+  <textarea maxlength="109" class="form-control" id="nota_text<?php echo $row_usuarios['id_per']; ?>"
+   name="nota_text" rows="1" required></textarea>
+
+  </div>
+
+  <div class="col-md-1">    
+  <span id="chars<?php echo $row_usuarios['id_per']; ?>">109</span>.
+  </div>
+
+
+  </div> <!-- cierre row  de nota -->
+
+
+  <script type="text/javascript">
+  
+var maxLength = 109;
+$('#nota_text<?php echo $row_usuarios['id_per']; ?>').keyup(function() {
   var length = $(this).val().length;
   var length = maxLength-length;
-  $('#chars<?php echo $row_datos_control['id_estud']; ?>').text(length);
+  $('#chars<?php echo $row_usuarios['id_per']; ?>').text(length);
 });
 
 </script>
 
-<br>
-
-<div class="form-row ">
-
- <?php
-
-$fecha1="2000-10-10";
-
- $mensajexx1 = "Nota: Anteriormente el estudiante había sido retirado el: "; 
- $mensajexx2 = "  Y re-incorporado el: "; 
- $puntico =".";
-
- if ($row_datos_quien_y['fecha_retiro'] > $fecha1 ) {
-
-$fecha_formatxxx = date('d-m-Y', strtotime($row_datos_quien_y['fecha_retiro']));
-$fecha_formatyyy = date('d-m-Y', strtotime($row_datos_quien_y['fecha_reincorp']));
-
-
-   echo $mensajexx1; echo $fecha_formatxxx; echo $puntico; echo $mensajexx2; echo $fecha_formatyyy;
- }
-
-
-
-?>.
-</div>
-
 
 
 </div> <!-- cierre modal body -->
+
+
       <div class="modal-footer"> 
 
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
 
-<input name="desactivar_status" type="hidden" value="0">
+<input name="desactivado_by" type="hidden" value="<?php echo $_SESSION['id_per']; ?>">
 
-    <button type="submit" name="retirar_alumno" class="btn btn-secondary"
-    value="<?php echo $row_datos_control['id_estud']; ?>" > Retirar</button>
+<input name="name_del_cambiante" type="hidden" value="<?php echo $row_usuarios_whoL['p_name_per']; ?>">
+<input name="apellido_del_cambiante" type="hidden" value="<?php echo $row_usuarios_whoL['p_surname_per']; ?>">
+
+    <button type="submit" name="inactive_personal" class="btn btn-secondary"
+    value="<?php echo $row_usuarios['id_per']; ?>" >Pass To Inactive</button>
 
       </div>
-      </form>
 
-    </div>
+
+</form>
+
+
+
+
+    </div>  <!-- cierre div modal content --> 
   </div>
 </div>
 <!-- cierre modal de desactivar --> 
@@ -158,153 +192,186 @@ $fecha_formatyyy = date('d-m-Y', strtotime($row_datos_quien_y['fecha_reincorp'])
 
 
 
-
-
-
-
-<!-- ini modal incorporar -->   
+<!-- ini modal activar --> 
 <div class="modal fade" id="activar<?php echo $row_usuarios['id_per']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
+
       <div class="modal-header">
-        <h5 class="modal-title text-success" id="exampleModalLabel">
-        <i class="far fa-bell fa-lg"></i> </h5>
+        
+      <h5 class="modal-title text-success" id="exampleModalLabel">
+        <i class="far fa-bell fa-lg"></i> - Registered for the first time on
+ <?php $fecha_de_primer_registro_formateada = date('d-m-Y', strtotime($row_usuarios['creado_el']));
+ echo $fecha_de_primer_registro_formateada;
+ ?>, by &nbsp;<b><?php echo $row_usuarios_whoL['p_surname_per'];?></b>&nbsp;<?php echo $row_usuarios_whoL['p_name_per'];?>.
+  </h5>
+  
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
 
+
       <form method="post">
       <div class="modal-body">
 
-<div class="form-row">
-<div class="input-group col-lg-12 mb-1">
-  <?php
+      <?php
 
+$id_del_reg = $row_usuarios['id_per'];      
+include ("../conectar.php");    // me da la info si existe de la tabla quien y cuando per
 
-$id_del_reg = $row_usuarios['id_per'];
+$queryFHL_status_changes = "SELECT * FROM quien_y_cuando_per, tb_personal                    
+WHERE  quien_y_cuando_per.id_quien_act_o_desact = tb_personal.id_per        
+and  quien_y_cuando_per.id_per_act_o_desact = '$id_del_reg' 
+order by fecha_act_o_desact DESC";
 
-include ("../conectar.php");
-
-$query_quien_y = "SELECT * FROM quien_y_cuando_estu, usuarios                    
-         WHERE  quien_y_cuando_estu.id_quien = usuarios.id        
-         and  quien_y_cuando_estu.id_estud = '$id_del_reg' 
-         LIMIT 1";
-
-$datos_quien_y = mysqli_query($enlace, $query_quien_y) or die(mysqli_error());
-
-$row_datos_quien_y = mysqli_fetch_array($datos_quien_y); 
-
-$totalRows_datos_quien_y = mysqli_num_rows($datos_quien_y); 
+$usuarios_status_changes = mysqli_query($enlace, $queryFHL_status_changes) or die(mysqli_error());
+$row_usuarios_status_changes = mysqli_fetch_assoc($usuarios_status_changes);
+$totalRows_usuarios_status_changes = mysqli_num_rows($usuarios_status_changes);
 
 mysqli_close($enlace);
 
+?>
+
+
+
+<table class="table table-hover mt-3" <?php if ( $totalRows_usuarios_status_changes == '0' ){?>style="display:none"<?php } ?>  >
+  <thead>
+   
+    <tr>
+      <th colspan="4"><b>Historical:</b></th>
+      
+    </tr>
+   
+  
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Status</th>
+      <th scope="col">By</th>
+      <th scope="col">Observations</th>
+    </tr>
+
+
+  </thead>
+
+
+  <tbody>
+
+  <?php do{?>  <!-- va a generarme tantas filas como datos tenga esta BD -->   
+
+
+    <tr>
+      <td><?php
+
+$fecha_formateada = date('d-m-Y', strtotime($row_usuarios_status_changes['fecha_act_o_desact']));
+
+echo $fecha_formateada; ?></td>
+
+     
+     
+     <td><?php
+      
+$statuto_cc = $row_usuarios_status_changes['historial_status'];
+
+
+if ($statuto_cc == '0') { $el_esta_asi = 'Inactive'; }
+
+else {$el_esta_asi = 'Active';}
+            
+      echo $el_esta_asi; ?></td>
+
+
+      <td> <b><?php
+    
+
+      $id_del_responsable = $row_usuarios_status_changes['id_quien_act_o_desact'];      
+      include ("../conectar.php");    // me da la info si existe de la tabla quien y cuando per
+      
+      $queryFHL_fue = "SELECT id_per, p_name_per, p_surname_per FROM tb_personal                    
+      WHERE  id_per = '$id_del_responsable' limit 1";
+      
+      $usuarios_fue = mysqli_query($enlace, $queryFHL_fue) or die(mysqli_error());
+      $row_usuarios_fue = mysqli_fetch_assoc($usuarios_fue);
+      $totalRows_usuarios_fue = mysqli_num_rows($usuarios_fue);
+      
+      mysqli_close($enlace);              
+      
+      echo $row_usuarios_fue['p_name_per']; ?></b> <?php echo $row_usuarios_fue['p_surname_per']; ?>.</td>
+
+      
+      <td><?php echo $row_usuarios_status_changes['text_act_o_desact']; ?></td>
+
+
+    </tr>
+    
+ <?php } while ($row_usuarios_status_changes = mysqli_fetch_assoc($usuarios_status_changes)); ?>
+
+  </tbody>
+</table>
 
 
 
 
-$fecha_formateada1 = date('d-m-Y', strtotime($row_datos_quien_y['cuando_estu']));
-$fecha_formateada = date('d-m-Y', strtotime($row_datos_quien_y['fecha_retiro']));
-  ?>
-
-El estudiante &nbsp;
-<b>"  
-<?php
-echo $row_datos_control['nombre_estu'];?>, <?php echo $row_datos_control['apellidos_estu'] ;?> 
-"&nbsp; </b>.
-</div>
-
-<div class="input-group col-lg-12 mb-1"> 
-
- Fue incorporado al sistema el
- <?php
- echo $fecha_formateada1;
- ?>, por el &nbsp;<b><?php echo $row_datos_quien_y['cargo'] ;?></b>&nbsp; <?php echo $row_datos_quien_y['apellidos'] ;?>.
-</div>
+<div class="form-row mt-5">
+  <div class="input-group col-md-8 mt-2 mb-1 text-success ">
+   <b>Add Obs:</b>
+  </div>
+  </div>
 
 
+  <div class="form-row ">
+  <div class="col-md-11">    
 
-<div class="input-group col-lg-12 mb-2">
- Y fue retirado anteriormente del sistema el
- <?php
- echo $fecha_formateada;
- ?>. 
-</div>
-</div>
+  <textarea maxlength="109" class="form-control" id="nota_text_2"<?php echo $row_usuarios['id_per']; ?>"
+   name="nota_text_2" rows="1" required></textarea>
 
-<div class="form-row">
-<div class="input-group col-md-6 mt-2 mb-1 text-success ">
- <b>Indicar nueva fecha de re-incorporación:</b>
-</div>
-</div>
+  </div>
 
-<div class="form-row">
-<div class="input-group col-md-4 mb-1">
-
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-plus fa-lg"></i></span>  
-                  </div>
-<input type="date" class="form-control importantex" id="activar_date" name="activar_date"
-aria-label="activar_date">
-
-</div>
-</div>
+  <div class="col-md-1">    
+  <!-- <span id="chars_2<?php echo $row_usuarios['id_per']; ?>">109</span>. -->
+  </div>
 
 
-<div class="form-row">
-<div class="input-group col-md-6 mb-3">
-<small class="form-text text-success">Puede usar la fecha anterior de incorporación.</small>
-</div>
-</div>
+  </div> <!-- cierre row  de nota -->
+
+
+  <script type="text/javascript">
+  
+var maxLength_2 = 109;
+$('#nota_text_2<?php echo $row_usuarios['id_per']; ?>').keyup(function() {
+  var length_2 = $(this).val().length_2;
+  var length_2 = maxLength_2-length_2;
+  $('#chars_2<?php echo $row_usuarios['id_per']; ?>').text(length_2);
+});
+
+</script>
 
 
 
-<div class="form-row">
-<div class="input-group col-md-8 mt-2 mb-1 text-muted ">
- <b>Razones por las cuales se retiró anteriormente:</b>
-</div>
-</div>
-
-<div class="form-row mb-3">
-
-<div class="col-md-12">
-
-<div class="input-group col-md-12 desincorporadopor">
-
-<?php
-echo $row_datos_quien_y['tex_retiro'];
- ?>
-   <!-- cierre  nota de desincorporación -->
-</div>
-
-</div>
-
-</div>
+</div> <!-- cierre modal body -->
 
 
+      <div class="modal-footer"> 
 
+    <button type="button" class="btn btn-outline-success" data-dismiss="modal">Cancel</button>
 
-<br>
+<input name="desactivado_by" type="hidden" value="<?php echo $_SESSION['id_per']; ?>">
 
+<input name="name_del_cambiante" type="hidden" value="<?php echo $row_usuarios_whoL['p_name_per']; ?>">
+<input name="apellido_del_cambiante" type="hidden" value="<?php echo $row_usuarios_whoL['p_surname_per']; ?>">
 
-
-
-
-
-      </div> <!-- cierre modal body -->
-      <div class="modal-footer">  
-
-    <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-
-<input name="activar_status" type="hidden" value="1">
-
-    <button type="submit" name="incorporar_estudiante" class="btn btn-success"
-    value="<?php echo $row_datos_control['id_estud']; ?>" > Re-incorporar</button>
+    <button type="submit" name="active_personal" class="btn btn-success"
+    value="<?php echo $row_usuarios['id_per']; ?>" >Pass To Active</button>
 
       </div>
-       </form>
 
-    </div>
+
+</form>
+
+
+
+
+    </div>  <!-- cierre div modal content --> 
   </div>
 </div>
 <!-- cierre modal de activar --> 

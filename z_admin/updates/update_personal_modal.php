@@ -329,7 +329,8 @@ mysqli_close($enlace);
 
                               <div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2">  
                               <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-mobile-screen-button fa-lg"></i></span>  
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-mobile-screen-button fa-lg"></i>
+                                            &nbsp;- Main Phone:</span>  
                                         </div>
        <input type="text" maxlength="39" class="form-control" id="a_phone_per_mod" name="a_phone_per_mod" value="<?php echo $row_usuarios['a_phone_per']; ?>" aria-label="a_phone_per_mod" aria-describedby="basic-addon1">    
                               </div>
@@ -337,7 +338,8 @@ mysqli_close($enlace);
 
                               <div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2">
                               <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-mobile-screen fa-lg"></i></span>  
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-mobile-screen fa-lg"></i>
+                                            &nbsp;- Secondary Phone:</span>  
                                         </div>
  <input type="text" maxlength="39" class="form-control" id="b_phone_per_mod" name="b_phone_per_mod" value="<?php echo $row_usuarios['b_phone_per']; ?>" aria-label="b_phone_per_mod" aria-describedby="basic-addon1">    
                               </div>

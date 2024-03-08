@@ -50,6 +50,204 @@ $este_es_el_rol_del_user = $_SESSION['id_rol_per'] == '1';
 
 
 
+// empieza el cambio de status del personal
+if(isset($_POST['close_hostel']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD y comprueba
+{
+    $alerta_principal = "2";
+
+    $hostel_afectado_por_este = $_POST['desactivado_by']; 
+
+    $hostel_afectado = $_POST['close_hostel']; 
+
+
+    
+
+
+    $name_a_cambiar = $_POST['name_del_cambiante']; 
+   
+
+
+    include("../conectar.php");                                                
+
+    $query_disable_host = "INSERT INTO quien_y_cuando_host(id_quien_open_o_close, id_host_open_o_close,
+     text_open_o_close, historial_status_host) 
+
+    VALUES (   '$hostel_afectado_por_este',
+               '$hostel_afectado',
+               '".mysqli_real_escape_string($enlace,$_POST['nota_text'])."'    ,
+               '0'
+
+            )";
+
+
+if (!mysqli_query($enlace,$query_disable_host))  // si no logro ingresar la direccion...
+{
+
+$errorZ="- Error. ";
+mysqli_close($enlace); 
+}
+
+else 
+{
+
+
+
+  include("../conectar.php");   
+
+  $query_cambiame_U = "UPDATE z_hostel SET status_hostel = '0' WHERE id_hostel = '$hostel_afectado' LIMIT 1 ";
+  
+
+  if (!mysqli_query($enlace,$query_cambiame_U))      // si no ha logrado ingresar la foto
+           {
+
+   $errorZ.="- Error. ";               
+   mysqli_close($enlace);
+
+           }
+
+  else {
+  
+    $exitoZ = "<b>--&nbsp; ".$name_a_cambiar." &nbsp;--</b> pass to close.";
+    mysqli_close($enlace);
+
+    }   
+
+  
+
+
+}
+
+
+
+  
+
+
+
+ }  // cierre cambio status
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// empieza el cambio de status del personal
+if(isset($_POST['open_hostel']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD y comprueba
+{
+    $alerta_principal = "2";
+
+    $hostel_afectado_por_este = $_POST['desactivado_by']; 
+
+    $hostel_afectado = $_POST['open_hostel']; 
+
+
+    
+
+
+    $name_a_cambiar = $_POST['name_del_cambiante']; 
+   
+
+
+    include("../conectar.php");                                                
+
+    $query_disable_host = "INSERT INTO quien_y_cuando_host(id_quien_open_o_close, id_host_open_o_close,
+     text_open_o_close, historial_status_host) 
+
+    VALUES (   '$hostel_afectado_por_este',
+               '$hostel_afectado',
+               '".mysqli_real_escape_string($enlace,$_POST['nota_text'])."'    ,
+               '1'
+
+            )";
+
+
+if (!mysqli_query($enlace,$query_disable_host))  // si no logro ingresar la direccion...
+{
+
+$errorZ="- Error. ";
+mysqli_close($enlace); 
+}
+
+else 
+{
+
+
+
+  include("../conectar.php");   
+
+  $query_cambiame_U = "UPDATE z_hostel SET status_hostel = '1' WHERE id_hostel = '$hostel_afectado' LIMIT 1 ";
+  
+
+  if (!mysqli_query($enlace,$query_cambiame_U))      // si no ha logrado ingresar la foto
+           {
+
+   $errorZ.="- Error. ";               
+   mysqli_close($enlace);
+
+           }
+
+  else {
+  
+    $exitoZ = "<b>--&nbsp; ".$name_a_cambiar." &nbsp;--</b> pass to open.";
+    mysqli_close($enlace);
+
+    }   
+
+  
+
+
+}
+
+
+
+  
+
+
+
+ }  // cierre cambio status
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -562,7 +760,7 @@ if(isset($_POST['editar_hostel']))
 
         $id_address_idU = ($row_id_selecc['id_address']);
 
-        $id_data_idU = ($row_id_selecc['id_data_hostel']);
+        $id_data_idU = ($row_id_selecc['id_data_hostel']);   
 
 
 //  detectar si el codigo del hostel esta en uso....
@@ -596,11 +794,14 @@ if(isset($_POST['editar_hostel']))
             else   // si no hay condicencia en el codigo del hostel ingresado proceso a modificar....
             {
 
+      $my_money_es_es = $_POST['hostel_currency_mod']; 
+
 
                 $sql = "UPDATE z_hostel SET name_hostel = '".mysqli_real_escape_string($enlace,$_POST['hostel_name_mod'])."',
                                        nick_name_hostel = '".mysqli_real_escape_string($enlace,$_POST['nick_name_mod'])."',
                                             code_hostel = '".mysqli_real_escape_string($enlace,$_POST['hostel_code_mod'])."',
-                                            hostel_was_mod = '1'
+                                            hostel_was_mod = '1',
+                                            id_currency = '$my_money_es_es'
 
 
                                                 WHERE id_hostel='$_POST[editar_hostel]' LIMIT 1 ";
@@ -726,8 +927,31 @@ include ("a_header.php"); ?>
             <div class="container-fluid">
 
 
+<?php
+include ("../conectar.php");
+$query = "SELECT * FROM z_hostel, tb_address, z_data_hostel, country 
+WHERE z_hostel.id_address = tb_address.id_address 
+and   z_hostel.id_data_hostel = z_data_hostel.id_data_hostel
+and   tb_address.id_country = country.id_country
+and   z_hostel.id_hostel = '$mi_hostel_select'
+limit 1";
 
-            <div class="form-row">
+$hostels = mysqli_query($enlace, $query) or die(mysqli_error());
+$row_hostels = mysqli_fetch_assoc($hostels);
+$totalRows_hostels = mysqli_num_rows($hostels);
+
+mysqli_close($enlace);
+
+?>
+
+
+
+
+
+
+
+
+            <div class="form-row" <?php if ( ($row_hostels['id_hostel'] == $mi_hostel_select) && $row_hostels['hostel_was_mod'] == '0' ){?>style="display:none"<?php } ?> >
 
                 <div class="alert col-md-3 col-lg-3 alert-primary" role="alert">
                     <i class="fa-solid fa-hotel fa-lg "></i> &nbsp; &nbsp; Add Hostel:
@@ -755,17 +979,15 @@ include ("a_header.php"); ?>
 
 
 
-              <div class="card mx-auto">
+
+
+
+
+
+
+              <div class="card mx-auto" <?php if ( ($row_hostels['id_hostel'] == $mi_hostel_select) && $row_hostels['hostel_was_mod'] == '0' ){?>style="display:none"<?php } ?>>
               <div class="card-body">
       
-
-
-
-
-
-
-
-
 
                        
 <form method="POST" data-persist="garlic"  data-expires="360" enctype="multipart/form-data"  name="add_the_hostel">                           
@@ -935,7 +1157,7 @@ include ("a_header.php"); ?>
                               <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-inbox fa-lg"></i></span>  
                                         </div>
-                                            <input type="email" maxlength="39" class="form-control" id="reserv_email" name="reserv_email" placeholder="Reservations Email" aria-label="reserv_email" aria-describedby="basic-addon1">    
+                                            <input type="email" maxlength="39" class="form-control" id="reserv_email" name="reserv_email" placeholder="Booking Email" aria-label="reserv_email" aria-describedby="basic-addon1">    
                               </div> 
 
 
@@ -1088,37 +1310,12 @@ include ("a_header.php"); ?>
 
 
 
-<?php
-
-include ("../conectar.php");
-
-
-$query = "SELECT * FROM z_hostel, tb_address, z_data_hostel, country 
-WHERE z_hostel.id_address = tb_address.id_address 
-and   z_hostel.id_data_hostel = z_data_hostel.id_data_hostel
-and   tb_address.id_country = country.id_country
-
-ORDER BY z_hostel.name_hostel ASC";
-
-$hostels = mysqli_query($enlace, $query) or die(mysqli_error());
-
-$row_hostels = mysqli_fetch_assoc($hostels);
-
-$totalRows_hostels = mysqli_num_rows($hostels);
 
 
 
 
-
-mysqli_close($enlace);
-
-
-?>
-
-
-
-<div class="card-header mt-3">
-<b><i class="fa fa-table"></i> Hostel(s):</b>
+<div class="card-header mt-3" <?php if ( $totalRows_hostels == '0' ){?>style="display:none"<?php } ?> >
+<b><i class="fa fa-table"></i> Main Hostel:</b>
 </div>
 
 
@@ -1127,20 +1324,20 @@ mysqli_close($enlace);
 
           <div class="table-responsive">
 
-            <table class="table table-bordered stricolor table-sm" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered stricolor table-sm" id="" width="100%" cellspacing="0">
              
               <thead>
                 <tr>                  
                   
-                    <th><i class="fa-solid fa-file-signature fa-lg"></i></th>  
-                       <th><i class="fa-regular fa-font-awesome fa-lg"></i></th>  
-                       <th><i class="fa-solid fa-gear fa-lg"></i></th> 
+                    <th width="26%"><i class="fa-solid fa-file-signature fa-lg"></i></th>  
+                       <th width="15%"><i class="fa-regular fa-font-awesome fa-lg"></i></th>  
+                       <th width="7%"><i class="fa-solid fa-gear fa-lg"></i></th> 
 
-                  <th><i class="fa-solid fa-barcode fa-lg"></i> </th>    
+                  <th width="10%"><i class="fa-solid fa-barcode fa-lg"></i> </th>    
 
-                  <th><i class="fa-solid fa-phone fa-lg"></i> / <i class="fa-solid fa-at fa-lg"></i></th>
+                  <th width="30%"><i class="fa-solid fa-phone fa-lg"></i> / <i class="fa-solid fa-at fa-lg"></i></th>
               
-                  <th><i class="fa-solid fa-ellipsis-vertical fa-lg"></i></th> 
+                  <th width="7%"><i class="fa-solid fa-ellipsis-vertical fa-lg"></i></th> 
                 </tr>
               </thead>
 
@@ -1148,7 +1345,7 @@ mysqli_close($enlace);
 
   <tbody>
 
-            <?php do{?>  <!-- va a generarme tantas filas como datos tenga esta BD -->            
+           
 
                 <tr>
 
@@ -1156,14 +1353,10 @@ mysqli_close($enlace);
 <?php
 
 include ("../conectar.php");
-
 $este_lo_registro = $row_hostels['hostel_registered_by'];
-
 $queryFH_whoL = "SELECT id_per, p_name_per, p_surname_per FROM tb_personal 
 WHERE id_per = '$este_lo_registro' limit 1";
-
 $usuarios_whoL = mysqli_query($enlace, $queryFH_whoL) or die(mysqli_error());
-
 $row_usuarios_whoL = mysqli_fetch_assoc($usuarios_whoL);
 
 
@@ -1172,20 +1365,14 @@ mysqli_close($enlace);
  
 
 if ($este_es_el_rol_del_user == '1' && $hostel_was_upd != '1' && ($row_hostels['id_hostel'] == $mi_hostel_select)  ) {
-    
   $update_icon = 'fas fa-edit fa-2x fa-beat';
-    
   $text_update1 = 'Update';
-
-
 }  
 
 else { 
        $update_icon = 'fas fa-edit';
-
        $text_update1 = '';
-      
-      }
+            }
 
 
 
@@ -1193,24 +1380,17 @@ else {
 
 
 if ($row_hostels['id_hostel'] == $mi_hostel_select) {
-    
-     $active_icon = 'fa-solid fa-crown fa-beat';
+         $active_icon = 'fa-solid fa-crown fa-beat';
      $el_hostel_esta_activo = 'Active';
 }
 
 
 else { 
-
        $active_icon = '';
        $el_hostel_esta_activo = '';
-    
-      }
+          }
 
  
-
-
-
-
 ?>
 
 
@@ -1227,12 +1407,15 @@ else {
 <div data-toggle="tooltip" data-placement="top"
 title="Registered by: <?php echo $row_usuarios_whoL['p_surname_per'];?> <?php echo $row_usuarios_whoL['p_name_per'];?>. " >
 
-<span style="color: #fb8e36;"><b><i class="<?php echo $active_icon; ?>"></i></b></span> <b><?php echo $el_hostel_esta_activo;?></b><br>
+<span style="color: #fb8e36;"><b><i class="<?php echo $active_icon; ?>"></i></b></span>
+ <b><?php echo $el_hostel_esta_activo;?></b><br>
 
     <span style="color:grey;"><b><?php echo $row_hostels['name_hostel'];?></b></span>
+
 <br><?php echo $row_hostels['city_address'];?> - <?php echo $row_hostels['name_country'];?>
+
 <br><br><span style="color:#417FD5;"><b><?php echo $row_hostels['a_web_hostel'];?></b></span>
-<br><b><span><?php echo $row_hostels['nick_name_hostel'];?></span></b>
+
 
 </div>
 
@@ -1321,7 +1504,10 @@ title="Registered by: <?php echo $row_usuarios_whoL['p_surname_per'];?> <?php ec
 
 
 
- <td class="align-middle" align="center"><span style="color:grey;"><b><?php echo $row_hostels['code_hostel'];?></b></span></td>
+ <td class="align-middle" align="center">
+<span style="color:grey;"><b><?php echo $row_hostels['code_hostel'];?></b></span>
+<br>
+Nick: <b><span><?php echo $row_hostels['nick_name_hostel'];?></span></b></td>
 
 
 
@@ -1341,7 +1527,7 @@ title="Registered by: <?php echo $row_usuarios_whoL['p_surname_per'];?> <?php ec
 
   <br><br>
                   <b>Main: </b><span style="color: #9961cd;"><?php echo $row_hostels['a_email_hostel']; ?></span>
-                  <br> <span style="color: grey;">Reservations:</span> <?php echo $row_hostels['b_email_hostel']; ?>
+                  <br> <span style="color: grey;">Booking:</span> <?php echo $row_hostels['b_email_hostel']; ?>
                   <br> <span style="color: grey;">Billing:</span> <?php echo $row_hostels['c_email_hostel']; ?></td>
 
 
@@ -1397,16 +1583,378 @@ title="Registered by: <?php echo $row_usuarios_whoL['p_surname_per'];?> <?php ec
                 </tr>
 
 
-  <?php } while ($row_hostels = mysqli_fetch_assoc($hostels)); ?>
-                
+
+
+
+
+
+
+
+
+
 
               </tbody>
 
 
 
 
+            </table> <!-- cierre tabla -->
+
+        </div>   <!-- cierre tabla responsiva -->
+    </div>   <!-- cierre card body -->
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="card-header mt-3" <?php if ( $totalRows_hostels <= '1' ){?>style="display:none"<?php } ?> >
+<b><i class="fa fa-table"></i> Extra Hostel(s):</b>
+</div>
+
+
+
+        <div class="card-body border border-info mb-2" <?php if ( $totalRows_hostels <= '1' ){?>style="display:none"<?php } ?> >
+
+          <div class="table-responsive">
+
+            <table class="table table-bordered stricolor table-sm" id="dataTable" width="100%" cellspacing="0">
+             
+            <thead>
+                <tr>                  
+                  
+                    <th width="26%"><i class="fa-solid fa-file-signature fa-lg"></i></th>  
+                       <th width="15%"><i class="fa-regular fa-font-awesome fa-lg"></i></th>  
+                       <th width="7%"><i class="fa-solid fa-gear fa-lg"></i></th> 
+
+                  <th width="10%"><i class="fa-solid fa-barcode fa-lg"></i> </th>    
+
+                  <th width="30%"><i class="fa-solid fa-phone fa-lg"></i> / <i class="fa-solid fa-at fa-lg"></i></th>
+              
+                  <th width="7%"><i class="fa-solid fa-ellipsis-vertical fa-lg"></i></th> 
+                </tr>
+              </thead>
+
+
+
+  <tbody>
+
+ 
+
+
+
+
+
+
+  <?php
+include ("../conectar.php");
+$query = "SELECT * FROM z_hostel, tb_address, z_data_hostel, country 
+WHERE z_hostel.id_address = tb_address.id_address 
+and   z_hostel.id_data_hostel = z_data_hostel.id_data_hostel
+and   tb_address.id_country = country.id_country
+and   z_hostel.id_hostel != '$mi_hostel_select'
+order by z_hostel.name_hostel asc ";
+
+$hostels = mysqli_query($enlace, $query) or die(mysqli_error());
+$row_hostels = mysqli_fetch_assoc($hostels);
+$totalRows_hostels = mysqli_num_rows($hostels);
+
+mysqli_close($enlace);
+
+?>
+
+
+
+
+
+
+  <?php do{?>  <!-- va a generarme tantas filas como datos tenga esta BD -->            
+
+<tr>
+
+
+<?php
+
+include ("../conectar.php");
+$este_lo_registro = $row_hostels['hostel_registered_by'];
+$queryFH_whoL = "SELECT id_per, p_name_per, p_surname_per FROM tb_personal 
+WHERE id_per = '$este_lo_registro' limit 1";
+$usuarios_whoL = mysqli_query($enlace, $queryFH_whoL) or die(mysqli_error());
+$row_usuarios_whoL = mysqli_fetch_assoc($usuarios_whoL);
+
+
+mysqli_close($enlace);
+
+
+
+if ($este_es_el_rol_del_user == '1' && $hostel_was_upd != '1' && ($row_hostels['id_hostel'] == $mi_hostel_select)  ) {
+$update_icon = 'fas fa-edit fa-2x fa-beat';
+$text_update1 = 'Update';
+}  
+
+else { 
+$update_icon = 'fas fa-edit';
+$text_update1 = '';
+}
+
+
+
+
+
+
+if ($row_hostels['id_hostel'] == $mi_hostel_select) {
+$active_icon = 'fa-solid fa-crown fa-beat';
+$el_hostel_esta_activo = 'Active';
+}
+
+
+else { 
+$active_icon = '';
+$el_hostel_esta_activo = '';
+}
+
+
+?>
+
+
+
+
+
+
+
+
+
+<td class="align-middle" align="center">
+
+
+<div data-toggle="tooltip" data-placement="top"  
+title="Registered by: <?php echo $row_usuarios_whoL['p_surname_per'];?> <?php echo $row_usuarios_whoL['p_name_per'];?>. " >
+
+<span style="color: #fb8e36;"><b><i class="<?php echo $active_icon; ?>"></i></b></span> <b><?php echo $el_hostel_esta_activo;?></b><br>
+
+<span style="color:grey;"><b><?php echo $row_hostels['name_hostel'];?></b></span>
+<br><?php echo $row_hostels['city_address'];?> - <?php echo $row_hostels['name_country'];?>
+<br><br><span style="color:#417FD5;"><b><?php echo $row_hostels['a_web_hostel'];?></b></span>
+
+
+</div>
+
+
+</td>
+
+
+
+
+<td class="align-middle" align="center">
+
+
+
+  <img id="myImg" src="<?php echo $row_hostels['logo_hostel']; ?>?nocache=<?php echo time(); ?>"
+  alt="Not Available"  onerror="this.src='img_logo_hostels/000.jpg';" width="80px" /> 
+
+<br><span style="color: #fb8e36;"><b><i class="fa-regular fa-star"></i></b></span> : <b><?php echo $row_hostels['ranking_hostel']; ?></b>
+
+   </td> 
+
+
+
+
+
+
+<td class="align-middle" align="center">
+
+     <div class="upload-btn-wrapper">
+
+<div data-toggle="tooltip" data-placement="top" title="Update Logo." >
+<button class="btn btn-outline-info btn-sm" ><i class="fa-regular fa-font-awesome"></i></button>
+
+<input class="center-block punterodd" type="file" accept="image/*"
+ name="upload_image<?php echo $row_hostels['id_hostel']; ?>"
+   id="upload_image<?php echo $row_hostels['id_hostel']; ?>"
+
+   onchange="return fileValidation<?php echo $row_hostels['id_hostel']; ?>()" /> 
+
+
+</div>
+  </div>
+
+
+
+<?php include ("logo_mod/update_logo.php"); ?> 
+
+
+
+
+
+
+<div data-toggle="tooltip" data-placement="top" title="Delete." >
+
+<button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal"
+ data-target="#borrar_logo<?php echo $row_hostels['id_hostel']; ?>"> <i class="fa-regular fa-font-awesome"></i></button>
+
+</div>
+
+
+
+
+<?php include ("logo_mod/delete_logo.php"); ?> 
+
+
+
+
+
+   </td>  
+
+
+
+
+
+
+
+
+
+
+
+<td class="align-middle" align="center">
+<span style="color:grey;"><b><?php echo $row_hostels['code_hostel'];?></b></span><br>
+Nick: <b><span><?php echo $row_hostels['nick_name_hostel'];?></span></b>
+
+</td>
+
+
+
+<td class="align-middle" align="center"><b>Main: </b><?php echo $row_hostels['a_phone_hostel'];?>
+
+                            <?php 
+                                        if (!$row_hostels['b_phone_hostel'] == "") {       
+                                            echo " <br>" .$row_hostels['b_phone_hostel'];
+                                          } 
+
+                                         if (!$row_hostels['c_phone_hostel'] == "") {       
+                                            echo " <br>" .$row_hostels['c_phone_hostel'];
+                                          } 
+                               ?>
+
+
+
+<br><br>
+  <b>Main: </b><span style="color: #9961cd;"><?php echo $row_hostels['a_email_hostel']; ?></span>
+  <br> <span style="color: grey;">Booking:</span> <?php echo $row_hostels['b_email_hostel']; ?>
+  <br> <span style="color: grey;">Billing:</span> <?php echo $row_hostels['c_email_hostel']; ?></td>
+
+
+
+
+
+
+<td class="align-middle" align="center">
+
+
+
+
+
+
+
+
+<button type="button" class="btn btn-outline-info btn-sm mb-1" data-toggle="modal"
+  data-target="#modificar<?php echo $row_hostels['id_hostel']; ?>">
+                                                        <!-- este ultimo identifica cual modal abrir -->
+  <i class="<?php echo $update_icon; ?>"></i><br><span style="font-size: 16px;"><?php echo $text_update1; ?></span></button>    
+
+
+
+
+
+<?php include("updates/update_hostel_modal.php"); ?>
+
+
+
+
+
+
+                  <?php if ($row_hostels['status_hostel']=='1') { ?>
+                   
+                   <span data-toggle="tooltip" data-placement="top" title="Hostel: Open"> 
+                   <button type="submit" name="cambio_status" class="btn btn-outline-success btn-sm mb-1" data-toggle="modal"
+                   data-target="#desactivar<?php echo $row_hostels['id_hostel']; ?>" >       
+                   <i class="fa-solid fa-door-open fa-lg"></i></button>
+                   </span> 
+
+                   <?php   }?>   
+
+
+
+                   <?php if ($row_hostels['status_hostel']=='0') { ?>
+                   
+                   <span data-toggle="tooltip" data-placement="top" title="Hostel: Close">
+                   <button type="submit" name="cambio_status" class="btn btn-outline-secondary btn-sm mb-1"
+                   data-toggle="modal" data-target="#activar<?php echo $row_hostels['id_hostel']; ?>" >       
+                     <i class="fa-solid fa-door-closed fa-lg"></i></button>
+                   </span>   
+
+                   <?php   }?>   
+
+
+
+
+
+
+<?php include("updates/deshabilitar_hostel_modal.php"); ?>
+
+
+
+
+
+
+
+
+<button type="button" class="btn btn-outline-danger btn-sm mb-1" data-toggle="modal"
+  data-target="#borrar<?php echo $row_hostels['id_hostel']; ?>">
+                                                        <!-- este ultimo identifica cual modal abrir -->
+
+  <i class="far fa-trash-alt"></i></button>                 
+
+
+</td>
+
+<?php include("deletes/delete_hostel_modal.php"); ?>
+
+
+
+
+</tr>
+
+
+<?php } while ($row_hostels = mysqli_fetch_assoc($hostels)); ?>
+
+
+
+
+
+
+
+
+
+
+                
+
+              </tbody>
 
 
 

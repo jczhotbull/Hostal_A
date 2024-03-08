@@ -106,7 +106,7 @@ if(isset($_POST['ingresar']))  //  chequea si se ha enviado algo, de ser si --> 
 
 // primero verifico si el doc de id esta en la base de datos del personal
 
-$queryC = "SELECT id_per, doc_per, password_per, status FROM tb_personal WHERE doc_per = '".mysqli_real_escape_string($enlace,$_POST['input_doc'])."' LIMIT 1";
+$queryC = "SELECT id_per, doc_per, password_per, id_hostel, status FROM tb_personal WHERE doc_per = '".mysqli_real_escape_string($enlace,$_POST['input_doc'])."' LIMIT 1";
 
           $resultC = mysqli_query($enlace,$queryC);
           $fila=mysqli_fetch_array($resultC);
@@ -132,45 +132,77 @@ if (isset($fila))   // si tengo algo en la fila significa que existe la ci, ahor
 
                        {   // usuario autenticado
                           
+                        $el_hostalillo = $fila['id_hostel'];
+
+                        $queryCoco = "SELECT id_hostel, status_hostel FROM z_hostel WHERE id_hostel = '$el_hostalillo'
+                        LIMIT 1";
+                       
+                       $resultCoco = mysqli_query($enlace,$queryCoco);
+                       $filaCoco=mysqli_fetch_array($resultCoco); 
 
 
-            $_SESSION['id_per']=$fila['id_per'];  // almacena el valor de id en el valor de session
+           
+                        if ( $filaCoco['status_hostel'] == '1'      ) {   // verifica si el hostal esta cerrado
+                         
+
+
+                          $_SESSION['id_per']=$fila['id_per'];  // almacena el valor de id en el valor de session
            
 
 
-              // procedo a guardar el rol
+                          // procedo a guardar el rol
+            
+                          $queryP = "SELECT id_per, id_rol_per, id_hostel FROM tb_personal WHERE id_per = ' ".$_SESSION['id_per']." ' LIMIT 1";
+            
+                          $resultP = mysqli_query($enlace,$queryP);
+                          $filaP=mysqli_fetch_array($resultP);
+                          
+                          $_SESSION['id_rol_per']=$filaP['id_rol_per'];  // almacena el valor del id_rol en un valor de session
+                       $_SESSION['hostel_activo']=$filaP['id_hostel'];  // almacena el valor de id del hostel del usuario, sera el activo
+            
+            
+            
+                                    if ($_SESSION['id_rol_per'] == '1')  //  Super Admin
+                                     {  
+                                     header ("Location: z_admin/main.php");
+                                     mysqli_close($enlace);
+                                    }
+            
+                                    if ($_SESSION['id_rol_per'] == '2')  //  Por Definir
+                                     {  header ("Location: z_admin/main.php"); 
+                                      mysqli_close($enlace);
+                                    }
+            
+                                    if ($_SESSION['id_rol_per'] == '3')  //  Por Definir
+                                     { header ("Location: z_admin/main.php");  
+                                      mysqli_close($enlace);
+                                    }
+            
+                                     if ($_SESSION['id_rol_per'] == '4')  //  Por Definir
+                                     {   header ("Location: z_admin/main.php");
+                                      mysqli_close($enlace);
+                                    }
+            
+            
+                                     if ($_SESSION['id_rol_per'] == '5')  //  Por Definir
+                                     {   header ("Location: z_admin/main.php");
+                                      mysqli_close($enlace);
+                                    }
 
-              $queryP = "SELECT id_per, id_rol_per, id_hostel FROM tb_personal WHERE id_per = ' ".$_SESSION['id_per']." ' LIMIT 1";
-
-              $resultP = mysqli_query($enlace,$queryP);
-              $filaP=mysqli_fetch_array($resultP);
-              
-              $_SESSION['id_rol_per']=$filaP['id_rol_per'];  // almacena el valor del id_rol en un valor de session
-           $_SESSION['hostel_activo']=$filaP['id_hostel'];  // almacena el valor de id del hostel del usuario, sera el activo
 
 
 
-                        if ($_SESSION['id_rol_per'] == '1')  //  Super Admin
-                         {  
-                         header ("Location: z_admin/main.php");
+
                         }
 
-                        if ($_SESSION['id_rol_per'] == '2')  //  Por Definir
-                         {  header ("Location: z_admin/main.php"); 
+
+                        else {
+                          // el hostel esta cerrado
+                          $errorZ="The hostel is closed. ";
+                          mysqli_close($enlace);
+
                         }
 
-                        if ($_SESSION['id_rol_per'] == '3')  //  Por Definir
-                         { header ("Location: z_admin/main.php");  
-                        }
-
-                         if ($_SESSION['id_rol_per'] == '4')  //  Por Definir
-                         {   header ("Location: z_admin/main.php");
-                        }
-
-
-                         if ($_SESSION['id_rol_per'] == '5')  //  Por Definir
-                         {   header ("Location: z_admin/main.php");
-                        }
 
 
 

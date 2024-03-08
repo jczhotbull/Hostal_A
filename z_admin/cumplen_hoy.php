@@ -54,7 +54,6 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
 
 
-
  include ("a_header.php"); ?>
 
 
@@ -98,6 +97,29 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
 
 
+
+ <!-- Icon Cards-->
+      
+ <div class="row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>  <!-- cierre row -->
+
+
+<!-- Cierre Icon Cards-->
 
 
 

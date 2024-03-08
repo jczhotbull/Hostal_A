@@ -32,35 +32,196 @@ include("../conectar.php");
 include ("consultas_add/query_users.php"); 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Turn off all error reporting
 //error_reporting(0);
+
+
+
+// empieza el cambio de status del personal
+if(isset($_POST['inactive_personal']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD y comprueba
+{
+    $alerta_principal = "2";
+
+    $usuario_afectado_por_este = $_POST['desactivado_by']; 
+
+    $usuario_afectado = $_POST['inactive_personal']; 
+
+
+   if ($usuario_afectado_por_este == $usuario_afectado ) {
+    $errorZ="- You cannot change your own status. ";
+   }
+
+
+   else {
+   
+    $name_a_cambiar = $_POST['name_del_cambiante']; 
+    $surname_a_cambiar = $_POST['apellido_del_cambiante']; 
+
+
+    include("../conectar.php");                                                
+
+    $query_disable_per = "INSERT INTO quien_y_cuando_per(id_quien_act_o_desact, id_per_act_o_desact,
+     text_act_o_desact, historial_status) 
+
+    VALUES (   '$usuario_afectado_por_este',
+               '$usuario_afectado',
+               '".mysqli_real_escape_string($enlace,$_POST['nota_text'])."'    ,
+               '0'
+
+            )";
+
+
+if (!mysqli_query($enlace,$query_disable_per))  // si no logro ingresar la direccion...
+{
+
+$errorZ="- Error. ";
+mysqli_close($enlace); 
+}
+
+else 
+{
+
+
+
+  include("../conectar.php");   
+
+  $query_cambiame_U = "UPDATE tb_personal SET status = '0' WHERE id_per = '$usuario_afectado' LIMIT 1 ";
+  
+
+  if (!mysqli_query($enlace,$query_cambiame_U))      // si no ha logrado ingresar la foto
+           {
+
+   $errorZ.="- Error. ";               
+   mysqli_close($enlace);
+
+           }
+
+  else {
+  
+    $exitoZ = "<b>--&nbsp; ".$surname_a_cambiar." ".$name_a_cambiar." &nbsp;--</b> pass to inactive.";
+    mysqli_close($enlace);
+
+    }   
+
+  
+
+
+}
+
+
+
+   }
+
+
+
+ }  // cierre cambio status
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// empieza el cambio de status del personal
+if(isset($_POST['active_personal']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD y comprueba
+{
+    $alerta_principal = "2";
+
+
+    $usuario_afectado_por_este = $_POST['desactivado_by']; 
+
+    $usuario_afectado = $_POST['active_personal']; 
+    
+
+    $name_a_cambiar = $_POST['name_del_cambiante']; 
+    $surname_a_cambiar = $_POST['apellido_del_cambiante']; 
+
+
+    include("../conectar.php");                                                
+
+    $query_disable_per = "INSERT INTO quien_y_cuando_per(id_quien_act_o_desact, id_per_act_o_desact,
+     text_act_o_desact, historial_status) 
+
+    VALUES (   '$usuario_afectado_por_este',
+               '$usuario_afectado',
+               '".mysqli_real_escape_string($enlace,$_POST['nota_text_2'])."'    ,
+               '1'
+
+            )";
+
+
+if (!mysqli_query($enlace,$query_disable_per))  // si no logro ingresar la direccion...
+{
+
+$errorZ="- Error. ";
+mysqli_close($enlace); 
+}
+
+else 
+{
+
+
+
+  include("../conectar.php");   
+
+  $query_cambiame_U = "UPDATE tb_personal SET status = '1' WHERE id_per = '$usuario_afectado' LIMIT 1 ";
+  
+
+  if (!mysqli_query($enlace,$query_cambiame_U))      // si no ha logrado ingresar la foto
+           {
+
+   $errorZ.="- Error. ";               
+   mysqli_close($enlace);
+
+           }
+
+  else {
+  
+    $exitoZ = "<b>--&nbsp; ".$surname_a_cambiar." ".$name_a_cambiar." &nbsp;--</b> pass to active.";
+    mysqli_close($enlace);
+
+    }   
+
+  
+
+
+}
+
+
+
+ }  // cierre cambio status
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1721,7 +1882,7 @@ title="Registered by: <?php echo $row_usuarios_whoL['p_surname_per'];?> <?php ec
                    
                     <span data-toggle="tooltip" data-placement="top" title="User: Active"> 
                     <button type="submit" name="cambio_status" class="btn btn-outline-success btn-sm" data-toggle="modal"
-                    data-target="#desactivar<?php echo $row_usuarios['id_per']; ?>" >        <!-- este ultimo identifica cual modal abrir -->
+                    data-target="#desactivar<?php echo $row_usuarios['id_per']; ?>" >       
                     <i class="fa-regular fa-face-laugh fa-lg"></i></button>
                     </span> 
 
@@ -1742,78 +1903,19 @@ title="Registered by: <?php echo $row_usuarios_whoL['p_surname_per'];?> <?php ec
 
                       </div>
 
-</div>
+</div> 
 
 
 
 
- <?php //por hacer include ("updates/update_pers_status_modales.php"); ?>  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ <?php include ("updates/update_pers_status_modales.php"); ?>  
 
 
 
 </td>
+
+
+
 
 
 

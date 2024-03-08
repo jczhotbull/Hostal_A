@@ -47,7 +47,7 @@ if (array_key_exists("id_per",$_SESSION))    // si existe la clave id para mi ar
 		}
 
 		if ($_SESSION ['id_rol_per'] == '2' )
-		{$abrev = "";
+		{$abrev = "Volunteer";
 		}
 
 		if ($_SESSION ['id_rol_per'] == '3' )

@@ -34,8 +34,7 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
 
 
-    include ("../conectar.php");
-    include ("php_list/birth_list.php");
+
 
 
 
@@ -60,11 +59,11 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
 
 
-              <div class="form-row">
+              <div class="form-row"> 
 
                 <div class="alert col-md-3 col-lg-3 alert-primary" role="alert">
-                    <i class="fa-solid fa-user-group fa-lg "></i> &nbsp; &nbsp; Staff
-                </div>
+                    <i class="fa-solid fa-book-bookmark fa-lg "></i> &nbsp; &nbsp; Procedures
+                </div> 
 
  
 
@@ -89,52 +88,11 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
 
       
-            <?php
-
-if ($row_cumplen->total !="0" ) {
-      $cumple_img = 'fas fa-birthday-cake fa-beat';
-  }
-
-else { 
-       $cumple_img = 'fas fa-birthday-cake';
-                }
-
- ?>
-
 
 
  <!-- Icon Cards-->
       
       <div class="row">
-
-
-<div class="col-xl-3 col-sm-6 col-6 mb-3" <?php if ( $row_cumplen->total =='0' ){?>style="display:none"<?php } ?> >
-  <div class="card text-white relleno-pink o-hidden h-100">
-    <div class="card-body">
-      <div class="card-body-icon">
-        <i class="<?php echo $cumple_img; ?> fa-xs" style="--fa-beat-scale: 2.0;"></i>
-      </div>
-      <div class="mr-5 cantidadzzzpe">Today <b><?php echo $row_cumplen->total; ?></b></div>
-      <div class="infozzz">Birthdays.</div>
-    </div>
-    <a class=" card-footer card-footerz text-white clearfix small z-1" href="cumplen_hoy.php">
-      <span class="float-left">View</span>
-      <span class="float-right">
-        <i class="fa fa-angle-right"></i>
-      </span>
-    </a>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
 
          
 

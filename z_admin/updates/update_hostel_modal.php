@@ -40,7 +40,7 @@
 
 
 
-                              <div class="input-group input-group-sm col-sm-12 col-md-6 col-lg-6 mb-2">
+                              <div class="input-group input-group-sm col-sm-12 col-md-6 col-lg-3 mb-2">
                               <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-file-signature fa-lg"></i></span>  
                                         </div>
@@ -65,6 +65,62 @@
                                         </div>
  <input type="text" maxlength="19" class="form-control importantex" id="hostel_code_mod" name="hostel_code_mod" value="<?php echo $row_hostels['code_hostel']; ?>" aria-label="hostel_code_mod" aria-describedby="basic-addon1" required>  
                               </div>
+
+
+<?php
+
+$mi_actual_currency = $row_hostels['id_currency'];
+
+include("../conectar.php"); 
+
+    $currency_A = "SELECT * FROM currency  WHERE id_currency = '$mi_actual_currency' limit 1";
+    $datos_currency_A = mysqli_query($enlace, $currency_A) or die(mysqli_error());
+    $row_datos_currency_A = mysqli_fetch_assoc($datos_currency_A);
+
+mysqli_close($enlace); 
+
+?>
+
+
+<div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2">
+     <div class="input-group-prepend"> 
+     <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-money-bill-wave fa-lg"></i></span>  
+     </div>
+     <select class="form-control importantex" id="hostel_currency_mod" name="hostel_currency_mod" required>
+                                                        
+   <option selected value="<?php echo $row_hostels['id_currency']; ?>">
+   <?php echo $row_datos_currency_A['name_currency']; ?>&nbsp;&nbsp;"<b><?php echo $row_datos_currency_A['symbol_currency']; ?></b>"</option>
+
+                   <option style="background-color: #00000;" disabled></option>
+
+<?php
+
+include("../conectar.php"); 
+
+    $currency_Alt = "SELECT * FROM currency  WHERE  name_currency != '.' ORDER BY name_currency ASC";
+    $datos_currency_Alt = mysqli_query($enlace, $currency_Alt) or die(mysqli_error());
+    $row_datos_currency_Alt = mysqli_fetch_assoc($datos_currency_Alt);
+
+mysqli_close($enlace); 
+
+?>
+
+                                <?php do{?>                                
+
+<option value="<?php echo $row_datos_currency_Alt['id_currency']; ?>">
+<?php echo $row_datos_currency_Alt['name_currency']; ?>&nbsp;&nbsp;"<b><?php echo $row_datos_currency_Alt['symbol_currency']; ?></b>"</option>
+
+                                <?php } while ($row_datos_currency_Alt = mysqli_fetch_assoc($datos_currency_Alt)); ?> 
+                           
+                                        </select>
+                                </div>  
+
+
+
+
+
+
+
 
 
 
@@ -106,7 +162,8 @@
 
                               <div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2">
                               <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone fa-lg"></i></span>  
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone fa-lg"></i>
+                                            &nbsp;- Main:</span>  
                                         </div>
                                             <input type="text" maxlength="19" class="form-control" id="a_phone_mod" name="a_phone_mod" value="<?php echo $row_hostels['a_phone_hostel']; ?>" aria-label="a_phone_mod" aria-describedby="basic-addon1">  
                               </div>
@@ -114,24 +171,27 @@
 
                               <div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2">
                               <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-mobile-retro fa-lg"></i></span>  
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-mobile-retro fa-lg"></i>
+                                            &nbsp;- Secondary:</span>  
                                         </div>
-                                            <input type="text" maxlength="19" class="form-control" id="b_phone_mod" name="b_phone_mod" value="<?php echo $row_hostels['b_phone_hostel']; ?>" aria-label="b_phone_mod" aria-describedby="basic-addon1">  
+                                            <input type="text" maxlength="19"  class="form-control" id="b_phone_mod" name="b_phone_mod" value="<?php echo $row_hostels['b_phone_hostel']; ?>" aria-label="b_phone_mod" aria-describedby="basic-addon1">  
                               </div> 
 
 
 
                               <div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2">
                               <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-mobile-screen fa-lg"></i></span>  
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-mobile-screen fa-lg"></i>
+                                            &nbsp;- Extra:</span>  
                                         </div>
-                                            <input type="text" maxlength="19" class="form-control" id="c_phone_mod" name="c_phone_mod" value="<?php echo $row_hostels['c_phone_hostel']; ?>" aria-label="c_phone_mod" aria-describedby="basic-addon1">    
+                                            <input type="text" maxlength="19"  class="form-control" id="c_phone_mod" name="c_phone_mod" value="<?php echo $row_hostels['c_phone_hostel']; ?>" aria-label="c_phone_mod" aria-describedby="basic-addon1">    
                               </div>
 
 
                               <div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2">
                               <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="fa-brands fa-chrome fa-lg"></i></span>  
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa-brands fa-chrome fa-lg"></i>
+                                            &nbsp;- Main Web:</span>  
                                         </div>
 <input type="text" maxlength="39" class="form-control" id="a_web_mod" name="a_web_mod" value="<?php echo $row_hostels['a_web_hostel']; ?>" aria-label="a_web_mod" aria-describedby="basic-addon1">    
                               </div> 
@@ -139,16 +199,18 @@
 
                               <div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2">
                               <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="fa-brands fa-edge fa-lg"></i></span>  
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa-brands fa-edge fa-lg"></i>
+                                            &nbsp;- Secondary Web:</span>  
                                         </div>
-<input type="text" maxlength="39" class="form-control" id="b_web_mod" name="b_web_mod" value="<?php echo $row_hostels['b_web_hostel']; ?>" aria-label="b_web_mod" aria-describedby="basic-addon1">    
+<input type="text" maxlength="39" class="form-control" id="b_web_mod"  name="b_web_mod" value="<?php echo $row_hostels['b_web_hostel']; ?>" aria-label="b_web_mod" aria-describedby="basic-addon1">    
                               </div> 
 
 
 
                               <div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2">
                               <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at fa-lg"></i></span>   
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at fa-lg"></i>
+                                            &nbsp;- Main Email:</span>   
                                         </div>
                     <input type="email" maxlength="39" class="form-control" id="main_email_mod" name="main_email_mod" value="<?php echo $row_hostels['a_email_hostel']; ?>" aria-label="main_email_mod" aria-describedby="basic-addon1">    
                               </div> 
@@ -156,7 +218,8 @@
 
                               <div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2">
                               <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-inbox fa-lg"></i></span>  
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-inbox fa-lg"></i>
+                                            &nbsp;- Booking Email:</span>  
                                         </div>
                     <input type="email" maxlength="39" class="form-control" id="reserv_email_mod" name="reserv_email_mod" value="<?php echo $row_hostels['b_email_hostel']; ?>" aria-label="reserv_email_mod" aria-describedby="basic-addon1">    
                               </div> 
@@ -164,7 +227,8 @@
 
                               <div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2"> 
                               <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-envelope-circle-check fa-lg"></i></span>  
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-envelope-circle-check fa-lg"></i>
+                                            &nbsp;- Billing Email:</span>  
                                         </div>
                     <input type="email" maxlength="39" class="form-control" id="bill_email_mod" name="bill_email_mod" value="<?php echo $row_hostels['c_email_hostel']; ?>" aria-label="bill_email_mod" aria-describedby="basic-addon1">   
                               </div> 

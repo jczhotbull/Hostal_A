@@ -188,6 +188,11 @@ border: 1px solid #988B9A;
   -ms-transform: rotate(+10deg);
   transform: rotate(+10deg); }
 
+
+
+
+
+
   .mini_card_icon_pe {
   position: absolute;
   z-index: 0;
@@ -389,6 +394,12 @@ border: 1px solid #988B9A;
 
 .relleno-purpplight {
 	background-color: #855995;
+	
+}
+
+
+.relleno-purpphard {
+	background-color: #9b4c89;
 	
 }
 

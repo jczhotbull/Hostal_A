@@ -110,17 +110,12 @@ mysqli_close($enlace);
 <?php
 
 if ($row_cumplen->total !="0" ) {
-    
-  $cumple_img = 'fas fa-birthday-cake fa-beat';
-  
-
-
-}
+      $cumple_img = 'fas fa-birthday-cake fa-beat';
+  }
 
 else { 
        $cumple_img = 'fas fa-birthday-cake';
-      
-          }
+                }
 
  ?>
 
@@ -135,14 +130,14 @@ else {
 
 
 
-        <div class="col-xl-3 col-sm-6 mb-3" <?php if ( $was_or_not != '0' & $pass_was_or_not !='0' ){?>style="display:none"<?php } ?> >
+        <div class="col-xl-3 col-sm-6 col-6 mb-3" <?php if ( $was_or_not != '0' & $pass_was_or_not !='0' ){?>style="display:none"<?php } ?> >
           <div class="card text-white relleno-fresa o-hidden h-100">
             <div class="card-body">
               <div class="card-body-icon">
-                <i class="fa-solid fa-triangle-exclamation fa-beat"  ></i>  
+                <i class="fa-solid fa-triangle-exclamation fa-beat fa-xs"  ></i>  
               </div>
-              <div class="mr-5 cantidadzzzpe">Please update</div>
-              <div class="infozzz">password and info.</div>
+              <div class="mr-5 cantidadzzzpe">Update</div>
+              <div class="infozzz">Your info.</div>
             </div>
             <a class=" card-footer card-footerz text-white clearfix small z-1" href="my_user.php">
               <span class="float-left">Go</span>
@@ -156,7 +151,7 @@ else {
 
 
 
-      <div class="col-xl-3 col-sm-6 mb-3" <?php if ( ($este_es_el_rol_del_user != '1' && $hostel_was_upd == '1') or
+      <div class="col-xl-3 col-sm-6 col-6 mb-3" <?php if ( ($este_es_el_rol_del_user != '1' && $hostel_was_upd == '1') or
       ($este_es_el_rol_del_user != '1' or $hostel_was_upd == '1') ){?>style="display:none"<?php } ?> >
 
           <div class="card text-white relleno-indigo o-hidden h-100">
@@ -164,8 +159,8 @@ else {
               <div class="card-body-icon">
                 <i class="fa-solid fa-exclamation fa-beat"  ></i>    
               </div>
-              <div class="mr-5 cantidadzzzpe">Please</div>
-              <div class="infozzz">update Hostel info.</div>
+              <div class="mr-5 cantidadzzzpe">Update</div>
+              <div class="infozzz">Hostel info.</div>
             </div>
             <a class=" card-footer card-footerz text-white clearfix small z-1" href="hostel.php">
               <span class="float-left">Go</span>
@@ -180,14 +175,14 @@ else {
 
 
 
-        <div class="col-xl-3 col-sm-6 mb-3"  >
+        <div class="col-xl-3 col-sm-6 col-6 mb-3" <?php if ( $row_cumplen->total =='0' ){?>style="display:none"<?php } ?>  >
           <div class="card text-white relleno-pink o-hidden h-100">
             <div class="card-body">
               <div class="card-body-icon">
-                <i class="<?php echo $cumple_img; ?>" style="--fa-beat-scale: 2.0;"></i>
+                <i class="<?php echo $cumple_img; ?> fa-xs" style="--fa-beat-scale: 2.0;"></i>
               </div>
-              <div class="mr-5 cantidadzzzpe">Today <b><?php echo $row_cumplen->total; ?></b> co-workers</div>
-              <div class="infozzz">turn years old.</div>
+              <div class="mr-5 cantidadzzzpe">Today <b><?php echo $row_cumplen->total; ?></b></div>
+              <div class="infozzz">Birthdays.</div>
             </div>
             <a class=" card-footer card-footerz text-white clearfix small z-1" href="cumplen_hoy.php">
               <span class="float-left">View</span>
