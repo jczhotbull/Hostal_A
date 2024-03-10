@@ -338,7 +338,7 @@ mysqli_close($enlace);
                    <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-location-dot fa-lg"></i>
                    &nbsp;- Zip:</span>  
                                         </div>
-<input type="number" maxlength="10" class="form-control" id="post_code_mod" name="post_code_mod" value="<?php echo $row_hostels['post_code_address']; ?>" aria-label="post_code_mod" aria-describedby="basic-addon1">   
+<input type="number" min="1" maxlength="10" class="form-control" id="post_code_mod" name="post_code_mod" value="<?php echo $row_hostels['post_code_address']; ?>" aria-label="post_code_mod" aria-describedby="basic-addon1">   
                               </div> 
 
 

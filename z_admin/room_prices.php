@@ -58,6 +58,59 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
 
 
+
+    if(isset($_POST['actualizar_dinerillo']))
+    {        
+  
+      include("../conectar.php");  
+      
+      $actual_currency = $_POST['id_del_currency_actual'];
+
+      $extra_currency = $_POST['extra_currency']; 
+      $extra_value = mysqli_real_escape_string($enlace,$_POST['extra_value']);
+
+      $additional_currency = $_POST['additional_currency']; 
+      $additional_value = mysqli_real_escape_string($enlace,$_POST['additional_value']);
+
+  
+      $query_money_new = "INSERT INTO exchange_rates(id_hostel, id_hostel_currency, id_currency_A, currency_A_value,
+                         id_currency_B, currency_B_value) 
+  
+      VALUES (   '$mi_hostel_select',
+                 '$actual_currency',
+                 '$extra_currency'  ,
+                 '$extra_value'     ,
+                 '$additional_currency'  ,
+                 '$additional_value'    )";
+  
+  
+  if (!mysqli_query($enlace,$query_money_new))  // si no logro ingresar la direccion...
+  {  
+  $errorZ="- Error. ";
+  mysqli_close($enlace); 
+  }
+  
+  else 
+  {
+    $exitoZ="- All Set. ";
+    mysqli_close($enlace); 
+  }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
  include ("a_header.php"); ?>
 
 
@@ -111,25 +164,137 @@ $row_datos_queryHost = mysqli_fetch_array($datos_queryHost);
 $id_verificado_host = $row_datos_queryHost['id_hostel'];
 $id_currency_del_host = $row_datos_queryHost['id_currency'];
 
+
+
+
+$queryFHL_currencys_out = "SELECT * FROM exchange_rates
+ where id_hostel = '$mi_hostel_select'
+ order BY all_set_this_time DESC limit 1";
+
+$the_currencys_out = mysqli_query($enlace, $queryFHL_currencys_out) or die(mysqli_error());
+$row_the_currencys_out = mysqli_fetch_assoc($the_currencys_out);
+$totalRows_the_currencys_out = mysqli_num_rows($the_currencys_out);
+
+$pruebarrA = $row_the_currencys_out['currency_A_value'];
+$pruebarrB = $row_the_currencys_out['currency_B_value'];
+
+$la_fechita_es = $row_the_currencys_out['all_set_this_time'];
+
+$format_monetA = number_format("$pruebarrA",2,",",".");
+$format_monetB = number_format("$pruebarrB",2,",",".");
+
+
 mysqli_close($enlace);
      ?> 
 
 
 
+<style type="text/css">
+@font-face {
+  font-family: DIGITAL-7;
+  src: url(00_vendor/digital-7.ttf);
+}
+
+.lcd {background-color:#7D8C76;
+color:#343434;
+font-family: DIGITAL-7;
+font-size: 24px;
+text-align: center;
+font-weight: 600;
+letter-spacing: 3px;
+}
+</style>
 
 
 
 
 
 
-
-<div class="col-md-3 col-lg-3 mb-3" > 
+<div class="col-md-6 col-lg-3 mb-3" > 
 
 <button type="button" data-toggle="modal" data-target="#el_dinerillo" class="btn btn-dark btn-block">
-<i class="fa-solid fa-hand-point-right fa-lg"></i>&nbsp;&nbsp; Update Exchange Rate
+ <i class="fa-solid fa-money-bill-trend-up fa-lg"></i>&nbsp;&nbsp;
+
+<?php
+  $date = new DateTime($la_fechita_es); echo $date->format('d/m/y'); 
+                   ?> - <?php echo $date->format('g:i a'); ?>
+
 </button>
 
 </div>
+
+
+<?php
+    
+include ("../conectar.php");
+
+$main_main = $row_the_currencys_out['id_hostel_currency'];;
+
+$queryFHL_currencys_main_mia = "SELECT * FROM currency where id_currency = '$main_main' limit 1";
+
+$the_currencys_main_mia = mysqli_query($enlace, $queryFHL_currencys_main_mia) or die(mysqli_error());
+$row_the_currencys_main_mia = mysqli_fetch_assoc($the_currencys_main_mia);
+$totalRows_the_currencys_main_mia = mysqli_num_rows($the_currencys_main_mia);
+
+
+
+$main_cheA = $row_the_currencys_out['id_currency_A'];
+
+$queryFHL_currencys_mainAC = "SELECT * FROM currency where id_currency = '$main_cheA' limit 1";
+
+$the_currencys_mainAC = mysqli_query($enlace, $queryFHL_currencys_mainAC) or die(mysqli_error());
+$row_the_currencys_mainAC = mysqli_fetch_assoc($the_currencys_mainAC);
+$totalRows_the_currencys_mainAC = mysqli_num_rows($the_currencys_mainAC);
+
+
+
+
+$main_cheB = $row_the_currencys_out['id_currency_B'];
+
+$queryFHL_currencys_mainBC = "SELECT * FROM currency where id_currency = '$main_cheB' limit 1";
+
+$the_currencys_mainBC = mysqli_query($enlace, $queryFHL_currencys_mainBC) or die(mysqli_error());
+$row_the_currencys_mainBC = mysqli_fetch_assoc($the_currencys_mainBC);
+$totalRows_the_currencys_mainBC = mysqli_num_rows($the_currencys_mainBC);
+
+
+
+mysqli_close($enlace); 
+ ?>
+
+
+
+
+
+
+
+<div class="col-md-6 col-lg-3 mb-3"  >  
+
+  <div class="lcd" style="border: 1px solid #7D8C76; border-radius: 4px; ">
+  1 <?php echo $row_the_currencys_mainAC['symbol_currency']; ?> =
+  <?php echo $format_monetA; ?> <?php echo $row_the_currencys_main_mia['symbol_currency']; ?></div>
+
+</div>
+
+
+
+<div class="col-md-6 col-lg-3 mb-3"  >  
+
+  <div class="lcd" style="border: 1px solid #7D8C76; border-radius: 4px; ">
+  1 <?php echo $row_the_currencys_mainBC['symbol_currency']; ?> =
+  <?php echo $format_monetB; ?> <?php echo $row_the_currencys_main_mia['symbol_currency']; ?></div>
+
+</div>
+
+
+
+
+
+</div> <!-- cierre margencito primario -->
+
+
+
+
 
 
 
@@ -149,6 +314,10 @@ mysqli_close($enlace);
         </button>
       </div>
      
+
+
+
+
       <div class="modal-body">
 
 
@@ -161,7 +330,7 @@ include ("../conectar.php");
 
 $queryFHL_currencys = "SELECT * FROM exchange_rates
  where id_hostel = '$mi_hostel_select'
- order BY all_set_this_time DESC limit 3";
+ order BY all_set_this_time DESC limit 4";
 
 $the_currencys = mysqli_query($enlace, $queryFHL_currencys) or die(mysqli_error());
 $row_the_currencys = mysqli_fetch_assoc($the_currencys);
@@ -181,12 +350,12 @@ mysqli_close($enlace);
   <thead>
     <tr>
       <th class="align-middle" align="center">Date</th>
-      <th class="align-middle" align="center" style="color:green;">Selected</th>
-      <th class="align-middle" align="center" style="color:green;">Value</th>
-      <th class="align-middle" align="center">Extra</th>
+      <th class="align-middle" align="center">Selected</th>
       <th class="align-middle" align="center">Value</th>
-      <th class="align-middle" align="center" style="color:orange;" >Additional</th>
-      <th class="align-middle" align="center" style="color:orange;" >Value</th>
+      <th class="align-middle text-success" align="center">Extra</th>
+      <th class="align-middle text-success" align="center">Value</th>
+      <th class="align-middle text-info" align="center" >Additional</th>
+      <th class="align-middle text-info" align="center" >Value</th>
       <th class="align-middle" align="center"><i class="fa-solid fa-ellipsis-vertical fa-lg"></i></th>
 
     </tr>
@@ -200,7 +369,7 @@ mysqli_close($enlace);
 
      <td class="align-middle" align="center"><?php echo $row_the_currencys['all_set_this_time']; ?></td>
 
-     <td class="align-middle" align="center" style="color:green;">
+     <td class="align-middle" align="center">
      
      <?php
     
@@ -219,10 +388,10 @@ mysqli_close($enlace);
      
      echo $row_the_currencys_main['name_currency']; ?></td> 
 
-      <td class="align-middle" align="center" style="color:green;">
+      <td class="align-middle" align="center" >
       1.00<br><?php echo $row_the_currencys_main['symbol_currency']; ?></td>
 
-      <td class="align-middle" align="center">
+      <td class="align-middle text-success" align="center">
         
       <?php
     
@@ -242,10 +411,11 @@ mysqli_close($enlace);
          echo $row_the_currencys_smain['name_currency']; ?>    
 </td>
 
-      <td class="align-middle" align="center">
-        <?php echo $row_the_currencys['currency_A_value']; ?><br><?php echo $row_the_currencys_smain['symbol_currency']; ?></td>
+      <td class="align-middle text-success" align="center">
+        <?php echo $row_the_currencys['currency_A_value']; ?><br>
+        <?php echo $row_the_currencys_smain['symbol_currency']; ?></td>
 
-      <td class="align-middle" align="center" style="color:orange;">
+      <td class="align-middle text-info" align="center" >
       
       <?php
     
@@ -265,8 +435,9 @@ mysqli_close($enlace);
          echo $row_the_currencys_emain['name_currency']; ?>       
 </td>
 
-      <td  class="align-middle" align="center" style="color:orange;">
-      <?php echo $row_the_currencys['currency_B_value']; ?><br><?php echo $row_the_currencys_emain['symbol_currency']; ?>  </td>
+      <td  class="align-middle text-info" align="center" >
+      <?php echo $row_the_currencys['currency_B_value']; ?><br>
+      <?php echo $row_the_currencys_emain['symbol_currency']; ?>  </td>
 
       
 
@@ -302,24 +473,116 @@ mysqli_close($enlace);
 
 
 
-
-
-
-
-
+<h5 class="mt-4">Set New Exchange Rate:</h5>
 
 <form method="post">
 
+<div class="form-row margencito"  > 
 
 
-<!--
 
-<div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2">  
+<div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2">
+     <div class="input-group-prepend"> 
+     <span class="input-group-text alert-success" id="basic-addon1">Extra</span>  
+     </div>
+     <select class="form-control " id="extra_currency" name="extra_currency" >
+
+<option selected value="<?php echo $row_the_currencys_mainAC['id_currency']; ?>">
+   <?php echo $row_the_currencys_mainAC['name_currency']; ?>&nbsp;&nbsp;"<b>
+    <?php echo $row_the_currencys_mainAC['symbol_currency']; ?></b>"</option>
+<option style="background-color: #00000;" disabled></option>
+
+
+
+<?php
+include("../conectar.php"); 
+    $currency_Alt = "SELECT * FROM currency  WHERE  name_currency != '.' ORDER BY name_currency ASC";
+    $datos_currency_Alt = mysqli_query($enlace, $currency_Alt) or die(mysqli_error());
+    $row_datos_currency_Alt = mysqli_fetch_assoc($datos_currency_Alt);
+
+mysqli_close($enlace); ?>
+
+ <?php do{?>                                
+
+<option value="<?php echo $row_datos_currency_Alt['id_currency']; ?>">
+<?php echo $row_datos_currency_Alt['name_currency']; ?>&nbsp;&nbsp;"<b>
+  <?php echo $row_datos_currency_Alt['symbol_currency']; ?></b>"</option>
+
+ <?php } while ($row_datos_currency_Alt = mysqli_fetch_assoc($datos_currency_Alt)); ?> 
+                           
+</select>
+</div> 
+
+
+<div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2">
 <div class="input-group-prepend">
-<span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-id-card fa-lg"></i></span>  
+  <span class="input-group-text alert-success" id="basic-addon1">
+    Value:</span>  
 </div>
-<input type="text" maxlength="12" class="form-control importantex" id="doc_per" name="doc_per" placeholder="Doc or Id Number" aria-label="doc_per" aria-describedby="basic-addon1" required>    
- </div>  -->
+<input type="number" maxlength="19" min="1" class="form-control" id="extra_value" name="extra_value"
+placeholder="" aria-label="extra_value" aria-describedby="basic-addon1" required>  
+</div>
+
+
+
+
+
+
+
+<div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2">
+     <div class="input-group-prepend"> 
+     <span class="input-group-text alert-info" id="basic-addon1">Additional</span>  
+     </div>
+     <select class="form-control " id="additional_currency" name="additional_currency" >
+
+<option selected value="<?php echo $row_the_currencys_mainBC['id_currency']; ?>">
+   <?php echo $row_the_currencys_mainBC['name_currency']; ?>&nbsp;&nbsp;"<b>
+    <?php echo $row_the_currencys_mainBC['symbol_currency']; ?></b>"</option>
+<option style="background-color: #00000;" disabled></option>
+
+
+
+<?php
+include("../conectar.php"); 
+    $currency_Alty = "SELECT * FROM currency  WHERE  name_currency != '.' ORDER BY name_currency ASC";
+    $datos_currency_Alty = mysqli_query($enlace, $currency_Alty) or die(mysqli_error());
+    $row_datos_currency_Alty = mysqli_fetch_assoc($datos_currency_Alty);
+
+mysqli_close($enlace); ?>
+
+ <?php do{?>                                
+
+<option value="<?php echo $row_datos_currency_Alty['id_currency']; ?>">
+<?php echo $row_datos_currency_Alty['name_currency']; ?>&nbsp;&nbsp;"
+<b><?php echo $row_datos_currency_Alty['symbol_currency']; ?></b>"</option>
+
+ <?php } while ($row_datos_currency_Alty = mysqli_fetch_assoc($datos_currency_Alty)); ?> 
+                           
+</select>
+</div> 
+
+
+<div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2">
+<div class="input-group-prepend">
+  <span class="input-group-text alert-info" id="basic-addon1">
+    Value:</span>  
+</div>
+<input type="number" maxlength="19" min="1" class="form-control" id="additional_value" name="additional_value"
+placeholder="" aria-label="additional_value" aria-describedby="basic-addon1" required>  
+</div>
+
+
+
+
+</div> <!-- cierre margencito -->
+
+
+
+
+
+
+
+
 
 
 
@@ -327,9 +590,12 @@ mysqli_close($enlace);
 
 
 </div> <!-- cierre modal body -->
-      <div class="modal-footer"> 
-     
+   
 
+
+<div class="modal-footer"> 
+     
+    <input name="id_del_currency_actual" type="hidden" value="<?php echo $main_c; ?>">
 
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 
@@ -340,7 +606,7 @@ mysqli_close($enlace);
 
 </form>
 
-    </div>
+       </div>
   </div>
 </div>  <!--cierre modal--> 
 
@@ -348,8 +614,6 @@ mysqli_close($enlace);
 
 
 
-
-</div><!-- cierre margencito-->
 
 
 
@@ -456,7 +720,7 @@ echo $row_rooms_reveal_name_tipes['name_room_kind']; ?> </b>
 <form method="POST">
 
 <div class="input-group mb-3">
-  <input type="text" class="form-control" name="dinero" placeholder="New Amount" aria-describedby="basic-addon2">
+  <input type="number" min="1" maxlength="14" class="form-control" name="dinero" placeholder="New Amount" aria-describedby="basic-addon2">
   <div class="input-group-append">
     <button class="btn btn-secondary" name="new_price" type="button"><i class="fa-regular fa-floppy-disk fa-lg"></i></button>
   </div>

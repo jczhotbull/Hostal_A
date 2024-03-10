@@ -1271,7 +1271,7 @@ mysqli_close($enlace);
                               <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-location-dot fa-lg"></i></span>  
                                         </div>
-                                            <input type="number" maxlength="10" class="form-control" id="post_code" name="post_code" placeholder="Zip Code" aria-label="post_code" aria-describedby="basic-addon1">   
+                                            <input type="number" min="1" maxlength="10" class="form-control" id="post_code" name="post_code" placeholder="Zip Code" aria-label="post_code" aria-describedby="basic-addon1">   
                               </div> 
 
 

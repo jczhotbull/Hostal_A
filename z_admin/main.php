@@ -121,6 +121,169 @@ else {
 
 
 
+
+<div class="form-row margencito">
+
+
+<?php
+include("../conectar.php");
+
+$queryHost = "SELECT * FROM z_hostel where id_hostel = '$mi_hostel_select' LIMIT 1";
+$datos_queryHost = mysqli_query($enlace, $queryHost) or die(mysqli_error());
+$row_datos_queryHost = mysqli_fetch_array($datos_queryHost); 
+
+$id_verificado_host = $row_datos_queryHost['id_hostel'];
+$id_currency_del_host = $row_datos_queryHost['id_currency'];
+
+
+
+
+$queryFHL_currencys_out = "SELECT * FROM exchange_rates
+ where id_hostel = '$mi_hostel_select'
+ order BY all_set_this_time DESC limit 1";
+
+$the_currencys_out = mysqli_query($enlace, $queryFHL_currencys_out) or die(mysqli_error());
+$row_the_currencys_out = mysqli_fetch_assoc($the_currencys_out);
+$totalRows_the_currencys_out = mysqli_num_rows($the_currencys_out);
+
+$pruebarrA = $row_the_currencys_out['currency_A_value'];
+$pruebarrB = $row_the_currencys_out['currency_B_value'];
+
+$la_fechita_es = $row_the_currencys_out['all_set_this_time'];
+
+$format_monetA = number_format("$pruebarrA",2,",",".");
+$format_monetB = number_format("$pruebarrB",2,",",".");
+
+
+mysqli_close($enlace);
+     ?> 
+
+
+
+<style type="text/css">
+@font-face {
+  font-family: DIGITAL-7;
+  src: url(00_vendor/digital-7.ttf);
+}
+
+.lcd {background-color:#7D8C76;
+color:#343434;
+font-family: DIGITAL-7;
+font-size: 24px;
+text-align: center;
+font-weight: 600;
+letter-spacing: 3px;
+}
+</style>
+
+
+
+
+<?php
+    
+include ("../conectar.php");
+
+$main_main = $row_the_currencys_out['id_hostel_currency'];;
+
+$queryFHL_currencys_main_mia = "SELECT * FROM currency where id_currency = '$main_main' limit 1";
+
+$the_currencys_main_mia = mysqli_query($enlace, $queryFHL_currencys_main_mia) or die(mysqli_error());
+$row_the_currencys_main_mia = mysqli_fetch_assoc($the_currencys_main_mia);
+$totalRows_the_currencys_main_mia = mysqli_num_rows($the_currencys_main_mia);
+
+
+
+
+
+
+$main_cheA = $row_the_currencys_out['id_currency_A'];
+
+$queryFHL_currencys_mainAC = "SELECT * FROM currency where id_currency = '$main_cheA' limit 1";
+
+$the_currencys_mainAC = mysqli_query($enlace, $queryFHL_currencys_mainAC) or die(mysqli_error());
+$row_the_currencys_mainAC = mysqli_fetch_assoc($the_currencys_mainAC);
+$totalRows_the_currencys_mainAC = mysqli_num_rows($the_currencys_mainAC);
+
+
+
+
+$main_cheB = $row_the_currencys_out['id_currency_B'];
+
+$queryFHL_currencys_mainBC = "SELECT * FROM currency where id_currency = '$main_cheB' limit 1";
+
+$the_currencys_mainBC = mysqli_query($enlace, $queryFHL_currencys_mainBC) or die(mysqli_error());
+$row_the_currencys_mainBC = mysqli_fetch_assoc($the_currencys_mainBC);
+$totalRows_the_currencys_mainBC = mysqli_num_rows($the_currencys_mainBC);
+
+
+
+mysqli_close($enlace); 
+ ?>
+
+
+
+
+
+
+
+<div class="col-md-6 col-lg-3 mb-3"  >  
+
+  <div class="lcd" style="border: 1px solid #7D8C76; border-radius: 4px; ">
+  1 <?php echo $row_the_currencys_mainAC['symbol_currency']; ?> =
+  <?php echo $format_monetA; ?> <?php echo $row_the_currencys_main_mia['symbol_currency']; ?></div>
+
+</div>
+
+
+
+<div class="col-md-6 col-lg-3 mb-3"  >  
+
+  <div class="lcd" style="border: 1px solid #7D8C76; border-radius: 4px; ">
+  1 <?php echo $row_the_currencys_mainBC['symbol_currency']; ?> =
+  <?php echo $format_monetB; ?> <?php echo $row_the_currencys_main_mia['symbol_currency']; ?></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h4 class="glowwhite mt-4">Info:</h4>
+
+
+
+
+
+
+
+
+
  <!-- Icon Cards-->
       
 <div class="row">

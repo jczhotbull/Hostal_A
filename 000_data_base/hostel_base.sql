@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-03-2024 a las 19:25:07
+-- Tiempo de generación: 10-03-2024 a las 15:31:20
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -155,7 +155,11 @@ CREATE TABLE `exchange_rates` (
 --
 
 INSERT INTO `exchange_rates` (`id_exchange_rates`, `id_hostel`, `id_hostel_currency`, `id_currency_A`, `currency_A_value`, `id_currency_B`, `currency_B_value`, `id_currency_C`, `currency_C_value`, `id_currency_D`, `currency_D_value`, `id_currency_E`, `currency_E_value`, `all_set_this_time`) VALUES
-(1, 6, 2, 1, 200.00, 3, 220.00, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-08 16:36:13');
+(1, 6, 2, 1, 200.00, 3, 220.00, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-08 16:36:13'),
+(5, 6, 2, 1, 12.00, 3, 12.00, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-08 23:19:10'),
+(6, 6, 2, 1, 28.00, 3, 77.00, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-08 23:19:28'),
+(7, 6, 2, 3, 14.00, 1, 10.00, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-08 23:19:50'),
+(8, 6, 2, 1, 99.00, 3, 115.00, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-08 23:20:12');
 
 -- --------------------------------------------------------
 
@@ -792,7 +796,7 @@ ALTER TABLE `discounts`
 -- AUTO_INCREMENT de la tabla `exchange_rates`
 --
 ALTER TABLE `exchange_rates`
-  MODIFY `id_exchange_rates` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_exchange_rates` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `floors`

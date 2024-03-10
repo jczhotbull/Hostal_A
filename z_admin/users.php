@@ -1718,7 +1718,7 @@ include ("a_header.php"); ?>
                               <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-location-dot fa-lg"></i></span>  
                                         </div>
-                                            <input type="number" maxlength="10" class="form-control" id="post_code_per" name="post_code_per" placeholder="Zip Code" aria-label="post_code_per" aria-describedby="basic-addon1">   
+                                            <input type="number" min="1" maxlength="10" class="form-control" id="post_code_per" name="post_code_per" placeholder="Zip Code" aria-label="post_code_per" aria-describedby="basic-addon1">   
                               </div> 
 
 
