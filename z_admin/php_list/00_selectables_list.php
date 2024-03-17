@@ -120,6 +120,87 @@ $row_paises = mysqli_fetch_object($query_paises);
 
 
 
+        $query_String_products = "SELECT COUNT(*) AS total_products FROM productos";
+
+        $query_products = mysqli_query($enlace, $query_String_products);
+        
+        $row_products = mysqli_fetch_object($query_products);
+
+
+
+
+
+        $query_String_products_k = "SELECT COUNT(*) AS total_products_k FROM product_kind";
+
+        $query_products_k = mysqli_query($enlace, $query_String_products_k);
+        
+        $row_products_k = mysqli_fetch_object($query_products_k);
+
+
+        
 
        
+        $query_String_behaviors = "SELECT COUNT(*) AS total_behaviors FROM behaviors";
+
+        $query_behaviors = mysqli_query($enlace, $query_String_behaviors);
+        
+        $row_behaviors = mysqli_fetch_object($query_behaviors);
+
+
+        $query_String_room_s = "SELECT COUNT(*) AS total_room_s FROM room_status";
+
+        $query_room_s = mysqli_query($enlace, $query_String_room_s);
+        
+        $row_room_s = mysqli_fetch_object($query_room_s);
+
+
+        $query_String_bed_s = "SELECT COUNT(*) AS total_bed_s FROM bed_status";
+
+        $query_bed_s = mysqli_query($enlace, $query_String_bed_s);
+        
+        $row_bed_s = mysqli_fetch_object($query_bed_s);
+
+
+
+        $query_String_incident_r = "SELECT COUNT(*) AS total_incident_r_status FROM incident_r_status";
+
+        $query_incident_r = mysqli_query($enlace, $query_String_incident_r);
+        
+        $row_incident_r = mysqli_fetch_object($query_incident_r);
+
+
+
+        $query_String_incident_b = "SELECT COUNT(*) AS total_incident_b_status FROM incident_b_status";
+
+        $query_incident_b = mysqli_query($enlace, $query_String_incident_b);
+        
+        $row_incident_b = mysqli_fetch_object($query_incident_b);
+
+
+        $query_String_incident_b = "SELECT COUNT(*) AS total_incident_b_status FROM incident_b_status";
+
+        $query_incident_b = mysqli_query($enlace, $query_String_incident_b);
+        
+        $row_incident_b = mysqli_fetch_object($query_incident_b);
+
+
+        $query_String_incidents_rooms = "SELECT COUNT(*) AS total_incidents_rooms FROM incidents_rooms";
+
+        $query_incidents_rooms = mysqli_query($enlace, $query_String_incidents_rooms);
+        
+        $row_incidents_rooms = mysqli_fetch_object($query_incidents_rooms);
+
+
+        $query_String_incidents_beds = "SELECT COUNT(*) AS total_incidents_beds FROM incidents_beds";
+
+        $query_incidents_beds = mysqli_query($enlace, $query_String_incidents_beds);
+        
+        $row_incidents_beds = mysqli_fetch_object($query_incidents_beds);
+
+
+        
+
+
+
+
 ?>

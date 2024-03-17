@@ -26,7 +26,7 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
 
 
-
+    $mi_hostel_select = $_SESSION['hostel_activo'];
 
 
 
@@ -36,7 +36,8 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
     include ("../conectar.php");   // para saber cuantas rooms ay
     
-    $query_String_roomsMM = "SELECT COUNT(*) AS total_roomsMM FROM tb_room";
+    $query_String_roomsMM = "SELECT COUNT(*) AS total_roomsMM FROM tb_room
+                            where id_hostel = '$mi_hostel_select'";
     $query_roomsMM = mysqli_query($enlace, $query_String_roomsMM);
     $row_roomsMM = mysqli_fetch_object($query_roomsMM);
     
@@ -114,7 +115,44 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
 
 
-<div class="col-xl-3 col-sm-6 col-6 mb-3" <?php if ( $row_roomsMM->total_roomsMM =='0' ){?>style="display:none"<?php } ?> >
+
+
+<?php
+include("../conectar.php");
+
+$queryHost = "SELECT id_hostel,id_currency FROM z_hostel where id_hostel = '$mi_hostel_select' LIMIT 1";
+$datos_queryHost = mysqli_query($enlace, $queryHost) or die(mysqli_error());
+$row_datos_queryHost = mysqli_fetch_array($datos_queryHost); 
+
+$id_verificado_host = $row_datos_queryHost['id_hostel'];
+$id_currency_del_host = $row_datos_queryHost['id_currency'];
+
+
+
+
+$queryFHL_currencys_out = "SELECT * FROM exchange_rates
+ where id_hostel = '$mi_hostel_select'
+ order BY all_set_this_time DESC limit 1";
+
+$the_currencys_out = mysqli_query($enlace, $queryFHL_currencys_out) or die(mysqli_error());
+$row_the_currencys_out = mysqli_fetch_assoc($the_currencys_out);
+$totalRows_the_currencys_out = mysqli_num_rows($the_currencys_out);
+
+mysqli_close($enlace);
+     ?> 
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-xl-3 col-sm-6 col-6 mb-3"
+ <?php if ( $row_roomsMM->total_roomsMM =='0' or $totalRows_the_currencys_out =='0' ){?>style="display:none"<?php } ?> >
   <div class="card text-white relleno-grama o-hidden h-100">
     <div class="card-body">
       <div class="card-body-icon">
@@ -133,7 +171,29 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 </div>
 
 
-      </div>  <!-- cierre row -->
+
+<!--
+<div class="col-xl-3 col-sm-6 col-6 mb-3"
+ <?php if ( $row_roomsMM->total_roomsMM =='0' or $totalRows_the_currencys_out =='0' ){?>style="display:none"<?php } ?> >
+  <div class="card text-white relleno-fresa o-hidden h-100">
+    <div class="card-body">
+      <div class="card-body-icon">
+        <i class="fa-regular fa-face-frown-open fa-xs"  ></i>  
+      </div>
+      <div class="mr-5 cantidadzzzpe">Report a</div>  
+      <div class="infozzz">Incident.</div>
+    </div>
+    <a class=" card-footer card-footerz text-white clearfix small z-1" href="rooms_report.php">
+      <span class="float-left">Go</span>
+      <span class="float-right">
+        <i class="fa fa-angle-right"></i> 
+      </span>
+    </a>
+  </div>
+</div>  -->
+
+
+      </div>  
 
 <!-- Cierre Icon Cards-->
 
@@ -160,8 +220,10 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
 include ("../conectar.php");
 
-$queryFHL_tipos = "SELECT id_room_kind FROM tb_room 
+$queryFHL_tipos = "SELECT id_hostel, id_room_kind FROM tb_room
+where id_hostel = '$mi_hostel_select'
 group BY id_room_kind ASC";
+
 
 $rooms_tipes = mysqli_query($enlace, $queryFHL_tipos) or die(mysqli_error());
 $row_rooms_tipes = mysqli_fetch_assoc($rooms_tipes);
@@ -195,7 +257,9 @@ $totalRows_rooms_reveal_name_tipes = mysqli_num_rows($rooms_reveal_name_tipes);
 
 
 
-$queryFHL_conteo_t = "SELECT id_room_kind FROM tb_room where id_room_kind = '$este_id_kind' order by id_room_kind asc ";
+$queryFHL_conteo_t = "SELECT id_room_kind FROM tb_room
+where id_room_kind = '$este_id_kind'
+and id_hostel = '$mi_hostel_select' order by id_room_kind asc ";
 
 $rooms_conteo_t = mysqli_query($enlace, $queryFHL_conteo_t) or die(mysqli_error());
 $row_rooms_conteo_t = mysqli_fetch_assoc($rooms_conteo_t);
@@ -283,7 +347,8 @@ href="view_room_bed.php?idtabla=<?php  echo $este_id_kind; ?>&ttitulo=<?php  ech
 
 
 
-<h4 class="glowwhite mt-4" <?php if ( $row_roomsMM->total_roomsMM =='0' ){?>style="display:none"<?php } ?> >Room(s) Guests:</h4>
+<h4 class="glowwhite mt-4" <?php if ( $row_roomsMM->total_roomsMM =='0' ){?>style="display:none"<?php } ?> >
+Incidents by Room Kind:</h4>
 
 
 
@@ -297,12 +362,15 @@ href="view_room_bed.php?idtabla=<?php  echo $este_id_kind; ?>&ttitulo=<?php  ech
 
 include ("../conectar.php");
 
-$queryFHL_tipos = "SELECT id_room_kind FROM tb_room 
+$queryFHL_tipos = "SELECT id_hostel, id_room_kind FROM tb_room
+where id_hostel = '$mi_hostel_select'
 group BY id_room_kind ASC";
 
 $rooms_tipes = mysqli_query($enlace, $queryFHL_tipos) or die(mysqli_error());
 $row_rooms_tipes = mysqli_fetch_assoc($rooms_tipes);
 $totalRows_rooms_tipes = mysqli_num_rows($rooms_tipes);
+
+
 
 mysqli_close($enlace);
 
@@ -330,13 +398,25 @@ $totalRows_rooms_reveal_name_tipes = mysqli_num_rows($rooms_reveal_name_tipes);
 
 
 
-$queryFHL_conteo_t = "SELECT id_room_kind FROM tb_room where id_room_kind = '$este_id_kind' order by id_room_kind asc ";
+$queryFHL_conteo_t = "SELECT id_room_kind FROM tb_room
+where id_room_kind = '$este_id_kind'
+and id_hostel = '$mi_hostel_select'
+order by id_room_kind asc ";
 
 $rooms_conteo_t = mysqli_query($enlace, $queryFHL_conteo_t) or die(mysqli_error());
 $row_rooms_conteo_t = mysqli_fetch_assoc($rooms_conteo_t);
 $totalRows_rooms_conteo_t = mysqli_num_rows($rooms_conteo_t);
 
 
+
+$queryFHL_conteo_t_o = "SELECT id_hostel, id_room_kind, room_observ FROM tb_room
+where id_room_kind = '$este_id_kind'
+and id_hostel = '$mi_hostel_select'
+and room_observ !='' order by id_room_kind asc ";
+
+$rooms_conteo_t_o = mysqli_query($enlace, $queryFHL_conteo_t_o) or die(mysqli_error());
+$row_rooms_conteo_t_o = mysqli_fetch_assoc($rooms_conteo_t_o);
+$totalRows_rooms_conteo_t_o = mysqli_num_rows($rooms_conteo_t_o);
 
 
 mysqli_close($enlace);
@@ -351,8 +431,10 @@ mysqli_close($enlace);
           <div class="card text-white o-hidden h-100"
           style="background:#<?php  echo $background_b; $background_b = $background_b + '3700';  ?>">
             <div class="card-body">
-              <div class="card-body-icon">
-<?php  echo $totalRows_rooms_conteo_t; ?>/6          
+              <div class="card-body-icon" style="font-size: 44px;">
+              <?php
+echo $totalRows_rooms_conteo_t_o; ?>/<?php  echo $totalRows_rooms_conteo_t; ?>
+
               </div>
               <div class="mr-5 cantidadzzz"></div>
 
@@ -365,7 +447,7 @@ echo $row_rooms_reveal_name_tipes['name_room_kind']; ?> </div>
             <a class=" card-footer card-footerz text-white clearfix small z-1"        
 
             
-href="view_room_bed_guests.php?idtabla=<?php  echo $este_id_kind; ?>&ttitulo=<?php  echo $mi_name_kind; ?>">  
+href="view_room_bed_inci.php?idtabla=<?php  echo $este_id_kind; ?>&ttitulo=<?php  echo $mi_name_kind; ?>">  
 
               <span class="float-left">View</span>
               <span class="float-right">

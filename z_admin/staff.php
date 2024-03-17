@@ -112,7 +112,7 @@ else {
   <div class="card text-white relleno-pink o-hidden h-100">
     <div class="card-body">
       <div class="card-body-icon">
-        <i class="<?php echo $cumple_img; ?> fa-xs" style="--fa-beat-scale: 2.0;"></i>
+        <i class="<?php echo $cumple_img; ?> fa-xs" style="--fa-beat-scale: 1.1;"></i>
       </div>
       <div class="mr-5 cantidadzzzpe">Today <b><?php echo $row_cumplen->total; ?></b></div>
       <div class="infozzz">Birthdays.</div>

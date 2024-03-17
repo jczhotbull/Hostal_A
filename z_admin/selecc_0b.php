@@ -289,9 +289,9 @@ $alerta_principal = "2";
 
 
 
-<?php include ("a_header.php"); ?>
+<?php include("a_header.php"); ?>
 
-<?php include ("../conectar.php"); ?>   <!--   necesario para poder listar -->
+<?php include("../conectar.php"); ?>   <!--   necesario para poder listar -->
 
 
 <?php
@@ -609,4 +609,4 @@ if ($alerta_principal  == "0") {
 
 
 
-<?php include ("f_footer.php"); ?>
+<?php include("f_footer.php"); ?>

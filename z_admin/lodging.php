@@ -96,15 +96,71 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
 
       <div class="col-xl-3 col-sm-6 col-6 mb-3"  >
+          <div class="card text-white relleno-bolt o-hidden h-100">
+            <div class="card-body">
+              <div class="card-body-icon">  
+                <i class="fa-solid fa-bolt-lightning fa-xs"> </i>
+              </div>
+              <div class="mr-5 cantidadzzzpe">Fast</div>
+              <div class="infozzz">Check-In</div>
+            </div>
+
+
+<div class="card-footer   clearfix z-1 small" >
+
+<a class="btn btn-secondary btn-sm mb-1" href="f_check_in.php" role="button">x1</a>
+<a class="btn btn-secondary btn-sm mb-1" href="" role="button">x2</a>
+<a class="btn btn-secondary btn-sm mb-1" href="" role="button">x3</a>
+<a class="btn btn-secondary btn-sm mb-1" href="" role="button">x4</a>
+<a class="btn btn-secondary btn-sm mb-1" href="" role="button">x5</a>
+<a class="btn btn-secondary btn-sm mb-1" href="" role="button">x6</a>             
+<!-- <a class="btn btn-warning btn-sm" href="zona_adm_estudiante_pre.php?num_alum=5" role="button">x6</a> -->
+</div>
+
+
+
+          </div>
+        </div> 
+
+
+
+
+
+
+
+
+
+      <div class="col-xl-3 col-sm-6 col-6 mb-3"  >
           <div class="card text-white relleno-grama o-hidden h-100">
             <div class="card-body">
               <div class="card-body-icon">
-                <i class="fa-solid fa-file-signature fa-xs"> </i>
+                <i class="fa-solid fa-file-contract fa-xs"> </i>
               </div>
-              <div class="mr-5 cantidadzzzpe">Check-In</div>
+              <div class="mr-5 cantidadzzzsmall">Check-In</div>
               <div class="infozzz"></div>
             </div>
             <a class=" card-footer card-footerz text-white clearfix small z-1" href="check_in.php">
+              <span class="float-left">Set</span>
+              <span class="float-right">
+                <i class="fa fa-angle-right"></i>
+              </span>
+            </a>
+          </div>
+        </div> 
+
+
+
+
+        <div class="col-xl-3 col-sm-6 col-6 mb-3"  >
+          <div class="card text-white relleno-verdeosc o-hidden h-100">
+            <div class="card-body">
+              <div class="mini_card_icon">
+                <i class="fa-solid fa-file-signature fa-xs"> </i>
+              </div>
+              <div class="mr-5 cantidadzzzsmall">Mod</div> 
+              <div class="cantidadzzzsmall">Check-In</div>
+            </div>
+            <a class=" card-footer card-footerz text-white clearfix small z-1" href="">
               <span class="float-left">Go</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
@@ -112,6 +168,91 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
             </a>
           </div>
         </div>
+
+
+
+        <div class="col-xl-3 col-sm-6 col-6 mb-3"  >
+          <div class="card text-white relleno-browplight_a o-hidden h-100">
+            <div class="card-body">
+              <div class="card-body-icon">
+                <i class="fa-solid fa-calendar-check fa-xs"> </i>
+              </div> 
+              <div class="mr-5 cantidadzzzpe">Extend</div>  
+              <div class="infozzz">Stay</div>
+            </div>
+            <a class=" card-footer card-footerz text-white clearfix small z-1" href="">
+              <span class="float-left">Go</span>
+              <span class="float-right">
+                <i class="fa fa-angle-right"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+
+
+
+       
+
+
+        </div>  <!-- cierre row -->
+
+
+
+ <!-- Icon Cards-->
+      
+ <div class="row">
+
+ <div class="col-xl-3 col-sm-6 col-6 mb-3"  >
+          <div class="card text-white relleno-fresal o-hidden h-100">
+            <div class="card-body">
+              <div class="mini_card_icon"> 
+<i class="fa-solid fa-person-walking-dashed-line-arrow-right fa-xs"> </i> 
+              </div>
+              <div class="mr-5 cantidadzzzsmall">Check-Out</div>
+              <div class="infozzz"></div>
+            </div>
+            <a class=" card-footer card-footerz text-white clearfix small z-1" href="">
+              <span class="float-left">Set</span>
+              <span class="float-right">
+                <i class="fa fa-angle-right"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+
+ </div>  <!-- cierre row -->
+
+
+
+
+
+
+
+
+
+ <!-- Icon Cards-->
+      
+ <div class="row">
+
+
+
+        <div class="col-xl-3 col-sm-6 col-6 mb-3"  >
+          <div class="card text-white relleno-salmon_a o-hidden h-100">
+            <div class="card-body">
+              <div class="mini_card_icon">
+                <i class="fa-solid fa-business-time fa-xs"> </i>
+              </div>
+              <div class="mr-5 cantidadzzzsmall">Bookings</div>
+              <div class="cantidadzzzsmall"></div>
+            </div>
+            <a class=" card-footer card-footerz text-white clearfix small z-1" href="">
+              <span class="float-left">Set</span>
+              <span class="float-right">
+                <i class="fa fa-angle-right"></i>
+              </span>
+            </a>
+          </div>
+        </div> 
 
 
 

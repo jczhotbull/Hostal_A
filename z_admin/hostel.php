@@ -1609,6 +1609,22 @@ Nick: <b><span><?php echo $row_hostels['nick_name_hostel'];?></span></b></td>
 
 
 
+    <?php
+include ("../conectar.php");
+$query = "SELECT * FROM z_hostel, tb_address, z_data_hostel, country 
+WHERE z_hostel.id_address = tb_address.id_address 
+and   z_hostel.id_data_hostel = z_data_hostel.id_data_hostel
+and   tb_address.id_country = country.id_country
+and   z_hostel.id_hostel != '$mi_hostel_select'
+order by z_hostel.name_hostel asc ";
+
+$hostels = mysqli_query($enlace, $query) or die(mysqli_error());
+$row_hostels = mysqli_fetch_assoc($hostels);
+$totalRows_hostels = mysqli_num_rows($hostels);
+
+mysqli_close($enlace);
+
+?>
 
 
 
@@ -1623,14 +1639,13 @@ Nick: <b><span><?php echo $row_hostels['nick_name_hostel'];?></span></b></td>
 
 
 
-
-<div class="card-header mt-3" <?php if ( $totalRows_hostels <= '1' ){?>style="display:none"<?php } ?> >
+<div class="card-header mt-3" <?php if ( $totalRows_hostels == '0' ){?>style="display:none"<?php } ?> >
 <b><i class="fa fa-table"></i> Extra Hostel(s):</b>
 </div>
 
 
 
-        <div class="card-body border border-info mb-2" <?php if ( $totalRows_hostels <= '1' ){?>style="display:none"<?php } ?> >
+        <div class="card-body border border-info mb-2" <?php if ( $totalRows_hostels == '0' ){?>style="display:none"<?php } ?> >
 
           <div class="table-responsive">
 
@@ -1662,22 +1677,7 @@ Nick: <b><span><?php echo $row_hostels['nick_name_hostel'];?></span></b></td>
 
 
 
-  <?php
-include ("../conectar.php");
-$query = "SELECT * FROM z_hostel, tb_address, z_data_hostel, country 
-WHERE z_hostel.id_address = tb_address.id_address 
-and   z_hostel.id_data_hostel = z_data_hostel.id_data_hostel
-and   tb_address.id_country = country.id_country
-and   z_hostel.id_hostel != '$mi_hostel_select'
-order by z_hostel.name_hostel asc ";
 
-$hostels = mysqli_query($enlace, $query) or die(mysqli_error());
-$row_hostels = mysqli_fetch_assoc($hostels);
-$totalRows_hostels = mysqli_num_rows($hostels);
-
-mysqli_close($enlace);
-
-?>
 
 
 

@@ -121,8 +121,8 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
                   $nota_1= mysqli_real_escape_string($enlace,$_POST['nota_1']);
           
                    // proceso de insercion y creacion en la tabla room_beds primera cama obligatoria...
-              $query_bed_1 = "INSERT INTO tb_rooms_beds(id_room, id_bed_kind, id_bed_number, note) 
-              VALUES (   '$the_room_id', '$bed_kind_1', '$bed_number_1', '$nota_1')";
+              $query_bed_1 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
+              VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_1', '$bed_number_1', '$nota_1')";
           
                   $lista_bed_1 = mysqli_query($enlace, $query_bed_1) or die(mysqli_error());
                   $total_beds++;
@@ -137,8 +137,8 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
                   $bed_kind_2 = $_POST["bed_kind_2"]; $bed_number_2 = $_POST["bed_number_2"];
                   $nota_2= mysqli_real_escape_string($enlace,$_POST['nota_2']);
                
-                  $query_bed_2 = "INSERT INTO tb_rooms_beds(id_room, id_bed_kind, id_bed_number, note) 
-                  VALUES (   '$the_room_id', '$bed_kind_2', '$bed_number_2', '$nota_2')";
+                  $query_bed_2 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
+                  VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_2', '$bed_number_2', '$nota_2')";
               
                       $lista_bed_2 = mysqli_query($enlace, $query_bed_2) or die(mysqli_error());
                       $total_beds++;
@@ -152,8 +152,8 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
                           $bed_kind_3 = $_POST["bed_kind_3"]; $bed_number_3 = $_POST["bed_number_3"];
                           $nota_3= mysqli_real_escape_string($enlace,$_POST['nota_3']);
                          
-                          $query_bed_3 = "INSERT INTO tb_rooms_beds(id_room, id_bed_kind, id_bed_number, note) 
-                          VALUES (   '$the_room_id', '$bed_kind_3', '$bed_number_3', '$nota_3')";
+                          $query_bed_3 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
+                          VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_3', '$bed_number_3', '$nota_3')";
                       
                               $lista_bed_3 = mysqli_query($enlace, $query_bed_3) or die(mysqli_error());
                               $total_beds++;
@@ -167,8 +167,8 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
                                   $bed_kind_4 = $_POST["bed_kind_4"]; $bed_number_4 = $_POST["bed_number_4"];
                                   $nota_4= mysqli_real_escape_string($enlace,$_POST['nota_4']);
                                  
-                                  $query_bed_4 = "INSERT INTO tb_rooms_beds(id_room, id_bed_kind, id_bed_number, note) 
-                                  VALUES (   '$the_room_id', '$bed_kind_4', '$bed_number_4', '$nota_4')";
+                                  $query_bed_4 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
+                                  VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_4', '$bed_number_4', '$nota_4')";
                               
                                       $lista_bed_4 = mysqli_query($enlace, $query_bed_4) or die(mysqli_error());
                                       $total_beds++;
@@ -181,8 +181,8 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
                                       $bed_kind_5 = $_POST["bed_kind_5"]; $bed_number_5 = $_POST["bed_number_5"];
                                        $nota_5= mysqli_real_escape_string($enlace,$_POST['nota_5']);
                                                              
-                                        $query_bed_5 = "INSERT INTO tb_rooms_beds(id_room, id_bed_kind, id_bed_number, note) 
-                                         VALUES (   '$the_room_id', '$bed_kind_5', '$bed_number_5', '$nota_5')";
+                                        $query_bed_5 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
+                                         VALUES (  '$mi_hostel_select', '$the_room_id', '$type_room', '$bed_kind_5', '$bed_number_5', '$nota_5')";
                                                           
                                        $lista_bed_5 = mysqli_query($enlace, $query_bed_5) or die(mysqli_error());
                                               $total_beds++;
@@ -194,8 +194,8 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
                                                                   $bed_kind_6 = $_POST["bed_kind_6"]; $bed_number_6 = $_POST["bed_number_6"];
                                                                    $nota_6= mysqli_real_escape_string($enlace,$_POST['nota_6']);
                                                                                          
-                                                                    $query_bed_6 = "INSERT INTO tb_rooms_beds(id_room, id_bed_kind, id_bed_number, note) 
-                                                                     VALUES (   '$the_room_id', '$bed_kind_6', '$bed_number_6', '$nota_6')";
+                                                                    $query_bed_6 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
+                                                                     VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_6', '$bed_number_6', '$nota_6')";
                                                                                       
                                                                    $lista_bed_6 = mysqli_query($enlace, $query_bed_6) or die(mysqli_error());
                                                                           $total_beds++;
@@ -206,8 +206,8 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
           $bed_kind_7 = $_POST["bed_kind_7"]; $bed_number_7 = $_POST["bed_number_7"];
            $nota_7= mysqli_real_escape_string($enlace,$_POST['nota_7']);
                                  
-            $query_bed_7 = "INSERT INTO tb_rooms_beds(id_room, id_bed_kind, id_bed_number, note) 
-             VALUES (   '$the_room_id', '$bed_kind_7', '$bed_number_7', '$nota_7')";
+            $query_bed_7 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
+             VALUES (  '$mi_hostel_select', '$the_room_id', '$type_room', '$bed_kind_7', '$bed_number_7', '$nota_7')";
                               
            $lista_bed_7 = mysqli_query($enlace, $query_bed_7) or die(mysqli_error());
                   $total_beds++;
@@ -220,8 +220,8 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
                                       $bed_kind_8 = $_POST["bed_kind_8"]; $bed_number_8 = $_POST["bed_number_8"];
                                        $nota_8= mysqli_real_escape_string($enlace,$_POST['nota_8']);
                                                              
-                                        $query_bed_8 = "INSERT INTO tb_rooms_beds(id_room, id_bed_kind, id_bed_number, note) 
-                                         VALUES (   '$the_room_id', '$bed_kind_8', '$bed_number_8', '$nota_8')";
+                                        $query_bed_8 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
+                                         VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_8', '$bed_number_8', '$nota_8')";
                                                           
                                        $lista_bed_8 = mysqli_query($enlace, $query_bed_8) or die(mysqli_error());
                                               $total_beds++;
@@ -235,8 +235,8 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
           $bed_kind_9 = $_POST["bed_kind_9"]; $bed_number_9 = $_POST["bed_number_9"];
            $nota_9= mysqli_real_escape_string($enlace,$_POST['nota_9']);
                                  
-            $query_bed_9 = "INSERT INTO tb_rooms_beds(id_room, id_bed_kind, id_bed_number, note) 
-             VALUES (   '$the_room_id', '$bed_kind_9', '$bed_number_9', '$nota_9')";
+            $query_bed_9 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
+             VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_9', '$bed_number_9', '$nota_9')";
                               
            $lista_bed_9 = mysqli_query($enlace, $query_bed_9) or die(mysqli_error());
                   $total_beds++;
@@ -394,7 +394,7 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
 
                      <select class="form-control importantex" id="room_number" name="room_number" required>
                                                         
-                                   <option selected disabled value="">Room Number:</option> 
+                                   <option selected disabled value="">Room Name or N°:</option> 
                                                         <option disabled></option>
 
                                <?php do{?>                                
@@ -464,7 +464,7 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
 
 <div class="input-group input-group-sm  col-sm-12 col-md-12 col-lg-12 mb-2">  
 <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">Observations:</span>  
+    <span class="input-group-text" id="basic-addon1">Characteristics:</span>  
 </div>
 <input type="text" maxlength="110" class="form-control" id="room_observ" name="room_observ"
  aria-label="room_observ" aria-describedby="basic-addon1" >    
@@ -532,7 +532,7 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
       <th width="10%" scope="col">How Many?</th>      
       <th width="30%" scope="col">Bed Kind</th>
       <th width="20%" scope="col">Bed Id or N°</th>
-      <th width="40%" scope="col">Note</th>
+      <th width="40%" scope="col">Characteristics</th>
       
     </tr>
   </thead>

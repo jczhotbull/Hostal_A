@@ -124,7 +124,7 @@ body.fixed-nav {
         width: 250px;
         padding: 0; }
         #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
-          padding: 1em; }
+          padding: 0.6em; }
         #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level,
         #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level {
           padding-left: 0;

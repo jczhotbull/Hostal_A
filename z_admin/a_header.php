@@ -121,7 +121,7 @@ mysqli_close($enlace);
       <ul class="navbar-nav navbar-sidenav " id="exampleAccordion">
         
         <li 
-        class="nav-item separacionpequenaa hovering" data-toggle="tooltip" data-placement="right" title="Main">
+        class="nav-item separacionpequenaa hovering" data-toggle="tooltip" data-placement="right" title="Main" >
           <a class="nav-link" style="color:#FFFFFF;" href="main.php">
             <i class="fas fa-home fa-lg"></i>
             <span class="nav-link-text">&nbsp;Main</span>
@@ -181,6 +181,25 @@ mysqli_close($enlace);
             <span class="nav-link-text">&nbsp;Hostel</span>  
           </a>
         </li>
+   
+
+        
+
+        <li 
+        class="nav-item separacionpequenaa hovering" data-toggle="tooltip" data-placement="right" title="Staff">
+          <a class="nav-link" style="color:#3c9dc8;" href="beds.php">
+            <i class="fa-solid fa-bed fa-lg"></i>  
+            <span class="nav-link-text">&nbsp;Beds</span>
+          </a>
+        </li>
+
+
+
+
+
+
+
+
 
 
         <li 
@@ -270,22 +289,14 @@ mysqli_close($enlace);
       <ul class="navbar-nav  ml-auto">
 
         <li class="nav-horaz part1">
-        &nbsp  
-        <i class="far fa-calendar-alt fa-lg text-success"></i>&nbsp&nbsp&nbsp  
+        <i class="far fa-calendar-alt fa-lg text-success"></i>&nbsp  
         <i id="diaSemana" class="diaSemana">Martes</i>
-        <i id="dia" class="dia">27</i>
-        <i>-</i>
+        <i id="dia" class="dia">27</i>,        
         <i id="mes" class="mes">Octubre</i>
-        <i>-</i>
+        <i class="text-success">-</i>
         <i id="year" class="year">2015</i>
-        <i class="text-success"><b>/</b></i> 
-        <i id="horas" class="horas">11</i>
-        <i>:</i>
-        <i id="minutos" class="minutos">48</i>
-        <i>:</i>
-        
-        <i id="segundos" class="segundos">12</i> 
-        
+        <i class="text-success">/</i> 
+        <i id="horas" class="horas">11</i>:<i id="minutos" class="minutos">48</i>:<i id="segundos" class="segundos">12</i>
         <i id="ampm" class="ampm">AM</i>
 
 
@@ -302,17 +313,14 @@ mysqli_close($enlace);
              { echo "".$infoZ.""; }   
 
             ?>
-
-
-
-          
+         
         </li>
         
 
                   
         <li class="nav-item part3">
           <a class="nav-link text-warning" data-toggle="modal" data-target="#exampleModal">
-            &nbsp; &nbsp;<i class="fas fa-sign-out-alt fa-lg "></i> &nbsp; &nbsp; Exit</a>   <!-- Esta en el footer -->
+            <i class="fas fa-sign-out-alt fa-lg "></i> &nbsp; Exit</a>   <!-- Esta en el footer -->
         </li>
 
         <li class="nav-item">

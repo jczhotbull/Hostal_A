@@ -63,7 +63,7 @@ if (array_key_exists("id_per",$_SESSION))    // si existe la clave id para mi ar
 		}
 
 
-    $infoZ .= "&nbsp;&nbsp;<i class=\"textadmin\"><i class=\"far fa-id-badge\"></i> &nbsp; &nbsp; ".$abrev."</i>
+    $infoZ .= " <i class=\"textadmin\"><i class=\"far fa-id-badge\"></i>&nbsp; ".$abrev."</i>
     &nbsp;" . $nnn['p_surname_per'] . " " . $nnn['p_name_per'] . ".";
 		
 

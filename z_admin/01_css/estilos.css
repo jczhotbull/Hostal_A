@@ -323,6 +323,12 @@ border: 1px solid #988B9A;
 	background-color: #746E61;
 }
 
+
+.relleno-gris_alt {
+	background-color: #5b5750;
+}
+
+
 .relleno-lila {
 	background-color: #BE2E71;
 }
@@ -364,6 +370,19 @@ border: 1px solid #988B9A;
 	background-color: #2363AF;
 	
 }
+
+
+.relleno-bolt {
+	background-color: #5f92d0;
+	
+}
+
+
+.relleno-bolt_alt {
+	background-color: #4375b3;
+	
+}
+
 
 .relleno-ocean {
 	background-color: #268092;

@@ -82,13 +82,13 @@ mysqli_close($enlace);
 ?>
 
 
-<div class="input-group input-group-sm  col-sm-12 col-md-6 col-lg-3 mb-2">
-     <div class="input-group-prepend"> 
-     <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-money-bill-wave fa-lg"></i></span>  
+<div class="input-group input-group-sm col-sm-12 col-md-6 col-lg-3 mb-2" >
+     <div class="input-group-prepend "> 
+     <span class="input-group-text"  id="basic-addon1"><i class="fa-solid fa-money-bill-wave fa-lg fa-beat"></i></span>  
      </div>
-     <select class="form-control importantex" id="hostel_currency_mod" name="hostel_currency_mod" required>
+     <select style="background-color: #e7f5fd;" class="form-control importantex" id="hostel_currency_mod" name="hostel_currency_mod" required>
                                                         
-   <option selected value="<?php echo $row_hostels['id_currency']; ?>">
+   <option selected value="<?php echo $row_hostels['id_currency']; ?>" >
    <?php echo $row_datos_currency_A['name_currency']; ?>&nbsp;&nbsp;"<b><?php echo $row_datos_currency_A['symbol_currency']; ?></b>"</option>
 
                    <option style="background-color: #00000;" disabled></option>
@@ -113,7 +113,7 @@ mysqli_close($enlace);
                                 <?php } while ($row_datos_currency_Alt = mysqli_fetch_assoc($datos_currency_Alt)); ?> 
                            
                                         </select>
-                                </div>  
+ </div>  
 
 
 

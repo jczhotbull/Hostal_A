@@ -52,6 +52,15 @@ $este_es_el_rol_del_user = $_SESSION['id_rol_per'] == '1';
 
 
 
+$mi_hostel_select = $_SESSION['hostel_activo'];
+
+$queryFHL_currencys_prim = "SELECT * FROM exchange_rates
+ where id_hostel = '$mi_hostel_select'
+ order BY all_set_this_time DESC limit 1";
+
+$the_currencys_prim = mysqli_query($enlace, $queryFHL_currencys_prim) or die(mysqli_error());
+$row_the_currencys_prim = mysqli_fetch_assoc($the_currencys_prim);
+$totalRows_the_currencys_prim = mysqli_num_rows($the_currencys_prim);
 
 
 
@@ -146,6 +155,9 @@ $the_currencys_out = mysqli_query($enlace, $queryFHL_currencys_out) or die(mysql
 $row_the_currencys_out = mysqli_fetch_assoc($the_currencys_out);
 $totalRows_the_currencys_out = mysqli_num_rows($the_currencys_out);
 
+if ($totalRows_the_currencys_out >='1') {
+
+
 $pruebarrA = $row_the_currencys_out['currency_A_value'];
 $pruebarrB = $row_the_currencys_out['currency_B_value'];
 
@@ -153,7 +165,7 @@ $la_fechita_es = $row_the_currencys_out['all_set_this_time'];
 
 $format_monetA = number_format("$pruebarrA",2,",",".");
 $format_monetB = number_format("$pruebarrB",2,",",".");
-
+}
 
 mysqli_close($enlace);
      ?> 
@@ -177,6 +189,16 @@ letter-spacing: 3px;
 </style>
 
 
+
+
+
+
+
+
+
+
+
+<div class="col-md-6 col-lg-3 mb-3" <?php if ( $totalRows_the_currencys_prim =='0' ){?>style="display:none"<?php } ?>  >  
 
 
 <?php
@@ -226,7 +248,9 @@ mysqli_close($enlace);
 
 
 
-<div class="col-md-6 col-lg-3 mb-3"  >  
+
+
+
 
   <div class="lcd" style="border: 1px solid #7D8C76; border-radius: 4px; ">
   1 <?php echo $row_the_currencys_mainAC['symbol_currency']; ?> =
@@ -236,7 +260,7 @@ mysqli_close($enlace);
 
 
 
-<div class="col-md-6 col-lg-3 mb-3"  >  
+<div class="col-md-6 col-lg-3 mb-3" <?php if ( $totalRows_the_currencys_prim =='0' ){?>style="display:none"<?php } ?>  >  
 
   <div class="lcd" style="border: 1px solid #7D8C76; border-radius: 4px; ">
   1 <?php echo $row_the_currencys_mainBC['symbol_currency']; ?> =
@@ -338,11 +362,38 @@ mysqli_close($enlace);
 
 
 
+ <div class="col-xl-3 col-sm-6 col-6 mb-3" <?php if ( $totalRows_the_currencys_prim >='1' OR $este_es_el_rol_del_user != '1' ){?>style="display:none"<?php } ?> >
+
+          <div class="card text-white relleno-grama o-hidden h-100">
+            <div class="card-body">
+              <div class="mini_card_icon_pe">
+                <i class="fa-solid fa-magnifying-glass-dollar fa-sm fa-beat"  ></i>    
+              </div>
+              <div class="mr-5 cantidadzzzpe">Set a</div> 
+              <div class="infozzz">conversion rate.</div>
+            </div>
+            <a class=" card-footer card-footerz text-white clearfix small z-1" href="prices.php">
+              <span class="float-left">Set</span>
+              <span class="float-right">
+                <i class="fa fa-angle-right"></i> 
+              </span>
+            </a>
+          </div>
+</div>
+
+
+
+
+
+
+
+
+
         <div class="col-xl-3 col-sm-6 col-6 mb-3" <?php if ( $row_cumplen->total =='0' ){?>style="display:none"<?php } ?>  >
           <div class="card text-white relleno-pink o-hidden h-100">
             <div class="card-body">
               <div class="card-body-icon">
-                <i class="<?php echo $cumple_img; ?> fa-xs" style="--fa-beat-scale: 2.0;"></i>
+                <i class="<?php echo $cumple_img; ?> fa-xs" style="--fa-beat-scale: 1.1;"></i>
               </div>
               <div class="mr-5 cantidadzzzpe">Today <b><?php echo $row_cumplen->total; ?></b></div>
               <div class="infozzz">Birthdays.</div>

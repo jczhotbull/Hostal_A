@@ -1533,7 +1533,7 @@
         showZoomer: true,
         enableZoom: true,
         enableResize: false,
-        mouseWheelZoom: true,
+        mouseWheelZoom: false,
         enableExif: false,
         enforceBoundary: true,
         enableOrientation: false,

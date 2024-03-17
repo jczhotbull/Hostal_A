@@ -46,7 +46,7 @@
                  <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key fa-lg"></i></span>   
             </div>
                   
-                  <input type="text" maxlength="16" class="form-control importantex" id="pass_per_mod" name="pass_per_mod" placeholder="New Password" aria-label="pass_per_mod" aria-describedby="basic-addon1" required>   
+                  <input type="password" maxlength="16" class="form-control importantex" id="pass_per_mod" name="pass_per_mod" placeholder="New Password" aria-label="pass_per_mod" aria-describedby="basic-addon1" required>   
        
        </div>  
 
