@@ -28,8 +28,9 @@
  <thead>
    <tr>
      <th width="25%" scope="col">Name or N°</th>      
-     <th width="25%" scope="col">Bed Kind</th>
-     <th width="50%" scope="col">Characteristics</th>
+     <th width="15%" scope="col">Bed Kind</th>
+     <th width="15%" scope="col">Bunk Level</th>
+     <th width="45%" scope="col">Characteristics</th>
    
   
      
@@ -87,39 +88,67 @@ mysqli_close($enlace);
      <?php echo $row_rooms_details['name_bed_kind']; ?></option>
 <option style="background-color: #00000;" disabled></option>
 
-
-
 <?php
 
 include("../conectar.php");
-
 $query_hostel_bed_kind_mod = "SELECT * FROM bed_kind ORDER BY name_bed_kind ASC";
-
 $datos_hostel_bed_kind_mod = mysqli_query($enlace, $query_hostel_bed_kind_mod) or die(mysqli_error());
-
 $row_datos_hostel_bed_kind_mod = mysqli_fetch_assoc($datos_hostel_bed_kind_mod);
-
 mysqli_close($enlace);
 
 ?> 
-
                                <?php do{?>                                
 
 <option value="<?php echo $row_datos_hostel_bed_kind_mod['id_bed_kind']; ?>">
 <?php echo $row_datos_hostel_bed_kind_mod['name_bed_kind']; ?></option>
-
-       
-
+   
 <?php } while ($row_datos_hostel_bed_kind_mod = mysqli_fetch_assoc($datos_hostel_bed_kind_mod)); ?> 
 
                          
                                         </select>
-  
-
-
-
-   </td>
+     </td>
    
+
+
+
+
+
+     <td>   
+   <select class="form-control form-control-sm importantex" id="bunk_level" name="bunk_level" required>
+  
+   <option selected value="<?php echo $row_rooms_details['id_bunk_level']; ?>">
+     <?php echo $row_rooms_details['name_bunk_level']; ?></option>
+<option style="background-color: #00000;" disabled></option>
+
+<?php
+
+include("../conectar.php");
+$query_hostel_bed_kind_mod = "SELECT * FROM bunk_level ORDER BY name_bunk_level ASC";
+$datos_hostel_bed_kind_mod = mysqli_query($enlace, $query_hostel_bed_kind_mod) or die(mysqli_error());
+$row_datos_hostel_bed_kind_mod = mysqli_fetch_assoc($datos_hostel_bed_kind_mod);
+mysqli_close($enlace);
+
+?> 
+                               <?php do{?>                                
+
+<option value="<?php echo $row_datos_hostel_bed_kind_mod['id_bunk_level']; ?>">
+<?php echo $row_datos_hostel_bed_kind_mod['name_bunk_level']; ?></option>
+   
+<?php } while ($row_datos_hostel_bed_kind_mod = mysqli_fetch_assoc($datos_hostel_bed_kind_mod)); ?> 
+
+                         
+                                        </select>
+     </td>
+
+
+
+
+
+
+
+
+
+
 
      <td>
 

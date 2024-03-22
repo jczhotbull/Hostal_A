@@ -79,9 +79,22 @@ mysqli_close($enlace);
  include ("a_header.php"); ?>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="content-wrapper">
             <div class="container-fluid">
-
 
 
 

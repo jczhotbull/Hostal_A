@@ -45,35 +45,20 @@
 
 
 
- 
-
-
-
-
-
-<script type="text/javascript">
-
-$(window).on('load', function() {
-// Animate loader off screen
-$(".se-pre-con").fadeOut("slow");
-});
-
-</script>
-
-
-
-
-
 
 </head>   
-
-
-
 
 
              
 
  <body class="fixed-nav sticky-footer bg-dark " id="page-top">
+
+
+
+
+
+
+
   <!-- Navigation   class="hovering"-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
 
@@ -341,13 +326,18 @@ mysqli_close($enlace);
 
     </div>
 
+
+
+
+
   </nav>
 
 
             
                     
           
-    
+   
+
              
 
 

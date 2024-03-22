@@ -33,11 +33,7 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
     $mi_hostel_select = $_SESSION['hostel_activo'];
 
-    $doc_del_g = $_GET['zp'];
 
-    $id_del_g = $_GET['ri'];
-
-    $id_del_data_g = $_GET['da'];
 
 
 
@@ -58,7 +54,7 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
               <div class="form-row"> 
 
                 <div class="alert col-md-3 col-lg-3 alert-primary" role="alert">
-                    <i class="fa-solid fa-bolt-lightning fa-lg "></i> &nbsp; &nbsp; Fast Check-In "3"
+                    <i class="fa-solid fa-bolt-lightning fa-lg "></i> &nbsp; &nbsp; Check-In "3" - Services.
                 </div> 
 
  
@@ -129,30 +125,7 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 <div class="form-row margencito">   
       
 
-<div class="input-group input-group-sm  col-sm-12 col-md-4 col-lg-5 mb-2">
-     <div class="input-group-prepend">
-     <span class="input-group-text" id="basic-addon1">From:</span>  
-     </div>
-     <input type="date"  class="form-control importantex"
-     id="date_ini_g" name="date_ini_g"  aria-label="date_ini_g" aria-describedby="basic-addon1" required> 
-</div>
 
-
-<div class="input-group input-group-sm  col-sm-12 col-md-4 col-lg-5 mb-2">
-     <div class="input-group-prepend">
-     <span class="input-group-text" id="basic-addon1">To:</span>  
-     </div>
-     <input type="date"  class="form-control importantex"
-     id="date_end_g" name="date_end_g"  aria-label="date_end_g" aria-describedby="basic-addon1" required> 
-</div>
-
-
-<div class="col-sm-12 col-md-4 col-lg-2 mb-2">
-
-<button type="submit" name="add_stay" class="btn btn-sm btn-info btn-block" id='add_stay'>
-<i class="fa-solid fa-floppy-disk fa-lg"></i> &nbsp</button> 
-
-</div>
 
 
 </div>   <!-- cierre margencito-->

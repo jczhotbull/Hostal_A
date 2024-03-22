@@ -81,6 +81,9 @@ if(isset($_POST['editar_the_bed']))  // chequea si se ha enviado algo, de ser si
 
   $name_the_bed_es = $_POST['name_the_bed']; 
   $bed_kind_es = $_POST['bed_kind']; 
+
+  $bunk_level_es = $_POST['bunk_level']; 
+
   $bed_observ_es = $_POST['bed_observ']; 
 
   $name_editado_aaaa = $_POST['name_editado_a'];
@@ -88,6 +91,7 @@ if(isset($_POST['editar_the_bed']))  // chequea si se ha enviado algo, de ser si
   $query_cambiame_U_bed = "UPDATE tb_rooms_beds SET 
   id_bed_kind = '$bed_kind_es',
   id_bed_number = '$name_the_bed_es',
+  id_bunk_level = '$bunk_level_es',
       note = '$bed_observ_es'
 
 WHERE id_rooms_beds = '$id_bed_a_editar_es' LIMIT 1 ";
@@ -567,9 +571,9 @@ mysqli_close($enlace);
 <thead>
     <tr>
       <th width="15%" class="align-middle" align="left" >Bed(s) N°</th>
-      <th width="15%" class="align-middle" align="center">Kind</th>
+      <th width="25%" class="align-middle" align="center">Kind - Bunk</th>
 
-      <th width="56%" class="align-middle" align="center">Charac.</th>
+      <th width="46%" class="align-middle" align="center">Charac.</th>
       <th width="14%" class="align-middle" align="center"><i class="fa-solid fa-ellipsis-vertical fa-lg"></i></th>
       
     </tr>
@@ -733,9 +737,10 @@ $id_del_room = $row_rooms_reveal['id_room'];
 
 include ("../conectar.php");
 
-$query_details = "SELECT * FROM tb_rooms_beds, bed_kind, bed_number
+$query_details = "SELECT * FROM tb_rooms_beds, bed_kind, bed_number, bunk_level
 where tb_rooms_beds.id_room = '$id_del_room'
 and tb_rooms_beds.id_bed_kind = bed_kind.id_bed_kind
+and tb_rooms_beds.id_bunk_level = bunk_level.id_bunk_level
 and tb_rooms_beds.id_bed_number = bed_number.id_bed_number
 order by bed_number.name_bed_number asc";
 
@@ -764,11 +769,11 @@ mysqli_close($enlace);
       <?php echo $row_rooms_details['name_bed_number']; ?></td>
 
 
-      <td width="15%" class="align-middle" align="left">
-      <?php echo $row_rooms_details['name_bed_kind']; ?>
+      <td width="25%" class="align-middle" align="left">
+      <?php echo $row_rooms_details['name_bed_kind']; ?> - <?php echo $row_rooms_details['name_bunk_level']; ?>
       </td>
 
-      <td width="55%" class="align-middle" align="left">
+      <td width="45%" class="align-middle" align="left">
     <b><?php echo $row_rooms_details['note']; ?></b>
 
 

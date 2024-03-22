@@ -1011,15 +1011,6 @@ border-color:blue;
 
 
 
-.se-pre-con {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url('../z_imagenes/Preloader_2.gif') 50% 50% no-repeat rgb(249,249,249);
-}
 
 
 
@@ -1107,3 +1098,17 @@ border-color:blue;
 .letrab:hover {	
 	color:white;
 }     
+
+
+
+
+/* del nav menu y bar */
+
+.bg-dark_light {
+	background-color: #343a40 !important;
+  }
+
+
+
+
+  

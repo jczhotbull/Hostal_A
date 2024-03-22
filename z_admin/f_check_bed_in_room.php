@@ -25,6 +25,16 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
     $conteo_errorAr = "0";   // Si es distinto debe borrar registros incorrectos anteriores
 
 
+    $mi_hostel_select = $_SESSION['hostel_activo'];
+    $ttitulo = $_GET['ttitulo'];   // nombre de la rom
+    $idtbla = $_GET['idtabla'];    // id de la room
+
+    $idbed = $_GET['idbed'];    // id de la bed
+
+
+
+
+
 // empieza el cambio de status del personal
 if(isset($_POST['add_dates']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD y comprueba
 {
@@ -33,7 +43,7 @@ if(isset($_POST['add_dates']))  // chequea si se ha enviado algo, de ser si --> 
 
  $rest_a = substr($date_range, 0, -13);
  $rest_b = substr($date_range, 13, 10);
- $year = substr($date_range, 0, -19);
+
 
  function dateDiffInDays($rest_a, $rest_b) { 
     
@@ -54,11 +64,10 @@ $dateDiff = dateDiffInDays($rest_a, $rest_b);
 
 $dates = array();
 
-      $date11 = strtotime($rest_a);
+$current = strtotime($rest_a);
       $date22 = strtotime($rest_b);
 
-      $current = strtotime("+1 day", $date11);  // para dejar por fuera la fecha de check in
-      $date2 = strtotime("-1 day", $date22);   // para dejar por fuera la fecha de check out
+      $date2  = strtotime("-1 day", $date22);   // para dejar por fuera la fecha de check out
 
       $stepVal = '+1 day';
 
@@ -74,10 +83,10 @@ $array_s = serialize($dates);
 
   include("../conectar.php");                                                
 
-  $query_disable_per = "INSERT INTO bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range,
-                                    booking_status, date_in, date_out, nights, arreglo_d) 
+  $query_disable_per = "INSERT INTO bed_booking(id_hostel, id_room, id_bed, date_range, booking_status,
+                                    date_in, date_out, nights, arreglo_d) 
 
-  VALUES ( '$year',  '10', '49', '147', '$date_range', '1', '$rest_a', '$rest_b', '$dateDiff', '$array_s' )";
+  VALUES (   '1', '2', '3', '$date_range', '1', '$rest_a', '$rest_b', '$dateDiff', '$array_s' )";
 
 
 if (!mysqli_query($enlace,$query_disable_per))  // si no logro ingresar la direccion...
@@ -92,7 +101,7 @@ mysqli_close($enlace);
 else {
   // $exitoZ="- Yes ".$array_s.". ";  muestra el array
 
-  $exitoZ="- Yes. ";
+  $exitoZ="- Yes ".$array_s.". ";
   mysqli_close($enlace); 
 }
 
@@ -107,7 +116,7 @@ else {
     include("../conectar.php"); 
 
     $inc_A = "SELECT * FROM bed_booking  WHERE id_hostel = '1'
-    and id_room_bed = '1'  ORDER BY id_bed_booking ASC";
+    and id_bed = '1'  ORDER BY id_bed_booking ASC";
     $datos_inc_A = mysqli_query($enlace, $inc_A) or die(mysqli_error());
     $row_datos_inc_A = mysqli_fetch_assoc($datos_inc_A);
     
@@ -135,15 +144,15 @@ else {
 
               <div class="form-row"> 
 
-                <div class="alert col-md-3 col-lg-3 alert-primary" role="alert">
-                    <i class="fa-solid fa-book-bookmark fa-lg "></i> &nbsp; &nbsp; Procedures
+                <div class="alert col-md-6 col-lg-6 alert-primary" role="alert">
+<i class="fa-solid fa-calendar-days fa-lg "></i> &nbsp; &nbsp; Check-in Bed: <?php echo $ttitulo ?>.
                 </div> 
 
  
 
                 <?php  
                   if ($errorZ!="")
-                  { echo "<div class=\"alert col-md-9 col-lg-9 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
+                  { echo "<div class=\"alert col-md-6 col-lg-6 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ERROR TIENE ALGO-->
 
@@ -190,7 +199,7 @@ else {
 const DateTime = easepick.DateTime;
 const bookedDates = [   
 
- ['2024-03-19', '2024-03-22'],         
+       
 
 
 ].map(d => {
@@ -208,7 +217,6 @@ const picker = new easepick.create({
   css: [
     '01_css/index.css',
     '01_css/demo_hotelcal.css',
-    /* '01_css/customize_sample.css', */
   ],
 
   zIndex: 10,

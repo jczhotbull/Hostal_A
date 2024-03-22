@@ -476,9 +476,9 @@ mysqli_close($enlace);
     <thead>
       <tr>                  
         
-          <th width="15%" class="align-middle" align="left">Details:</th>  <!-- chequear el status -->
+          <th width="12%" class="align-middle" align="left">Details:</th>  <!-- chequear el status -->
 
-<th width="75%" class="align-middle" align="left">
+<th width="78%" class="align-middle" align="left">
        
 <table class="table table-bordered table-sm">
 <tbody>
@@ -487,8 +487,8 @@ mysqli_close($enlace);
       <th width="46%" class="align-middle" align="left" >Incidents</th>
       <th width="15%" class="align-middle" align="center"><i class="fa-solid fa-gear fa-lg"></i></th>
 
-      <th width="26%" class="align-middle" align="center">Created</th>
-      <th width="13%" class="align-middle" align="center">By</th>
+      <th width="24%" class="align-middle" align="center">Created</th>
+      <th width="15%" class="align-middle" align="center">By</th>
     </tr>
   </thead>
 </tbody>
@@ -630,7 +630,7 @@ color: <?php echo $row_rooms_reveal_inc["color_text"]; ?>">
 
 
 
-      <td width="26%" class="align-middle" align="center">
+      <td width="24%" class="align-middle" align="center">
 
 <span style="font-size:12px;">
         <?php echo $row_rooms_reveal_inc['fecha_incidencia_r'];
@@ -640,7 +640,7 @@ color: <?php echo $row_rooms_reveal_inc["color_text"]; ?>">
         $disp ='none';}
 
         else {
-          $pp = 'Update:';
+          $pp = 'Upd.:';
           $disp ='show';
         }
              
@@ -657,7 +657,7 @@ color: <?php echo $row_rooms_reveal_inc["color_text"]; ?>">
       </td>
 
 
-      <td width="14%" class="align-middle" align="center">
+      <td width="16%" class="align-middle" align="center">
 
       <?php
 

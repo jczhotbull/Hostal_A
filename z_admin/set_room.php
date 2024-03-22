@@ -117,12 +117,15 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
           
           
                   $bed_kind_1 = $_POST["bed_kind_1"];
-                  $bed_number_1 = $_POST["bed_number_1"];        
+                  $bed_number_1 = $_POST["bed_number_1"];  
+                  
+                  $bunk_level_1 = $_POST["bunk_level_1"];
+
                   $nota_1= mysqli_real_escape_string($enlace,$_POST['nota_1']);
           
                    // proceso de insercion y creacion en la tabla room_beds primera cama obligatoria...
-              $query_bed_1 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
-              VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_1', '$bed_number_1', '$nota_1')";
+              $query_bed_1 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note, id_bunk_level) 
+              VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_1', '$bed_number_1', '$nota_1', '$bunk_level_1')";
           
                   $lista_bed_1 = mysqli_query($enlace, $query_bed_1) or die(mysqli_error());
                   $total_beds++;
@@ -134,11 +137,11 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
           
                   
                 if ($_POST["bed_kind_2"] != '3' ) {
-                  $bed_kind_2 = $_POST["bed_kind_2"]; $bed_number_2 = $_POST["bed_number_2"];
+$bed_kind_2 = $_POST["bed_kind_2"]; $bed_number_2 = $_POST["bed_number_2"]; $bunk_level_2 = $_POST["bunk_level_2"];
                   $nota_2= mysqli_real_escape_string($enlace,$_POST['nota_2']);
                
-                  $query_bed_2 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
-                  VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_2', '$bed_number_2', '$nota_2')";
+                  $query_bed_2 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note, id_bunk_level) 
+                  VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_2', '$bed_number_2', '$nota_2', '$bunk_level_2')";
               
                       $lista_bed_2 = mysqli_query($enlace, $query_bed_2) or die(mysqli_error());
                       $total_beds++;
@@ -149,11 +152,11 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
           
                           
                         if ($_POST["bed_kind_3"] != 3) {
-                          $bed_kind_3 = $_POST["bed_kind_3"]; $bed_number_3 = $_POST["bed_number_3"];
+$bed_kind_3 = $_POST["bed_kind_3"]; $bed_number_3 = $_POST["bed_number_3"]; $bunk_level_3 = $_POST["bunk_level_3"];
                           $nota_3= mysqli_real_escape_string($enlace,$_POST['nota_3']);
                          
-                          $query_bed_3 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
-                          VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_3', '$bed_number_3', '$nota_3')";
+                          $query_bed_3 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note, id_bunk_level) 
+                          VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_3', '$bed_number_3', '$nota_3', '$bunk_level_3')";
                       
                               $lista_bed_3 = mysqli_query($enlace, $query_bed_3) or die(mysqli_error());
                               $total_beds++;
@@ -164,11 +167,11 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
                           
                                   
                                 if ($_POST["bed_kind_4"] != 3) {
-                                  $bed_kind_4 = $_POST["bed_kind_4"]; $bed_number_4 = $_POST["bed_number_4"];
+$bed_kind_4 = $_POST["bed_kind_4"]; $bed_number_4 = $_POST["bed_number_4"]; $bunk_level_4 = $_POST["bunk_level_4"];
                                   $nota_4= mysqli_real_escape_string($enlace,$_POST['nota_4']);
                                  
-                                  $query_bed_4 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
-                                  VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_4', '$bed_number_4', '$nota_4')";
+                                  $query_bed_4 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note, id_bunk_level) 
+                                  VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_4', '$bed_number_4', '$nota_4', '$bunk_level_4')";
                               
                                       $lista_bed_4 = mysqli_query($enlace, $query_bed_4) or die(mysqli_error());
                                       $total_beds++;
@@ -178,11 +181,11 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
           
           
                                   if ($_POST["bed_kind_5"] != 3) {
-                                      $bed_kind_5 = $_POST["bed_kind_5"]; $bed_number_5 = $_POST["bed_number_5"];
+ $bed_kind_5 = $_POST["bed_kind_5"]; $bed_number_5 = $_POST["bed_number_5"]; $bunk_level_5 = $_POST["bunk_level_5"];
                                        $nota_5= mysqli_real_escape_string($enlace,$_POST['nota_5']);
                                                              
-                                        $query_bed_5 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
-                                         VALUES (  '$mi_hostel_select', '$the_room_id', '$type_room', '$bed_kind_5', '$bed_number_5', '$nota_5')";
+                                        $query_bed_5 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note, id_bunk_level) 
+                                         VALUES (  '$mi_hostel_select', '$the_room_id', '$type_room', '$bed_kind_5', '$bed_number_5', '$nota_5', '$bunk_level_5')";
                                                           
                                        $lista_bed_5 = mysqli_query($enlace, $query_bed_5) or die(mysqli_error());
                                               $total_beds++;
@@ -191,11 +194,11 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
           
           
                                                               if ($_POST["bed_kind_6"] != 3) {
-                                                                  $bed_kind_6 = $_POST["bed_kind_6"]; $bed_number_6 = $_POST["bed_number_6"];
+$bed_kind_6 = $_POST["bed_kind_6"]; $bed_number_6 = $_POST["bed_number_6"]; $bunk_level_6 = $_POST["bunk_level_6"];
                                                                    $nota_6= mysqli_real_escape_string($enlace,$_POST['nota_6']);
                                                                                          
-                                                                    $query_bed_6 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
-                                                                     VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_6', '$bed_number_6', '$nota_6')";
+                                                                    $query_bed_6 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note, id_bunk_level) 
+                                                                     VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_6', '$bed_number_6', '$nota_6', '$bunk_level_6')";
                                                                                       
                                                                    $lista_bed_6 = mysqli_query($enlace, $query_bed_6) or die(mysqli_error());
                                                                           $total_beds++;
@@ -203,11 +206,11 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
                                                                                           } 
                           
                       if ($_POST["bed_kind_7"] != 3) {
-          $bed_kind_7 = $_POST["bed_kind_7"]; $bed_number_7 = $_POST["bed_number_7"];
+$bed_kind_7 = $_POST["bed_kind_7"]; $bed_number_7 = $_POST["bed_number_7"]; $bunk_level_7 = $_POST["bunk_level_7"];
            $nota_7= mysqli_real_escape_string($enlace,$_POST['nota_7']);
                                  
-            $query_bed_7 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
-             VALUES (  '$mi_hostel_select', '$the_room_id', '$type_room', '$bed_kind_7', '$bed_number_7', '$nota_7')";
+            $query_bed_7 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note, id_bunk_level) 
+             VALUES (  '$mi_hostel_select', '$the_room_id', '$type_room', '$bed_kind_7', '$bed_number_7', '$nota_7', '$bunk_level_7')";
                               
            $lista_bed_7 = mysqli_query($enlace, $query_bed_7) or die(mysqli_error());
                   $total_beds++;
@@ -217,11 +220,11 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
           
           
                                   if ($_POST["bed_kind_8"] != 3) {
-                                      $bed_kind_8 = $_POST["bed_kind_8"]; $bed_number_8 = $_POST["bed_number_8"];
+$bed_kind_8 = $_POST["bed_kind_8"]; $bed_number_8 = $_POST["bed_number_8"]; $bunk_level_8 = $_POST["bunk_level_8"];
                                        $nota_8= mysqli_real_escape_string($enlace,$_POST['nota_8']);
                                                              
-                                        $query_bed_8 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
-                                         VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_8', '$bed_number_8', '$nota_8')";
+                                        $query_bed_8 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note, id_bunk_level) 
+                                         VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_8', '$bed_number_8', '$nota_8', '$bunk_level_8')";
                                                           
                                        $lista_bed_8 = mysqli_query($enlace, $query_bed_8) or die(mysqli_error());
                                               $total_beds++;
@@ -232,11 +235,11 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
           
           
           if ($_POST["bed_kind_9"] != 3) {
-          $bed_kind_9 = $_POST["bed_kind_9"]; $bed_number_9 = $_POST["bed_number_9"];
+$bed_kind_9 = $_POST["bed_kind_9"]; $bed_number_9 = $_POST["bed_number_9"]; $bunk_level_9 = $_POST["bunk_level_9"];
            $nota_9= mysqli_real_escape_string($enlace,$_POST['nota_9']);
                                  
-            $query_bed_9 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note) 
-             VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_9', '$bed_number_9', '$nota_9')";
+            $query_bed_9 = "INSERT INTO tb_rooms_beds(id_hostel, id_room, id_room_kind, id_bed_kind, id_bed_number, note, id_bunk_level) 
+             VALUES ( '$mi_hostel_select',  '$the_room_id', '$type_room', '$bed_kind_9', '$bed_number_9', '$nota_9', '$bunk_level_9')";
                               
            $lista_bed_9 = mysqli_query($enlace, $query_bed_9) or die(mysqli_error());
                   $total_beds++;
@@ -530,7 +533,8 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
   <thead>
     <tr>
       <th width="10%" scope="col">How Many?</th>      
-      <th width="30%" scope="col">Bed Kind</th>
+      <th width="15%" scope="col">Bed Kind</th>
+      <th width="15%" scope="col">Bunk Level</th>
       <th width="20%" scope="col">Bed Id or N°</th>
       <th width="40%" scope="col">Characteristics</th>
       
@@ -550,6 +554,28 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
                                 <?php } while ($row_datos_bed_kind = mysqli_fetch_assoc($datos_bed_kind)); ?> 
     </select>  
     </td>
+
+
+
+
+    <td>   
+    <select class="form-control form-control-sm importantex" id="bunk_level_1" name="bunk_level_1" required>
+    <option selected disabled value=""></option>
+    <?php do{?>
+<option value="<?php echo $row_datos_bunk_level['id_bunk_level']; ?>"><?php echo $row_datos_bunk_level['name_bunk_level']; ?></option>
+                                <?php } while ($row_datos_bunk_level = mysqli_fetch_assoc($datos_bunk_level)); ?> 
+    </select>  
+    </td>
+
+
+
+
+
+
+
+
+
+
 
       <td>
       <select class="form-control form-control-sm importantex" id="bed_number_1" name="bed_number_1" required>
@@ -589,6 +615,29 @@ $('select[name=bed_number_1]').change(function () {
                                 <?php } while ($row_datos_bed_kind_2 = mysqli_fetch_assoc($datos_bed_kind_2)); ?> 
     </select>  
     </td>
+
+
+
+    <td>   
+    <select class="form-control form-control-sm " id="bunk_level_2" name="bunk_level_2" >
+    <option selected disabled value=""></option>
+    <?php do{?>
+<option value="<?php echo $row_datos_bunk_level_2['id_bunk_level']; ?>">
+<?php echo $row_datos_bunk_level_2['name_bunk_level']; ?></option>
+                                <?php } while ($row_datos_bunk_level_2 = mysqli_fetch_assoc($datos_bunk_level_2)); ?> 
+    </select>  
+    </td>
+
+
+
+
+
+
+
+
+
+
+
 
       <td>
       <select class="form-control form-control-sm" id="bed_number_2" name="bed_number_2">
@@ -631,6 +680,22 @@ $('select[name=bed_number_2]').change(function () {
     </select>  
     </td>
 
+
+
+    <td>   
+    <select class="form-control form-control-sm " id="bunk_level_3" name="bunk_level_3" >
+    <option selected disabled value=""></option>
+    <?php do{?>
+<option value="<?php echo $row_datos_bunk_level_3['id_bunk_level']; ?>">
+<?php echo $row_datos_bunk_level_3['name_bunk_level']; ?></option>
+                                <?php } while ($row_datos_bunk_level_3 = mysqli_fetch_assoc($datos_bunk_level_3)); ?> 
+    </select>  
+    </td>
+
+
+
+
+
       <td>
       <select class="form-control form-control-sm" id="bed_number_3" name="bed_number_3">
       <option selected value="10">None</option><option disabled value=""></option>
@@ -672,6 +737,26 @@ $('select[name=bed_number_3]').change(function () {
                                 <?php } while ($row_datos_bed_kind_4 = mysqli_fetch_assoc($datos_bed_kind_4)); ?> 
     </select>  
     </td>
+
+
+
+    <td>   
+    <select class="form-control form-control-sm " id="bunk_level_4" name="bunk_level_4" >
+    <option selected disabled value=""></option>
+    <?php do{?>
+<option value="<?php echo $row_datos_bunk_level_4['id_bunk_level']; ?>">
+<?php echo $row_datos_bunk_level_4['name_bunk_level']; ?></option>
+                                <?php } while ($row_datos_bunk_level_4 = mysqli_fetch_assoc($datos_bunk_level_4)); ?> 
+    </select>  
+    </td>
+
+
+
+
+
+
+
+
 
       <td>
       <select class="form-control form-control-sm" id="bed_number_4" name="bed_number_4">
@@ -716,6 +801,21 @@ $('select[name=bed_number_4]').change(function () {
     </select>  
     </td>
 
+
+
+
+    <td>   
+    <select class="form-control form-control-sm " id="bunk_level_5" name="bunk_level_5" >
+    <option selected disabled value=""></option>
+    <?php do{?>
+<option value="<?php echo $row_datos_bunk_level_5['id_bunk_level']; ?>">
+<?php echo $row_datos_bunk_level_5['name_bunk_level']; ?></option>
+                                <?php } while ($row_datos_bunk_level_5 = mysqli_fetch_assoc($datos_bunk_level_5)); ?> 
+    </select>  
+    </td>
+
+
+
       <td>
       <select class="form-control form-control-sm" id="bed_number_5" name="bed_number_5">
       <option selected value="10">None</option><option disabled value=""></option>
@@ -756,6 +856,24 @@ $('select[name=bed_number_5]').change(function () {
                                 <?php } while ($row_datos_bed_kind_6 = mysqli_fetch_assoc($datos_bed_kind_6)); ?> 
     </select>  
     </td>
+
+
+    <td>   
+    <select class="form-control form-control-sm " id="bunk_level_6" name="bunk_level_6" >
+    <option selected disabled value=""></option>
+    <?php do{?>
+<option value="<?php echo $row_datos_bunk_level_6['id_bunk_level']; ?>">
+<?php echo $row_datos_bunk_level_6['name_bunk_level']; ?></option>
+                                <?php } while ($row_datos_bunk_level_6 = mysqli_fetch_assoc($datos_bunk_level_6)); ?> 
+    </select>  
+    </td>
+
+
+
+
+
+
+
 
       <td>
       <select class="form-control form-control-sm" id="bed_number_6" name="bed_number_6">
@@ -802,6 +920,22 @@ $('select[name=bed_number_6]').change(function () {
     </select>  
     </td>
 
+
+
+    <td>   
+    <select class="form-control form-control-sm " id="bunk_level_7" name="bunk_level_7" >
+    <option selected disabled value=""></option>
+    <?php do{?>
+<option value="<?php echo $row_datos_bunk_level_7['id_bunk_level']; ?>">
+<?php echo $row_datos_bunk_level_7['name_bunk_level']; ?></option>
+                                <?php } while ($row_datos_bunk_level_7 = mysqli_fetch_assoc($datos_bunk_level_7)); ?> 
+    </select>  
+    </td>
+
+
+
+
+
       <td>
       <select class="form-control form-control-sm" id="bed_number_7" name="bed_number_7">
       <option selected value="10">None</option><option disabled value=""></option>
@@ -842,6 +976,22 @@ $('select[name=bed_number_7]').change(function () {
     </select>  
     </td>
 
+    <td>   
+    <select class="form-control form-control-sm " id="bunk_level_8" name="bunk_level_8" >
+    <option selected disabled value=""></option>
+    <?php do{?>
+<option value="<?php echo $row_datos_bunk_level_8['id_bunk_level']; ?>">
+<?php echo $row_datos_bunk_level_8['name_bunk_level']; ?></option>
+                                <?php } while ($row_datos_bunk_level_8 = mysqli_fetch_assoc($datos_bunk_level_8)); ?> 
+    </select>  
+    </td>
+
+
+
+
+
+
+
       <td>
       <select class="form-control form-control-sm" id="bed_number_8" name="bed_number_8">
       <option selected value="10">None</option><option disabled value=""></option>
@@ -880,6 +1030,23 @@ $('select[name=bed_number_8]').change(function () {
                                 <?php } while ($row_datos_bed_kind_9 = mysqli_fetch_assoc($datos_bed_kind_9)); ?> 
     </select>  
     </td>
+
+
+
+    <td>   
+    <select class="form-control form-control-sm " id="bunk_level_9" name="bunk_level_9" >
+    <option selected disabled value=""></option>
+    <?php do{?>
+<option value="<?php echo $row_datos_bunk_level_9['id_bunk_level']; ?>">
+<?php echo $row_datos_bunk_level_9['name_bunk_level']; ?></option>
+                                <?php } while ($row_datos_bunk_level_9 = mysqli_fetch_assoc($datos_bunk_level_9)); ?> 
+    </select>  
+    </td>
+
+
+
+
+
 
       <td>
       <select class="form-control form-control-sm" id="bed_number_9" name="bed_number_9">

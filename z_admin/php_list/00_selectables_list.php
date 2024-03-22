@@ -200,7 +200,11 @@ $row_paises = mysqli_fetch_object($query_paises);
 
         
 
+        $query_String_bunk_level = "SELECT COUNT(*) AS total_bunk_level FROM bunk_level";
 
+        $query_bunk_level = mysqli_query($enlace, $query_String_bunk_level);
+        
+        $row_bunk_level = mysqli_fetch_object($query_bunk_level);
 
 
 ?>

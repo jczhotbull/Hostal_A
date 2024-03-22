@@ -35,8 +35,70 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
     $mi_hostel_select = $_SESSION['hostel_activo'];
 
     $doc_del_g = $_GET['zp'];
-
     $id_del_g = $_GET['ri'];
+
+
+    $email_guests = $_GET['em'];
+    $telf_guests = $_GET['tf'];
+    $nationality_g = $_GET['na'];
+
+    $con_amigos = $_GET['kka'];   // 1 es si  0 es no
+
+    $room_stay= $_GET['prz'];
+    $room_bed_stay= $_GET['pbz'];
+
+    $el_rango = $_GET['ran'];
+
+    
+    $rest_a = substr($el_rango, 0, -13);
+    $rest_b = substr($el_rango, 13, 10);
+    $year = substr($el_rango, 0, -19);
+   
+    function dateDiffInDays($rest_a, $rest_b) { 
+       
+     // Calculating the difference in timestamps 
+     $diff = strtotime($rest_b) - strtotime($rest_a); 
+   
+     // 1 day = 24 hours 
+     // 24 * 60 * 60 = 86400 seconds 
+     return abs(round($diff / 86400)); 
+   } 
+   
+   
+   $dateDiff = dateDiffInDays($rest_a, $rest_b); 
+
+
+   $dates = array();
+
+   $date11 = strtotime($rest_a);
+   $date22 = strtotime($rest_b);
+
+   $current = strtotime("+1 day", $date11);  // para dejar por fuera la fecha de check in
+   $date2 = strtotime("-1 day", $date22);   // para dejar por fuera la fecha de check out
+
+   $stepVal = '+1 day';
+
+while( $current <= $date2 ) {
+$dates[] = date('Y-m-d', $current);
+$current = strtotime($stepVal, $current);
+}
+
+$array_s = serialize($dates);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -106,10 +168,17 @@ if(isset($_POST['add_doc_guests']))  // chequea si se ha enviado algo, de ser si
         if(rename($filenameUP,$newfilenameU))
             {     
             include("../conectar.php");   
-          
-            $query_fotoU = "INSERT INTO tb_data_guests(id_guests, guests_doc_id_pic)   
 
-            VALUES ('$id_gg', '$newfilenameU')"; 
+
+
+            $email_guests = $_GET['em'];
+            $telf_guests = $_GET['tf'];
+            $nationality_g = $_GET['na'];
+
+          
+            $query_fotoU = "INSERT INTO tb_data_guests(id_guests, guests_doc_id_pic, id_nation_g, guests_email, guests_phone)   
+
+            VALUES ('$id_gg', '$newfilenameU', '$nationality_g', '$email_guests', '$telf_guests')"; 
 
 
 
@@ -126,11 +195,22 @@ if(isset($_POST['add_doc_guests']))  // chequea si se ha enviado algo, de ser si
   
             else {
             $id_del_data_g = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado.
-              
-            mysqli_close($enlace);  
 
-            header("Location: f_check_in_tres.php?zv=ve87&da=$id_del_data_g&pass=6tz@bv&zp=$doc&ri=$id_del_g&mil=57tr@jh", TRUE, 301);
-            exit();    
+
+
+
+            $query_bookin = "INSERT INTO
+             bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
+             date_in, date_out, nights, arreglo_d)   
+
+            VALUES ('$year', ' $mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
+            '$rest_a', '$rest_b', '$dateDiff', '$array_s' )"; 
+
+           $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
+           mysqli_close($enlace);  
+
+          header("Location: f_check_in_tres.php", TRUE, 301);
+          exit();    
 
             
               }   
@@ -153,21 +233,21 @@ if(isset($_POST['add_doc_guests']))  // chequea si se ha enviado algo, de ser si
 
               <div class="form-row"> 
 
-                <div class="alert col-md-3 col-lg-3 alert-primary" role="alert">
-                    <i class="fa-solid fa-bolt-lightning fa-lg "></i> &nbsp; &nbsp; Fast Check-In "2"                </div> 
+                <div class="alert col-md-6 col-lg-6 alert-primary" role="alert">    
+                    <i class="fa-solid fa-bolt-lightning fa-lg "></i> &nbsp; &nbsp; Fast Check-In "2" - <?php echo $el_rango; ?></div> 
 
  
 
                 <?php  
                   if ($errorZ!="")
-                  { echo "<div class=\"alert col-md-9 col-lg-9 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
+                  { echo "<div class=\"alert col-md-6 col-lg-6 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ERROR TIENE ALGO-->
 
 
                 <?php 
                   if ($exitoZ!="")
-                  { echo "<div class=\"alert col-md-9 col-lg-9 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
+                  { echo "<div class=\"alert col-md-6 col-lg-6 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ÉXITO TIENE ALGO-->
 
@@ -228,9 +308,9 @@ if(isset($_POST['add_doc_guests']))  // chequea si se ha enviado algo, de ser si
 
 
 
-<div class="form-row"> 
+<div class="form-row">
 
-<div class="col-md-4">
+<div class="col-md-4 col-lg-4 col-4">
 
     <div class="card border-info divXXhnew">
 
@@ -311,13 +391,18 @@ id=""  onerror="this.src='guests/doc_id_g/doc_vacio.jpg';"/>
     <form method="POST"  > 
 
 <div class="mt-3 col-sm-12 col-md-12 col-lg-12 mb-2" <?php if ( !file_exists($filename_doc_g ) ){?>style="display:none"<?php } ?> >
-<button type="submit" name="add_doc_guests" class="btn  btn-info btn-block" id='add_doc_guests'>
-<b>Next</b></button></div>	 
-
-
-<div class="mt-3 col-sm-12 col-md-12 col-lg-12 mb-2" <?php if ( !file_exists($filename_doc_g ) ){?>style="display:none"<?php } ?> >
 <button type="submit" name="delete_doc_guests" class="btn  btn-danger btn-block" id='delete_doc_guests'>
-<b>Delete</b></button> </div>	
+<b>Delete Doc</b></button> </div>	
+
+
+<div class="col-sm-12 col-md-12 col-lg-12 mb-2" <?php if ( !file_exists($filename_doc_g ) or $con_amigos =='0'  ){?>style="display:none"<?php } ?> >
+<button type="submit" name="add_doc_guests_comp" id='add_doc_guests_comp' class="btn  btn-success btn-block" id='delete_doc_guests'>
+<b>Add 1st Companion</b></button> </div>	
+
+
+<div class="mt-5 col-sm-12 col-md-12 col-lg-12 mb-2" <?php if ( !file_exists($filename_doc_g ) ){?>style="display:none"<?php } ?> >
+<button type="submit" name="add_doc_guests" class="btn  btn-info btn-block" id='add_doc_guests'>
+<b>Check-Out</b></button></div>	
 
 
 </form> 

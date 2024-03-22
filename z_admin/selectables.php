@@ -438,6 +438,30 @@ href="selecc_zz_plus_note.php?ttabla=incidents_beds&idtabla=id_incidents_beds&no
 
 
 
+        <div class="col-xl-3 col-sm-6 col-6 mb-3">
+          <div class="card text-white relleno-yellow o-hidden h-100">
+            <div class="card-body">
+              <div class="card-body-icon">
+                <i class="fa-solid fa-stairs fa-xs"></i>  
+              </div>
+              <div class="mr-5 cantidadzzz"><?php echo $row_bunk_level->total_bunk_level; ?> Bunk</div>
+              <div class="infozzz">Level.</div> 
+            </div>
+            <a class=" card-footer card-footerz text-white clearfix small z-1"     
+
+ href="selecc_zz.php?ttabla=bunk_level&idtabla=id_bunk_level&nombdato=name_bunk_level&ttitulo=Bunk Level">
+  
+
+              <span class="float-left">View</span>
+              <span class="float-right">
+                <i class="fa fa-angle-right"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+
+
+
 
 
 

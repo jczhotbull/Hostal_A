@@ -383,32 +383,32 @@ mysqli_close($enlace);
     <thead>
       <tr>                  
         
-          <th width="10%">Room:</th>  <!-- chequear el status -->
+          <th width="12%">Room:</th>  <!-- chequear el status -->
        
-          <th width="55%">
+          <th width="88%">
               
            <table class="table table-bordered table-sm">
 <tbody>
 <thead>
     <tr>
-      <th width="15%" class="align-middle" align="left" >Bed:</th>
+      <th width="11%" class="align-middle" align="left" >Bed:</th>
 
-      <th width="10%" class="align-middle" align="center"><i class="fa-solid fa-ellipsis-vertical fa-lg"></i></th>
-
-
+      <th width="8%" class="align-middle" align="center"><i class="fa-solid fa-ellipsis-vertical fa-lg"></i></th>
 
 
-      <th width="75%" class="align-middle" align="center">
+
+
+      <th width="81%" class="align-middle" align="center">
 
 <table class="table table-bordered table-sm">
 <tbody>
 <thead>
     <tr>
-      <th width="46%" class="align-middle" align="left" >Incidents</th>
+      <th width="42%" class="align-middle" align="left" >Incidents</th>
       <th width="15%" class="align-middle" align="center"><i class="fa-solid fa-gear fa-lg"></i></th>
 
       <th width="26%" class="align-middle" align="center">Created</th>
-      <th width="13%" class="align-middle" align="center">By</th>
+      <th width="17%" class="align-middle" align="center">By</th>
     </tr>
   </thead>
 </tbody>
@@ -511,9 +511,10 @@ $id_del_room = $row_rooms_reveal['id_room'];
 
 include ("../conectar.php");
 
-$query_details = "SELECT * FROM tb_rooms_beds, bed_kind, bed_number
+$query_details = "SELECT * FROM tb_rooms_beds, bed_kind, bed_number, bunk_level
 where tb_rooms_beds.id_room = '$id_del_room'
 and tb_rooms_beds.id_bed_kind = bed_kind.id_bed_kind
+and tb_rooms_beds.id_bunk_level = bunk_level.id_bunk_level
 and tb_rooms_beds.id_bed_number = bed_number.id_bed_number
 order by bed_number.name_bed_number asc";
 
@@ -539,13 +540,15 @@ mysqli_close($enlace);
 
 
   <tr>
-      <td width="15%" class="align-middle" align="center">
+      <td width="11%" class="align-middle" align="center">
       "<b><?php echo $row_rooms_details['name_bed_number']; ?></b>"<br>
-   <span style ="color:purple;">   <?php echo $row_rooms_details['name_bed_kind']; ?> </span> </td>
+   <span style ="color:purple;">   <?php echo $row_rooms_details['name_bed_kind']; ?> </span> <br>
+   - <?php echo $row_rooms_details['name_bunk_level']; ?>
+   </td>
 
 
 
-   <td width="10%" class="align-middle" align="left">
+   <td width="8%" class="align-middle" align="left">
 
 
 <button type="submit" name="add_a_inc" class="btn btn-secondary" data-toggle="modal"
@@ -583,7 +586,7 @@ mysqli_close($enlace);
 
 
 
-      <td width="80%" class="align-middle" align="left">
+      <td width="86%" class="align-middle" align="left">
 
       <table class="table table-bordered" <?php if ( $totalRows_rooms_reveal_inc == '0' ){?>style="display:none"<?php } ?> >
 <tbody>
@@ -593,7 +596,7 @@ mysqli_close($enlace);
 
   
     <tr>
-      <td width="45%" class="align-middle" align="left">
+      <td width="42%" class="align-middle" align="left">
       -<?php echo $row_rooms_reveal_inc['name_incidents_beds']; ?></td>
 
 
@@ -641,7 +644,7 @@ color: <?php echo $row_rooms_reveal_inc["color_text"]; ?>">
         $disp ='none';}
 
         else {
-          $pp = 'Update:';
+          $pp = 'Upd.:';
           $disp ='show';
         }
              
@@ -659,7 +662,7 @@ color: <?php echo $row_rooms_reveal_inc["color_text"]; ?>">
 
 
 
-      <td width="15%" class="align-middle" align="left">
+      <td width="17%" class="align-middle" align="left">
 
       <?php
 

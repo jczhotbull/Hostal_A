@@ -92,38 +92,25 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
  <!-- Icon Cards-->
       
-      <div class="row">
+      <div class="row"> 
 
-
-      <div class="col-xl-3 col-sm-6 col-6 mb-3"  >
+        <div class="col-xl-3 col-sm-6 col-6 mb-3"  >
           <div class="card text-white relleno-bolt o-hidden h-100">
             <div class="card-body">
-              <div class="card-body-icon">  
-                <i class="fa-solid fa-bolt-lightning fa-xs"> </i>
+              <div class="card-body-icon">
+                <i class="fa-solid fa-person-walking-arrow-right fa-xs"> </i>
               </div>
-              <div class="mr-5 cantidadzzzpe">Fast</div>
-              <div class="infozzz">Check-In</div>
+              <div class="mr-5 cantidadzzzpe"></div>
+              <div class="infozzz">Walk-In</div>
             </div>
-
-
-<div class="card-footer   clearfix z-1 small" >
-
-<a class="btn btn-secondary btn-sm mb-1" href="f_check_in.php" role="button">x1</a>
-<a class="btn btn-secondary btn-sm mb-1" href="" role="button">x2</a>
-<a class="btn btn-secondary btn-sm mb-1" href="" role="button">x3</a>
-<a class="btn btn-secondary btn-sm mb-1" href="" role="button">x4</a>
-<a class="btn btn-secondary btn-sm mb-1" href="" role="button">x5</a>
-<a class="btn btn-secondary btn-sm mb-1" href="" role="button">x6</a>             
-<!-- <a class="btn btn-warning btn-sm" href="zona_adm_estudiante_pre.php?num_alum=5" role="button">x6</a> -->
-</div>
-
-
-
+            <a class=" card-footer card-footerz text-white clearfix small z-1" href="f_check_in_a.php">
+              <span class="float-left">Go</span>
+              <span class="float-right">
+                <i class="fa fa-angle-right"></i>
+              </span>
+            </a>
           </div>
         </div> 
-
-
-
 
 
 

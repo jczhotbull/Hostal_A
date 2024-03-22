@@ -12,6 +12,15 @@ $row_datos_room_kind = mysqli_fetch_assoc($datos_room_kind);
 
 
 
+$query_bunk_level = "SELECT * FROM bunk_level ORDER BY name_bunk_level ASC";
+
+$datos_bunk_level = mysqli_query($enlace, $query_bunk_level) or die(mysqli_error());
+
+$row_datos_bunk_level = mysqli_fetch_assoc($datos_bunk_level);
+
+
+
+
 
 $query_room_number = "SELECT * FROM room_number ORDER BY name_room_number ASC";
 
@@ -78,6 +87,14 @@ $row_datos_bed_number_2 = mysqli_fetch_assoc($datos_bed_number_2);
 
 
 
+$query_bunk_level_2 = "SELECT * FROM bunk_level ORDER BY name_bunk_level ASC";
+
+$datos_bunk_level_2 = mysqli_query($enlace, $query_bunk_level_2) or die(mysqli_error());
+
+$row_datos_bunk_level_2 = mysqli_fetch_assoc($datos_bunk_level_2);
+
+
+
 
 $query_bed_kind_3 = "SELECT * FROM bed_kind where name_bed_kind != 'None' ORDER BY name_bed_kind ASC";
 $datos_bed_kind_3 = mysqli_query($enlace, $query_bed_kind_3) or die(mysqli_error());
@@ -89,6 +106,21 @@ $row_datos_bed_kind_3 = mysqli_fetch_assoc($datos_bed_kind_3);
 $query_bed_number_3 = "SELECT * FROM bed_number where name_bed_number != 'None' ORDER BY name_bed_number ASC";
 $datos_bed_number_3 = mysqli_query($enlace, $query_bed_number_3) or die(mysqli_error());
 $row_datos_bed_number_3 = mysqli_fetch_assoc($datos_bed_number_3);
+
+
+
+
+
+
+$query_bunk_level_3 = "SELECT * FROM bunk_level ORDER BY name_bunk_level ASC";
+
+$datos_bunk_level_3 = mysqli_query($enlace, $query_bunk_level_3) or die(mysqli_error());
+
+$row_datos_bunk_level_3 = mysqli_fetch_assoc($datos_bunk_level_3);
+
+
+
+
 
 
 
@@ -108,6 +140,16 @@ $row_datos_bed_number_4 = mysqli_fetch_assoc($datos_bed_number_4);
 
 
 
+$query_bunk_level_4 = "SELECT * FROM bunk_level ORDER BY name_bunk_level ASC";
+
+$datos_bunk_level_4 = mysqli_query($enlace, $query_bunk_level_4) or die(mysqli_error());
+
+$row_datos_bunk_level_4 = mysqli_fetch_assoc($datos_bunk_level_4);
+
+
+
+
+
 $query_bed_kind_5 = "SELECT * FROM bed_kind where name_bed_kind != 'None' ORDER BY name_bed_kind ASC";
 $datos_bed_kind_5 = mysqli_query($enlace, $query_bed_kind_5) or die(mysqli_error());
 $row_datos_bed_kind_5 = mysqli_fetch_assoc($datos_bed_kind_5);
@@ -119,7 +161,11 @@ $query_bed_number_5 = "SELECT * FROM bed_number where name_bed_number != 'None' 
 $datos_bed_number_5 = mysqli_query($enlace, $query_bed_number_5) or die(mysqli_error());
 $row_datos_bed_number_5 = mysqli_fetch_assoc($datos_bed_number_5);
 
+$query_bunk_level_5 = "SELECT * FROM bunk_level ORDER BY name_bunk_level ASC";
 
+$datos_bunk_level_5 = mysqli_query($enlace, $query_bunk_level_5) or die(mysqli_error());
+
+$row_datos_bunk_level_5 = mysqli_fetch_assoc($datos_bunk_level_5);
 
 
 
@@ -137,6 +183,12 @@ $row_datos_bed_number_6 = mysqli_fetch_assoc($datos_bed_number_6);
 
 
 
+$query_bunk_level_6 = "SELECT * FROM bunk_level ORDER BY name_bunk_level ASC";
+
+$datos_bunk_level_6 = mysqli_query($enlace, $query_bunk_level_6) or die(mysqli_error());
+
+$row_datos_bunk_level_6 = mysqli_fetch_assoc($datos_bunk_level_6);
+
 
 
 $query_bed_kind_7 = "SELECT * FROM bed_kind where name_bed_kind != 'None' ORDER BY name_bed_kind ASC";
@@ -152,6 +204,11 @@ $row_datos_bed_number_7 = mysqli_fetch_assoc($datos_bed_number_7);
 
 
 
+$query_bunk_level_7 = "SELECT * FROM bunk_level ORDER BY name_bunk_level ASC";
+$datos_bunk_level_7 = mysqli_query($enlace, $query_bunk_level_7) or die(mysqli_error());
+$row_datos_bunk_level_7 = mysqli_fetch_assoc($datos_bunk_level_7);
+
+
 
 $query_bed_kind_8 = "SELECT * FROM bed_kind where name_bed_kind != 'None' ORDER BY name_bed_kind ASC";
 $datos_bed_kind_8 = mysqli_query($enlace, $query_bed_kind_8) or die(mysqli_error());
@@ -165,6 +222,12 @@ $datos_bed_number_8 = mysqli_query($enlace, $query_bed_number_8) or die(mysqli_e
 $row_datos_bed_number_8 = mysqli_fetch_assoc($datos_bed_number_8);
 
 
+$query_bunk_level_8 = "SELECT * FROM bunk_level ORDER BY name_bunk_level ASC";
+
+$datos_bunk_level_8 = mysqli_query($enlace, $query_bunk_level_8) or die(mysqli_error());
+
+$row_datos_bunk_level_8 = mysqli_fetch_assoc($datos_bunk_level_8);
+
 
 $query_bed_kind_9 = "SELECT * FROM bed_kind where name_bed_kind != 'None' ORDER BY name_bed_kind ASC";
 $datos_bed_kind_9 = mysqli_query($enlace, $query_bed_kind_9) or die(mysqli_error());
@@ -177,6 +240,13 @@ $query_bed_number_9 = "SELECT * FROM bed_number where name_bed_number != 'None' 
 $datos_bed_number_9 = mysqli_query($enlace, $query_bed_number_9) or die(mysqli_error());
 $row_datos_bed_number_9 = mysqli_fetch_assoc($datos_bed_number_9);
 
+
+
+$query_bunk_level_9 = "SELECT * FROM bunk_level ORDER BY name_bunk_level ASC";
+
+$datos_bunk_level_9 = mysqli_query($enlace, $query_bunk_level_9) or die(mysqli_error());
+
+$row_datos_bunk_level_9 = mysqli_fetch_assoc($datos_bunk_level_9);
 
 
 mysqli_close($enlace);  

@@ -34,7 +34,8 @@ if (array_key_exists("id_per",$_SESSION))    // si existe la clave id para mi ar
 		include("../conectar.php");
 		
 
-		$nombre = "SELECT id_per, p_name_per, p_surname_per FROM tb_personal WHERE id_per = ' ".$_SESSION['id_per']." ' limit 1";        
+		$nombre = "SELECT id_per, p_name_per, p_surname_per, id_data_per 
+		FROM tb_personal WHERE id_per = ' ".$_SESSION['id_per']." ' limit 1";        
 
 					$resultC = mysqli_query($enlace,$nombre);
 					$nnn=mysqli_fetch_array($resultC);                /* antes en select tenia nombres */		
@@ -62,10 +63,35 @@ if (array_key_exists("id_per",$_SESSION))    // si existe la clave id para mi ar
 		{$abrev = "";
 		}
 
+        $el_ideal = $nnn['id_data_per'];
+
+
+		$foto = "SELECT id_data_per, pic_per FROM tb_data_personal WHERE id_data_per = '$el_ideal' limit 1";        
+
+		$resultC_fot = mysqli_query($enlace,$foto);
+		$nnn_fot=mysqli_fetch_array($resultC_fot);      
+
+
+if ($nnn_fot['pic_per'] != '') {
+
+//	 $infoZ .= "<img src=\" ".$nnn_fot['pic_per']." \" width=\"20px\" style=\"border-radius: 30%; height: auto;\" /> &nbsp; ".$abrev."</i>
+ //   &nbsp;" . $nnn['p_surname_per'] . " " . $nnn['p_name_per'] . ".";
+
+
+	$infoZ .= " <i class=\"textadmin\"><i class=\"far fa-id-badge\"></i>&nbsp; ".$abrev."</i>
+    &nbsp;" . $nnn['p_surname_per'] . " " . $nnn['p_name_per'] . ".";
+
+
+}
+
+else {
 
     $infoZ .= " <i class=\"textadmin\"><i class=\"far fa-id-badge\"></i>&nbsp; ".$abrev."</i>
     &nbsp;" . $nnn['p_surname_per'] . " " . $nnn['p_name_per'] . ".";
-		
+}
+
+
+
 
 		  
 		mysqli_close($enlace);
