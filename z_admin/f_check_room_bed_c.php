@@ -27,6 +27,12 @@ $alerta_hidezz = "0";
 
     $ttitulo = $_GET['ttitulo'];
     $idtbla = $_GET['idtabla'];
+
+    $compa = $_GET['compa'];  // lleva el id del padre o cabeza del grupo
+
+    $rango_seteado = $_GET['range'];
+
+    $cuenta_ami = $_GET['cuenta_ami'];
     
 
     $mi_hostel_select = $_SESSION['hostel_activo'];
@@ -35,11 +41,9 @@ $alerta_hidezz = "0";
 
 
 
-// empieza el cambio de status del personal
-if(isset($_POST['check_dates']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD y comprueba
-{
 
-  $date_range = $_POST['dates'];
+
+  $date_range = $rango_seteado;
 
 
   if ($date_range == '') {
@@ -3291,7 +3295,7 @@ else {
 
 } // hay un rango 
 
-}  // fin check de rango
+
 
 
 
@@ -3343,94 +3347,13 @@ else {
             </div>    <!-- CIERRE FORM SUPERIOR INFORMATIVO O DE CABECERA-->
 
 
-            <h4 class="glowwhite mt-4" >Select Range:</h4>
-
-          
- <script src="02_js/index.umd.min.js"></script>      
-   
-   <form method="post">
-
-   <div class="form-row col-sm-12 col-md-12 col-lg-12 col-12 mb-2 ">
-
-   <div class="mb-2" style="margin-left:-10px;">
-   <input type="text"  id="datepicker" name="dates" > 
-   </div>
-   
-   <div class="col-sm-4 col-md-4 col-lg-2 col-2 mb-2 ">
-   <button type="submit"  name="check_dates" class="btn btn-info btn-sm">Check</button>
- </div>
-
-
- </div>
- </form>
+         
         
 
 
 
 
 
- <script>
-
-
-const DateTime = easepick.DateTime;
-const bookedDates = [   
-
-/* ['2024-03-19', '2024-03-22'],   */      
-
-
-].map(d => {
-    if (d instanceof Array) {
-      const start = new DateTime(d[0], 'YYYY-MM-DD');
-      const end = new DateTime(d[1], 'YYYY-MM-DD');
-
-      return [start, end];
-    }
-
-    return new DateTime(d, 'YYYY-MM-DD');
-});
-const picker = new easepick.create({
-  element: document.getElementById('datepicker'),
-  css: [
-    '01_css/index.css',
-    '01_css/demo_hotelcal.css',
-    /* '01_css/customize_sample.css', */
-  ],
-
-  zIndex: 10,
-  grid: 2,
-  calendars: 2,
- // inline: true,
-
-
-  plugins: ['RangePlugin', 'LockPlugin'],
-  RangePlugin: {
-    tooltipNumber(num) {
-      return num - 1;
-    },
-    locale: {
-      one: 'night',
-      other: 'nights',
-    },
-  },
-  LockPlugin: {
-    minDate: new Date(),
-    minDays: 2,
-    inseparable: true,
-
-    filter(date, picked) {
-      if (picked.length === 1) {
-        const incl = date.isBefore(picked[0]) ? '[)' : '(]';
-        return !picked[0].isSame(date, 'day') && date.inArray(bookedDates, incl);
-      }
-
-      return date.inArray(bookedDates, '[)');
-    },
-  }
-
-
-
-});
-</script>
 
 
 
@@ -3581,213 +3504,55 @@ if ($row_room_pp_rr['name_discounts'] !='0') {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     mysqli_close($enlace);
 
     $background = '225463';
     
     ?>
 
-<div class="alert alert-dark mt-4 col-md-12 col-lg-6 col-12" role="alert" <?php if ( $totalRows_rooms_few =='0' OR $alerta_principal =='0'  ){?>style="display:none"<?php } ?> >
 
-<table class="table table-bordered table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Night(s)</th>
-      <th scope="col"><?php echo $row_the_currencys_prim['symbol_currency']; ?></th>
-      <th scope="col"><?php echo $row_the_currencys_second['symbol_currency']; ?></th>
-      <th scope="col"><?php echo $row_the_currencys_third['symbol_currency']; ?></th>
-    </tr>
-  </thead>
+<?php
 
-  <tbody>
-    <tr>
-      <th scope="row">Bed per <b>1</b>:</th>
-      <td><?php              
-              if ($totalRows_room_pp != '0') {
-                echo $row_room_pp['name_prices_beds'];
-              }              
-              ?>  </td>
+include ("../conectar.php");   // para saber cuantas rooms ay
 
-      <td><?php              
-              if ($totalRows_room_pp != '0') {
-               
-                $act = $row_room_pp['name_prices_beds'];
-                $sec = $row_the_currencys_second['currency_A_value'];
-                 
-                $second = ($act /$sec );
-                $english_format_number_d = number_format($second, 2, '.', '');
+$query_compa = "SELECT id_guests, guests_doc_id, p_name_g FROM tb_guests       
+ where id_guests = '$compa' limit 1";
 
-                echo $english_format_number_d;
-              }              
-              ?>              </td>
+$the_compa = mysqli_query($enlace, $query_compa) or die(mysqli_error());
+$row_compa = mysqli_fetch_assoc($the_compa);
+$totalRows_compa = mysqli_num_rows($the_compa);
 
-      <td> <?php              
-              if ($totalRows_room_pp != '0') {
+mysqli_close($enlace);
 
-                $bct = $row_room_pp['name_prices_beds'];
-                $bec =$row_the_currencys_second['currency_B_value'];
-               
-                $third = ($bct / $bec);
-                $english_format_number_t = number_format($third, 2, '.', '');
+if ($row_compa['p_name_g'] != '') {
+   $nombrecillo = $row_compa['p_name_g'];
+   $comilla = ',';
+}
 
-                echo $english_format_number_t;
-              }              
-              ?>   </td>
+else {
+    $nombrecillo = '';
+    $comilla = '';
 
-    </tr>
-
-    <tr>
-      <th scope="row">Bed for <b><?php echo $dateDiff; ?></b>:</th>
-
-      <td> <?php              
-              if ($totalRows_room_pp != '0') {
-
-                $vaa1 = $row_room_pp['name_prices_beds'];
-                $tot = ($vaa1 * $dateDiff);
-                $english_format_number_t = number_format($tot, 2, '.', '');
-                echo $english_format_number_t;
-
-              }              
-              ?>           </td>
-
-      <td><?php              
-              if ($totalRows_room_pp != '0') {
-               
-                $act = $row_room_pp['name_prices_beds'];
-                $sec = $row_the_currencys_second['currency_A_value'];
-                 
-                $second = ($act /$sec )* $dateDiff;
-                $english_format_number_d = number_format($second, 2, '.', '');
-
-                echo $english_format_number_d;
-              }              
-              ?>   </td>
-
-      <td><?php              
-              if ($totalRows_room_pp != '0') {
-
-                $bct = $row_room_pp['name_prices_beds'];
-                $bec =$row_the_currencys_second['currency_B_value'];
-               
-                $third = ($bct / $bec)* $dateDiff;
-                $english_format_number_t = number_format($third, 2, '.', '');
-
-                echo $english_format_number_t;
-              }              
-              ?>  </td>
-
-    </tr>
-
-    <tr>
-      <th scope="row">Room per <b>1</b>:</th>
-
-      <td > <?php
-                              
-                              if ($totalRows_room_pp_rr != '0') {
-                                
-                                echo $row_room_pp_rr['name_prices_rooms'];
-                              }
-                              
-                              ?>  </td>
-
-      <td ><?php              
-              if ($totalRows_room_pp_rr != '0') {
-               
-                $act_r = $row_room_pp_rr['name_prices_rooms'];
-                $sec_r = $row_the_currencys_second['currency_A_value'];
-                 
-                $second_r = ($act_r /$sec_r );
-                $english_format_number_d_r = number_format($second_r, 2, '.', '');
-
-                echo $english_format_number_d_r;
-              }              
-              ?> </td>
-
-      <td> <?php              
-              if ($totalRows_room_pp_rr != '0') {
-
-                $bct_r = $row_room_pp_rr['name_prices_rooms'];
-                $bec_r =$row_the_currencys_second['currency_B_value'];
-               
-                $third_r = ($bct_r / $bec_r);
-                $english_format_number_t_r = number_format($third_r, 2, '.', '');
-
-                echo $english_format_number_t_r;
-              }              
-              ?>              </td>
-
-    </tr>
-
-    <tr>
-      <th scope="row">Room for <b><?php echo $dateDiff; ?></b>:</th>
-
-      <td > <?php
-                              
-                              if ($totalRows_room_pp_rr != '0') {
-
-                                $vaa1_r = $row_room_pp_rr['name_prices_rooms'];
-                                $tot_r = ($vaa1_r * $dateDiff);
-                                $english_format_number_t_r = number_format($tot_r, 2, '.', '');
-                                echo $english_format_number_t_r;
-
-                              }
-                              
-                              ?>    </td>
-
-      <td >  <?php              
-              if ($totalRows_room_pp_rr != '0') {
-               
-                $act_r = $row_room_pp_rr['name_prices_rooms'];
-                $sec_r = $row_the_currencys_second['currency_A_value'];
-                 
-                $second_r = ($act_r /$sec_r )* $dateDiff;
-                $english_format_number_d_r = number_format($second_r, 2, '.', '');
-
-                echo $english_format_number_d_r;
-              }              
-              ?>    </td>
-
-      <td><?php              
-              if ($totalRows_room_pp_rr != '0') {
-
-                $bct_r = $row_room_pp_rr['name_prices_rooms'];
-                $bec_r =$row_the_currencys_second['currency_B_value'];
-               
-                $third_r = ($bct_r / $bec_r)* $dateDiff;
-                $english_format_number_t_r = number_format($third_r, 2, '.', '');
-
-                echo $english_format_number_t_r;
-              }              
-              ?></td>
-
-    </tr>
+}
 
 
-  </tbody>
-</table>
+?>
 
 
+
+
+
+
+<div class="mt-5 mb-3">
+<span class="glowwhite" style="font-size: 28px;"
+<?php if ( $totalRows_rooms_few =='0' OR $alerta_principal =='0'  ){?>style="display:none"<?php } ?> >
+Select bed, for </span><span class="glowwhite mt-5" style="font-size: 28px; color:#2A4BBB;"><?php  echo $cuenta_ami; ?>°</span><span class="glowwhite" style="font-size: 28px;"> companion of</span> &nbsp;
+ <span class="glowwhite mt-5" style="font-size: 28px; color:#2A4BBB;"><?php  echo $nombrecillo; ?>
+<?php  echo $comilla; ?></span>
+<span class="glowwhite" style="font-size: 28px;">  Doc: </span> <span class="glowwhite mt-5" style="font-size: 28px; color:#2A4BBB;"><?php  echo $row_compa['guests_doc_id']; ?>.</span>
 </div>
 
 
-<h4 class="glowwhite mt-4" <?php if ( $totalRows_rooms_few =='0' OR $alerta_principal =='0'  ){?>style="display:none"<?php } ?> >Select a bed or a room:</h4>
 
 <!-- Icon Cards-->
      
@@ -3989,11 +3754,7 @@ $conteo = $conteo + 1;
 
 
  
-<a href="f_check_in.php?ttitulo=<?php echo $name_bed_b; ?>&rr=<?php echo $date_range; ?>&id_r=<?php echo $id_room_f; ?>&id_rb=<?php echo $id_bed_f; ?>&ttitulo_kind=<?php echo $ttitulo; ?>&id_kind=<?php echo $idtbla; ?>"   
-
-
-
-
+<a href="f_check_in_c.php?ttitulo=<?php echo $name_bed_b; ?>&rr=<?php echo $date_range; ?>&id_r=<?php echo $id_room_f; ?>&id_rb=<?php echo $id_bed_f; ?>&ttitulo_kind=<?php echo $ttitulo; ?>&id_kind=<?php echo $idtbla; ?>&compadre=<?php echo $compa; ?>&cuenta_ami=<?php echo $cuenta_ami; ?>"    
 
 
 class="btn btn-light btn-sm ml-1 mr-1 mb-2"
@@ -4026,27 +3787,12 @@ role="button" style="width: 90px;"   >
   
 
 </div>    
-<!--
- <span <?php if ( $conteo != $totalRows_rooms_reveal_name_tipes ){?>style="display:none"<?php } ?>>
-
-<a href="f_check_in_room.php?ttitulo=<?php echo $name_bed_b; ?>&rr=<?php echo $date_range; ?>&id_r=<?php echo $id_room_f; ?>&id_rb=<?php echo $id_bed_f; ?>&ttitulo_kind=<?php echo $ttitulo; ?>&id_kind=<?php echo $idtbla; ?>&total=<?php  echo $totalRows_rooms_reveal_name_tipes; ?>"   
 
 
 
-class="btn btn-light btn-sm  mb-2"
-role="button" style="margin-left:12px;"   >
-<b style="color:#<?php  echo $background; ?>; ">
-Rent the Room, all <?php  echo $totalRows_rooms_reveal_name_tipes; ?> beds. 
-</b>
-</a>  
 
 
-</span>  -->
-
-
-
-<div class="ml-3 mb-2 infozzz"
- >
+<div class="ml-3 mb-2 infozzz">
 Have  <?php  echo $conteo; ?> / <?php  echo $totalRows_rooms_reveal_name_tipes; ?> Bed(s).
  </div>  
 
@@ -4061,6 +3807,9 @@ Have  <?php  echo $conteo; ?> / <?php  echo $totalRows_rooms_reveal_name_tipes; 
 
 
 <?php  } while ($row_rooms_few = mysqli_fetch_assoc($rooms_few)); ?>
+
+
+
 
 
 

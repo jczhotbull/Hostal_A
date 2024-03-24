@@ -30,13 +30,16 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
     $guests_success = "";
     $guests_danger = "";
 
+    $y_llevo = $_GET['y_llevo'];
 
+  
 
     $mi_hostel_select = $_SESSION['hostel_activo'];
 
     $doc_del_g = $_GET['zp'];
     $id_del_g = $_GET['ri'];
 
+    $cabeza = $id_del_g;
 
     $email_guests = $_GET['em'];
     $telf_guests = $_GET['tf'];
@@ -45,11 +48,13 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
     $ttitulo_kind = $_GET['ttitulo_kind'];
     $id_kind = $_GET['id_kind'];
+
+    $total = $_GET['total'];
   
 
 
-    $room_stay= $_GET['prz'];
-    $room_bed_stay= $_GET['pbz'];
+    $room_stay= $_GET['prz'];        //cuarto
+    $room_bed_stay= $_GET['pbz'];      // esta sera la cama seleccionada
 
     $el_rango = $_GET['ran'];
 
@@ -152,213 +157,79 @@ unlink($filename_doc_g);
 if(isset($_POST['add_doc_guests_comp']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD 
 {
     $alerta_principal = "2";
+
     $doc_gg = $doc_del_g;
+
     $id_gg = $id_del_g;
-    $suma_amigos = '1';
 
-    include("../conectar.php"); 
-
-    $query_data = "SELECT id_nation_g, guests_email, guests_phone, id_guests FROM tb_data_guests
-    WHERE id_guests = '$id_gg' LIMIT 1";
-    
-    $result_data = mysqli_query($enlace,$query_data) or die(mysqli_error());
-    $row_guest_data = mysqli_fetch_assoc($result_data);
-    
-
-    if (mysqli_num_rows($result_data)>0 )    // si ya esta en la bd  actualizar los datos
-    { 
+    $suma_amigos = '2';
 
 
-        $nation_found = $row_guest_data['id_nation_g'];
-        $email_found = $row_guest_data['guests_email'];
-        $telf_found = $row_guest_data['guests_phone'];
-        
-        $nationality_g = $_GET['na'];
-        $email_guests = $_GET['em'];
-        $telf_guests = $_GET['tf'];
+    clearstatcache();
+    $filenameUP = '00_croppie/doc_crop' . $doc_gg . '.png';
 
-        if ($nation_found != $nationality_g) {
-            $new_nation = $nationality_g;
-          }
-          else {
-            $new_nation = $nation_found;
-          }
-        
-        
-        
-          if ($email_found != $email_guests) {
-            $new_email = $email_guests;
-          }
-          else {
-            $new_email = $email_found;
-          }
-        
-        
-        
-          if ($telf_found != $telf_guests) {
-            $new_tlf = $telf_guests;
-          }
-          else {
-            $new_tlf = $telf_found;
-          }
+    if (file_exists($filenameUP )) {    // de haber una foto le cambia el nombre y la mueve a otro lugar            
+       
+        $extU = 'png';
+       
+        $newfilenameU = "guests/doc_id_g/".$id_gg."_".$doc_gg.".".$extU;
+         
+        if(rename($filenameUP,$newfilenameU))
+            {     
+            include("../conectar.php");   
 
+            $email_guests = $_GET['em'];
+            $telf_guests = $_GET['tf'];
+            $nationality_g = $_GET['na'];
 
+            $query_fotoU = "INSERT INTO tb_data_guests(id_guests, guests_doc_id_pic, id_nation_g, guests_email, guests_phone)   
 
+            VALUES ('$id_gg', '$newfilenameU', '$nationality_g', '$email_guests', '$telf_guests')"; 
 
-          clearstatcache();
-          $filenameUP = '00_croppie/doc_crop' . $doc_gg . '.png';
-      
-          if (file_exists($filenameUP )) {    // de haber una foto le cambia el nombre y la mueve a otro lugar            
-             
-              $extU = 'png';
-             
-              $newfilenameU = "guests/doc_id_g/".$id_gg."_".$doc_gg.".".$extU;
-                         
+            if (!mysqli_query($enlace,$query_fotoU))      // si no ha logrado ingresar la foto
+                     {
+  
+             $errorZ="- Error. ";
+  
+            unlink($newfilenameU);
                           
-             
-              if(rename($filenameUP,$newfilenameU))
-                  {     
-        
-                
-                  $query_fotoU = " UPDATE tb_data_guests SET guests_doc_id_pic = '$newfilenameU',
-                                                            id_nation_g = '$new_nation',
-                                                            guests_email = '$new_email',
-                                                            guests_phone = '$new_tlf'
+            mysqli_close($enlace);
+  
+                     }
+  
+            else {
+            $id_del_data_g = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado.
 
-                  WHERE id_guests = '$id_gg' LIMIT 1 ";      
-      
-                  if (!mysqli_query($enlace,$query_fotoU))      // si no ha logrado ingresar la foto
-                           {
-        
-                   $errorZ="- Error. ";
-        
-                  unlink($newfilenameU);
-                                
-                  mysqli_close($enlace);
-        
-                           }
-        
-                  else {
-                  $id_del_data_g = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado.
-      
-                  $codigo_amistades = "_".$id_gg."_".$el_rango."_".$mi_hostel_select."_";
-                  
-                  // el id_guests es para borrar el registro rapidamente.... por el guest
-                  // amistad_rey sera 1 si es el padre o cabeza de los acompañantes.
-      
-                  $query_bookin = "INSERT INTO
-                   bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
-                   date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests)   
-      
-                  VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
-                  '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '1', '$id_gg' )"; 
-      
-                 $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
-      
-                     
-      
-                 mysqli_close($enlace);  
-      
-                header("Location: f_check_room_bed_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_gg&cuenta_ami=$suma_amigos", TRUE, 301);
-                exit();    
-                  
-                    }   
-      
-                  }
-      
-      }
+            $codigo_amistades = "_".$id_gg."_".$el_rango."_".$mi_hostel_select."_";
+            
+            // el id_guests es para borrar el registro rapidamente.... por el guest
+            // amistad_rey sera 1 si es el padre o cabeza de los acompañantes.
 
-          
+            $query_bookin = "INSERT INTO
+             bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
+             date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests)   
 
-    }   // cierre de que actualizo la info
+            VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
+            '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '0', '$id_gg' )"; 
+
+           $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
 
 
-
-
-
-
-
-
-    else {   // no se repite se queda todo normalito, añade un nuevo registro
-
-        clearstatcache();
-        $filenameUP = '00_croppie/doc_crop' . $doc_gg . '.png';
-    
-        if (file_exists($filenameUP )) {    // de haber una foto le cambia el nombre y la mueve a otro lugar            
-           
-            $extU = 'png';
-           
-            $newfilenameU = "guests/doc_id_g/".$id_gg."_".$doc_gg.".".$extU;
-             
-           
-           
-           
-           
-            if(rename($filenameUP,$newfilenameU))
-                {     
-               
-    
-                $email_guests = $_GET['em'];
-                $telf_guests = $_GET['tf'];
-                $nationality_g = $_GET['na'];
-    
-                $query_fotoU = "INSERT INTO tb_data_guests(id_guests, guests_doc_id_pic, id_nation_g, guests_email, guests_phone)   
-    
-                VALUES ('$id_gg', '$newfilenameU', '$nationality_g', '$email_guests', '$telf_guests')"; 
-    
-                if (!mysqli_query($enlace,$query_fotoU))      // si no ha logrado ingresar la foto
-                         {
-      
-                 $errorZ="- Error. ";
-      
-                unlink($newfilenameU);
-                              
-                mysqli_close($enlace);
-      
-                         }
-      
-                else {
-                $id_del_data_g = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado.
-    
-                $codigo_amistades = "_".$id_gg."_".$el_rango."_".$mi_hostel_select."_";
-                
-                // el id_guests es para borrar el registro rapidamente.... por el guest
-                // amistad_rey sera 1 si es el padre o cabeza de los acompañantes.
-    
-                $query_bookin = "INSERT INTO
-                 bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
-                 date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests)   
-    
-                VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
-                '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '1', '$id_gg' )"; 
-    
-               $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
-    
-    
-           
-    
-    
-    
-    
-               mysqli_close($enlace);  
-    
-              header("Location: f_check_room_bed_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_gg&cuenta_ami=$suma_amigos", TRUE, 301);
-              exit();    
-                
-                  }   
-    
-                }
-    
-    }
         
 
 
 
 
+           mysqli_close($enlace);  
 
-    }    // cierre cuando añade  y no se repitio
+          header("Location: f_check_in_room_c.php?cuenta_ami=$suma_amigos&ttitulo_kind=$ttitulo&id_kind=$idtbla&total=$total&rr=$el_rango&ttitulo=provicional&id_r=$room_stay&id_rb=$room_bed_stay&y_llevo=$y_llevo&compadre=$cabeza", TRUE, 301);
+          exit();   
+            
+              }   
 
+            }
 
+}
 
 }
 
@@ -370,212 +241,6 @@ if(isset($_POST['add_doc_guests_comp']))  // chequea si se ha enviado algo, de s
 
 
 
-// empieza la insercion de la foto del doc del huesped
-if(isset($_POST['add_doc_guests_comp_other_r']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD 
-{
-    $alerta_principal = "2";
-    $suma_amigos = '1';
-    $doc_gg = $doc_del_g;
-    $id_gg = $id_del_g;
-
-
-    
-
-    include("../conectar.php"); 
-
-    $query_data = "SELECT id_nation_g, guests_email, guests_phone, id_guests FROM tb_data_guests
-    WHERE id_guests = '$id_gg' LIMIT 1";
-    
-    $result_data = mysqli_query($enlace,$query_data) or die(mysqli_error());
-    $row_guest_data = mysqli_fetch_assoc($result_data);
-    
-
-    if (mysqli_num_rows($result_data)>0 )    // si ya esta en la bd  actualizar los datos
-    { 
-
-        $nation_found = $row_guest_data['id_nation_g'];
-        $email_found = $row_guest_data['guests_email'];
-        $telf_found = $row_guest_data['guests_phone'];
-        
-        $nationality_g = $_GET['na'];
-        $email_guests = $_GET['em'];
-        $telf_guests = $_GET['tf'];
-
-        if ($nation_found != $nationality_g) {
-            $new_nation = $nationality_g;
-          }
-          else {
-            $new_nation = $nation_found;
-          }
-        
-        
-        
-          if ($email_found != $email_guests) {
-            $new_email = $email_guests;
-          }
-          else {
-            $new_email = $email_found;
-          }
-        
-        
-        
-          if ($telf_found != $telf_guests) {
-            $new_tlf = $telf_guests;
-          }
-          else {
-            $new_tlf = $telf_found;
-          }
-
-
-
-        clearstatcache();
-        $filenameUP = '00_croppie/doc_crop' . $doc_gg . '.png';
-    
-        if (file_exists($filenameUP )) {    // de haber una foto le cambia el nombre y la mueve a otro lugar            
-           
-            $extU = 'png';
-           
-            $newfilenameU = "guests/doc_id_g/".$id_gg."_".$doc_gg.".".$extU;
-             
-            if(rename($filenameUP,$newfilenameU))
-                {     
-
-    
-                    $query_fotoU = " UPDATE tb_data_guests SET guests_doc_id_pic = '$newfilenameU',
-                    id_nation_g = '$new_nation',
-                    guests_email = '$new_email',
-                    guests_phone = '$new_tlf'
-
-WHERE id_guests = '$id_gg' LIMIT 1 ";      
-    
-                if (!mysqli_query($enlace,$query_fotoU))      // si no ha logrado ingresar la foto
-                         {
-      
-                 $errorZ="- Error. ";
-      
-                unlink($newfilenameU);
-                              
-                mysqli_close($enlace);
-      
-                         }
-      
-                else {
-                $id_del_data_g = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado.
-    
-                $codigo_amistades = "_".$id_gg."_".$el_rango."_".$mi_hostel_select."_";
-                
-                // el id_guests es para borrar el registro rapidamente.... por el guest
-                // amistad_rey sera 1 si es el padre o cabeza de los acompañantes.
-    
-                $query_bookin = "INSERT INTO
-                 bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
-                 date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests)   
-    
-                VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
-                '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '1', '$id_gg' )"; 
-    
-               $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
-    
-    
-    
-               mysqli_close($enlace);  
-    
-              header("Location: f_check_in_a_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_gg&cuenta_ami=$suma_amigos", TRUE, 301);
-              exit();    
-                
-                  }   
-    
-                }
-    
-    }
-
-
-
-
-
-    }
-
-
-
-
-
-
-
-    {   // no se repite por tanto registro...
-
-
-
-
-        clearstatcache();
-        $filenameUP = '00_croppie/doc_crop' . $doc_gg . '.png';
-    
-        if (file_exists($filenameUP )) {    // de haber una foto le cambia el nombre y la mueve a otro lugar            
-           
-            $extU = 'png';
-           
-            $newfilenameU = "guests/doc_id_g/".$id_gg."_".$doc_gg.".".$extU;
-             
-            if(rename($filenameUP,$newfilenameU))
-                {     
-
-    
-                $email_guests = $_GET['em'];
-                $telf_guests = $_GET['tf'];
-                $nationality_g = $_GET['na'];
-    
-                $query_fotoU = "INSERT INTO tb_data_guests(id_guests, guests_doc_id_pic, id_nation_g, guests_email, guests_phone)   
-    
-                VALUES ('$id_gg', '$newfilenameU', '$nationality_g', '$email_guests', '$telf_guests')"; 
-    
-                if (!mysqli_query($enlace,$query_fotoU))      // si no ha logrado ingresar la foto
-                         {
-      
-                 $errorZ="- Error. ";
-      
-                unlink($newfilenameU);
-                              
-                mysqli_close($enlace);
-      
-                         }
-      
-                else {
-                $id_del_data_g = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado.
-    
-                $codigo_amistades = "_".$id_gg."_".$el_rango."_".$mi_hostel_select."_";
-                
-                // el id_guests es para borrar el registro rapidamente.... por el guest
-                // amistad_rey sera 1 si es el padre o cabeza de los acompañantes.
-    
-                $query_bookin = "INSERT INTO
-                 bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
-                 date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests)   
-    
-                VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
-                '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '1', '$id_gg' )"; 
-    
-               $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
-    
-    
-    
-               mysqli_close($enlace);  
-    
-              header("Location: f_check_in_a_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_gg&cuenta_ami=$suma_amigos", TRUE, 301);
-              exit();    
-                
-                  }   
-    
-                }
-    
-    }
-
-
-
-
-
-    }
-
-
-}
 
 
 
@@ -764,19 +429,18 @@ id=""  onerror="this.src='guests/doc_id_g/doc_vacio.jpg';"/>
 
 
 
-<div class="btn-toolbar col-sm-12 col-md-12 col-lg-12 mb-2"
- role="toolbar" aria-label="Toolbar with button groups" <?php if ( !file_exists($filename_doc_g ) ){?>style="display:none"<?php } ?> >
 
-  <div class="btn-group mr-2" role="group" aria-label="First group">
-    <button type="button" class="btn btn-outline-dark" disabled><b>Add a Companion:</b></button>
 
-<button type="submit" name="add_doc_guests_comp" id='add_doc_guests_comp' class="btn btn-success">
-    In <b><?php echo $ttitulo_kind; ?></b> Room</button>
 
-<button type="submit" name="add_doc_guests_comp_other_r" id='add_doc_guests_comp' class="btn btn-info">
-        <b>Other</b> Room Type</button>
+<div class="mt-2 col-sm-12 col-md-12 col-lg-12 mb-2" <?php if ( !file_exists($filename_doc_g ) or $total == '0' ){?>style="display:none"<?php } ?> >
+<button type="submit" name="add_doc_guests_comp" class="btn btn-success btn-block" id='add_doc_guests_comp'>
+<b>Add a Companion</b></button></div>	
 
-</div></div>
+
+
+
+
+
 
 
 

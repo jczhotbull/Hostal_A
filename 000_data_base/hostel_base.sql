@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-03-2024 a las 03:53:04
+-- Tiempo de generación: 24-03-2024 a las 16:40:36
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -38,15 +38,11 @@ CREATE TABLE `bed_booking` (
   `date_in` varchar(20) NOT NULL,
   `date_out` varchar(20) NOT NULL,
   `nights` varchar(20) NOT NULL,
-  `arreglo_d` varchar(2054) NOT NULL
+  `arreglo_d` varchar(2054) NOT NULL,
+  `codigo_amistades` varchar(40) NOT NULL,
+  `amistad_rey` int(128) DEFAULT NULL,
+  `id_guests` int(254) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `bed_booking`
---
-
-INSERT INTO `bed_booking` (`id_bed_booking`, `booking_year`, `id_hostel`, `id_room`, `id_room_bed`, `date_range`, `booking_status`, `date_in`, `date_out`, `nights`, `arreglo_d`) VALUES
-(150, '2024', 10, 58, 174, '2024-03-27 - 2024-03-31', 1, '2024-03-27', '2024-03-31', '4', 'a:3:{i:0;s:10:\"2024-03-28\";i:1;s:10:\"2024-03-29\";i:2;s:10:\"2024-03-30\";}');
 
 -- --------------------------------------------------------
 
@@ -113,10 +109,7 @@ CREATE TABLE `bed_status` (
 
 INSERT INTO `bed_status` (`id_bed_status`, `name_bed_status`) VALUES
 (1, 'Available'),
-(2, 'Dirty'),
-(3, 'Reserved'),
-(4, 'Occupied'),
-(5, 'Cleaning');
+(7, 'Unavailable');
 
 -- --------------------------------------------------------
 
@@ -656,10 +649,7 @@ CREATE TABLE `room_status` (
 
 INSERT INTO `room_status` (`id_room_status`, `name_room_status`) VALUES
 (1, 'Available'),
-(2, 'Dirty'),
-(3, 'Reserved'),
-(4, 'Occupied'),
-(5, 'Cleaning');
+(2, 'Unavailable');
 
 -- --------------------------------------------------------
 
@@ -743,14 +733,6 @@ CREATE TABLE `tb_data_guests` (
   `id_guests` int(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `tb_data_guests`
---
-
-INSERT INTO `tb_data_guests` (`id_data_guests`, `guests_doc_id_pic`, `id_nation_g`, `guests_email`, `guests_phone`, `guests_behaviors`, `guests_observ`, `id_guests`) VALUES
-(12, 'guests/doc_id_g/48_7441111.png', 1, 'sinaicel@gmail.com', '04242772573', 12, NULL, 48),
-(13, 'guests/doc_id_g/63_963253333.png', 1, '', '', 12, NULL, 63);
-
 -- --------------------------------------------------------
 
 --
@@ -798,28 +780,6 @@ CREATE TABLE `tb_guests` (
   `guests_today` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `tb_guests`
---
-
-INSERT INTO `tb_guests` (`id_guests`, `guests_doc_id`, `p_name_g`, `s_name_g`, `p_surname_g`, `s_surname_g`, `guests_pic`, `guests_pass`, `guests_status`, `guests_register_by`, `guests_birth`, `guests_mod`, `guests_sex`, `guests_today`) VALUES
-(48, 7441111, 'Sinai', NULL, 'Saaaa', NULL, NULL, '0b3ddc744dfbde05599e6cb1a4f65ad6', 1, 9, NULL, 0, 3, '2024-03-21 14:20:24'),
-(49, 654321, 'Sinai', NULL, 'S', NULL, NULL, '01730b81c1682fa32cbdf23fc2322cc7', 1, 9, NULL, 0, 3, '2024-03-21 16:00:48'),
-(50, 875421, 'Sinai', NULL, 'S', NULL, NULL, 'ac84686a371db08c7581b03b41aa4c49', 1, 9, NULL, 0, 3, '2024-03-21 16:04:07'),
-(51, 87542155, 'Sinai', NULL, 'S', NULL, NULL, 'a28465a11c9d6e7f1d98d77d92ccb8e4', 1, 9, '2024-03-19', 0, 2, '2024-03-21 19:18:04'),
-(52, 17720, 'Sinai', NULL, 'S', NULL, NULL, 'a1c2478929286f503e791ea5355c494f', 1, 9, '2024-03-19', 0, 2, '2024-03-21 19:19:20'),
-(53, 2147483647, 'Sinai', NULL, 'S', NULL, NULL, 'cc86a89e6c4a443bb98a6e26dfe450d9', 1, 9, '2024-03-26', 0, 2, '2024-03-21 19:20:51'),
-(54, 2147483647, 'Sinai', NULL, 'S', NULL, NULL, '2c3b8a578027a1128038519f80e585a0', 1, 9, '2024-03-26', 0, 2, '2024-03-21 19:21:07'),
-(55, 2147483647, '', NULL, '', NULL, NULL, '0de89243dced795d78d1dc725c6514b3', 1, 9, '0000-00-00', 0, 0, '2024-03-21 19:24:55'),
-(56, 2147483647, '', NULL, '', NULL, NULL, '28a1afc33a80182658497b623f500763', 1, 9, '0000-00-00', 0, 0, '2024-03-21 19:26:43'),
-(57, 2147483647, '', NULL, '', NULL, NULL, '96b1f56c54a6c366cf928070e4265075', 1, 9, '0000-00-00', 0, 0, '2024-03-21 19:27:24'),
-(58, 875421444, '', NULL, '', NULL, NULL, '98feaee58a565a2689af4017c784e9a1', 1, 9, '0000-00-00', 0, 0, '2024-03-21 19:29:32'),
-(59, 2147483647, '', NULL, '', NULL, NULL, '9093d81439afa03602cfb581c797ef82', 1, 9, '0000-00-00', 0, 0, '2024-03-21 19:31:09'),
-(60, 2147483647, '', NULL, '', NULL, NULL, '323e19e5b0e7347787b9a0ad8ac18298', 1, 9, '0000-00-00', 0, 0, '2024-03-21 19:31:31'),
-(61, 2147483647, '', NULL, '', NULL, NULL, '1cd3e93a1543fa79c8c7a96007362068', 1, 9, '0000-00-00', 0, 0, '2024-03-21 19:32:33'),
-(62, 2147483647, '', NULL, '', NULL, NULL, '8f73b0aec36cbc04d5f24d85e9a8c63f', 1, 9, '0000-00-00', 0, 0, '2024-03-21 19:53:42'),
-(63, 963253333, '', NULL, '', NULL, NULL, 'bcb26afe0ccbe03c8549a0066a8b28b2', 1, 9, '0000-00-00', 0, 0, '2024-03-21 19:55:48');
-
 -- --------------------------------------------------------
 
 --
@@ -852,20 +812,6 @@ CREATE TABLE `tb_guests_services` (
   `descuento` varchar(40) NOT NULL,
   `total` varchar(40) NOT NULL,
   `cantidad` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tb_guests_stays`
---
-
-CREATE TABLE `tb_guests_stays` (
-  `id_guests_stays` int(254) NOT NULL,
-  `id_guests` int(128) NOT NULL,
-  `id_bed_booking` int(254) NOT NULL,
-  `id_hostel` int(11) NOT NULL,
-  `amigo_de` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -958,7 +904,8 @@ INSERT INTO `tb_prices_rooms` (`id_prices_rooms`, `id_hostel`, `id_room_kind`, `
 (15, 10, 3, 150.00, 1, 1, '2024-03-16 23:09:39', 9),
 (16, 10, 4, 260.00, 1, 1, '2024-03-16 23:09:52', 9),
 (17, 10, 1, 100.00, 1, 5, '2024-03-20 21:26:24', 9),
-(18, 10, 4, 170.00, 1, 3, '2024-03-22 02:15:46', 9);
+(18, 10, 4, 170.00, 1, 3, '2024-03-22 02:15:46', 9),
+(19, 10, 1, 550.00, 1, 5, '2024-03-22 12:47:44', 9);
 
 -- --------------------------------------------------------
 
@@ -996,7 +943,7 @@ INSERT INTO `tb_room` (`id_room`, `id_hostel`, `id_room_kind`, `id_room_number`,
 (55, 10, 3, 4, 2, 1, 9, '2024-03-16 23:06:02', 1, '', 1),
 (56, 10, 4, 6, 2, 1, 9, '2024-03-16 23:06:19', 1, '', 1),
 (57, 10, 4, 11, 2, 1, 9, '2024-03-17 16:35:05', 1, '', 1),
-(58, 10, 1, 11, 2, 1, 9, '2024-03-18 13:55:07', 1, '', 1),
+(58, 10, 1, 11, 2, 1, 9, '2024-03-23 21:39:49', 1, '', 1),
 (59, 10, 4, 12, 2, 1, 9, '2024-03-20 21:12:16', 1, '', 1);
 
 -- --------------------------------------------------------
@@ -1039,13 +986,13 @@ INSERT INTO `tb_rooms_beds` (`id_rooms_beds`, `id_hostel`, `id_room`, `id_room_k
 (145, 10, 49, 1, 1, 2, '', 1, 1),
 (146, 10, 49, 1, 1, 3, '', 1, 1),
 (147, 10, 49, 1, 1, 4, '', 1, 1),
-(148, 10, 50, 3, 1, 1, '', 1, 1),
+(148, 10, 50, 3, 1, 1, '', 7, 1),
 (149, 10, 50, 3, 1, 2, '', 1, 1),
 (150, 10, 50, 3, 1, 3, '', 1, 1),
 (151, 10, 50, 3, 1, 4, '', 1, 1),
-(152, 10, 51, 4, 2, 1, '', 1, 1),
+(152, 10, 51, 4, 2, 1, '', 7, 1),
 (153, 10, 51, 4, 2, 1, '', 1, 1),
-(154, 10, 53, 4, 2, 1, '', 1, 1),
+(154, 10, 53, 4, 2, 1, '', 7, 1),
 (155, 10, 54, 4, 2, 1, '', 1, 1),
 (156, 10, 54, 4, 2, 2, '', 1, 1),
 (157, 10, 54, 4, 2, 3, '', 1, 1),
@@ -1055,8 +1002,8 @@ INSERT INTO `tb_rooms_beds` (`id_rooms_beds`, `id_hostel`, `id_room`, `id_room_k
 (161, 10, 55, 3, 1, 4, '', 1, 1),
 (162, 10, 55, 3, 1, 5, '', 1, 1),
 (163, 10, 56, 4, 2, 11, '', 1, 1),
-(164, 10, 57, 4, 2, 2, '', 1, 1),
-(165, 10, 57, 4, 2, 2, '', 1, 2),
+(164, 10, 57, 4, 2, 2, '', 7, 1),
+(165, 10, 57, 4, 2, 2, '', 7, 2),
 (166, 10, 57, 4, 2, 4, '', 1, 1),
 (167, 10, 57, 4, 2, 5, '', 1, 2),
 (168, 10, 57, 4, 2, 5, '', 1, 2),
@@ -1405,7 +1352,8 @@ ALTER TABLE `tb_data_personal`
 --
 ALTER TABLE `tb_guests`
   ADD PRIMARY KEY (`id_guests`),
-  ADD KEY `registrado_g_por` (`guests_register_by`);
+  ADD KEY `registrado_g_por` (`guests_register_by`),
+  ADD KEY `sexoi` (`guests_sex`);
 
 --
 -- Indices de la tabla `tb_guests_buys`
@@ -1418,12 +1366,6 @@ ALTER TABLE `tb_guests_buys`
 --
 ALTER TABLE `tb_guests_services`
   ADD PRIMARY KEY (`id_guests_services`);
-
---
--- Indices de la tabla `tb_guests_stays`
---
-ALTER TABLE `tb_guests_stays`
-  ADD PRIMARY KEY (`id_guests_stays`);
 
 --
 -- Indices de la tabla `tb_personal`
@@ -1521,7 +1463,7 @@ ALTER TABLE `z_hostel`
 -- AUTO_INCREMENT de la tabla `bed_booking`
 --
 ALTER TABLE `bed_booking`
-  MODIFY `id_bed_booking` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `id_bed_booking` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=274;
 
 --
 -- AUTO_INCREMENT de la tabla `bed_kind`
@@ -1539,7 +1481,7 @@ ALTER TABLE `bed_number`
 -- AUTO_INCREMENT de la tabla `bed_status`
 --
 ALTER TABLE `bed_status`
-  MODIFY `id_bed_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_bed_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `behaviors`
@@ -1707,7 +1649,7 @@ ALTER TABLE `tb_address`
 -- AUTO_INCREMENT de la tabla `tb_data_guests`
 --
 ALTER TABLE `tb_data_guests`
-  MODIFY `id_data_guests` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_data_guests` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_data_personal`
@@ -1719,7 +1661,7 @@ ALTER TABLE `tb_data_personal`
 -- AUTO_INCREMENT de la tabla `tb_guests`
 --
 ALTER TABLE `tb_guests`
-  MODIFY `id_guests` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id_guests` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_guests_buys`
@@ -1732,12 +1674,6 @@ ALTER TABLE `tb_guests_buys`
 --
 ALTER TABLE `tb_guests_services`
   MODIFY `id_guests_services` int(254) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `tb_guests_stays`
---
-ALTER TABLE `tb_guests_stays`
-  MODIFY `id_guests_stays` int(254) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_personal`
@@ -1755,7 +1691,7 @@ ALTER TABLE `tb_prices_beds`
 -- AUTO_INCREMENT de la tabla `tb_prices_rooms`
 --
 ALTER TABLE `tb_prices_rooms`
-  MODIFY `id_prices_rooms` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_prices_rooms` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_room`
@@ -1861,7 +1797,8 @@ ALTER TABLE `tb_data_guests`
 -- Filtros para la tabla `tb_guests`
 --
 ALTER TABLE `tb_guests`
-  ADD CONSTRAINT `registrado_g_por` FOREIGN KEY (`guests_register_by`) REFERENCES `tb_personal` (`id_per`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `registrado_g_por` FOREIGN KEY (`guests_register_by`) REFERENCES `tb_personal` (`id_per`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `sexoi` FOREIGN KEY (`guests_sex`) REFERENCES `sex` (`id_sex`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `tb_personal`

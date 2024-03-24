@@ -24,7 +24,7 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
     $conteo_errorAr = "0";   // Si es distinto debe borrar registros incorrectos anteriores
 
-
+    $cuenta_ami = $_GET['cuenta_ami'];
 
     $guests_success = "";
     $guests_danger = "";
@@ -43,12 +43,17 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
     $la_room_es = $_GET['id_r'];
     $la_room_cama_es = $_GET['id_rb'];
 
+    $compatriota = $_GET['compadre']; // tiene el id del cabeza del grupo
+
 
 
 // empieza la insercion del huesped
 if(isset($_POST['add_guests']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD 
 {
     $alerta_principal = "2";
+
+
+
 
  //  verifica si doc de Id ya está registrada en la BD...
  include("../conectar.php");  
@@ -63,97 +68,155 @@ if(isset($_POST['add_guests']))  // chequea si se ha enviado algo, de ser si -->
 
 
     $date_g = $_POST['date_birth_g']; 
-    $sex_g = $_POST['sex_g']; 
+    $sex_g = $_POST['sex_g'];  
 
 
-     
-
- $queryGG = "SELECT id_guests, guests_doc_id, p_name_g, p_surname_g, guests_birth, guests_sex FROM tb_guests
- WHERE guests_doc_id ='".mysqli_real_escape_string($enlace,$_POST['doc_guests'])."' LIMIT 1";
-
- $resultGG = mysqli_query($enlace,$queryGG) or die(mysqli_error());
- $row_guest_info = mysqli_fetch_assoc($resultGG);
-
- $id_found = $row_guest_info['id_guests'];
- $name_found = $row_guest_info['p_name_g'];
- $ape_found = $row_guest_info['p_surname_g'];
- $birth_found = $row_guest_info['guests_birth'];
- $sex_found = $row_guest_info['guests_sex'];
-
- $upd_name = mysqli_real_escape_string($enlace,$_POST['p_name_guests']);
- $upd_ape = mysqli_real_escape_string($enlace,$_POST['p_surname_guests']);
-
-
-         if (mysqli_num_rows($resultGG)>0 )    // si ya esta en la bd  actualizar los datos
-         {         
-
-if ($name_found != $upd_name) {
-  $new_name = $upd_name;
-}
-else {
-  $new_name = $name_found;
-}
+    $queryGG = "SELECT id_guests, guests_doc_id, p_name_g, p_surname_g, guests_birth, guests_sex FROM tb_guests
+    WHERE guests_doc_id ='".mysqli_real_escape_string($enlace,$_POST['doc_guests'])."' LIMIT 1";
+   
+    $resultGG = mysqli_query($enlace,$queryGG) or die(mysqli_error());
+    $row_guest_info = mysqli_fetch_assoc($resultGG);
+   
+    $id_found = $row_guest_info['id_guests'];
+    $name_found = $row_guest_info['p_name_g'];
+    $ape_found = $row_guest_info['p_surname_g'];
+    $birth_found = $row_guest_info['guests_birth'];
+    $sex_found = $row_guest_info['guests_sex'];
+   
+    $upd_name = mysqli_real_escape_string($enlace,$_POST['p_name_guests']);
+    $upd_ape = mysqli_real_escape_string($enlace,$_POST['p_surname_guests']);
+   
 
 
+   
+            if (mysqli_num_rows($resultGG)>0 )    // si ya esta en la bd  actualizar los datos
+            { 
 
-if ($ape_found != $upd_ape) {
-  $new_ape = $upd_ape;
-}
-else {
-  $new_ape = $ape_found;
+
+              
+// verifico que el documento ingresado como acompañante no sea el mismo
+// del cabeza de grupo   buscando si el id del cabeza de grupo es el mismo id del usuario a ingresar
+
+if ($id_found == $compatriota ) {
+
+    $errorZ="- Error, the same guest cant be his own companion.";  
+
+    mysqli_close($enlace);
 }
 
 
 
-if ($birth_found != $date_g) {
-  $new_date = $date_g;
+else {    // ahora debo chequear  q no se este reintroduciendo un compañero
+
+    $queryGG_booking = "SELECT date_range, id_guests  FROM bed_booking
+    WHERE id_guests ='$id_found'
+    and date_range = '$rango' LIMIT 1";
+    
+    $resultGG_booking = mysqli_query($enlace,$queryGG_booking) or die(mysqli_error());
+    
+    
+    
+    if (mysqli_num_rows($resultGG_booking)>0  ) {
+    
+        $errorZ="- Error, guest already have a bed.";  
+    
+        mysqli_close($enlace);
+    }
+
+
+
+    else {   // si no era un re ingreso de compañero entonces actualizo
+
+
+        if ($name_found != $upd_name) {
+            $new_name = $upd_name;
+          }
+          else {
+            $new_name = $name_found;
+          }
+          
+          
+          
+          if ($ape_found != $upd_ape) {
+            $new_ape = $upd_ape;
+          }
+          else {
+            $new_ape = $ape_found;
+          }
+          
+          
+          
+          if ($birth_found != $date_g) {
+            $new_date = $date_g;
+          }
+          else {
+            $new_date = $birth_found;
+          }
+          
+          
+          
+          if ($sex_found != $sex_g) {
+            $new_sex = $sex_g;
+          }
+          else {
+            $new_sex = $sex_found;
+          }
+          
+          
+          $query_uppdd_nn = " UPDATE tb_guests SET p_name_g = '$new_name',
+                                                   p_surname_g = '$new_ape',
+                                                   guests_birth = '$new_date',
+                                                   guests_sex = '$new_sex'
+          
+           WHERE id_guests = '$id_found' LIMIT 1 "; 
+          $sale_y_vale_nn = mysqli_query($enlace, $query_uppdd_nn) or die(mysqli_error());
+          
+                   mysqli_close($enlace);
+                   
+                   header("Location: f_check_in_dos_c.php?zv=ve87&pass=6tz@bv&zp=$doc&ri=$id_found&mil=57tr@jh&em=$email_guests&tf=$telf_guests&na=$nationality_g&ran=$rango&prz=$la_room_es&pbz=$la_room_cama_es&ttitulo_kind=$ttitulo_kind&id_kind=$id_kind&compi=$compatriota&cuenta_ami=$cuenta_ami", TRUE, 301);
+                   exit();  
+
+
+
+
+    }
+
+
+
+
+
+
+
+
 }
-else {
-  $new_date = $birth_found;
-}
 
 
 
-if ($sex_found != $sex_g) {
-  $new_sex = $sex_g;
-}
-else {
-  $new_sex = $sex_found;
-}
-
-
-$query_uppdd_nn = " UPDATE tb_guests SET p_name_g = '$new_name',
-                                         p_surname_g = '$new_ape',
-                                         guests_birth = '$new_date',
-                                         guests_sex = '$new_sex'
-
- WHERE id_guests = '$id_found' LIMIT 1 "; 
-$sale_y_vale_nn = mysqli_query($enlace, $query_uppdd_nn) or die(mysqli_error());
-
-         mysqli_close($enlace);
-         
-         header("Location: f_check_in_dos.php?zv=ve87&pass=6tz@bv&zp=$doc&ri=$id_found&mil=57tr@jh&em=$email_guests&tf=$telf_guests&na=$nationality_g&ran=$rango&prz=$la_room_es&pbz=$la_room_cama_es&ttitulo_kind=$ttitulo_kind&id_kind=$id_kind", TRUE, 301);
-         exit();    
-
-         }
 
 
 
-         else  // Entra aqui solo si el doc de id no esta registrado previamente 
-         {
 
-$quien_lo_registra = $_SESSION['id_per'];
 
-            $query_d = "INSERT INTO tb_guests(guests_doc_id, p_name_g, p_surname_g, guests_pass, guests_register_by,
-            guests_birth, guests_sex ) 
+  }  /// cierre chequeo si el doc ya esta en la b
 
-            VALUES (   '".mysqli_real_escape_string($enlace,$_POST['doc_guests'])."'         ,
-                 '".mysqli_real_escape_string($enlace,$_POST['p_name_guests'])."'         ,
-                       '".mysqli_real_escape_string($enlace,$_POST['p_surname_guests'])."'         ,
-                       '$pass_per'         ,
-                       '$quien_lo_registra',
-                       '$date_g',
-                       '$sex_g'  )";
+
+else {       // si no esta en la bd entonces lo registro
+
+
+
+
+    $quien_lo_registra = $_SESSION['id_per'];
+
+    $query_d = "INSERT INTO tb_guests(guests_doc_id, p_name_g, p_surname_g, guests_pass, guests_register_by,
+    guests_birth, guests_sex ) 
+
+    VALUES (   '".mysqli_real_escape_string($enlace,$_POST['doc_guests'])."'         ,
+         '".mysqli_real_escape_string($enlace,$_POST['p_name_guests'])."'         ,
+               '".mysqli_real_escape_string($enlace,$_POST['p_surname_guests'])."'         ,
+               '$pass_per'         ,
+               '$quien_lo_registra',
+               '$date_g',
+               '$sex_g'  )";
 
 
 if (!mysqli_query($enlace,$query_d))  // si no logro ingresar la direccion...
@@ -165,27 +228,37 @@ mysqli_close($enlace);
 
 else
 {       //  guarde la info básica, actualizo el password
-  
-    $id_del_g = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado.
-    $passwordHasheada=md5( md5 ($id_del_g) . $pass_per ) ;
+
+$id_del_g = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado.
+$passwordHasheada=md5( md5 ($id_del_g) . $pass_per ) ;
 
 $query_hash = " UPDATE tb_guests SET guests_pass = '$passwordHasheada' WHERE id_guests = '$id_del_g' LIMIT 1 "; 
 $sale_y_vale = mysqli_query($enlace, $query_hash) or die(mysqli_error());
 mysqli_close($enlace); 
 
-header("Location: f_check_in_dos.php?zv=ve87&pass=6tz@bv&zp=$doc&ri=$id_del_g&mil=57tr@jh&em=$email_guests&tf=$telf_guests&na=$nationality_g&ran=$rango&prz=$la_room_es&pbz=$la_room_cama_es&ttitulo_kind=$ttitulo_kind&id_kind=$id_kind", TRUE, 301);
+header("Location: f_check_in_dos_c.php?zv=ve87&pass=6tz@bv&zp=$doc&ri=$id_del_g&mil=57tr@jh&em=$email_guests&tf=$telf_guests&na=$nationality_g&ran=$rango&prz=$la_room_es&pbz=$la_room_cama_es&ttitulo_kind=$ttitulo_kind&id_kind=$id_kind&compi=$compatriota&cuenta_ami=$cuenta_ami", TRUE, 301);
 
 
 
 
-exit();     
- 
+exit();      }
+
+
+
 }
-         }
-
-}
 
 
+
+
+
+
+
+
+
+
+            
+
+} /// cierre principal
 
 
 
@@ -255,120 +328,43 @@ mysqli_close($enlace);
 
 
 
-                            <div class="form-row margencito"> 
-
-
-
-                            <div class="form-row">  <!-- datos principales -->
-
-                                <div class="col-md-12 ml-1 mb-1">
-
-                                <b class="text-info"> Confirm Range: </b>            
-
-                        <?php 
-                          if ($guests_success!="")
-{ echo "<i class=\"text-success\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Saved.\">".$user_success."</i>"; }
-                        ?>
-
-                        <?php 
-                          if ($guests_danger!="")
-{ echo "<i class=\"text-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Not Saved.\">".$user_danger."</i>"; }
-                        ?>
-                            <!-- SOLO ES VISIBLE SI LA VARIABLE TIENE ALGO-->
-
-
-                                </div>
-
-                            </div>
-
-                        </div>   <!-- cierre margencito-->
+                          
 
 
 
 <form  method="POST" data-persist="garlic"  data-expires="360" enctype="multipart/form-data"  name="add_user">                           
 
-                        <script src="02_js/index.umd.min.js"></script>      
-   
-
-
-   <div class="mb-2 text-center">
-   <input type="hidden"  id="datepicker" name="dates" > 
-   </div>
+                      
 
 
 
 
+<?php
+
+include ("../conectar.php");   // para saber cuantas rooms ay
+
+$query_compa = "SELECT id_guests, guests_doc_id, p_name_g FROM tb_guests       
+ where id_guests = '$compatriota' limit 1";
+
+$the_compa = mysqli_query($enlace, $query_compa) or die(mysqli_error());
+$row_compa = mysqli_fetch_assoc($the_compa);
+$totalRows_compa = mysqli_num_rows($the_compa);
+
+mysqli_close($enlace);
+
+if ($row_compa['p_name_g'] != '') {
+   $nombrecillo = $row_compa['p_name_g'];
+   $comilla = ',';
+}
+
+else {
+    $nombrecillo = '';
+    $comilla = '';
+
+}
 
 
-
-
-
- <script>
-
-
-const DateTime = easepick.DateTime;
-const bookedDates = [   
-
- ['2024-03-19', '2024-03-22'], 
- 
- ['2024-04-18', '2024-04-21'], 
-
- ['2024-04-28', '2024-04-30'],
-
-
-].map(d => {
-    if (d instanceof Array) {
-      const start = new DateTime(d[0], 'YYYY-MM-DD');
-      const end = new DateTime(d[1], 'YYYY-MM-DD');
-
-      return [start, end];
-    }
-
-    return new DateTime(d, 'YYYY-MM-DD');
-});
-const picker = new easepick.create({
-  element: document.getElementById('datepicker'),
-  css: [
-    '01_css/index.css',
-    '01_css/demo_hotelcal.css',
-    /* '01_css/customize_sample.css', */
-  ],
-
-  zIndex: 10,
-  grid: 2,
-  calendars: 2,
-  inline: true,
-
-
-  plugins: ['RangePlugin', 'LockPlugin'],
-  RangePlugin: {
-    tooltipNumber(num) {
-      return num - 1;
-    },
-    locale: {
-      one: 'night',
-      other: 'nights',
-    },
-  },
-  LockPlugin: {
-    minDate: new Date(),
-    minDays: 2,
-    inseparable: true,
-
-    filter(date, picked) {
-      if (picked.length === 1) {
-        const incl = date.isBefore(picked[0]) ? '[)' : '(]';
-        return !picked[0].isSame(date, 'day') && date.inArray(bookedDates, incl);
-      }
-
-      return date.inArray(bookedDates, '[)');
-    },
-  }
-
-
-
-});
-</script>
+?>
 
 
 
@@ -376,9 +372,14 @@ const picker = new easepick.create({
 
 
 
-<div class="form-row margencito">
 
-<b class="ml-2 mb-2 mt-3 text-info"> Register Guest: </b>  
+
+<div class="form-row margencito">   
+
+<b class="ml-2 mb-2 mt-3 text-info"> Register </b>&nbsp;<b class="mb-2 mt-3 text-primary"><?php  echo $cuenta_ami; ?>°</b>&nbsp;<b class="mb-2 mt-3 text-info"> Companion of </b>
+<b class="ml-2 mb-2 mt-3 text-primary"> <?php  echo $nombrecillo; ?>
+<?php  echo $comilla; ?></b> <b class="ml-2 mb-2 mt-3 text-info"> Doc:</b> <b class="ml-2 mb-2 mt-3 text-primary">
+    <?php  echo $row_compa['guests_doc_id']; ?>.</b>  
 
 </div>
 

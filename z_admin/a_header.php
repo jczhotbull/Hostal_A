@@ -127,7 +127,7 @@ mysqli_close($enlace);
 
 
         <li 
-        class="nav-item separacionpequenaa hovering" data-toggle="tooltip" data-placement="right" title="Staff">
+        class="nav-item separacionpequenaa hovering" data-toggle="tooltip" data-placement="right" title="Guests">
           <a class="nav-link" style="color:#3c9dc8;" href="guests.php">
             <i class="fa-solid fa-person-walking-luggage fa-lg"></i>  
             <span class="nav-link-text">&nbsp;Guests</span>
@@ -137,7 +137,7 @@ mysqli_close($enlace);
 
 
         <li 
-        class="nav-item separacionpequenaa hovering" data-toggle="tooltip" data-placement="right" title="Staff">
+        class="nav-item separacionpequenaa hovering" data-toggle="tooltip" data-placement="right" title="Lodging">
           <a class="nav-link" style="color:#FFFFFF;"   href="lodging.php">
             <i class="fa-solid fa-cart-flatbed-suitcase fa-lg"></i>  
             <span class="nav-link-text">&nbsp;Lodging</span> 
@@ -147,7 +147,7 @@ mysqli_close($enlace);
 
 
         <li 
-        class="nav-item separacionpequenaa hovering" data-toggle="tooltip" data-placement="right" title="Staff">
+        class="nav-item separacionpequenaa hovering" data-toggle="tooltip" data-placement="right" title="Services">
           <a class="nav-link" style="color:#45acb3;" href="services.php">
             <i class="fa-solid fa-store fa-lg"></i>  
             <span class="nav-link-text">&nbsp;Services</span> 
@@ -171,7 +171,7 @@ mysqli_close($enlace);
         
 
         <li 
-        class="nav-item separacionpequenaa hovering" data-toggle="tooltip" data-placement="right" title="Staff">
+        class="nav-item separacionpequenaa hovering" data-toggle="tooltip" data-placement="right" title="Beds">
           <a class="nav-link" style="color:#3c9dc8;" href="beds.php">
             <i class="fa-solid fa-bed fa-lg"></i>  
             <span class="nav-link-text">&nbsp;Beds</span>
@@ -188,7 +188,7 @@ mysqli_close($enlace);
 
 
         <li 
-         class="nav-item hovering" data-toggle="tooltip" data-placement="right" title="Hostel">
+         class="nav-item hovering" data-toggle="tooltip" data-placement="right" title="Rooms">
           <a class="nav-link" style="color:#c49674;"    href="rooms.php">
             <i class="fa-solid fa-door-open fa-lg"></i>
             <span class="nav-link-text">&nbsp;Rooms</span>   <i class=""></i>
@@ -200,7 +200,7 @@ mysqli_close($enlace);
    
 
         <li 
-         class="nav-item hovering" data-toggle="tooltip" data-placement="right" title="Hostel">
+         class="nav-item hovering" data-toggle="tooltip" data-placement="right" title="Procedures">
           <a class="nav-link" style="color:#45acb3;"    href="procedures.php">
             <i class="fa-solid fa-book-bookmark fa-lg"></i>
             <span class="nav-link-text">&nbsp;Procedures</span>  

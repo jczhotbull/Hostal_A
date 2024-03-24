@@ -27,10 +27,11 @@
 
  <thead>
    <tr>
-     <th width="25%" scope="col">Name or N°</th>      
+     <th width="15%" scope="col">Name or N°</th>      
      <th width="15%" scope="col">Bed Kind</th>
      <th width="15%" scope="col">Bunk Level</th>
-     <th width="45%" scope="col">Characteristics</th>
+     <th width="20%" scope="col">Status</th>
+     <th width="35%" scope="col">Characteristics</th>
    
   
      
@@ -146,6 +147,46 @@ mysqli_close($enlace);
 
 
 
+
+
+
+<td>
+
+                                        
+
+                     <select class="form-control form-control-sm importantex" id="the_status_temp" name="the_status_temp" required>
+                                                        
+   <option selected value="<?php echo $row_rooms_details['bed_status_temp']; ?>">
+   <?php echo $row_rooms_details['name_bed_status']; ?></option>
+<option style="background-color: #00000;" disabled></option>
+
+
+
+<?php
+
+include("../conectar.php");
+
+$query_hostel_status_t = "SELECT * FROM bed_status ORDER BY name_bed_status ASC";
+
+$datos_hostel_status_t = mysqli_query($enlace, $query_hostel_status_t) or die(mysqli_error());
+
+$row_datos_hostel_status_t = mysqli_fetch_assoc($datos_hostel_status_t);
+
+mysqli_close($enlace);
+
+?> 
+
+                               <?php do{?>                                
+
+<option value="<?php echo $row_datos_hostel_status_t['id_bed_status']; ?>"><?php echo $row_datos_hostel_status_t['name_bed_status']; ?></option>
+
+     <?php } while ($row_datos_hostel_status_t = mysqli_fetch_assoc($datos_hostel_status_t)); ?> 
+                         
+                                        </select>
+                               
+
+   
+</td>
 
 
 

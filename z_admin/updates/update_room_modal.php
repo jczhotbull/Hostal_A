@@ -188,10 +188,6 @@ mysqli_close($enlace);
 
 ?> 
 
-
-
-
-
                                <?php do{?>                                
 
 <option value="<?php echo $row_datos_hostel_area['id_hostel_area']; ?>"><?php echo $row_datos_hostel_area['name_hostel_area']; ?></option>
@@ -199,8 +195,7 @@ mysqli_close($enlace);
                                 <?php } while ($row_datos_hostel_area = mysqli_fetch_assoc($datos_hostel_area)); ?> 
                          
                                         </select>
-  
-                              </div> 
+                                </div> 
 
 
 
@@ -214,6 +209,61 @@ mysqli_close($enlace);
 <input type="text" maxlength="110" class="form-control" id="room_observ" name="room_observ"
  aria-label="room_observ" aria-describedby="basic-addon1" value="<?php echo $row_rooms_reveal['room_observ']; ?>" >    
 </div>
+
+
+
+
+
+
+
+<div class="input-group input-group-sm  col-sm-12 col-md-12 col-lg-12 mb-2"> 
+                              <div class="input-group-prepend">
+       <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-location-arrow fa-lg"></i></span>  
+                                        </div>   
+                                        
+
+                     <select class="form-control importantex" id="the_status_temp" name="the_status_temp" required>
+                                                        
+   <option selected value="<?php echo $row_rooms_reveal['room_status_temp']; ?>">
+   <?php echo $row_rooms_reveal['name_room_status']; ?></option>
+<option style="background-color: #00000;" disabled></option>
+
+
+
+<?php
+
+include("../conectar.php");
+
+$query_hostel_status_t = "SELECT * FROM room_status ORDER BY name_room_status ASC";
+
+$datos_hostel_status_t = mysqli_query($enlace, $query_hostel_status_t) or die(mysqli_error());
+
+$row_datos_hostel_status_t = mysqli_fetch_assoc($datos_hostel_status_t);
+
+mysqli_close($enlace);
+
+?> 
+
+                               <?php do{?>                                
+
+<option value="<?php echo $row_datos_hostel_status_t['id_room_status']; ?>"><?php echo $row_datos_hostel_status_t['name_room_status']; ?></option>
+
+     <?php } while ($row_datos_hostel_status_t = mysqli_fetch_assoc($datos_hostel_status_t)); ?> 
+                         
+                                        </select>
+                                </div> 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
