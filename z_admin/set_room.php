@@ -526,17 +526,17 @@ $bed_kind_9 = $_POST["bed_kind_9"]; $bed_number_9 = $_POST["bed_number_9"]; $bun
 
 
 
-<table class="table table-sm " class="table table-hover">
+<table class="table table-sm table-hover" style="font-size:14px;">
  
   <tbody>
 
   <thead>
     <tr>
-      <th width="10%" scope="col">How Many?</th>      
-      <th width="15%" scope="col">Bed Kind</th>
-      <th width="15%" scope="col">Bunk Level</th>
-      <th width="20%" scope="col">Bed Id or N°</th>
-      <th width="40%" scope="col">Characteristics</th>
+      <th width="5%" scope="col">Qty</th>      
+      <th width="25%" scope="col">Kind</th>
+      <th width="25%" scope="col">Level</th>
+      <th width="25%" scope="col">Id or N°</th>
+      <th width="20%" scope="col">Characteristics</th>
       
     </tr>
   </thead>

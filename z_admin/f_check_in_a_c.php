@@ -37,7 +37,7 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
     $mi_hostel_select = $_SESSION['hostel_activo'];
 
-
+    $la_hora_rey = $_GET['hora_rey'];
 
 
 
@@ -142,7 +142,7 @@ else {
 <span class="mt-4" <?php if ( $row_roomsMM->total_roomsMM =='0'  ){?>style="display:none"<?php } ?> >
 
 <span class="glowwhite" style="font-size: 28px;" > 
-Select a room for&nbsp;</span> <span class="glowwhite mt-5" style="font-size: 28px; color:#2A4BBB;"><?php  echo $cuenta_ami; ?>° </span>
+Room for&nbsp;</span> <span class="glowwhite mt-5" style="font-size: 28px; color:#2A4BBB;"><?php  echo $cuenta_ami; ?>° </span>
 <span class="glowwhite" style="font-size: 28px;" >companion of</span> &nbsp;
  <span class="glowwhite mt-5" style="font-size: 28px; color:#2A4BBB;"><?php  echo $nombrecillo; ?>
 <?php  echo $comilla; ?></span>
@@ -235,7 +235,7 @@ echo $row_rooms_reveal_name_tipes['name_room_kind']; ?> </div>
            <a class=" card-footer card-footerz text-white clearfix small z-1"        
 
            
-href="f_check_room_bed_c.php?idtabla=<?php  echo $este_id_kind; ?>&ttitulo=<?php  echo $mi_name_kind; ?>&compa=<?php  echo $compa; ?>&range=<?php  echo $rango_seteado; ?>&cuenta_ami=<?php  echo $cuenta_ami; ?>">  
+href="f_check_room_bed_c.php?idtabla=<?php  echo $este_id_kind; ?>&ttitulo=<?php  echo $mi_name_kind; ?>&compa=<?php  echo $compa; ?>&range=<?php  echo $rango_seteado; ?>&cuenta_ami=<?php  echo $cuenta_ami; ?>&hora_rey=<?php  echo $la_hora_rey; ?>">  
 
              <span class="float-left">Go</span>
              <span class="float-right">

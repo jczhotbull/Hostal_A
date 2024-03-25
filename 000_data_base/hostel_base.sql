@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-03-2024 a las 16:40:36
+-- Tiempo de generación: 25-03-2024 a las 22:19:09
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -41,7 +41,10 @@ CREATE TABLE `bed_booking` (
   `arreglo_d` varchar(2054) NOT NULL,
   `codigo_amistades` varchar(40) NOT NULL,
   `amistad_rey` int(128) DEFAULT NULL,
-  `id_guests` int(254) NOT NULL
+  `id_guests` int(254) NOT NULL,
+  `month_ini` varchar(20) NOT NULL,
+  `month_end` varchar(20) NOT NULL,
+  `hora_rey` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -160,7 +163,8 @@ CREATE TABLE `bunk_level` (
 
 INSERT INTO `bunk_level` (`id_bunk_level`, `name_bunk_level`) VALUES
 (1, 'Bunk 1'),
-(2, 'Bunk 2');
+(2, 'Bunk 2'),
+(3, 'Bunk 3');
 
 -- --------------------------------------------------------
 
@@ -733,6 +737,39 @@ CREATE TABLE `tb_data_guests` (
   `id_guests` int(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `tb_data_guests`
+--
+
+INSERT INTO `tb_data_guests` (`id_data_guests`, `guests_doc_id_pic`, `id_nation_g`, `guests_email`, `guests_phone`, `guests_behaviors`, `guests_observ`, `id_guests`) VALUES
+(124, 'guests/doc_id_g/186_13139999.png', 1, '', '', 12, NULL, 186),
+(125, 'guests/doc_id_g/187_17720914.png', 1, '', '', 12, NULL, 187),
+(126, 'guests/doc_id_g/188_666643315555.png', 1, '', '', 12, NULL, 188),
+(127, 'guests/doc_id_g/189_177209146.png', 1, '', '', 12, NULL, 189),
+(128, 'guests/doc_id_g/190_17720914776.png', 1, '', '', 12, NULL, 190),
+(129, 'guests/doc_id_g/191_66348.png', 1, '', '', 12, NULL, 191),
+(130, 'guests/doc_id_g/194_157744.png', 1, '', '', 12, NULL, 194),
+(131, 'guests/doc_id_g/193_13137951.png', 1, 'jczhotbull@gmail.com', '04241198683', 12, NULL, 193),
+(132, 'guests/doc_id_g/195_99888445.png', 1, '', '', 12, NULL, 195),
+(133, 'guests/doc_id_g/196_9986533.png', 1, '', '', 12, NULL, 196),
+(134, 'guests/doc_id_g/197_3647888.png', 1, '', '', 12, NULL, 197),
+(135, 'guests/doc_id_g/198_8888899.png', 1, '', '', 12, NULL, 198),
+(136, 'guests/doc_id_g/199_77777.png', 1, '', '', 12, NULL, 199),
+(137, 'guests/doc_id_g/200_55555.png', 1, 'jczhotbull@gmail.com', '04241198683', 12, NULL, 200),
+(138, 'guests/doc_id_g/201_88888.png', 1, '', '', 12, NULL, 201),
+(139, 'guests/doc_id_g/202_000655.png', 1, '', '', 12, NULL, 202),
+(140, 'guests/doc_id_g/203_99999.png', 1, '', '', 12, NULL, 203),
+(141, 'guests/doc_id_g/204_5555566.png', 1, '', '', 12, NULL, 204),
+(142, 'guests/doc_id_g/205_7777733.png', 1, '', '', 12, NULL, 205),
+(143, 'guests/doc_id_g/206_0006557.png', 1, '', '', 12, NULL, 206),
+(144, 'guests/doc_id_g/207_777778999.png', 1, '', '', 12, NULL, 207),
+(145, 'guests/doc_id_g/208_000655999.png', 1, '', '', 12, NULL, 208),
+(146, 'guests/doc_id_g/209_99999777.png', 1, '', '', 12, NULL, 209),
+(147, 'guests/doc_id_g/210_777774122.png', 1, '', '', 12, NULL, 210),
+(148, 'guests/doc_id_g/211_00065599.png', 1, '', '', 12, NULL, 211),
+(149, 'guests/doc_id_g/212_11444.png', 1, '', '', 12, NULL, 212),
+(150, 'guests/doc_id_g/213_774887.png', 1, '', '', 12, NULL, 213);
+
 -- --------------------------------------------------------
 
 --
@@ -779,6 +816,40 @@ CREATE TABLE `tb_guests` (
   `guests_sex` int(12) NOT NULL DEFAULT 3,
   `guests_today` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tb_guests`
+--
+
+INSERT INTO `tb_guests` (`id_guests`, `guests_doc_id`, `p_name_g`, `s_name_g`, `p_surname_g`, `s_surname_g`, `guests_pic`, `guests_pass`, `guests_status`, `guests_register_by`, `guests_birth`, `guests_mod`, `guests_sex`, `guests_today`) VALUES
+(186, 13139999, '', NULL, '', NULL, NULL, '84c39300619e9b32a3d92dfe11c94a8a', 1, 9, '0000-00-00', 0, 3, '2024-03-24 16:20:35'),
+(187, 17720914, '', NULL, '', NULL, NULL, '6c9eb0f571672a22c060f04a73703984', 1, 9, '0000-00-00', 0, 3, '2024-03-24 16:24:08'),
+(188, 2147483647, '', NULL, '', NULL, NULL, 'e78a51be4f6c64a3ebabe53129e5aeda', 1, 9, '0000-00-00', 0, 3, '2024-03-24 16:24:24'),
+(189, 177209146, '', NULL, '', NULL, NULL, 'ad38dd764cab520028988d7cc17b7f40', 1, 9, '0000-00-00', 0, 3, '2024-03-24 16:24:47'),
+(190, 2147483647, '', NULL, '', NULL, NULL, 'b2a503e1d32408c9b96d767e2675bb03', 1, 9, '0000-00-00', 0, 3, '2024-03-24 16:32:18'),
+(191, 66348, '', NULL, '', NULL, NULL, '7ad80cdea9e0ab56d894bc6bd20ac7b3', 1, 9, '0000-00-00', 0, 3, '2024-03-24 16:43:03'),
+(192, 6553333, '', NULL, '', NULL, NULL, '065ee2a78ca42eb522db1900e876a7d6', 1, 9, '0000-00-00', 0, 3, '2024-03-24 17:03:29'),
+(193, 13137951, 'Juan', NULL, 'Guerrero', NULL, NULL, '4ab27d025f4ec1b788b330d48b6eea58', 1, 9, '2024-03-12', 0, 1, '2024-03-25 19:04:27'),
+(194, 157744, '', NULL, '', NULL, NULL, '972652fd6e13379743f1ca81589a55c6', 1, 9, '0000-00-00', 0, 3, '2024-03-24 20:35:16'),
+(195, 99888445, '', NULL, '', NULL, NULL, '7d9e9409a815abac0e3f913ac34f2e40', 1, 9, '0000-00-00', 0, 3, '2024-03-24 21:22:02'),
+(196, 9986533, '', NULL, '', NULL, NULL, '9f2ffd961d662b7ab7bb85b00958fb70', 1, 9, '0000-00-00', 0, 3, '2024-03-24 21:23:58'),
+(197, 3647888, '', NULL, '', NULL, NULL, 'd20b161f268c2435f6b4c1f76c738aae', 1, 9, '0000-00-00', 0, 3, '2024-03-24 21:24:43'),
+(198, 8888899, '', NULL, '', NULL, NULL, '2a95924704c440dee8b62a751ddb8a42', 1, 9, '0000-00-00', 0, 3, '2024-03-24 21:30:27'),
+(199, 77777, '', NULL, '', NULL, NULL, '90c3e27b5953b363692288c3e499bd7b', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:40:08'),
+(200, 55555, 'Sinai', NULL, 'Guerrero', NULL, NULL, '4bbc286886cc459942f1bd4ec0e0d645', 1, 9, '2024-03-12', 0, 2, '2024-03-25 19:05:00'),
+(201, 88888, '', NULL, '', NULL, NULL, '2d159b502763ed8f4ffa682620098cda', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:40:50'),
+(202, 655, '', NULL, '', NULL, NULL, 'a6b8470375b38aeb49d699c176997a90', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:41:24'),
+(203, 99999, '', NULL, '', NULL, NULL, '6de378a67c1bed64a828e91cf5cac7b2', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:41:47'),
+(204, 5555566, '', NULL, '', NULL, NULL, '0842c687ea65d10c832a198cd4ec9824', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:42:04'),
+(205, 7777733, '', NULL, '', NULL, NULL, 'a2369aa89af78a5411a82bb0eb4478b3', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:42:18'),
+(206, 6557, '', NULL, '', NULL, NULL, '3a18824f8b85f2918b4185c3c9681870', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:36:16'),
+(207, 777778999, '', NULL, '', NULL, NULL, '4670d1d706aa4ebeb3d0beff4d740645', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:36:35'),
+(208, 655999, '', NULL, '', NULL, NULL, 'e20d26b4a23d968c20b431c0f0eecd2a', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:36:49'),
+(209, 99999777, '', NULL, '', NULL, NULL, '3658b475275b41fd22cb6e56475a7f12', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:37:12'),
+(210, 777774122, '', NULL, '', NULL, NULL, 'f2ef409e481e8171de6bf276e47e1799', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:37:25'),
+(211, 65599, '', NULL, '', NULL, NULL, '112deca267294e17a59018a45ef558cb', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:37:39'),
+(212, 11444, '', NULL, '', NULL, NULL, '25b94ed557973f30842a0e9736ab304c', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:37:49'),
+(213, 774887, '', NULL, '', NULL, NULL, 'c625b85e03b4d637d37c927063b8f5a1', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:38:00');
 
 -- --------------------------------------------------------
 
@@ -876,7 +947,9 @@ CREATE TABLE `tb_prices_beds` (
 INSERT INTO `tb_prices_beds` (`id_prices_beds`, `id_hostel`, `id_room_kind`, `name_prices_beds`, `taxes_beds`, `discount_beds`, `set_prices_date_b`, `prices_set_by_who_b`) VALUES
 (9, 10, 1, 110.00, 1, 1, '2024-03-16 23:10:05', 9),
 (10, 10, 3, 140.00, 1, 1, '2024-03-16 23:10:17', 9),
-(11, 10, 4, 90.00, 1, 1, '2024-03-16 23:10:31', 9);
+(11, 10, 4, 90.00, 1, 1, '2024-03-16 23:10:31', 9),
+(12, 10, 1, 115.00, 1, 4, '2024-03-25 13:21:02', 9),
+(13, 10, 1, 120.00, 3, 4, '2024-03-25 20:54:05', 9);
 
 -- --------------------------------------------------------
 
@@ -1463,7 +1536,7 @@ ALTER TABLE `z_hostel`
 -- AUTO_INCREMENT de la tabla `bed_booking`
 --
 ALTER TABLE `bed_booking`
-  MODIFY `id_bed_booking` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=274;
+  MODIFY `id_bed_booking` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=329;
 
 --
 -- AUTO_INCREMENT de la tabla `bed_kind`
@@ -1493,7 +1566,7 @@ ALTER TABLE `behaviors`
 -- AUTO_INCREMENT de la tabla `bunk_level`
 --
 ALTER TABLE `bunk_level`
-  MODIFY `id_bunk_level` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_bunk_level` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `country`
@@ -1649,7 +1722,7 @@ ALTER TABLE `tb_address`
 -- AUTO_INCREMENT de la tabla `tb_data_guests`
 --
 ALTER TABLE `tb_data_guests`
-  MODIFY `id_data_guests` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `id_data_guests` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_data_personal`
@@ -1661,7 +1734,7 @@ ALTER TABLE `tb_data_personal`
 -- AUTO_INCREMENT de la tabla `tb_guests`
 --
 ALTER TABLE `tb_guests`
-  MODIFY `id_guests` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
+  MODIFY `id_guests` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=214;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_guests_buys`
@@ -1685,7 +1758,7 @@ ALTER TABLE `tb_personal`
 -- AUTO_INCREMENT de la tabla `tb_prices_beds`
 --
 ALTER TABLE `tb_prices_beds`
-  MODIFY `id_prices_beds` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_prices_beds` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_prices_rooms`

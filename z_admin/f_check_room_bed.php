@@ -3284,7 +3284,7 @@ else {
 
 
 
- $exitoZ="- Showing Availability for <b> ".$date_range." </b>.";
+ $exitoZ="- Availability for <b> ".$date_range." </b>.";
 
 
 } // fin en el cual se ingreso un rango valido  
@@ -3606,7 +3606,7 @@ if ($row_room_pp_rr['name_discounts'] !='0') {
 
 <div class="alert alert-dark mt-4 col-md-12 col-lg-6 col-12" role="alert" <?php if ( $totalRows_rooms_few =='0' OR $alerta_principal =='0'  ){?>style="display:none"<?php } ?> >
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover" style="font-size: 14px;">
   <thead>
     <tr>
       <th scope="col">Night(s)</th>
@@ -3618,7 +3618,7 @@ if ($row_room_pp_rr['name_discounts'] !='0') {
 
   <tbody>
     <tr>
-      <th scope="row">Bed per <b>1</b>:</th>
+      <th scope="row" >Bed per <b>1</b>:</th>
       <td><?php              
               if ($totalRows_room_pp != '0') {
                 echo $row_room_pp['name_prices_beds'];
@@ -3654,7 +3654,7 @@ if ($row_room_pp_rr['name_discounts'] !='0') {
     </tr>
 
     <tr>
-      <th scope="row">Bed for <b><?php echo $dateDiff; ?></b>:</th>
+      <th scope="row"  >Bed for <b><?php echo $dateDiff; ?></b>:</th>
 
       <td> <?php              
               if ($totalRows_room_pp != '0') {
@@ -3696,7 +3696,7 @@ if ($row_room_pp_rr['name_discounts'] !='0') {
     </tr>
 
     <tr>
-      <th scope="row">Room per <b>1</b>:</th>
+      <th scope="row"  >Room per <b>1</b>:</th>
 
       <td > <?php
                               
@@ -3736,7 +3736,7 @@ if ($row_room_pp_rr['name_discounts'] !='0') {
     </tr>
 
     <tr>
-      <th scope="row">Room for <b><?php echo $dateDiff; ?></b>:</th>
+      <th scope="row"  >Room for <b><?php echo $dateDiff; ?></b>:</th>
 
       <td > <?php
                               
@@ -3787,7 +3787,7 @@ if ($row_room_pp_rr['name_discounts'] !='0') {
 </div>
 
 
-<h4 class="glowwhite mt-4" <?php if ( $totalRows_rooms_few =='0' OR $alerta_principal =='0'  ){?>style="display:none"<?php } ?> >Select a bed or a room:</h4>
+<h4 class="glowwhite mt-4" <?php if ( $totalRows_rooms_few =='0' OR $alerta_principal =='0'  ){?>style="display:none"<?php } ?> >Select a bed from a room:</h4>
 
 <!-- Icon Cards-->
      
@@ -3851,7 +3851,7 @@ mysqli_close($enlace);
              <div class="mr-5 infozzz">
              Room: <?php
 $mi_name_room = $row_rooms_few['name_room_number'];
-echo $row_rooms_few['name_room_number']; ?> <?php echo $discc; ?><?php echo $symbc; ?> <?php echo $off; ?> <!-- / <?php echo $row_rooms_few['id_room']; ?>   -->
+echo $row_rooms_few['name_room_number']; ?> - <b><?php echo $discc; ?><?php echo $symbc; ?> <?php echo $off; ?></b> <!-- / <?php echo $row_rooms_few['id_room']; ?>   -->
              </div>  
 
              <div class="infozzz mt-4">   
@@ -3997,11 +3997,11 @@ $conteo = $conteo + 1;
 
 
 class="btn btn-light btn-sm ml-1 mr-1 mb-2"
-role="button" style="width: 90px;"   >
+role="button" style="width: 72px;"   >
 <b style="color:#<?php  echo $background; ?>; ">
-<i class="fa-solid fa-bed fa-lg"></i> : <?php echo $row_rooms_few_beds['name_bed_number']; ?>
+ <?php echo $row_rooms_few_beds['name_bed_number']; ?></b><br> <span style="font-size:11px">Lv: <?php echo $row_rooms_few_beds['id_bunk_level']; ?></span>
 <!-- /  <?php  echo $totalRows_bed_ocupado; ?>  / id:<?php echo $row_rooms_few_beds['id_rooms_beds']; ?> -->
-</b>
+
 </a>
 </span> 
 <!--

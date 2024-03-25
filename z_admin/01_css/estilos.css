@@ -49,6 +49,11 @@ body {
 	border-radius: 5px;
 	}
 
+
+
+
+	
+
 /* estilo del texto h1 y parametros responsivos */
 @media (max-width: 350px)
 {
@@ -73,6 +78,12 @@ body {
 	    color:white;
 	    }
 }
+
+
+
+
+
+
 
 
 /* permite ayudar a reconocer mejor donde se tiene el puntero */

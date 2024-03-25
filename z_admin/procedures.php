@@ -187,10 +187,17 @@ else {
               <script>
 
 
-const DateTime = easepick.DateTime;
+const DateTime = easepick.DateTime;   
 const bookedDates = [   
 
- ['2024-03-19', '2024-03-22'],         
+
+ ['2024-03-27', '2024-03-31'], 
+
+ ['2024-04-03', '2024-04-15'],   
+
+ ['2024-04-26', '2024-04-29'], 
+
+ ['2024-04-24', '2024-04-27'],  // no detecta coincidencia
 
 
 ].map(d => {

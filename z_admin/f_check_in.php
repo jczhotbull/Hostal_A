@@ -40,6 +40,11 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
     $rango = $_GET['rr'];
 
+   $year_select = substr($rango, 0, -19);
+   $month_ini =  substr($rango, 5, -16);
+   $month_end =  substr($rango, 18, -3);
+
+
     $la_room_es = $_GET['id_r'];
     $la_room_cama_es = $_GET['id_rb'];
 
@@ -87,7 +92,7 @@ if(isset($_POST['add_guests']))  // chequea si se ha enviado algo, de ser si -->
          if (mysqli_num_rows($resultGG)>0 )    // si ya esta en la bd  actualizar los datos
          {         
 
-if ($name_found != $upd_name) {
+if (   ($name_found != $upd_name) && $upd_name != ''  ) {
   $new_name = $upd_name;
 }
 else {
@@ -96,7 +101,7 @@ else {
 
 
 
-if ($ape_found != $upd_ape) {
+if (   ($ape_found != $upd_ape) && $upd_ape != ''   ) {
   $new_ape = $upd_ape;
 }
 else {
@@ -105,7 +110,7 @@ else {
 
 
 
-if ($birth_found != $date_g) {
+if (     ($birth_found != $date_g) && $date_g !=''   ) {
   $new_date = $date_g;
 }
 else {
@@ -114,7 +119,7 @@ else {
 
 
 
-if ($sex_found != $sex_g) {
+if ( ($sex_found != $sex_g) && $sex_g != '3') {
   $new_sex = $sex_g;
 }
 else {
@@ -263,7 +268,7 @@ mysqli_close($enlace);
 
                                 <div class="col-md-12 ml-1 mb-1">
 
-                                <b class="text-info"> Confirm Range: </b>            
+                                <b class="text-primary"> View Current Reserved Dates: </b>            
 
                         <?php 
                           if ($guests_success!="")
@@ -301,20 +306,68 @@ mysqli_close($enlace);
 
 
 
+   <?php
+
+include("../conectar.php"); 
+
+$inc_ext = "SELECT * FROM bed_booking where id_hostel = '$mi_hostel_select'
+and id_room = '$la_room_es'
+and id_room_bed = '$la_room_cama_es'
+and booking_year = '$year_select'
 
 
- <script>
+ORDER BY id_bed_booking ASC";
+
+
+$datos_inc_ext = mysqli_query($enlace, $inc_ext) or die(mysqli_error());
+$row_datos_inc_ext = mysqli_fetch_assoc($datos_inc_ext);
+
+$totalRows_inc_ext = mysqli_num_rows($datos_inc_ext);
+
+mysqli_close($enlace);       // idealmente no deberian de repetirse
+                             // rango de fechas, las q estan en la bd no lo hacen.
+
+$rango_extraido = '';
+
+
+
+
+
+
+?> 
+
+
+<?php do{?>         
+
+<?php          // solo hace el loop si tiene algo
+  
+  if ($totalRows_inc_ext >= '1')  
+{ 
+
+  $inicial = $row_datos_inc_ext['date_in'];
+  $final = $row_datos_inc_ext['date_out'];
+  
+  $rango_extraido .=  "['".$inicial."', '".$final."'],";
+
+}
+
+
+ ?>
+ 
+<?php } while ($row_datos_inc_ext = mysqli_fetch_assoc($datos_inc_ext)); ?> 
+
+
+
+
+
+<script>
 
 
 const DateTime = easepick.DateTime;
-const bookedDates = [   
-
- ['2024-03-19', '2024-03-22'], 
+const bookedDates = [  
+  
+<?php echo $rango_extraido; ?>
  
- ['2024-04-18', '2024-04-21'], 
-
- ['2024-04-28', '2024-04-30'],
-
 
 ].map(d => {
     if (d instanceof Array) {
@@ -378,7 +431,7 @@ const picker = new easepick.create({
 
 <div class="form-row margencito">
 
-<b class="ml-2 mb-2 mt-3 text-info"> Register Guest: </b>  
+<b class="ml-2 mb-2 mt-3 text-info"> Register Guest:</b>  
 
 </div>
 

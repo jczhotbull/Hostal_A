@@ -38,7 +38,7 @@ $alerta_hidezz = "0";
     $mi_hostel_select = $_SESSION['hostel_activo'];
 
 
-
+    $la_hora_rey = $_GET['hora_rey'];
 
 
 
@@ -3288,7 +3288,7 @@ else {
 
 
 
- $exitoZ="- Showing Availability for <b> ".$date_range." </b>.";
+ $exitoZ="- Availability for <b> ".$date_range." </b>.";
 
 
 } // fin en el cual se ingreso un rango valido  
@@ -3542,8 +3542,7 @@ else {
 
 
 
-
-<div class="mt-5 mb-3">
+<div class="mt-5 mb-3 ">
 <span class="glowwhite" style="font-size: 28px;"
 <?php if ( $totalRows_rooms_few =='0' OR $alerta_principal =='0'  ){?>style="display:none"<?php } ?> >
 Select bed, for </span><span class="glowwhite mt-5" style="font-size: 28px; color:#2A4BBB;"><?php  echo $cuenta_ami; ?>°</span><span class="glowwhite" style="font-size: 28px;"> companion of</span> &nbsp;
@@ -3616,7 +3615,7 @@ mysqli_close($enlace);
              <div class="mr-5 infozzz">
              Room: <?php
 $mi_name_room = $row_rooms_few['name_room_number'];
-echo $row_rooms_few['name_room_number']; ?> <?php echo $discc; ?><?php echo $symbc; ?> <?php echo $off; ?> <!-- / <?php echo $row_rooms_few['id_room']; ?>   -->
+echo $row_rooms_few['name_room_number']; ?> - <b><?php echo $discc; ?><?php echo $symbc; ?> <?php echo $off; ?></b> <!-- / <?php echo $row_rooms_few['id_room']; ?>   -->
              </div>  
 
              <div class="infozzz mt-4">   
@@ -3754,15 +3753,15 @@ $conteo = $conteo + 1;
 
 
  
-<a href="f_check_in_c.php?ttitulo=<?php echo $name_bed_b; ?>&rr=<?php echo $date_range; ?>&id_r=<?php echo $id_room_f; ?>&id_rb=<?php echo $id_bed_f; ?>&ttitulo_kind=<?php echo $ttitulo; ?>&id_kind=<?php echo $idtbla; ?>&compadre=<?php echo $compa; ?>&cuenta_ami=<?php echo $cuenta_ami; ?>"    
+<a href="f_check_in_c.php?ttitulo=<?php echo $name_bed_b; ?>&rr=<?php echo $date_range; ?>&id_r=<?php echo $id_room_f; ?>&id_rb=<?php echo $id_bed_f; ?>&ttitulo_kind=<?php echo $ttitulo; ?>&id_kind=<?php echo $idtbla; ?>&compadre=<?php echo $compa; ?>&cuenta_ami=<?php echo $cuenta_ami; ?>&hora_rey=<?php  echo $la_hora_rey; ?>"    
 
 
 class="btn btn-light btn-sm ml-1 mr-1 mb-2"
-role="button" style="width: 90px;"   >
+role="button" style="width: 72px;"   >
 <b style="color:#<?php  echo $background; ?>; ">
-<i class="fa-solid fa-bed fa-lg"></i> : <?php echo $row_rooms_few_beds['name_bed_number']; ?>
+ <?php echo $row_rooms_few_beds['name_bed_number']; ?></b><br> <span style="font-size:11px">Lv: <?php echo $row_rooms_few_beds['id_bunk_level']; ?></span>
 <!-- /  <?php  echo $totalRows_bed_ocupado; ?>  / id:<?php echo $row_rooms_few_beds['id_rooms_beds']; ?> -->
-</b>
+
 </a>
 </span> 
 <!--

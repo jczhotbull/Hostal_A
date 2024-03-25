@@ -176,7 +176,7 @@ include ("a_header.php"); ?>
                 <i class="fa-solid fa-bed fa-xs"></i> 
               </div>
               <div class="mr-5 infozzz"><?php echo $row_bed_number->total_bed_number; ?> Bed</div>
-              <div class="infozzz">Name or N°</div> 
+              <div class="infozzzpe">Name</div> 
             </div>
             <a class=" card-footer card-footerz text-white clearfix small z-1"     
 
@@ -263,7 +263,7 @@ include ("a_header.php"); ?>
 
        
 
-
+<!-- 
 
         <div class="col-xl-3 col-sm-6 col-6 mb-3">
           <div class="card text-white relleno-carne o-hidden h-100">
@@ -277,7 +277,7 @@ include ("a_header.php"); ?>
             <a class=" card-footer card-footerz text-white clearfix small z-1"     
 
            href="selecc_zz.php?ttabla=room_status&idtabla=id_room_status&nombdato=name_room_status&ttitulo=Room Status">       
- <!--   previo a borrarlo debo confirmar que esten o no en uso.... los del selecc_0b son exclusivos de  room+bed  -->      
+     
 
               <span class="float-left">View</span>
               <span class="float-right">
@@ -285,10 +285,10 @@ include ("a_header.php"); ?>
               </span>
             </a>
           </div>
-        </div>
+        </div>  --> 
 
 
-
+ <!-- 
 
 
         <div class="col-xl-3 col-sm-6 col-6 mb-3">
@@ -303,7 +303,7 @@ include ("a_header.php"); ?>
             <a class=" card-footer card-footerz text-white clearfix small z-1"     
 
            href="selecc_zz.php?ttabla=bed_status&idtabla=id_bed_status&nombdato=name_bed_status&ttitulo=Bed Status">       
- <!--   previo a borrarlo debo confirmar que esten o no en uso.... los del selecc_0b son exclusivos de  room+bed  -->      
+  
 
               <span class="float-left">View</span>
               <span class="float-right">
@@ -311,7 +311,7 @@ include ("a_header.php"); ?>
               </span>
             </a>
           </div>
-        </div>
+        </div> -->  
 
 
 
@@ -327,8 +327,8 @@ include ("a_header.php"); ?>
               <div class="card-body-icon">
                 <i class="fa-regular fa-face-surprise fa-xs"></i>  
               </div>
-              <div class="mr-5 cantidadzzz"><?php echo $row_incidents_rooms->total_incidents_rooms; ?></div>
-              <div class="infozzz">Incidents Rooms.</div> 
+              <div class="mr-5 infozzz"><?php echo $row_incidents_rooms->total_incidents_rooms; ?> Rooms</div>
+              <div class="infozzz">Incidents.</div> 
             </div>
             <a class=" card-footer card-footerz text-white clearfix small z-1"     
 
@@ -364,8 +364,8 @@ include ("a_header.php"); ?>
               <div class="card-body-icon">
                 <i class="fa-regular fa-face-surprise fa-xs"></i>  
               </div>
-              <div class="mr-5 cantidadzzz"><?php echo $row_incidents_beds->total_incidents_beds; ?></div>
-              <div class="infozzz">Incidents Beds.</div> 
+              <div class="mr-5 infozzz"><?php echo $row_incidents_beds->total_incidents_beds; ?> Beds</div>
+              <div class="infozzz">Incidents.</div> 
             </div>
             <a class=" card-footer card-footerz text-white clearfix small z-1"     
 
@@ -389,10 +389,10 @@ href="selecc_zz_plus_note.php?ttabla=incidents_beds&idtabla=id_incidents_beds&no
         <div class="col-xl-3 col-sm-6 col-6 mb-3">
           <div class="card text-white relleno-gris o-hidden h-100">
             <div class="card-body">
-              <div class="card-body-icon">
+              <div class="mini_card_icon_pe">
                 <i class="fa-solid fa-heart-circle-exclamation fa-xs"></i>  
               </div>
-              <div class="mr-5 cantidadzzz"><?php echo $row_incident_r->total_incident_r_status; ?> Rooms</div>
+              <div class="mr-5 infozzz"><?php echo $row_incident_r->total_incident_r_status; ?> Rooms</div>
               <div class="infozzz">Incidents Status.</div> 
             </div>
             <a class=" card-footer card-footerz text-white clearfix small z-1"     
@@ -413,10 +413,10 @@ href="selecc_zz_plus_note.php?ttabla=incidents_beds&idtabla=id_incidents_beds&no
         <div class="col-xl-3 col-sm-6 col-6 mb-3">
           <div class="card text-white relleno-gris_alt o-hidden h-100">
             <div class="card-body">
-              <div class="card-body-icon">
+              <div class="mini_card_icon_pe">
                 <i class="fa-solid fa-heart-circle-exclamation fa-xs"></i>  
               </div>
-              <div class="mr-5 cantidadzzz"><?php echo $row_incident_b->total_incident_b_status; ?> Beds</div>
+              <div class="mr-5 infozzz"><?php echo $row_incident_b->total_incident_b_status; ?> Beds</div>
               <div class="infozzz">Incidents Status.</div> 
             </div>
             <a class=" card-footer card-footerz text-white clearfix small z-1"     
@@ -436,7 +436,7 @@ href="selecc_zz_plus_note.php?ttabla=incidents_beds&idtabla=id_incidents_beds&no
 
 
 
-
+<!--
 
         <div class="col-xl-3 col-sm-6 col-6 mb-3">
           <div class="card text-white relleno-yellow o-hidden h-100">
@@ -458,7 +458,7 @@ href="selecc_zz_plus_note.php?ttabla=incidents_beds&idtabla=id_incidents_beds&no
               </span>
             </a>
           </div>
-        </div>
+        </div>  -->
 
 
 

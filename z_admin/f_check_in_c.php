@@ -45,7 +45,7 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
     $compatriota = $_GET['compadre']; // tiene el id del cabeza del grupo
 
-
+    $la_hora_rey = $_GET['hora_rey'];
 
 // empieza la insercion del huesped
 if(isset($_POST['add_guests']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD 
@@ -128,39 +128,40 @@ else {    // ahora debo chequear  q no se este reintroduciendo un compañero
     else {   // si no era un re ingreso de compañero entonces actualizo
 
 
-        if ($name_found != $upd_name) {
-            $new_name = $upd_name;
-          }
-          else {
-            $new_name = $name_found;
-          }
-          
-          
-          
-          if ($ape_found != $upd_ape) {
-            $new_ape = $upd_ape;
-          }
-          else {
-            $new_ape = $ape_found;
-          }
-          
-          
-          
-          if ($birth_found != $date_g) {
-            $new_date = $date_g;
-          }
-          else {
-            $new_date = $birth_found;
-          }
-          
-          
-          
-          if ($sex_found != $sex_g) {
-            $new_sex = $sex_g;
-          }
-          else {
-            $new_sex = $sex_found;
-          }
+   
+if (   ($name_found != $upd_name) && $upd_name != ''  ) {
+  $new_name = $upd_name;
+}
+else {
+  $new_name = $name_found;
+}
+
+
+
+if (   ($ape_found != $upd_ape) && $upd_ape != ''   ) {
+  $new_ape = $upd_ape;
+}
+else {
+  $new_ape = $ape_found;
+}
+
+
+
+if (     ($birth_found != $date_g) && $date_g !=''   ) {
+  $new_date = $date_g;
+}
+else {
+  $new_date = $birth_found;
+}
+
+
+
+if ( ($sex_found != $sex_g) && $sex_g != '3') {
+  $new_sex = $sex_g;
+}
+else {
+  $new_sex = $sex_found;
+}
           
           
           $query_uppdd_nn = " UPDATE tb_guests SET p_name_g = '$new_name',
@@ -173,7 +174,7 @@ else {    // ahora debo chequear  q no se este reintroduciendo un compañero
           
                    mysqli_close($enlace);
                    
-                   header("Location: f_check_in_dos_c.php?zv=ve87&pass=6tz@bv&zp=$doc&ri=$id_found&mil=57tr@jh&em=$email_guests&tf=$telf_guests&na=$nationality_g&ran=$rango&prz=$la_room_es&pbz=$la_room_cama_es&ttitulo_kind=$ttitulo_kind&id_kind=$id_kind&compi=$compatriota&cuenta_ami=$cuenta_ami", TRUE, 301);
+                   header("Location: f_check_in_dos_c.php?zv=ve87&pass=6tz@bv&zp=$doc&ri=$id_found&mil=57tr@jh&em=$email_guests&tf=$telf_guests&na=$nationality_g&ran=$rango&prz=$la_room_es&pbz=$la_room_cama_es&ttitulo_kind=$ttitulo_kind&id_kind=$id_kind&compi=$compatriota&cuenta_ami=$cuenta_ami&hora_rey=$la_hora_rey", TRUE, 301);
                    exit();  
 
 
@@ -236,7 +237,7 @@ $query_hash = " UPDATE tb_guests SET guests_pass = '$passwordHasheada' WHERE id_
 $sale_y_vale = mysqli_query($enlace, $query_hash) or die(mysqli_error());
 mysqli_close($enlace); 
 
-header("Location: f_check_in_dos_c.php?zv=ve87&pass=6tz@bv&zp=$doc&ri=$id_del_g&mil=57tr@jh&em=$email_guests&tf=$telf_guests&na=$nationality_g&ran=$rango&prz=$la_room_es&pbz=$la_room_cama_es&ttitulo_kind=$ttitulo_kind&id_kind=$id_kind&compi=$compatriota&cuenta_ami=$cuenta_ami", TRUE, 301);
+header("Location: f_check_in_dos_c.php?zv=ve87&pass=6tz@bv&zp=$doc&ri=$id_del_g&mil=57tr@jh&em=$email_guests&tf=$telf_guests&na=$nationality_g&ran=$rango&prz=$la_room_es&pbz=$la_room_cama_es&ttitulo_kind=$ttitulo_kind&id_kind=$id_kind&compi=$compatriota&cuenta_ami=$cuenta_ami&hora_rey=$la_hora_rey", TRUE, 301);
 
 
 
