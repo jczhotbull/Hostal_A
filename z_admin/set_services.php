@@ -207,14 +207,14 @@ if(isset($_POST['add_service']))  // chequea si se ha enviado algo, de ser si --
 
       
 
-            <div class="card mx-auto">
+            <div class="card mx-auto" <?php if ( $totalRows_datos_productos =='0' ){?>style="display:none"<?php } ?> >
               <div class="card-body">
       
                        
 <form  method="POST"  name="add_room">                           
 
 
-                            <div class="form-row margencito"> 
+                            <div class="form-row margencito"  > 
 
 
 
@@ -243,7 +243,16 @@ if(isset($_POST['add_service']))  // chequea si se ha enviado algo, de ser si --
                         </div>   <!-- cierre margencito-->
 
 
-                          <div class="form-row margencito"> 
+
+
+
+
+
+
+                        
+
+
+<div class="form-row margencito"  > 
 
                          
 
@@ -307,8 +316,8 @@ if(isset($_POST['add_service']))  // chequea si se ha enviado algo, de ser si --
                                                         
                                    <option selected disabled value="">Type Offer:</option> 
                                                         <option disabled></option>
-                                   <option value="1">Sale</option>
-                                   <option value="2">Rent</option> 
+                                   <option value="1">1- Sale </option>
+                                   <option value="2">2- Rent</option> 
                              
                          
                                         </select>

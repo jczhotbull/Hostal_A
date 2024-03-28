@@ -657,7 +657,7 @@ mysqli_close($enlace); ?>
   <span class="input-group-text alert-success" id="basic-addon1">
     Value:</span>  
 </div>
-<input type="number" maxlength="19" min="1" class="form-control" id="extra_value" name="extra_value"
+<input type="number" maxlength="19" step="0.01" min="0.00" class="form-control" id="extra_value" name="extra_value"
 placeholder="" aria-label="extra_value" aria-describedby="basic-addon1" required>  
 </div>
 
@@ -700,7 +700,7 @@ mysqli_close($enlace); ?>
   <span class="input-group-text alert-info" id="basic-addon1">
     Value:</span>  
 </div>
-<input type="number" maxlength="19" min="1" class="form-control" id="additional_value" name="additional_value"
+<input type="number" maxlength="19" step="0.01" min="0.00" class="form-control" id="additional_value" name="additional_value"
 placeholder="" aria-label="additional_value" aria-describedby="basic-addon1" required>  
 </div>
 

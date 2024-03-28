@@ -18,7 +18,7 @@ $query_productos = "SELECT * FROM productos ORDER BY name_producto ASC";
 $datos_productos = mysqli_query($enlace, $query_productos) or die(mysqli_error());
 
 $row_datos_productos = mysqli_fetch_assoc($datos_productos);
-
+$totalRows_datos_productos = mysqli_num_rows($datos_productos);
 
 
 

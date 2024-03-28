@@ -353,7 +353,7 @@ include ("a_header.php"); ?>
 
       <div class="form-label-group ">
         <input type="text" maxlength="12" id="input_doc" name="input_doc" class="form-control" placeholder="Doc or Id" required autofocus>
-        <label for="input_doc">Doc or Id</label>
+        <label for="input_doc">Username</label>
       </div>
 
 

@@ -43,15 +43,18 @@ if(isset($_POST['add_price']))  // chequea si se ha enviado algo, de ser si --> 
     include("../conectar.php"); 
 
 $id_del_producto_add = $_POST['id_del_producto_add'];
+$id_del_service_add = $_POST['id_del_service'];
+
 
 $el_tax = $_POST['tax'];
 $el_discount = $_POST['discount'];
     
 
-    $query_price_room = "INSERT INTO tb_services_prices(id_hostel, id_product_kind, id_product,
+    $query_price_room = "INSERT INTO tb_services_prices(id_hostel, id_services, id_product_kind, id_product,
     the_price, tax_services, discount_type, set_by_this_per) 
 
    VALUES (   '$mi_hostel_select',
+              '$id_del_service_add',
               '$idtbla',
               '$id_del_producto_add',
               '".mysqli_real_escape_string($enlace,$_POST['new_price'])."'    ,
@@ -256,8 +259,18 @@ mysqli_close($enlace);
     <b> <span style="color:purple;"> -  <?php echo $row_services_serv_count['name_producto'];
    
    $id_del_producto_para_precios = $row_services_serv_count['id_producto'];
+   $id_del_servicio_para_precios = $row_services_serv_count['id_services'];
            
-    ?></span></b>
+    ?></span></b> - For <span style="color:green;"><b><?php $kind_kind = $row_services_serv_count['sale_kind'];
+    
+    if ($kind_kind == '1') {
+      $es_es = 'Sale';
+    }
+    else {
+      $es_es = 'Rent';
+    } 
+    
+    echo $es_es; ?></b></span>.
 
 <div class="col-sm-12 col-md-12 col-lg-12">
 
@@ -266,7 +279,7 @@ mysqli_close($enlace);
 include ("../conectar.php");
 
 $queryFHL_serv_current = "SELECT * FROM tb_services_prices, taxes, discounts
-where tb_services_prices.id_product = '$id_del_producto_para_precios'
+where tb_services_prices.id_services = '$id_del_servicio_para_precios'
 and   tb_services_prices.tax_services = taxes.id_taxes
 and   tb_services_prices.discount_type = discounts.id_discounts
 order BY tb_services_prices.set_this_day desc limit 1";
@@ -421,8 +434,15 @@ mysqli_close($enlace);
 
     <td class="align-middle" align="center"> 
 
+
+    <input name="id_del_service" type="hidden" value="<?php echo $row_services_serv_count['id_services']; ?>">
+
+
+
+
+
 <button type="submit" name="add_price" class="btn btn-sm btn-info btn-block" id='add_price'>
-<i class="fa-solid fa-floppy-disk fa-lg"></i> &nbsp</button> 
+<i class="fa-solid fa-floppy-disk fa-lg"></i>&nbsp</button> 
 
 </form> 
 

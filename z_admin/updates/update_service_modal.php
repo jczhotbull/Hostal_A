@@ -98,8 +98,8 @@ echo $tipillo; ?></option>
 
 
 
-                                   <option value="1">Sale</option>
-                                   <option value="2">Rent</option> 
+                                   <option value="1">1- Sale</option>
+                                   <option value="2">2- Rent</option> 
                              
                          
                                         </select>

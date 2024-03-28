@@ -4026,22 +4026,22 @@ role="button" style="width: 72px;"   >
   
 
 </div>    
-<!--
+
  <span <?php if ( $conteo != $totalRows_rooms_reveal_name_tipes ){?>style="display:none"<?php } ?>>
 
-<a href="f_check_in_room.php?ttitulo=<?php echo $name_bed_b; ?>&rr=<?php echo $date_range; ?>&id_r=<?php echo $id_room_f; ?>&id_rb=<?php echo $id_bed_f; ?>&ttitulo_kind=<?php echo $ttitulo; ?>&id_kind=<?php echo $idtbla; ?>&total=<?php  echo $totalRows_rooms_reveal_name_tipes; ?>"   
+<a href="f_check_in_room.php?ttitulo=<?php echo $name_bed_b; ?>&rr=<?php echo $date_range; ?>&id_r=<?php echo $id_room_f; ?>&id_rb=<?php echo $id_bed_f; ?>&ttitulo_kind=<?php echo $ttitulo; ?>&id_kind=<?php echo $idtbla; ?>"   
 
 
 
 class="btn btn-light btn-sm  mb-2"
 role="button" style="margin-left:12px;"   >
 <b style="color:#<?php  echo $background; ?>; ">
-Rent the Room, all <?php  echo $totalRows_rooms_reveal_name_tipes; ?> beds. 
+Rent or fill the Room, all <?php  echo $totalRows_rooms_reveal_name_tipes; ?> beds. 
 </b>
 </a>  
 
 
-</span>  -->
+</span> 
 
 
 

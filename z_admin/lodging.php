@@ -87,6 +87,48 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
 
 
+<?php
+include("../conectar.php");
+
+$queryHost = "SELECT id_hostel,id_currency FROM z_hostel where id_hostel = '$mi_hostel_select' LIMIT 1";
+$datos_queryHost = mysqli_query($enlace, $queryHost) or die(mysqli_error());
+$row_datos_queryHost = mysqli_fetch_array($datos_queryHost); 
+
+$id_verificado_host = $row_datos_queryHost['id_hostel'];
+$id_currency_del_host = $row_datos_queryHost['id_currency'];
+
+
+
+
+$queryFHL_currencys_out = "SELECT * FROM exchange_rates
+ where id_hostel = '$mi_hostel_select'
+ order BY all_set_this_time DESC limit 1";
+
+$the_currencys_out = mysqli_query($enlace, $queryFHL_currencys_out) or die(mysqli_error());
+$row_the_currencys_out = mysqli_fetch_assoc($the_currencys_out);
+$totalRows_the_currencys_out = mysqli_num_rows($the_currencys_out);
+
+
+$query_String_roomsMM = "SELECT COUNT(*) AS total_roomsMM FROM tb_room
+where id_hostel = '$mi_hostel_select'";
+$query_roomsMM = mysqli_query($enlace, $query_String_roomsMM);
+$row_roomsMM = mysqli_fetch_object($query_roomsMM);
+
+
+
+mysqli_close($enlace);
+     ?> 
+
+
+
+
+<span <?php if ( $row_roomsMM->total_roomsMM =='0' or $totalRows_the_currencys_out =='0' ){?>style="display:none"<?php } ?>  >
+
+
+
+
+
+
       
 
 
@@ -260,7 +302,7 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 <!-- Cierre Icon Cards-->
 
 
-
+</span>
 
 
 

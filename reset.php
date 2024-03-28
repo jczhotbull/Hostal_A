@@ -205,7 +205,7 @@ include ("a_header.php"); ?>
 
       <div class="form-label-group ">
         <input type="text" maxlength="12" id="recuperar_doc" name="recuperar_doc" class="form-control" placeholder="Doc or Id" required autofocus>
-        <label for="recuperar_doc">Doc or Id</label>
+        <label for="recuperar_doc">Username</label>
       </div>
 
 

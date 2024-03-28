@@ -154,7 +154,7 @@ mysqli_close($enlace);
       <div class="card-body-icon">
         <i class="fa-solid fa-cash-register fa-xs"  ></i>  
       </div>
-      <div class="mr-5 cantidadzzzpe">Services</div>  
+      <div class="mr-5 cantidadzzzpe">Service(s)</div>  
       <div class="infozzz">prices.</div>
     </div>
     <a class=" card-footer card-footerz text-white clearfix small z-1" href="services_prices.php">

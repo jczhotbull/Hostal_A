@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-03-2024 a las 22:19:09
+-- Tiempo de generación: 28-03-2024 a las 22:26:21
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -46,6 +46,24 @@ CREATE TABLE `bed_booking` (
   `month_end` varchar(20) NOT NULL,
   `hora_rey` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `bed_booking`
+--
+
+INSERT INTO `bed_booking` (`id_bed_booking`, `booking_year`, `id_hostel`, `id_room`, `id_room_bed`, `date_range`, `booking_status`, `date_in`, `date_out`, `nights`, `arreglo_d`, `codigo_amistades`, `amistad_rey`, `id_guests`, `month_ini`, `month_end`, `hora_rey`) VALUES
+(333, '2024', 10, 58, 174, '2024-03-29 - 2024-04-02', 1, '2024-03-29', '2024-04-02', '4', 'a:3:{i:0;s:10:\"2024-03-30\";i:1;s:10:\"2024-03-31\";i:2;s:10:\"2024-04-01\";}', '_193_2024-03-29 - 2024-04-02_10_', 1, 193, '03', '04', '2024-03-27 02:51:29'),
+(334, '2024', 10, 58, 173, '2024-03-29 - 2024-04-02', 1, '2024-03-29', '2024-04-02', '4', 'a:3:{i:0;s:10:\"2024-03-30\";i:1;s:10:\"2024-03-31\";i:2;s:10:\"2024-04-01\";}', '_193_2024-03-29 - 2024-04-02_10_', 0, 199, '03', '04', '2024-03-27 02:51:29'),
+(335, '2024', 10, 48, 142, '2024-03-29 - 2024-04-02', 1, '2024-03-29', '2024-04-02', '4', 'a:3:{i:0;s:10:\"2024-03-30\";i:1;s:10:\"2024-03-31\";i:2;s:10:\"2024-04-01\";}', '_193_2024-03-29 - 2024-04-02_10_', 0, 201, '03', '04', '2024-03-27 02:51:29'),
+(336, '2024', 10, 48, 143, '2024-03-29 - 2024-04-02', 1, '2024-03-29', '2024-04-02', '4', 'a:3:{i:0;s:10:\"2024-03-30\";i:1;s:10:\"2024-03-31\";i:2;s:10:\"2024-04-01\";}', '_193_2024-03-29 - 2024-04-02_10_', 0, 200, '03', '04', '2024-03-27 02:51:29'),
+(337, '2024', 10, 58, 175, '2024-03-29 - 2024-04-02', 1, '2024-03-29', '2024-04-02', '4', 'a:3:{i:0;s:10:\"2024-03-30\";i:1;s:10:\"2024-03-31\";i:2;s:10:\"2024-04-01\";}', '_193_2024-03-29 - 2024-04-02_10_', 0, 214, '03', '04', '2024-03-27 02:51:29'),
+(338, '2024', 10, 49, 144, '2024-03-29 - 2024-04-02', 1, '2024-03-29', '2024-04-02', '4', 'a:3:{i:0;s:10:\"2024-03-30\";i:1;s:10:\"2024-03-31\";i:2;s:10:\"2024-04-01\";}', '_193_2024-03-29 - 2024-04-02_10_', 0, 215, '03', '04', '2024-03-27 02:51:29'),
+(339, '2024', 10, 49, 145, '2024-03-29 - 2024-04-02', 1, '2024-03-29', '2024-04-02', '4', 'a:3:{i:0;s:10:\"2024-03-30\";i:1;s:10:\"2024-03-31\";i:2;s:10:\"2024-04-01\";}', '_193_2024-03-29 - 2024-04-02_10_', 0, 211, '03', '04', '2024-03-27 02:51:29'),
+(340, '2024', 10, 49, 146, '2024-03-29 - 2024-04-02', 1, '2024-03-29', '2024-04-02', '4', 'a:3:{i:0;s:10:\"2024-03-30\";i:1;s:10:\"2024-03-31\";i:2;s:10:\"2024-04-01\";}', '_193_2024-03-29 - 2024-04-02_10_', 0, 216, '03', '04', '2024-03-27 02:51:29'),
+(341, '2024', 10, 48, 142, '2024-04-16 - 2024-04-20', 1, '2024-04-16', '2024-04-20', '4', 'a:3:{i:0;s:10:\"2024-04-17\";i:1;s:10:\"2024-04-18\";i:2;s:10:\"2024-04-19\";}', '_193_2024-04-16 - 2024-04-20_10_', 1, 193, '04', '04', '2024-03-28 10:07:04'),
+(342, '2024', 10, 48, 143, '2024-04-16 - 2024-04-20', 1, '2024-04-16', '2024-04-20', '4', 'a:3:{i:0;s:10:\"2024-04-17\";i:1;s:10:\"2024-04-18\";i:2;s:10:\"2024-04-19\";}', '_193_2024-04-16 - 2024-04-20_10_', 0, 199, '04', '04', '2024-03-28 10:07:04'),
+(343, '2024', 10, 47, 138, '2024-04-16 - 2024-04-20', 1, '2024-04-16', '2024-04-20', '4', 'a:3:{i:0;s:10:\"2024-04-17\";i:1;s:10:\"2024-04-18\";i:2;s:10:\"2024-04-19\";}', '_193_2024-04-16 - 2024-04-20_10_', 0, 203, '04', '04', '2024-03-28 10:07:04'),
+(344, '2024', 10, 57, 166, '2024-04-16 - 2024-04-20', 1, '2024-04-16', '2024-04-20', '4', 'a:3:{i:0;s:10:\"2024-04-17\";i:1;s:10:\"2024-04-18\";i:2;s:10:\"2024-04-19\";}', '_193_2024-04-16 - 2024-04-20_10_', 0, 200, '04', '04', '2024-03-28 10:07:04');
 
 -- --------------------------------------------------------
 
@@ -768,7 +786,10 @@ INSERT INTO `tb_data_guests` (`id_data_guests`, `guests_doc_id_pic`, `id_nation_
 (147, 'guests/doc_id_g/210_777774122.png', 1, '', '', 12, NULL, 210),
 (148, 'guests/doc_id_g/211_00065599.png', 1, '', '', 12, NULL, 211),
 (149, 'guests/doc_id_g/212_11444.png', 1, '', '', 12, NULL, 212),
-(150, 'guests/doc_id_g/213_774887.png', 1, '', '', 12, NULL, 213);
+(150, 'guests/doc_id_g/213_774887.png', 1, '', '', 12, NULL, 213),
+(151, 'guests/doc_id_g/214_555557.png', 1, '', '', 12, NULL, 214),
+(152, 'guests/doc_id_g/215_7777788.png', 1, '', '', 12, NULL, 215),
+(153, 'guests/doc_id_g/216_9999988.png', 1, '', '', 12, NULL, 216);
 
 -- --------------------------------------------------------
 
@@ -839,7 +860,7 @@ INSERT INTO `tb_guests` (`id_guests`, `guests_doc_id`, `p_name_g`, `s_name_g`, `
 (200, 55555, 'Sinai', NULL, 'Guerrero', NULL, NULL, '4bbc286886cc459942f1bd4ec0e0d645', 1, 9, '2024-03-12', 0, 2, '2024-03-25 19:05:00'),
 (201, 88888, '', NULL, '', NULL, NULL, '2d159b502763ed8f4ffa682620098cda', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:40:50'),
 (202, 655, '', NULL, '', NULL, NULL, 'a6b8470375b38aeb49d699c176997a90', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:41:24'),
-(203, 99999, '', NULL, '', NULL, NULL, '6de378a67c1bed64a828e91cf5cac7b2', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:41:47'),
+(203, 99999, 'fung', NULL, '', NULL, NULL, '6de378a67c1bed64a828e91cf5cac7b2', 1, 9, '0000-00-00', 0, 3, '2024-03-28 21:08:27'),
 (204, 5555566, '', NULL, '', NULL, NULL, '0842c687ea65d10c832a198cd4ec9824', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:42:04'),
 (205, 7777733, '', NULL, '', NULL, NULL, 'a2369aa89af78a5411a82bb0eb4478b3', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:42:18'),
 (206, 6557, '', NULL, '', NULL, NULL, '3a18824f8b85f2918b4185c3c9681870', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:36:16'),
@@ -849,7 +870,10 @@ INSERT INTO `tb_guests` (`id_guests`, `guests_doc_id`, `p_name_g`, `s_name_g`, `
 (210, 777774122, '', NULL, '', NULL, NULL, 'f2ef409e481e8171de6bf276e47e1799', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:37:25'),
 (211, 65599, '', NULL, '', NULL, NULL, '112deca267294e17a59018a45ef558cb', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:37:39'),
 (212, 11444, '', NULL, '', NULL, NULL, '25b94ed557973f30842a0e9736ab304c', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:37:49'),
-(213, 774887, '', NULL, '', NULL, NULL, 'c625b85e03b4d637d37c927063b8f5a1', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:38:00');
+(213, 774887, '', NULL, '', NULL, NULL, 'c625b85e03b4d637d37c927063b8f5a1', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:38:00'),
+(214, 555557, '', NULL, '', NULL, NULL, 'aee7b02e4f0d4f4fb7a2cd306a425726', 1, 9, '0000-00-00', 0, 3, '2024-03-27 13:52:09'),
+(215, 7777788, '', NULL, '', NULL, NULL, '9150171cb3ef8063abf2e8e0ab544f27', 1, 9, '0000-00-00', 0, 3, '2024-03-27 13:52:20'),
+(216, 9999988, '', NULL, '', NULL, NULL, 'fb23fa1b7d974edcf30fe6dd504cecc9', 1, 9, '0000-00-00', 0, 3, '2024-03-27 13:52:47');
 
 -- --------------------------------------------------------
 
@@ -871,18 +895,41 @@ CREATE TABLE `tb_guests_buys` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tb_guests_services`
+-- Estructura de tabla para la tabla `tb_guests_services_check_in`
 --
 
-CREATE TABLE `tb_guests_services` (
-  `id_guests_services` int(254) NOT NULL,
+CREATE TABLE `tb_guests_services_check_in` (
+  `id_guests_services_check_in` int(254) NOT NULL,
   `id_hostel` int(11) NOT NULL,
-  `id_del_servicio` int(24) NOT NULL,
-  `monto` varchar(40) NOT NULL,
-  `impuesto` varchar(40) NOT NULL,
-  `descuento` varchar(40) NOT NULL,
-  `total` varchar(40) NOT NULL,
-  `cantidad` varchar(40) NOT NULL
+  `id_bed_booking` int(250) NOT NULL,
+  `id_del_servicio_check_in` int(24) NOT NULL,
+  `id_service_price_check_in` int(125) NOT NULL,
+  `adquirido_el_check_in` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tb_guests_services_check_in`
+--
+
+INSERT INTO `tb_guests_services_check_in` (`id_guests_services_check_in`, `id_hostel`, `id_bed_booking`, `id_del_servicio_check_in`, `id_service_price_check_in`, `adquirido_el_check_in`) VALUES
+(19, 10, 333, 13, 12, '2024-03-27 20:51:06'),
+(21, 10, 337, 13, 12, '2024-03-27 21:24:51'),
+(22, 10, 338, 13, 12, '2024-03-27 21:24:56'),
+(23, 10, 338, 14, 17, '2024-03-27 21:24:56'),
+(24, 10, 339, 14, 17, '2024-03-28 20:21:19'),
+(25, 10, 339, 13, 12, '2024-03-28 20:21:28'),
+(26, 10, 334, 12, 16, '2024-03-28 20:22:54'),
+(28, 10, 341, 12, 16, '2024-03-28 21:11:43'),
+(30, 10, 343, 13, 12, '2024-03-28 21:12:08');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tb_guests_services_regulares`
+--
+
+CREATE TABLE `tb_guests_services_regulares` (
+  `id_guests_services_regulares` int(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -1114,7 +1161,10 @@ CREATE TABLE `tb_services` (
 
 INSERT INTO `tb_services` (`id_services`, `id_hostal`, `id_product_kind`, `id_producto`, `creado_por_el`, `service_date`, `service_status`, `service_charac`, `sale_kind`) VALUES
 (12, 10, 1, 5, 9, '2024-03-16 23:34:25', 1, '', 2),
-(13, 10, 2, 3, 9, '2024-03-16 23:21:21', 1, '', 1);
+(13, 10, 2, 3, 9, '2024-03-16 23:21:21', 1, '', 1),
+(14, 10, 1, 5, 9, '2024-03-27 14:04:58', 1, '', 1),
+(15, 10, 3, 4, 9, '2024-03-27 19:47:43', 1, '', 1),
+(17, 10, 1, 2, 9, '2024-03-28 20:58:23', 1, '', 1);
 
 -- --------------------------------------------------------
 
@@ -1125,6 +1175,7 @@ INSERT INTO `tb_services` (`id_services`, `id_hostal`, `id_product_kind`, `id_pr
 CREATE TABLE `tb_services_prices` (
   `id_services_prices` int(128) NOT NULL,
   `id_hostel` int(64) NOT NULL,
+  `id_services` int(250) NOT NULL,
   `id_product_kind` int(64) NOT NULL,
   `id_product` int(32) NOT NULL,
   `the_price` decimal(18,2) NOT NULL,
@@ -1138,8 +1189,17 @@ CREATE TABLE `tb_services_prices` (
 -- Volcado de datos para la tabla `tb_services_prices`
 --
 
-INSERT INTO `tb_services_prices` (`id_services_prices`, `id_hostel`, `id_product_kind`, `id_product`, `the_price`, `tax_services`, `discount_type`, `set_this_day`, `set_by_this_per`) VALUES
-(5, 10, 1, 5, 20.00, 1, 1, '2024-03-16 23:10:57', 9);
+INSERT INTO `tb_services_prices` (`id_services_prices`, `id_hostel`, `id_services`, `id_product_kind`, `id_product`, `the_price`, `tax_services`, `discount_type`, `set_this_day`, `set_by_this_per`) VALUES
+(10, 10, 12, 1, 5, 110.00, 3, 5, '2024-03-27 14:35:35', 9),
+(11, 10, 14, 1, 5, 330.00, 2, 4, '2024-03-27 14:35:46', 9),
+(12, 10, 13, 2, 3, 50.00, 3, 2, '2024-03-27 14:36:24', 9),
+(13, 10, 12, 1, 5, 150.00, 3, 1, '2024-03-27 19:48:08', 9),
+(14, 10, 14, 1, 5, 200.00, 3, 4, '2024-03-27 19:48:17', 9),
+(15, 10, 16, 1, 2, 50.00, 1, 1, '2024-03-27 19:48:26', 9),
+(16, 10, 12, 1, 5, 75.00, 3, 3, '2024-03-27 19:48:38', 9),
+(17, 10, 14, 1, 5, 150.00, 4, 3, '2024-03-27 19:48:45', 9),
+(18, 10, 17, 1, 2, 25.00, 3, 4, '2024-03-28 20:58:53', 9),
+(19, 10, 15, 3, 4, 64.00, 4, 1, '2024-03-28 20:59:21', 9);
 
 -- --------------------------------------------------------
 
@@ -1435,10 +1495,19 @@ ALTER TABLE `tb_guests_buys`
   ADD PRIMARY KEY (`id_guests_buys`);
 
 --
--- Indices de la tabla `tb_guests_services`
+-- Indices de la tabla `tb_guests_services_check_in`
 --
-ALTER TABLE `tb_guests_services`
-  ADD PRIMARY KEY (`id_guests_services`);
+ALTER TABLE `tb_guests_services_check_in`
+  ADD PRIMARY KEY (`id_guests_services_check_in`),
+  ADD KEY `servicial` (`id_del_servicio_check_in`),
+  ADD KEY `precioso` (`id_service_price_check_in`),
+  ADD KEY `book_in_in` (`id_bed_booking`);
+
+--
+-- Indices de la tabla `tb_guests_services_regulares`
+--
+ALTER TABLE `tb_guests_services_regulares`
+  ADD PRIMARY KEY (`id_guests_services_regulares`);
 
 --
 -- Indices de la tabla `tb_personal`
@@ -1536,7 +1605,7 @@ ALTER TABLE `z_hostel`
 -- AUTO_INCREMENT de la tabla `bed_booking`
 --
 ALTER TABLE `bed_booking`
-  MODIFY `id_bed_booking` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=329;
+  MODIFY `id_bed_booking` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=345;
 
 --
 -- AUTO_INCREMENT de la tabla `bed_kind`
@@ -1722,7 +1791,7 @@ ALTER TABLE `tb_address`
 -- AUTO_INCREMENT de la tabla `tb_data_guests`
 --
 ALTER TABLE `tb_data_guests`
-  MODIFY `id_data_guests` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `id_data_guests` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_data_personal`
@@ -1734,7 +1803,7 @@ ALTER TABLE `tb_data_personal`
 -- AUTO_INCREMENT de la tabla `tb_guests`
 --
 ALTER TABLE `tb_guests`
-  MODIFY `id_guests` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=214;
+  MODIFY `id_guests` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_guests_buys`
@@ -1743,10 +1812,16 @@ ALTER TABLE `tb_guests_buys`
   MODIFY `id_guests_buys` int(254) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tb_guests_services`
+-- AUTO_INCREMENT de la tabla `tb_guests_services_check_in`
 --
-ALTER TABLE `tb_guests_services`
-  MODIFY `id_guests_services` int(254) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tb_guests_services_check_in`
+  MODIFY `id_guests_services_check_in` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT de la tabla `tb_guests_services_regulares`
+--
+ALTER TABLE `tb_guests_services_regulares`
+  MODIFY `id_guests_services_regulares` int(250) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_personal`
@@ -1782,13 +1857,13 @@ ALTER TABLE `tb_rooms_beds`
 -- AUTO_INCREMENT de la tabla `tb_services`
 --
 ALTER TABLE `tb_services`
-  MODIFY `id_services` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_services` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_services_prices`
 --
 ALTER TABLE `tb_services_prices`
-  MODIFY `id_services_prices` int(128) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_services_prices` int(128) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `z_data_hostel`
@@ -1872,6 +1947,14 @@ ALTER TABLE `tb_data_guests`
 ALTER TABLE `tb_guests`
   ADD CONSTRAINT `registrado_g_por` FOREIGN KEY (`guests_register_by`) REFERENCES `tb_personal` (`id_per`) ON UPDATE CASCADE,
   ADD CONSTRAINT `sexoi` FOREIGN KEY (`guests_sex`) REFERENCES `sex` (`id_sex`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `tb_guests_services_check_in`
+--
+ALTER TABLE `tb_guests_services_check_in`
+  ADD CONSTRAINT `book_in_in` FOREIGN KEY (`id_bed_booking`) REFERENCES `bed_booking` (`id_bed_booking`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `precioso` FOREIGN KEY (`id_service_price_check_in`) REFERENCES `tb_services_prices` (`id_services_prices`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `servicial` FOREIGN KEY (`id_del_servicio_check_in`) REFERENCES `tb_services` (`id_services`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `tb_personal`
