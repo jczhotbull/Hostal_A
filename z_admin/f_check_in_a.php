@@ -71,6 +71,10 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
               <div class="form-row">
 
+<div class="col-md-1 col-lg-1" >  
+ <button type="button" class="btn btn-dark btn-lg btn-block" style="margin-top:1px;"  onClick="javascript:history.go(-1)" ><i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal fa-lg"></i></button>
+</div>
+
                 <div class="alert col-md-3 col-lg-3 alert-primary" role="alert">
 <i class="fa-solid fa-person-walking-arrow-right fa-lg "></i> &nbsp; &nbsp; Walk-In:
                 </div>
@@ -79,14 +83,14 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
                 <?php  
                   if ($errorZ!="")
-                  { echo "<div class=\"alert col-md-9 col-lg-9 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
+                  { echo "<div class=\"alert col-md-8 col-lg-8 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ERROR TIENE ALGO-->
 
 
                 <?php 
                   if ($exitoZ!="")
-                  { echo "<div class=\"alert col-md-9 col-lg-9 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
+                  { echo "<div class=\"alert col-md-8 col-lg-8 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ÉXITO TIENE ALGO-->
 
@@ -173,6 +177,105 @@ $totalRows_rooms_conteo_t = mysqli_num_rows($rooms_conteo_t);
 
 
 
+
+
+
+$queryFHL_currencys_prim = "SELECT * FROM exchange_rates, currency
+ where exchange_rates.id_hostel = '$mi_hostel_select'
+ and exchange_rates.id_hostel_currency = currency.id_currency
+ order BY exchange_rates.all_set_this_time DESC limit 1";
+
+$the_currencys_prim = mysqli_query($enlace, $queryFHL_currencys_prim) or die(mysqli_error());
+$row_the_currencys_prim = mysqli_fetch_assoc($the_currencys_prim);
+$totalRows_the_currencys_prim = mysqli_num_rows($the_currencys_prim);
+
+
+
+
+$queryFHL_pp = "SELECT * FROM tb_prices_rooms, discounts  
+WHERE tb_prices_rooms.id_hostel = '$mi_hostel_select' 
+and   tb_prices_rooms.id_room_kind = '$este_id_kind'
+and tb_prices_rooms.discount_room = discounts.id_discounts
+ORDER BY tb_prices_rooms.set_prices_date desc limit 1";
+
+$room_pp = mysqli_query($enlace, $queryFHL_pp) or die(mysqli_error());
+$row_room_pp = mysqli_fetch_assoc($room_pp);
+$totalRows_room_pp = mysqli_num_rows($room_pp);
+
+
+$queryFHL_pp_dos = "SELECT * FROM tb_prices_rooms
+WHERE id_hostel = '$mi_hostel_select' 
+and   id_room_kind = '$este_id_kind'
+ORDER BY set_prices_date desc limit 1,2";
+
+$room_pp_dos = mysqli_query($enlace, $queryFHL_pp_dos) or die(mysqli_error());
+$row_room_pp_dos = mysqli_fetch_assoc($room_pp_dos);
+$totalRows_room_pp_dos = mysqli_num_rows($room_pp_dos);
+
+$off = '';
+$discc = '';
+$symbc = '';
+
+
+if ($totalRows_room_pp != '0') {
+
+if ($row_room_pp['name_discounts'] !='0') {
+  $off = 'Off';
+  $discc = $row_room_pp['name_discounts'];
+  $symbc = '%';
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+$queryFHL_pp_b = "SELECT * FROM tb_prices_beds, discounts 
+WHERE tb_prices_beds.id_hostel = '$mi_hostel_select' 
+and   tb_prices_beds.id_room_kind = '$este_id_kind'
+and   tb_prices_beds.discount_beds = discounts.id_discounts
+ORDER BY tb_prices_beds.set_prices_date_b desc limit 1";
+
+$room_pp_b = mysqli_query($enlace, $queryFHL_pp_b) or die(mysqli_error());
+$row_room_pp_b = mysqli_fetch_assoc($room_pp_b);
+$totalRows_room_pp_b = mysqli_num_rows($room_pp_b);
+
+
+$queryFHL_pp_dos_b = "SELECT * FROM tb_prices_beds 
+WHERE id_hostel = '$mi_hostel_select' 
+and   id_room_kind = '$este_id_kind'
+ORDER BY set_prices_date_b desc limit 1,2";
+
+$room_pp_dos_b = mysqli_query($enlace, $queryFHL_pp_dos_b) or die(mysqli_error());
+$row_room_pp_dos_b = mysqli_fetch_assoc($room_pp_dos_b);
+$totalRows_room_pp_dos_b = mysqli_num_rows($room_pp_dos_b);
+
+
+$off_b = '';
+$discc_b = '';
+$symbc_b = '';
+
+
+if ($totalRows_room_pp_b != '0') {
+
+if ($row_room_pp_b['name_discounts'] !='0') {
+  $off_b = 'Off';
+  $discc_b = $row_room_pp_b['name_discounts'];
+  $symbc_b = '%';
+}
+
+}
+
+
+
+
+
 mysqli_close($enlace);
 
 ?>
@@ -194,6 +297,54 @@ mysqli_close($enlace);
 <?php
 $mi_name_kind = $row_rooms_reveal_name_tipes['name_room_kind'];
 echo $row_rooms_reveal_name_tipes['name_room_kind']; ?> </div>
+
+
+
+
+<div class="infozzzsmall mt-2">   <!--   infozzzsmall -->
+              Bed(s):&nbsp;&nbsp;<b>
+                              
+              <?php
+              
+              if ($totalRows_room_pp_b != '0') {
+                echo $row_room_pp_b['name_prices_beds'];
+              }
+              
+              ?>  
+            
+            </b> - <?php echo $row_the_currencys_prim['symbol_currency']; ?>
+
+            <b><?php echo $discc_b; ?><?php echo $symbc_b; ?> <?php echo $off_b; ?></b>
+
+             </div>
+
+
+
+
+
+
+
+<div class="infozzzsmall mt-2">   <!--   infozzzsmall -->
+              Room:&nbsp;&nbsp;<b>
+                              
+              <?php
+              
+              if ($totalRows_room_pp != '0') {
+                echo $row_room_pp['name_prices_rooms'];
+              }
+              
+              ?>  
+            
+            </b> - <?php echo $row_the_currencys_prim['symbol_currency']; ?>
+
+            <b><?php echo $discc; ?><?php echo $symbc; ?> <?php echo $off; ?></b>
+
+             </div>
+
+
+
+
+
            </div>
 
            <a class=" card-footer card-footerz text-white clearfix small z-1"        

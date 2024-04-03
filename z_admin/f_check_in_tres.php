@@ -39,11 +39,116 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
     $la_hora_rey = $_GET['hora_rey'];
 
+    $id_pay = $_GET['id_papa'];
+
+
+
+
+    $tax_cero = '0';
+    $tax_encontrado = '10000';
+    $cuentas_tax_tax = '0';
+
+
+    $tax_cero_serv = '0';
+    $tax_encontrado_serv = '10000';
+    $cuentas_tax_tax_serv = '0';
+
+    $el_unillo = '1';
+
+
+    $del_tax_no_cero = '1';      // cambiara de valor en caso que se use un tax diferente a cero.
+    $name_del_tax_no_cero = '0';      // cambiara de valor en caso que se use un tax diferente a cero.
+
+
+
+    if(isset($_POST['editar_payme']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD y comprueba
+    {
+        $alerta_principal = "2";
+
+        include("../conectar.php");  
+
+        $id_del_registro_pagos = $_POST['editar_payme']; 
+
+        $tot_hospedaje_tax_cero = $_POST['tot_hospedaje_tax_cero'];
+        $tot_hospedaje_con_tax = $_POST['tot_hospedaje_con_tax'];  
+
+        $tot_services_tax_cero = $_POST['tot_services_tax_cero'];  
+        $tot_services_con_tax = $_POST['tot_services_con_tax'];  
+
+        $id_tax_no_cero = $_POST['id_tax_no_cero'];  
+        $monto_hospedaje_total = $_POST['monto_hospedaje_total'];  
+
+
+        $primer_pago_hospedaje = $_POST['primer_pago_hospedaje']; 
+
+        $deuda_hospedaje = ($monto_hospedaje_total-$primer_pago_hospedaje);
+
+        $primer_pago_fecha = $_POST['primer_pago_fecha']; 
+        $id_primer_pago_forma = $_POST['id_primer_pago_forma']; 
+        $primer_pago_recibo = $_POST['primer_pago_recibo']; 
+
+        $comentario_hospedaje = $_POST['comentario_hospedaje']; 
+
+
+
+        $sql_payment = "UPDATE tb_payment_hospedaje SET tot_hospedaje_tax_cero = '$tot_hospedaje_tax_cero',
+                                                        tot_hospedaje_con_tax = '$tot_hospedaje_con_tax',
+
+                                                        tot_services_tax_cero = '$tot_services_tax_cero',
+                                                        tot_services_con_tax = '$tot_services_con_tax',
+
+                                                        id_tax_no_cero = '$id_tax_no_cero',
+                                                        monto_hospedaje_total = '$monto_hospedaje_total',
+
+                                                        primer_pago_hospedaje = '$primer_pago_hospedaje',
+                                                        id_primer_pago_forma = '$id_primer_pago_forma',
+                                                        primer_pago_fecha = '$primer_pago_fecha',
+                                                        primer_pago_recibo = '$primer_pago_recibo',
+
+                                                        comentario_hospedaje = '$comentario_hospedaje',
+                                                        deuda_hospedaje = '$deuda_hospedaje'
+
+
+                                         WHERE id_payment_hospedaje='$id_del_registro_pagos' LIMIT 1 ";
+
+if (!mysqli_query($enlace,$sql_payment))      // actualiza y si no ha logrado ingresar los datos
+{
+ $errorZ="- Error Payment. ";
+ mysqli_close($enlace);
+
+ }
+
+else{   // actualizo la info del pago
+
+$sql_booking_updt = "UPDATE bed_booking SET booking_status = '2'
+
+WHERE hora_rey= '$la_hora_rey'
+and codigo_amistades = '$amist_code'  ";
+
+$book_ck_ck = mysqli_query($enlace, $sql_booking_updt) or die(mysqli_error());
+
+
+
+
+
+  $exitoZ="- Payment Save. ";
+  mysqli_close($enlace);
+
+
+    }
+
+  }
+
+
+
+
+
+
 
 
     if(isset($_POST['editar_services']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD y comprueba
     {
-        $alerta_principal = "2";
+        
 
         include("../conectar.php");  
 
@@ -123,7 +228,7 @@ $bad = '0';
     if(isset($_POST['borrar_service_serv']))
     {
 
-$alerta_principal = "2";
+
 
 
 $id_a_borrar = $_POST['borrar_service_serv'];
@@ -240,7 +345,7 @@ and bed_booking.date_range = '$rango'
 and bed_booking.codigo_amistades = '$amist_code'
 and bed_booking.hora_rey = '$la_hora_rey'
 
-ORDER BY bed_booking.amistad_rey DESC";
+ORDER BY bed_booking.amistad_rey DESC, tb_room.id_room_kind DESC";
 
 $huespedes = mysqli_query($enlace, $queryFHL) or die(mysqli_error());
 $row_huespedes = mysqli_fetch_assoc($huespedes);
@@ -253,6 +358,19 @@ $qty = '0';
 $sub_total_beds = '0';
 
 $sub_total_beds_services_sub = '0';
+
+
+
+
+$sub_total_camas_con_tax_a = '0';        // almacena el total con descuento de los que no pagan impuesto
+$sub_total_camas_con_tax_b = '0';  // de los que si pagan impuesto
+
+
+
+
+$sub_total_servicios_con_tax_a = '0';        // almacena el total con descuento de los que no pagan impuesto
+$sub_total_servicios_con_tax_b = '0';  // de los que si pagan impuesto
+
 
 ?>
 
@@ -350,6 +468,9 @@ if ($y_status == '1') {
   $book = 'Reserved';
 }
 
+if ($y_status == '2') {
+  $book = 'In Use';
+}
 
 
 
@@ -415,8 +536,8 @@ $sub_bed = ($row_usuarios_bed_price['name_prices_beds'] * $y_noches);
   $igual = '';
 
   $disc_sub_bed = $sub_bed;
-  $english_disc_sub_bed_up = '';
-  $english_disc_sub_bed_down = $sub_bed;
+  $english_disc_sub_bed_up = number_format($disc_sub_bed, 2, '.', '');
+  $english_disc_sub_bed_down = $english_disc_sub_bed_up;
 
 }
 
@@ -440,12 +561,23 @@ else {
   $tax_sub_bed = '0';
   $cuenta_tax = '0';
   $english_tax = '0';
+
+  $sub_total_camas_con_tax_a =  $sub_total_camas_con_tax_a + $disc_sub_bed;  // lleva solo la suma de los que no pagan tax
+
 }
 
 else {
   $tax_sub_bed = $row_usuarios_bed_price['name_taxes'];
   $cuenta_tax = (($english_disc_sub_bed_up / 100)*$row_usuarios_bed_price['name_taxes']);
   $english_tax = number_format($cuenta_tax, 2, '.', '');
+
+  $sub_total_camas_con_tax_b =  $sub_total_camas_con_tax_b + $disc_sub_bed; // lleva suma de los q pagan tax
+
+
+  $del_tax_no_cero = $row_usuarios_bed_price['id_taxes'];
+  $name_del_tax_no_cero = $row_usuarios_bed_price['name_taxes'];
+
+
  }
 
 
@@ -481,7 +613,7 @@ echo $row_usuarios_room['name_room_number'];?>,<br><?php echo $row_usuarios_room
 
       <td class="align-middle" align="right" >
 
-<span <?php if ( $show =='0' ){?>style="display:none"<?php } ?>  >
+<span <?php if ( $show =='0' ){?>style="display:none"<?php } ?>   > 
 
       <b><span style="color:orange;" > <?php echo $disc;?> <?php echo $porcentaje;?> <?php echo $palabra;?></span></b>
     <br> <b style="font-size:10px;"  >
@@ -492,7 +624,46 @@ echo $row_usuarios_room['name_room_number'];?>,<br><?php echo $row_usuarios_room
 
       <td class="align-middle" align="center" >
 
-      <?php echo $tax_sub_bed;?> % <br>
+      <?php echo $tax_sub_bed;
+      
+      // para detectar si existen mas de dos impuestos diferentes que no sean cero.
+      
+      if($tax_sub_bed != $tax_cero ) {
+
+        if($tax_sub_bed != $tax_encontrado)  { 
+
+     $tax_encontrado = $tax_sub_bed;
+
+     $cuentas_tax_tax = $cuentas_tax_tax + $el_unillo;   // si llega a dos es porque cambio mas de una vez
+
+   }
+
+    }
+      
+      
+    if ($cuentas_tax_tax  >= "2") {
+
+      echo '<script type="text/javascript">';
+       echo 'setTimeout(function () {
+     
+        swal({
+       title: "",
+       type: "error",
+       html: "More than two different taxes (other than zero) have been placed. Correct Room Taxes.",
+       icon: "error",
+     });'
+     
+     ;
+       echo '}, 1000);</script>';  
+     
+     } 
+      
+      
+      
+      
+      
+      
+      ?> % <br>
 
 
         <span style="font-size:10px;" > ( <b style="color:purple;" ><?php echo $english_tax;?> </b> )</span>
@@ -507,7 +678,7 @@ echo $row_usuarios_room['name_room_number'];?>,<br><?php echo $row_usuarios_room
 
 $sub_total_beds = $sub_total_beds + $english_sub_total;
 
-echo $english_sub_total;?><br><?php echo $row_usuarios_exchange_1['symbol_currency'];?>
+echo $english_sub_total;?><br><?php echo $row_usuarios_exchange_1['symbol_currency'];?> 
 
 
 
@@ -604,7 +775,7 @@ if ($row_services_pa['name_discounts'] == '0') {
   $igual_da = '';
 
   $disc_sub_bed_da = $english_price_serv_pa;
-  $english_disc_sub_bed_up_da = $english_price_serv_pa;
+  $english_disc_sub_bed_up_da = number_format($disc_sub_bed_da, 2, '.', '');
   $english_disc_sub_bed_down_da = $english_price_serv_pa;
 
 }
@@ -631,12 +802,19 @@ if ($row_services_pa['name_taxes'] == '0') {
   $tax_sub_bed_ta = '0';
   $cuenta_tax_ta = '0';
   $english_tax_ta = '0';
+
+
+  $sub_total_servicios_con_tax_a =  $sub_total_servicios_con_tax_a + $english_disc_sub_bed_up_da;  // lleva solo la suma de los que no pagan tax
+
 }
 
 else {
   $tax_sub_bed_ta = $row_services_pa['name_taxes'];
   $cuenta_tax_ta = (($english_disc_sub_bed_up_da / 100)*$row_services_pa['name_taxes']);
   $english_tax_ta = number_format($cuenta_tax_ta, 2, '.', '');
+
+  $sub_total_servicios_con_tax_b =  $sub_total_servicios_con_tax_b + $english_disc_sub_bed_up_da;  // lleva la suma de los que pagan tax
+
  }
 
 
@@ -881,7 +1059,30 @@ $english_sub_total_b = number_format($sub_total_beds_currency_b, 2, '.', '');
 
 </td>
 
-<td>
+<td class="align-middle" align="center">
+
+
+<span <?php if ( $alerta_principal != '0' ){?>style="display:none"<?php } ?> >  <!-- en caso de agendar un monto oculta el boton -->
+
+<button type="button" class="btn btn-success btn-block btn-sm" data-toggle="modal"
+                  data-target="#payme<?php echo $id_pay;?>" >                                                                       
+                  <i class="fa-solid fa-cash-register fa-2x"></i></button>    
+
+</span>
+
+
+<?php include("updates/update_pay_beds_guests.php"); ?>
+    
+
+<span <?php if ( $alerta_principal == '0' ){?>style="display:none"<?php } ?> >  <!-- en caso de agendar un monto oculta el boton -->
+
+<button type="button" class="btn btn-success btn-block btn-sm"  >                                                                       
+                  View</button>    
+
+</span>
+
+
+
 </td>
 
 

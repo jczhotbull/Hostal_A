@@ -35,6 +35,14 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
 
 
+    $tax_cero = '0';
+    $tax_encontrado = '10000';
+    $cuentas_tax = '0';
+
+    $el_unillo = '1';
+
+
+
 
 // editar room
 if(isset($_POST['add_price']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD y comprueba
@@ -158,6 +166,13 @@ else {
 
               <div class="form-row"> 
 
+
+              <div class="col-md-1 col-lg-1" >  
+ <button type="button" class="btn btn-dark btn-lg btn-block" style="margin-top:1px;"  onClick="javascript:history.go(-1)" ><i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal fa-lg"></i></button>
+</div>
+
+
+
                 <div class="alert col-md-3 col-lg-3 alert-primary" role="alert">
                     <i class="fa-solid fa-boxes-packing fa-lg "></i> &nbsp; &nbsp;  <i> <b><?php echo $ttitulo ?></b> Services.</i>
                 </div> 
@@ -166,20 +181,29 @@ else {
 
                 <?php  
                   if ($errorZ!="")
-                  { echo "<div class=\"alert col-md-9 col-lg-9 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
+                  { echo "<div class=\"alert col-md-8 col-lg-8 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ERROR TIENE ALGO-->
 
 
                 <?php 
                   if ($exitoZ!="")
-                  { echo "<div class=\"alert col-md-9 col-lg-9 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
+                  { echo "<div class=\"alert col-md-8 col-lg-8 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ÉXITO TIENE ALGO-->
 
 
                   
             </div>    <!-- CIERRE FORM SUPERIOR INFORMATIVO O DE CABECERA-->
+
+
+
+
+       
+
+
+
+
 
 
 
@@ -212,6 +236,8 @@ order BY tb_services.id_producto asc";
 $services_serv_count = mysqli_query($enlace, $queryFHL_serv_count) or die(mysqli_error());
 $row_services_serv_count = mysqli_fetch_assoc($services_serv_count);
 $totalRows_services_serv_count = mysqli_num_rows($services_serv_count);
+
+
 
 mysqli_close($enlace);
 
@@ -322,8 +348,55 @@ mysqli_close($enlace);
          <span style="font-size: 12px;">  <b>Tax:</b> <?php
    
    if ($totalRows_services_serv_current >='1') {
-      echo $row_services_serv_current['name_taxes'];
+      echo $row_services_serv_current['name_taxes']; 
+                                                               
+// requiero generar una alerta para que nadie coloque dos valores diferentes de impuestos distintos de cero
+
+      if($row_services_serv_current['name_taxes'] != $tax_cero ) {
+
+           if($row_services_serv_current['name_taxes'] != $tax_encontrado)  { 
+
+        $tax_encontrado = $row_services_serv_current['name_taxes'];
+
+        $cuentas_tax = $cuentas_tax + $el_unillo;   // si llega a dos es porque cambio mas de una vez
+
+      }
+
+       }
+   
+
    }
+
+
+
+   if ($cuentas_tax  >= "2") {
+
+    echo '<script type="text/javascript">';
+     echo 'setTimeout(function () {
+   
+      swal({
+     title: "",
+     type: "error",
+     html: "Verify that no more than two different taxes (other than zero) have been placed.",
+     icon: "error",
+   });'
+   
+   ;
+     echo '}, 1000);</script>';  
+   
+   } 
+
+
+
+
+
+
+
+
+
+
+
+
    
     ?> 
    %  -  <b>Discount:</b> <?php
@@ -333,7 +406,7 @@ mysqli_close($enlace);
    }
    
     ?> 
-   % </span>
+   % </span>  
 
 </div>
 

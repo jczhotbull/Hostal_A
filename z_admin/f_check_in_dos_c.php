@@ -57,6 +57,8 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
     $la_hora_rey = $_GET['hora_rey'];
 
+    $id_pay = $_GET['id_papa'];
+
     
     $rest_a = substr($el_rango, 0, -13);
     $rest_b = substr($el_rango, 13, 10);
@@ -262,10 +264,10 @@ WHERE id_guests = '$id_gg' LIMIT 1 ";
       
                   $query_bookin = "INSERT INTO
                    bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
-                   date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey)   
+                   date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey, id_payment_huesped)   
       
                   VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
-                  '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '0', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey' )"; 
+                  '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '0', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey', '$id_pay' )"; 
       
                  $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
       
@@ -276,7 +278,7 @@ WHERE id_guests = '$id_gg' LIMIT 1 ";
       
                  mysqli_close($enlace);  
       
-                header("Location: f_check_room_bed_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_del_cabeza&cuenta_ami=$suma_amigos&hora_rey=$la_hora_rey", TRUE, 301);
+                header("Location: f_check_room_bed_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_del_cabeza&cuenta_ami=$suma_amigos&hora_rey=$la_hora_rey&id_papa=$id_pay", TRUE, 301);
                 exit();    
       
       
@@ -365,10 +367,10 @@ WHERE id_guests = '$id_gg' LIMIT 1 ";
 
             $query_bookin = "INSERT INTO
              bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
-             date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey)   
+             date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey, id_payment_huesped)   
 
             VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
-            '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '0', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey' )"; 
+            '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '0', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey', '$id_pay' )"; 
 
            $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
 
@@ -379,7 +381,7 @@ WHERE id_guests = '$id_gg' LIMIT 1 ";
 
            mysqli_close($enlace);  
 
-          header("Location: f_check_room_bed_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_del_cabeza&cuenta_ami=$suma_amigos&hora_rey=$la_hora_rey", TRUE, 301);
+          header("Location: f_check_room_bed_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_del_cabeza&cuenta_ami=$suma_amigos&hora_rey=$la_hora_rey&id_papa=$id_pay", TRUE, 301);
           exit();    
 
 
@@ -522,10 +524,10 @@ WHERE id_guests = '$id_gg' LIMIT 1 ";
 
             $query_bookin = "INSERT INTO
              bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
-             date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey)   
+             date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey, id_payment_huesped)   
 
             VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
-            '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '0', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey' )"; 
+            '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '0', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey', '$id_pay' )"; 
 
            $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
 
@@ -537,7 +539,7 @@ WHERE id_guests = '$id_gg' LIMIT 1 ";
            mysqli_close($enlace);  
  
 
-          header("Location: f_check_in_a_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_del_cabeza&cuenta_ami=$suma_amigos&hora_rey=$la_hora_rey", TRUE, 301);
+          header("Location: f_check_in_a_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_del_cabeza&cuenta_ami=$suma_amigos&hora_rey=$la_hora_rey&id_papa=$id_pay", TRUE, 301);
           exit();   
 
             
@@ -615,10 +617,10 @@ WHERE id_guests = '$id_gg' LIMIT 1 ";
     
                 $query_bookin = "INSERT INTO
                  bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
-                 date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey)   
+                 date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey, id_payment_huesped)   
     
                 VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
-                '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '0', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey' )"; 
+                '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '0', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey', '$id_pay' )"; 
     
                $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
     
@@ -630,7 +632,7 @@ WHERE id_guests = '$id_gg' LIMIT 1 ";
                mysqli_close($enlace);  
      
     
-              header("Location: f_check_in_a_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_del_cabeza&cuenta_ami=$suma_amigos&hora_rey=$la_hora_rey", TRUE, 301);
+              header("Location: f_check_in_a_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_del_cabeza&cuenta_ami=$suma_amigos&hora_rey=$la_hora_rey&id_papa=$id_pay", TRUE, 301);
               exit();   
     
                 
@@ -774,10 +776,10 @@ WHERE id_guests = '$id_gg' LIMIT 1 ";
 
             $query_bookin = "INSERT INTO
              bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
-             date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey)   
+             date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey, id_payment_huesped)   
 
             VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
-            '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '0', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey' )"; 
+            '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '0', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey', '$id_pay' )"; 
 
            $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
 
@@ -789,7 +791,7 @@ WHERE id_guests = '$id_gg' LIMIT 1 ";
            mysqli_close($enlace);  
  
 
-           header("Location: f_check_in_tres.php?book_year=$year&rango=$el_rango&amist_code=$codigo_amistades&hora_rey=$la_hora_rey", TRUE, 301);
+           header("Location: f_check_in_tres.php?book_year=$year&rango=$el_rango&amist_code=$codigo_amistades&hora_rey=$la_hora_rey&id_papa=$id_pay", TRUE, 301);
            exit();    
 
             
@@ -867,10 +869,10 @@ WHERE id_guests = '$id_gg' LIMIT 1 ";
     
                 $query_bookin = "INSERT INTO
                  bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
-                 date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey)   
+                 date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey, id_payment_huesped)   
     
                 VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
-                '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '0', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey' )"; 
+                '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '0', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey', '$id_pay' )"; 
     
                $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
     
@@ -882,7 +884,7 @@ WHERE id_guests = '$id_gg' LIMIT 1 ";
                mysqli_close($enlace);  
      
     
-               header("Location: f_check_in_tres.php?book_year=$year&rango=$el_rango&amist_code=$codigo_amistades&hora_rey=$la_hora_rey", TRUE, 301);
+               header("Location: f_check_in_tres.php?book_year=$year&rango=$el_rango&amist_code=$codigo_amistades&hora_rey=$la_hora_rey&id_papa=$id_pay", TRUE, 301);
                exit();    
     
                 

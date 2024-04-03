@@ -228,6 +228,13 @@ mysqli_close($enlace);
 
               <div class="form-row"> 
 
+
+
+              <div class="col-md-1 col-lg-1" >  
+ <button type="button" class="btn btn-dark btn-lg btn-block" style="margin-top:1px;"  onClick="javascript:history.go(-1)" ><i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal fa-lg"></i></button>
+</div>
+
+
                 <div class="alert col-md-6 col-lg-6 alert-primary" role="alert"> 
                     <i class="fa-solid fa-bolt-lightning fa-lg "></i> &nbsp; &nbsp; Check-In Bed: <b><?php echo $ttitulo ?></b> - <?php echo $rango ?> .   
                 </div> 
@@ -236,14 +243,14 @@ mysqli_close($enlace);
 
                 <?php  
                   if ($errorZ!="")
-                  { echo "<div class=\"alert col-md-6 col-lg-6 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
+                  { echo "<div class=\"alert col-md-5 col-lg-5 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ERROR TIENE ALGO-->
 
 
                 <?php 
                   if ($exitoZ!="")
-                  { echo "<div class=\"alert col-md-6 col-lg-6 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
+                  { echo "<div class=\"alert col-md-5 col-lg-5 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ÉXITO TIENE ALGO-->
 

@@ -328,9 +328,31 @@ if ($alerta_principal  == "0") {
 <div class="content-wrapper">
   <div class="container-fluid">
 
-    <div class="alert alert-primary" role="alert">
-      <i><b><?php echo $ttitulo ?>.</b></i> 
-    </div>
+
+
+  <div class="form-row">
+
+<div class="col-md-1 col-lg-1" >  
+<button type="button" class="btn btn-dark btn-lg btn-block" style="margin-top:1px;"  onClick="javascript:history.go(-1)" ><i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal fa-lg"></i></button>
+</div>
+
+
+
+  <div class="col-md-11 col-lg-11 alert alert-primary" role="alert">
+    <i><b><?php echo $ttitulo ?>.</b></i> 
+  </div>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
     
     <div class="card  mx-auto mt-3">
 

@@ -40,7 +40,7 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
     $la_hora_rey = $_GET['hora_rey'];
 
 
-
+    $id_pay = $_GET['id_papa'];
 
 
 
@@ -209,6 +209,102 @@ $totalRows_rooms_conteo_t = mysqli_num_rows($rooms_conteo_t);
 
 
 
+
+
+$queryFHL_currencys_prim = "SELECT * FROM exchange_rates, currency
+ where exchange_rates.id_hostel = '$mi_hostel_select'
+ and exchange_rates.id_hostel_currency = currency.id_currency
+ order BY exchange_rates.all_set_this_time DESC limit 1";
+
+$the_currencys_prim = mysqli_query($enlace, $queryFHL_currencys_prim) or die(mysqli_error());
+$row_the_currencys_prim = mysqli_fetch_assoc($the_currencys_prim);
+$totalRows_the_currencys_prim = mysqli_num_rows($the_currencys_prim);
+
+
+
+
+$queryFHL_pp = "SELECT * FROM tb_prices_rooms, discounts  
+WHERE tb_prices_rooms.id_hostel = '$mi_hostel_select' 
+and   tb_prices_rooms.id_room_kind = '$este_id_kind'
+and tb_prices_rooms.discount_room = discounts.id_discounts
+ORDER BY tb_prices_rooms.set_prices_date desc limit 1";
+
+$room_pp = mysqli_query($enlace, $queryFHL_pp) or die(mysqli_error());
+$row_room_pp = mysqli_fetch_assoc($room_pp);
+$totalRows_room_pp = mysqli_num_rows($room_pp);
+
+
+$queryFHL_pp_dos = "SELECT * FROM tb_prices_rooms
+WHERE id_hostel = '$mi_hostel_select' 
+and   id_room_kind = '$este_id_kind'
+ORDER BY set_prices_date desc limit 1,2";
+
+$room_pp_dos = mysqli_query($enlace, $queryFHL_pp_dos) or die(mysqli_error());
+$row_room_pp_dos = mysqli_fetch_assoc($room_pp_dos);
+$totalRows_room_pp_dos = mysqli_num_rows($room_pp_dos);
+
+$off = '';
+$discc = '';
+$symbc = '';
+
+
+if ($totalRows_room_pp != '0') {
+
+if ($row_room_pp['name_discounts'] !='0') {
+  $off = 'Off';
+  $discc = $row_room_pp['name_discounts'];
+  $symbc = '%';
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+$queryFHL_pp_b = "SELECT * FROM tb_prices_beds, discounts 
+WHERE tb_prices_beds.id_hostel = '$mi_hostel_select' 
+and   tb_prices_beds.id_room_kind = '$este_id_kind'
+and   tb_prices_beds.discount_beds = discounts.id_discounts
+ORDER BY tb_prices_beds.set_prices_date_b desc limit 1";
+
+$room_pp_b = mysqli_query($enlace, $queryFHL_pp_b) or die(mysqli_error());
+$row_room_pp_b = mysqli_fetch_assoc($room_pp_b);
+$totalRows_room_pp_b = mysqli_num_rows($room_pp_b);
+
+
+$queryFHL_pp_dos_b = "SELECT * FROM tb_prices_beds 
+WHERE id_hostel = '$mi_hostel_select' 
+and   id_room_kind = '$este_id_kind'
+ORDER BY set_prices_date_b desc limit 1,2";
+
+$room_pp_dos_b = mysqli_query($enlace, $queryFHL_pp_dos_b) or die(mysqli_error());
+$row_room_pp_dos_b = mysqli_fetch_assoc($room_pp_dos_b);
+$totalRows_room_pp_dos_b = mysqli_num_rows($room_pp_dos_b);
+
+
+$off_b = '';
+$discc_b = '';
+$symbc_b = '';
+
+
+if ($totalRows_room_pp_b != '0') {
+
+if ($row_room_pp_b['name_discounts'] !='0') {
+  $off_b = 'Off';
+  $discc_b = $row_room_pp_b['name_discounts'];
+  $symbc_b = '%';
+}
+
+}
+
+
+
 mysqli_close($enlace);
 
 ?>
@@ -230,12 +326,69 @@ mysqli_close($enlace);
 <?php
 $mi_name_kind = $row_rooms_reveal_name_tipes['name_room_kind'];
 echo $row_rooms_reveal_name_tipes['name_room_kind']; ?> </div>
+
+
+
+
+
+
+
+<div class="infozzzsmall mt-2">   <!--   infozzzsmall -->
+              Bed(s):&nbsp;&nbsp;<b>
+                              
+              <?php
+              
+              if ($totalRows_room_pp_b != '0') {
+                echo $row_room_pp_b['name_prices_beds'];
+              }
+              
+              ?>  
+            
+            </b> - <?php echo $row_the_currencys_prim['symbol_currency']; ?>
+
+            <b><?php echo $discc_b; ?><?php echo $symbc_b; ?> <?php echo $off_b; ?></b>
+
+             </div>
+
+
+
+
+
+
+
+<div class="infozzzsmall mt-2">   <!--   infozzzsmall -->
+              Room:&nbsp;&nbsp;<b>
+                              
+              <?php
+              
+              if ($totalRows_room_pp != '0') {
+                echo $row_room_pp['name_prices_rooms'];
+              }
+              
+              ?>  
+            
+            </b> - <?php echo $row_the_currencys_prim['symbol_currency']; ?>
+
+            <b><?php echo $discc; ?><?php echo $symbc; ?> <?php echo $off; ?></b>
+
+             </div>
+
+
+
+
+
+
+
+
+
+
+
            </div>
 
            <a class=" card-footer card-footerz text-white clearfix small z-1"        
 
            
-href="f_check_room_bed_c.php?idtabla=<?php  echo $este_id_kind; ?>&ttitulo=<?php  echo $mi_name_kind; ?>&compa=<?php  echo $compa; ?>&range=<?php  echo $rango_seteado; ?>&cuenta_ami=<?php  echo $cuenta_ami; ?>&hora_rey=<?php  echo $la_hora_rey; ?>">  
+href="f_check_room_bed_c.php?idtabla=<?php  echo $este_id_kind; ?>&ttitulo=<?php  echo $mi_name_kind; ?>&compa=<?php  echo $compa; ?>&range=<?php  echo $rango_seteado; ?>&cuenta_ami=<?php  echo $cuenta_ami; ?>&hora_rey=<?php  echo $la_hora_rey; ?>&id_papa=<?php echo $id_pay; ?>">  
 
              <span class="float-left">Go</span>
              <span class="float-right">

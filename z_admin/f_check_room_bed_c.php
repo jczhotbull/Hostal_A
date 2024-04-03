@@ -40,7 +40,7 @@ $alerta_hidezz = "0";
 
     $la_hora_rey = $_GET['hora_rey'];
 
-
+    $id_pay = $_GET['id_papa'];
 
 
   $date_range = $rango_seteado;
@@ -3323,6 +3323,12 @@ else {
 
               <div class="form-row"> 
 
+              <div class="col-md-1 col-lg-1" >  
+ <button type="button" class="btn btn-dark btn-lg btn-block" style="margin-top:1px;"  onClick="javascript:history.go(-1)" ><i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal fa-lg"></i></button>
+</div>
+
+
+
                 <div class="alert col-md-3 col-lg-3 alert-primary" role="alert">
                     <i class="fa-solid fa-people-line fa-lg "></i> &nbsp; &nbsp;  <i> All <b><?php echo $ttitulo ?></b> Rooms.</i>
                 </div>
@@ -3331,14 +3337,14 @@ else {
 
                 <?php  
                   if ($errorZ!="")
-                  { echo "<div class=\"alert col-md-9 col-lg-9 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
+                  { echo "<div class=\"alert col-md-8 col-lg-8 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ERROR TIENE ALGO-->
 
 
                 <?php 
                   if ($exitoZ!="")
-                  { echo "<div class=\"alert col-md-9 col-lg-9 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
+                  { echo "<div class=\"alert col-md-8 col-lg-8 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ÉXITO TIENE ALGO-->
 
@@ -3615,10 +3621,10 @@ mysqli_close($enlace);
              <div class="mr-5 infozzz">
              Room: <?php
 $mi_name_room = $row_rooms_few['name_room_number'];
-echo $row_rooms_few['name_room_number']; ?> - <b><?php echo $discc; ?><?php echo $symbc; ?> <?php echo $off; ?></b> <!-- / <?php echo $row_rooms_few['id_room']; ?>   -->
+echo $row_rooms_few['name_room_number']; ?>  <!-- / <?php echo $row_rooms_few['id_room']; ?>   -->
              </div>  
 
-             <div class="infozzz mt-4">   
+             <div class="infozzz ">   
              </div>
 
             
@@ -3753,7 +3759,7 @@ $conteo = $conteo + 1;
 
 
  
-<a href="f_check_in_c.php?ttitulo=<?php echo $name_bed_b; ?>&rr=<?php echo $date_range; ?>&id_r=<?php echo $id_room_f; ?>&id_rb=<?php echo $id_bed_f; ?>&ttitulo_kind=<?php echo $ttitulo; ?>&id_kind=<?php echo $idtbla; ?>&compadre=<?php echo $compa; ?>&cuenta_ami=<?php echo $cuenta_ami; ?>&hora_rey=<?php  echo $la_hora_rey; ?>"    
+<a href="f_check_in_c.php?ttitulo=<?php echo $name_bed_b; ?>&rr=<?php echo $date_range; ?>&id_r=<?php echo $id_room_f; ?>&id_rb=<?php echo $id_bed_f; ?>&ttitulo_kind=<?php echo $ttitulo; ?>&id_kind=<?php echo $idtbla; ?>&compadre=<?php echo $compa; ?>&cuenta_ami=<?php echo $cuenta_ami; ?>&hora_rey=<?php  echo $la_hora_rey; ?>&id_papa=<?php echo $id_pay; ?>"     
 
 
 class="btn btn-light btn-sm ml-1 mr-1 mb-2"

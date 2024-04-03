@@ -47,6 +47,9 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
     $la_hora_rey = $_GET['hora_rey'];
 
+    $id_pay = $_GET['id_papa'];
+
+
 // empieza la insercion del huesped
 if(isset($_POST['add_guests']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD 
 {
@@ -174,7 +177,7 @@ else {
           
                    mysqli_close($enlace);
                    
-                   header("Location: f_check_in_dos_c.php?zv=ve87&pass=6tz@bv&zp=$doc&ri=$id_found&mil=57tr@jh&em=$email_guests&tf=$telf_guests&na=$nationality_g&ran=$rango&prz=$la_room_es&pbz=$la_room_cama_es&ttitulo_kind=$ttitulo_kind&id_kind=$id_kind&compi=$compatriota&cuenta_ami=$cuenta_ami&hora_rey=$la_hora_rey", TRUE, 301);
+                   header("Location: f_check_in_dos_c.php?zv=ve87&pass=6tz@bv&zp=$doc&ri=$id_found&mil=57tr@jh&em=$email_guests&tf=$telf_guests&na=$nationality_g&ran=$rango&prz=$la_room_es&pbz=$la_room_cama_es&ttitulo_kind=$ttitulo_kind&id_kind=$id_kind&compi=$compatriota&cuenta_ami=$cuenta_ami&hora_rey=$la_hora_rey&id_papa=$id_pay", TRUE, 301);
                    exit();  
 
 
@@ -237,7 +240,7 @@ $query_hash = " UPDATE tb_guests SET guests_pass = '$passwordHasheada' WHERE id_
 $sale_y_vale = mysqli_query($enlace, $query_hash) or die(mysqli_error());
 mysqli_close($enlace); 
 
-header("Location: f_check_in_dos_c.php?zv=ve87&pass=6tz@bv&zp=$doc&ri=$id_del_g&mil=57tr@jh&em=$email_guests&tf=$telf_guests&na=$nationality_g&ran=$rango&prz=$la_room_es&pbz=$la_room_cama_es&ttitulo_kind=$ttitulo_kind&id_kind=$id_kind&compi=$compatriota&cuenta_ami=$cuenta_ami&hora_rey=$la_hora_rey", TRUE, 301);
+header("Location: f_check_in_dos_c.php?zv=ve87&pass=6tz@bv&zp=$doc&ri=$id_del_g&mil=57tr@jh&em=$email_guests&tf=$telf_guests&na=$nationality_g&ran=$rango&prz=$la_room_es&pbz=$la_room_cama_es&ttitulo_kind=$ttitulo_kind&id_kind=$id_kind&compi=$compatriota&cuenta_ami=$cuenta_ami&hora_rey=$la_hora_rey&id_papa=$id_pay", TRUE, 301);
 
 
 
@@ -297,6 +300,15 @@ mysqli_close($enlace);
 
               <div class="form-row"> 
 
+
+              <div class="col-md-1 col-lg-1" >  
+ <button type="button" class="btn btn-dark btn-lg btn-block" style="margin-top:1px;"  onClick="javascript:history.go(-1)" ><i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal fa-lg"></i></button>
+</div>
+
+
+
+
+
                 <div class="alert col-md-6 col-lg-6 alert-primary" role="alert"> 
                     <i class="fa-solid fa-bolt-lightning fa-lg "></i> &nbsp; &nbsp; Check-In Bed: <b><?php echo $ttitulo ?></b> - <?php echo $rango ?> .   
                 </div> 
@@ -305,14 +317,14 @@ mysqli_close($enlace);
 
                 <?php  
                   if ($errorZ!="")
-                  { echo "<div class=\"alert col-md-6 col-lg-6 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
+                  { echo "<div class=\"alert col-md-5 col-lg-5 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ERROR TIENE ALGO-->
 
 
                 <?php 
                   if ($exitoZ!="")
-                  { echo "<div class=\"alert col-md-6 col-lg-6 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
+                  { echo "<div class=\"alert col-md-5 col-lg-5 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ÉXITO TIENE ALGO-->
 

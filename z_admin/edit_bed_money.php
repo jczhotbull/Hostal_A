@@ -35,6 +35,15 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
 
 
+    
+    $tax_cero = '0';
+    $tax_encontrado = '10000';
+    $cuentas_tax = '0';
+
+    $el_unillo = '1';
+
+
+
 
 // editar room
 if(isset($_POST['add_price']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD y comprueba
@@ -151,6 +160,12 @@ else {
 
               <div class="form-row"> 
 
+              <div class="col-md-1 col-lg-1" >  
+ <button type="button" class="btn btn-dark btn-lg btn-block" style="margin-top:1px;"  onClick="javascript:history.go(-1)" ><i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal fa-lg"></i></button>
+</div>
+
+
+
                 <div class="alert col-md-3 col-lg-3 alert-primary" role="alert">
                     <i class="fa-solid fa-money-bill-trend-up fa-lg "></i> &nbsp; &nbsp;  <i> <b><?php echo $ttitulo ?></b> Beds.</i>
                 </div> 
@@ -159,14 +174,14 @@ else {
 
                 <?php  
                   if ($errorZ!="")
-                  { echo "<div class=\"alert col-md-9 col-lg-9 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
+                  { echo "<div class=\"alert col-md-8 col-lg-8 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ERROR TIENE ALGO-->
 
 
                 <?php 
                   if ($exitoZ!="")
-                  { echo "<div class=\"alert col-md-9 col-lg-9 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
+                  { echo "<div class=\"alert col-md-8 col-lg-8 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ÉXITO TIENE ALGO-->
 

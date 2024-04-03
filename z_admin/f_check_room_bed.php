@@ -3319,6 +3319,12 @@ else {
 
               <div class="form-row"> 
 
+
+              <div class="col-md-1 col-lg-1" >  
+ <button type="button" class="btn btn-dark btn-lg btn-block" style="margin-top:1px;"  onClick="javascript:history.go(-1)" ><i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal fa-lg"></i></button>
+</div>
+
+
                 <div class="alert col-md-3 col-lg-3 alert-primary" role="alert">
                     <i class="fa-solid fa-people-line fa-lg "></i> &nbsp; &nbsp;  <i> All <b><?php echo $ttitulo ?></b> Rooms.</i>
                 </div>
@@ -3327,14 +3333,14 @@ else {
 
                 <?php  
                   if ($errorZ!="")
-                  { echo "<div class=\"alert col-md-9 col-lg-9 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
+                  { echo "<div class=\"alert col-md-8 col-lg-8 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ERROR TIENE ALGO-->
 
 
                 <?php 
                   if ($exitoZ!="")
-                  { echo "<div class=\"alert col-md-9 col-lg-9 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
+                  { echo "<div class=\"alert col-md-8 col-lg-8 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
                 ?>
                                        <!-- SOLO ES VISIBLE SI LA VARIABLE DE ÉXITO TIENE ALGO-->
 
@@ -3359,6 +3365,9 @@ else {
    <div class="col-sm-4 col-md-4 col-lg-2 col-2 mb-2 ">
    <button type="submit"  name="check_dates" class="btn btn-info btn-sm">Check</button>
  </div>
+
+
+
 
 
  </div>
@@ -3604,12 +3613,19 @@ if ($row_room_pp_rr['name_discounts'] !='0') {
     
     ?>
 
-<div class="alert alert-dark mt-4 col-md-12 col-lg-6 col-12" role="alert" <?php if ( $totalRows_rooms_few =='0' OR $alerta_principal =='0'  ){?>style="display:none"<?php } ?> >
 
-<table class="table table-bordered table-hover" style="font-size: 14px;">
+
+
+<div class="form-row">
+
+
+
+<div class="mt-4 col-md-12 col-lg-6 col-12"  <?php if ( $totalRows_rooms_few =='0' OR $alerta_principal =='0'  ){?>style="display:none"<?php } ?> >
+
+<table class="table table-bordered table-sm table-hover" style="font-size: 14px;">
   <thead>
     <tr>
-      <th scope="col">Night(s)</th>
+      <th scope="col">Bed</th>
       <th scope="col"><?php echo $row_the_currencys_prim['symbol_currency']; ?></th>
       <th scope="col"><?php echo $row_the_currencys_second['symbol_currency']; ?></th>
       <th scope="col"><?php echo $row_the_currencys_third['symbol_currency']; ?></th>
@@ -3618,7 +3634,7 @@ if ($row_room_pp_rr['name_discounts'] !='0') {
 
   <tbody>
     <tr>
-      <th scope="row" >Bed per <b>1</b>:</th>
+      <th scope="row" ><b>1</b> Night:</th>
       <td><?php              
               if ($totalRows_room_pp != '0') {
                 echo $row_room_pp['name_prices_beds'];
@@ -3654,7 +3670,7 @@ if ($row_room_pp_rr['name_discounts'] !='0') {
     </tr>
 
     <tr>
-      <th scope="row"  >Bed for <b><?php echo $dateDiff; ?></b>:</th>
+      <th scope="row"  ><b><?php echo $dateDiff; ?></b> Nights:</th>
 
       <td> <?php              
               if ($totalRows_room_pp != '0') {
@@ -3695,8 +3711,51 @@ if ($row_room_pp_rr['name_discounts'] !='0') {
 
     </tr>
 
+   
+
+
+  </tbody>
+</table>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class=" mt-4 col-md-12 col-lg-6 col-12"  <?php if ( $totalRows_rooms_few =='0' OR $alerta_principal =='0'  ){?>style="display:none"<?php } ?> >
+
+<table class="table table-bordered table-sm table-hover" style="font-size: 14px;">
+  <thead>
     <tr>
-      <th scope="row"  >Room per <b>1</b>:</th>
+      <th scope="col">Room</th>
+      <th scope="col"><?php echo $row_the_currencys_prim['symbol_currency']; ?></th>
+      <th scope="col"><?php echo $row_the_currencys_second['symbol_currency']; ?></th>
+      <th scope="col"><?php echo $row_the_currencys_third['symbol_currency']; ?></th>
+    </tr>
+  </thead>
+
+  <tbody>
+   
+
+    <tr>
+      <th scope="row"  ><b>1</b> Night:</th>
 
       <td > <?php
                               
@@ -3736,7 +3795,7 @@ if ($row_room_pp_rr['name_discounts'] !='0') {
     </tr>
 
     <tr>
-      <th scope="row"  >Room for <b><?php echo $dateDiff; ?></b>:</th>
+      <th scope="row"  ><b><?php echo $dateDiff; ?></b> Nights:</th>
 
       <td > <?php
                               
@@ -3787,7 +3846,35 @@ if ($row_room_pp_rr['name_discounts'] !='0') {
 </div>
 
 
-<h4 class="glowwhite mt-4" <?php if ( $totalRows_rooms_few =='0' OR $alerta_principal =='0'  ){?>style="display:none"<?php } ?> >Select a bed from a room:</h4>
+
+</div> <!-- cierre row -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h4 class="glowwhite mt-4" <?php if ( $totalRows_rooms_few =='0' OR $alerta_principal =='0'  ){?>style="display:none"<?php } ?> >Select a bed from a room <span style="color:green;"><?php echo $discc; ?><?php echo $symbc; ?> <?php echo $off; ?></span> :</h4>
 
 <!-- Icon Cards-->
      
@@ -3851,14 +3938,12 @@ mysqli_close($enlace);
              <div class="mr-5 infozzz">
              Room: <?php
 $mi_name_room = $row_rooms_few['name_room_number'];
-echo $row_rooms_few['name_room_number']; ?> - <b><?php echo $discc; ?><?php echo $symbc; ?> <?php echo $off; ?></b> <!-- / <?php echo $row_rooms_few['id_room']; ?>   -->
+echo $row_rooms_few['name_room_number']; ?>   <!-- / <?php echo $row_rooms_few['id_room']; ?>   -->
              </div>  
 
-             <div class="infozzz mt-4">   
+             <div class="infozzz">   
              </div>
-
-            
-             
+        
              
 
 

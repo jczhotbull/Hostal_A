@@ -100,6 +100,14 @@ $row_paises = mysqli_fetch_object($query_paises);
         $row_taxes = mysqli_fetch_object($query_taxes);
 
 
+        
+        $query_String_forma_pago = "SELECT COUNT(*) AS total_forma_pago FROM forma_pago";
+
+        $query_forma_pago = mysqli_query($enlace, $query_String_forma_pago);
+        
+        $row_forma_pago = mysqli_fetch_object($query_forma_pago);
+
+
 
 
         $query_String_discounts = "SELECT COUNT(*) AS total_discounts FROM discounts";

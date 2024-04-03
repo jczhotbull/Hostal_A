@@ -250,13 +250,25 @@ if(isset($_POST['add_doc_guests_comp']))  // chequea si se ha enviado algo, de s
                   
                   // el id_guests es para borrar el registro rapidamente.... por el guest
                   // amistad_rey sera 1 si es el padre o cabeza de los acompañantes.
-      
+
+
+                  
+//creo el registro del pago
+                $query_payment = "INSERT INTO tb_payment_hospedaje (id_hostel)   
+                                  VALUES ('$mi_hostel_select')";      
+                $listo_payment = mysqli_query($enlace, $query_payment) or die(mysqli_error());
+                $id_pay = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado, registro pagos
+
+
+
+     
+ // creo el registro de reserva de cama    
                   $query_bookin = "INSERT INTO
                    bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
-                   date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey)   
+                   date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey, id_payment_huesped)   
       
                   VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
-                  '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '1', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey' )"; 
+                  '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '1', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey', '$id_pay' )"; 
       
                  $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
       
@@ -264,7 +276,7 @@ if(isset($_POST['add_doc_guests_comp']))  // chequea si se ha enviado algo, de s
       
                  mysqli_close($enlace);  
       
-                header("Location: f_check_room_bed_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_gg&cuenta_ami=$suma_amigos&hora_rey=$la_hora_rey", TRUE, 301);
+                header("Location: f_check_room_bed_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_gg&cuenta_ami=$suma_amigos&hora_rey=$la_hora_rey&id_papa=$id_pay", TRUE, 301);
                 exit();    
                   
                     }   
@@ -331,13 +343,22 @@ if(isset($_POST['add_doc_guests_comp']))  // chequea si se ha enviado algo, de s
                 
                 // el id_guests es para borrar el registro rapidamente.... por el guest
                 // amistad_rey sera 1 si es el padre o cabeza de los acompañantes.
-    
+
+
+//creo el registro del pago
+                $query_payment = "INSERT INTO tb_payment_hospedaje (id_hostel)    
+                VALUES ('$mi_hostel_select')";      
+                $listo_payment = mysqli_query($enlace, $query_payment) or die(mysqli_error());
+                $id_pay = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado, registro pagos
+
+
+ // creo el registro de reserva de cama   
                 $query_bookin = "INSERT INTO
                  bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
-                 date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey)   
+                 date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey, id_payment_huesped)   
     
                 VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
-                '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '1', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey' )"; 
+                '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '1', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey', '$id_pay' )"; 
     
                $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
     
@@ -349,7 +370,7 @@ if(isset($_POST['add_doc_guests_comp']))  // chequea si se ha enviado algo, de s
     
                mysqli_close($enlace);  
     
-              header("Location: f_check_room_bed_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_gg&cuenta_ami=$suma_amigos&hora_rey=$la_hora_rey", TRUE, 301);
+              header("Location: f_check_room_bed_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_gg&cuenta_ami=$suma_amigos&hora_rey=$la_hora_rey&id_papa=$id_pay", TRUE, 301);
               exit();    
                 
                   }   
@@ -474,13 +495,24 @@ WHERE id_guests = '$id_gg' LIMIT 1 ";
                 
                 // el id_guests es para borrar el registro rapidamente.... por el guest
                 // amistad_rey sera 1 si es el padre o cabeza de los acompañantes.
+
+
+//creo el registro del pago
+$query_payment = "INSERT INTO tb_payment_hospedaje (id_hostel)    
+VALUES ('$mi_hostel_select')";      
+$listo_payment = mysqli_query($enlace, $query_payment) or die(mysqli_error());
+$id_pay = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado, registro pagos
+
+
+
+// registro de reserva
     
                 $query_bookin = "INSERT INTO
                  bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
-                 date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey)   
+                 date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey, id_payment_huesped)   
     
                 VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
-                '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '1', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey' )"; 
+                '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '1', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey', '$id_pay' )"; 
     
                $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
     
@@ -488,7 +520,7 @@ WHERE id_guests = '$id_gg' LIMIT 1 ";
     
                mysqli_close($enlace);  
     
-              header("Location: f_check_in_a_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_gg&cuenta_ami=$suma_amigos&hora_rey=$la_hora_rey", TRUE, 301);
+              header("Location: f_check_in_a_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_gg&cuenta_ami=$suma_amigos&hora_rey=$la_hora_rey&id_papa=$id_pay", TRUE, 301);
               exit();    
                 
                   }   
@@ -554,13 +586,23 @@ WHERE id_guests = '$id_gg' LIMIT 1 ";
                 
                 // el id_guests es para borrar el registro rapidamente.... por el guest
                 // amistad_rey sera 1 si es el padre o cabeza de los acompañantes.
+
+
+//creo el registro del pago
+$query_payment = "INSERT INTO tb_payment_hospedaje (id_hostel)    
+VALUES ('$mi_hostel_select')";      
+$listo_payment = mysqli_query($enlace, $query_payment) or die(mysqli_error());
+$id_pay = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado, registro pagos
+
+
+// registro de reserva
     
                 $query_bookin = "INSERT INTO
                  bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
-                 date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey)   
+                 date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey, id_payment_huesped)   
     
                 VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
-                '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '1', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey' )"; 
+                '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '1', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey', '$id_pay' )"; 
     
                $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
     
@@ -568,7 +610,7 @@ WHERE id_guests = '$id_gg' LIMIT 1 ";
     
                mysqli_close($enlace);  
     
-              header("Location: f_check_in_a_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_gg&cuenta_ami=$suma_amigos&hora_rey=$la_hora_rey", TRUE, 301);
+              header("Location: f_check_in_a_c.php?ttitulo=$ttitulo_kind&idtabla=$id_kind&range=$el_rango&compa=$id_gg&cuenta_ami=$suma_amigos&hora_rey=$la_hora_rey&id_papa=$id_pay", TRUE, 301);
               exit();    
                 
                   }   
@@ -709,13 +751,22 @@ if(isset($_POST['add_doc_guests_check']))  // chequea si se ha enviado algo, de 
                   
                   // el id_guests es para borrar el registro rapidamente.... por el guest
                   // amistad_rey sera 1 si es el padre o cabeza de los acompañantes.
-      
+
+
+//creo el registro del pago
+$query_payment = "INSERT INTO tb_payment_hospedaje (id_hostel)    
+VALUES ('$mi_hostel_select')";      
+$listo_payment = mysqli_query($enlace, $query_payment) or die(mysqli_error());
+$id_pay = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado, registro pagos
+
+
+  // reservas    
                   $query_bookin = "INSERT INTO
                    bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
-                   date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey)   
+                   date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey, id_payment_huesped)   
       
                   VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
-                  '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '1', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey' )"; 
+                  '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '1', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey', '$id_pay' )"; 
       
                  $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
       
@@ -723,7 +774,7 @@ if(isset($_POST['add_doc_guests_check']))  // chequea si se ha enviado algo, de 
       
                  mysqli_close($enlace);  
       
-                header("Location: f_check_in_tres.php?book_year=$year&rango=$el_rango&amist_code=$codigo_amistades&hora_rey=$la_hora_rey", TRUE, 301);
+                header("Location: f_check_in_tres.php?book_year=$year&rango=$el_rango&amist_code=$codigo_amistades&hora_rey=$la_hora_rey&id_papa=$id_pay", TRUE, 301);
                 exit();    
 
 
@@ -793,16 +844,28 @@ if(isset($_POST['add_doc_guests_check']))  // chequea si se ha enviado algo, de 
                 $id_del_data_g = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado.
     
                 $codigo_amistades = "_".$id_gg."_".$el_rango."_".$mi_hostel_select."_";
+                $la_hora_rey = date('Y/m/d h:i:s', time());
                 
                 // el id_guests es para borrar el registro rapidamente.... por el guest
                 // amistad_rey sera 1 si es el padre o cabeza de los acompañantes.
+
+//creo el registro del pago
+$query_payment = "INSERT INTO tb_payment_hospedaje (id_hostel)    
+VALUES ('$mi_hostel_select')";      
+$listo_payment = mysqli_query($enlace, $query_payment) or die(mysqli_error());
+$id_pay = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado, registro pagos
+
+
+// reservas
+
+
     
                 $query_bookin = "INSERT INTO
                  bed_booking(booking_year, id_hostel, id_room, id_room_bed, date_range, booking_status,
-                 date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end)   
+                 date_in, date_out, nights, arreglo_d, codigo_amistades, amistad_rey, id_guests, month_ini, month_end, hora_rey, id_payment_huesped)   
     
                 VALUES ('$year', '$mi_hostel_select', '$room_stay', '$room_bed_stay', '$el_rango', '1',
-                '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '1', '$id_gg', '$month_ini', '$month_end' )"; 
+                '$rest_a', '$rest_b', '$dateDiff', '$array_s', '$codigo_amistades', '1', '$id_gg', '$month_ini', '$month_end', '$la_hora_rey', '$id_pay' )"; 
     
                $listo_booking = mysqli_query($enlace, $query_bookin) or die(mysqli_error());
     
@@ -814,7 +877,7 @@ if(isset($_POST['add_doc_guests_check']))  // chequea si se ha enviado algo, de 
     
                mysqli_close($enlace);  
     
-               header("Location: f_check_in_tres.php?book_year=$year&rango=$el_rango&amist_code=$codigo_amistades&hora_rey=$la_hora_rey", TRUE, 301);
+               header("Location: f_check_in_tres.php?book_year=$year&rango=$el_rango&amist_code=$codigo_amistades&hora_rey=$la_hora_rey&id_papa=$id_pay", TRUE, 301);
                 exit();  
                 
                   }   

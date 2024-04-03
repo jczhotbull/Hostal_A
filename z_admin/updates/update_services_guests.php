@@ -7,7 +7,7 @@
 
       <div class="modal-header">
         <h5 class="modal-title text-info" id="exampleModalLabel">
-        <i class="fa-solid fa-cash-register fa-lg"></i> </h5>  
+        <i class="fa-solid fa-clipboard-list fa-lg"></i> </h5>  
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -223,7 +223,51 @@ if ($row_services_p['name_taxes'] == '0') {
 
 
 
-<?php echo $tax_sub_bed_t;?> % <br>
+<?php echo $tax_sub_bed_t;
+
+// permite detectar si se colocaron más de dos diferentes impuestos que no sean cero
+
+
+if($tax_sub_bed_t != $tax_cero_serv ) {
+
+  if($tax_sub_bed_t != $tax_encontrado_serv)  { 
+
+$tax_encontrado_serv = $tax_sub_bed_t;
+
+$cuentas_tax_tax_serv = $cuentas_tax_tax_serv + $el_unillo;   // si llega a dos es porque cambio mas de una vez
+
+}
+
+}
+
+
+if ($cuentas_tax_tax_serv  >= "2") {
+
+echo '<script type="text/javascript">';
+ echo 'setTimeout(function () {
+
+  swal({
+ title: "",
+ type: "error",
+ html: "More than two different taxes (other than zero) have been placed. Correct Services Taxes.",
+ icon: "error",
+});'
+
+;
+ echo '}, 1000);</script>';  
+
+} 
+
+
+
+
+
+
+
+
+
+
+?> % <br>
 
 
 <span style="font-size:10px;" > ( <b style="color:purple;" ><?php echo $english_tax_t;?> </b> )</span>

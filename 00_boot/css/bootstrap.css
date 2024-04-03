@@ -1719,7 +1719,7 @@ pre code {
 .table-primary,
 .table-primary > th,
 .table-primary > td {
-  background-color: #b8daff;
+  background-color: #b8daff; 
 }
 
 .table-primary th,
@@ -1730,12 +1730,12 @@ pre code {
 }
 
 .table-hover .table-primary:hover {
-  background-color: #9fcdff;
+ background-color: #9fcdff; 
 }
 
 .table-hover .table-primary:hover > td,
 .table-hover .table-primary:hover > th {
-  background-color: #9fcdff;
+  background-color: #9fcdff; 
 }
 
 .table-secondary,

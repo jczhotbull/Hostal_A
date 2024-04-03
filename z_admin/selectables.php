@@ -534,7 +534,26 @@ href="selecc_zz.php?ttabla=product_kind&idtabla=id_product_kind&nombdato=name_pr
 
 
 
+        <div class="col-xl-3 col-sm-6 col-6 mb-3">
+          <div class="card text-white relleno-grama o-hidden h-100">
+            <div class="card-body">
+              <div class="mini_card_icon_pe">
+                <i class="fa-solid fa-money-bill-transfer"></i> 
+              </div>
+              <div class="mr-5 cantidadzzz"><?php echo $row_currency->total_currency; ?></div>
+              <div class="infozzz">Currency</div>
+            </div>
+            <a class=" card-footer card-footerz text-white clearfix small z-1"        
 
+href="selecc_zz_dos.php?ttabla=currency&idtabla=id_currency&nombdato=name_currency&nombextradato=symbol_currency&input_a=Coin Name&input_b=Coin Symbol&ttitulo=Currency">
+
+              <span class="float-left">View</span>
+              <span class="float-right">
+                <i class="fa fa-angle-right"></i>
+              </span>
+            </a>
+          </div>
+        </div>
 
 
 
@@ -597,18 +616,25 @@ href="selecc_zz.php?ttabla=discounts&idtabla=id_discounts&nombdato=name_discount
 
 
 
-        <div class="col-xl-3 col-sm-6 col-6 mb-3">
-          <div class="card text-white relleno-grama o-hidden h-100">
+
+
+
+
+
+
+
+        <div class="col-xl-3 col-sm-6 col-6 mb-3"> 
+          <div class="card text-white relleno-green o-hidden h-100">
             <div class="card-body">
-              <div class="mini_card_icon_pe">
-                <i class="fa-solid fa-money-bill-transfer"></i> 
+              <div class="card-body-icon">
+                <i class="fa-solid fa-sack-dollar"></i>
               </div>
-              <div class="mr-5 cantidadzzz"><?php echo $row_currency->total_currency; ?></div>
-              <div class="infozzz">Currency</div>
-            </div>
+              <div class="mr-5 cantidadzzz"><?php echo $row_forma_pago->total_forma_pago; ?></div>
+              <div class="infozzz">Payment(s)</div>
+            </div>  
             <a class=" card-footer card-footerz text-white clearfix small z-1"        
 
-href="selecc_zz_dos.php?ttabla=currency&idtabla=id_currency&nombdato=name_currency&nombextradato=symbol_currency&input_a=Coin Name&input_b=Coin Symbol&ttitulo=Currency">
+href="selecc_zz.php?ttabla=forma_pago&idtabla=id_forma_pago&nombdato=name_forma_pago&ttitulo=Payment Methods">    
 
               <span class="float-left">View</span>
               <span class="float-right">
@@ -617,6 +643,18 @@ href="selecc_zz_dos.php?ttabla=currency&idtabla=id_currency&nombdato=name_curren
             </a>
           </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
