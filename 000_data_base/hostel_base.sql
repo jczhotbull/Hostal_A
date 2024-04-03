@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-03-2024 a las 22:26:21
+-- Tiempo de generación: 03-04-2024 a las 17:52:27
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -44,26 +44,23 @@ CREATE TABLE `bed_booking` (
   `id_guests` int(254) NOT NULL,
   `month_ini` varchar(20) NOT NULL,
   `month_end` varchar(20) NOT NULL,
-  `hora_rey` datetime NOT NULL
+  `hora_rey` datetime NOT NULL,
+  `id_payment_huesped` int(254) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `bed_booking`
 --
 
-INSERT INTO `bed_booking` (`id_bed_booking`, `booking_year`, `id_hostel`, `id_room`, `id_room_bed`, `date_range`, `booking_status`, `date_in`, `date_out`, `nights`, `arreglo_d`, `codigo_amistades`, `amistad_rey`, `id_guests`, `month_ini`, `month_end`, `hora_rey`) VALUES
-(333, '2024', 10, 58, 174, '2024-03-29 - 2024-04-02', 1, '2024-03-29', '2024-04-02', '4', 'a:3:{i:0;s:10:\"2024-03-30\";i:1;s:10:\"2024-03-31\";i:2;s:10:\"2024-04-01\";}', '_193_2024-03-29 - 2024-04-02_10_', 1, 193, '03', '04', '2024-03-27 02:51:29'),
-(334, '2024', 10, 58, 173, '2024-03-29 - 2024-04-02', 1, '2024-03-29', '2024-04-02', '4', 'a:3:{i:0;s:10:\"2024-03-30\";i:1;s:10:\"2024-03-31\";i:2;s:10:\"2024-04-01\";}', '_193_2024-03-29 - 2024-04-02_10_', 0, 199, '03', '04', '2024-03-27 02:51:29'),
-(335, '2024', 10, 48, 142, '2024-03-29 - 2024-04-02', 1, '2024-03-29', '2024-04-02', '4', 'a:3:{i:0;s:10:\"2024-03-30\";i:1;s:10:\"2024-03-31\";i:2;s:10:\"2024-04-01\";}', '_193_2024-03-29 - 2024-04-02_10_', 0, 201, '03', '04', '2024-03-27 02:51:29'),
-(336, '2024', 10, 48, 143, '2024-03-29 - 2024-04-02', 1, '2024-03-29', '2024-04-02', '4', 'a:3:{i:0;s:10:\"2024-03-30\";i:1;s:10:\"2024-03-31\";i:2;s:10:\"2024-04-01\";}', '_193_2024-03-29 - 2024-04-02_10_', 0, 200, '03', '04', '2024-03-27 02:51:29'),
-(337, '2024', 10, 58, 175, '2024-03-29 - 2024-04-02', 1, '2024-03-29', '2024-04-02', '4', 'a:3:{i:0;s:10:\"2024-03-30\";i:1;s:10:\"2024-03-31\";i:2;s:10:\"2024-04-01\";}', '_193_2024-03-29 - 2024-04-02_10_', 0, 214, '03', '04', '2024-03-27 02:51:29'),
-(338, '2024', 10, 49, 144, '2024-03-29 - 2024-04-02', 1, '2024-03-29', '2024-04-02', '4', 'a:3:{i:0;s:10:\"2024-03-30\";i:1;s:10:\"2024-03-31\";i:2;s:10:\"2024-04-01\";}', '_193_2024-03-29 - 2024-04-02_10_', 0, 215, '03', '04', '2024-03-27 02:51:29'),
-(339, '2024', 10, 49, 145, '2024-03-29 - 2024-04-02', 1, '2024-03-29', '2024-04-02', '4', 'a:3:{i:0;s:10:\"2024-03-30\";i:1;s:10:\"2024-03-31\";i:2;s:10:\"2024-04-01\";}', '_193_2024-03-29 - 2024-04-02_10_', 0, 211, '03', '04', '2024-03-27 02:51:29'),
-(340, '2024', 10, 49, 146, '2024-03-29 - 2024-04-02', 1, '2024-03-29', '2024-04-02', '4', 'a:3:{i:0;s:10:\"2024-03-30\";i:1;s:10:\"2024-03-31\";i:2;s:10:\"2024-04-01\";}', '_193_2024-03-29 - 2024-04-02_10_', 0, 216, '03', '04', '2024-03-27 02:51:29'),
-(341, '2024', 10, 48, 142, '2024-04-16 - 2024-04-20', 1, '2024-04-16', '2024-04-20', '4', 'a:3:{i:0;s:10:\"2024-04-17\";i:1;s:10:\"2024-04-18\";i:2;s:10:\"2024-04-19\";}', '_193_2024-04-16 - 2024-04-20_10_', 1, 193, '04', '04', '2024-03-28 10:07:04'),
-(342, '2024', 10, 48, 143, '2024-04-16 - 2024-04-20', 1, '2024-04-16', '2024-04-20', '4', 'a:3:{i:0;s:10:\"2024-04-17\";i:1;s:10:\"2024-04-18\";i:2;s:10:\"2024-04-19\";}', '_193_2024-04-16 - 2024-04-20_10_', 0, 199, '04', '04', '2024-03-28 10:07:04'),
-(343, '2024', 10, 47, 138, '2024-04-16 - 2024-04-20', 1, '2024-04-16', '2024-04-20', '4', 'a:3:{i:0;s:10:\"2024-04-17\";i:1;s:10:\"2024-04-18\";i:2;s:10:\"2024-04-19\";}', '_193_2024-04-16 - 2024-04-20_10_', 0, 203, '04', '04', '2024-03-28 10:07:04'),
-(344, '2024', 10, 57, 166, '2024-04-16 - 2024-04-20', 1, '2024-04-16', '2024-04-20', '4', 'a:3:{i:0;s:10:\"2024-04-17\";i:1;s:10:\"2024-04-18\";i:2;s:10:\"2024-04-19\";}', '_193_2024-04-16 - 2024-04-20_10_', 0, 200, '04', '04', '2024-03-28 10:07:04');
+INSERT INTO `bed_booking` (`id_bed_booking`, `booking_year`, `id_hostel`, `id_room`, `id_room_bed`, `date_range`, `booking_status`, `date_in`, `date_out`, `nights`, `arreglo_d`, `codigo_amistades`, `amistad_rey`, `id_guests`, `month_ini`, `month_end`, `hora_rey`, `id_payment_huesped`) VALUES
+(349, '2024', 10, 58, 174, '2024-04-23 - 2024-04-27', 1, '2024-04-23', '2024-04-27', '4', 'a:3:{i:0;s:10:\"2024-04-24\";i:1;s:10:\"2024-04-25\";i:2;s:10:\"2024-04-26\";}', '_193_2024-04-23 - 2024-04-27_10_', 1, 193, '04', '04', '2024-04-02 09:50:16', 1),
+(350, '2024', 10, 47, 138, '2024-04-23 - 2024-04-27', 2, '2024-04-23', '2024-04-27', '4', 'a:3:{i:0;s:10:\"2024-04-24\";i:1;s:10:\"2024-04-25\";i:2;s:10:\"2024-04-26\";}', '_193_2024-04-23 - 2024-04-27_10_', 1, 193, '04', '04', '2024-04-02 09:51:42', 2),
+(351, '2024', 10, 47, 139, '2024-04-23 - 2024-04-27', 2, '2024-04-23', '2024-04-27', '4', 'a:3:{i:0;s:10:\"2024-04-24\";i:1;s:10:\"2024-04-25\";i:2;s:10:\"2024-04-26\";}', '_193_2024-04-23 - 2024-04-27_10_', 0, 199, '04', '04', '2024-04-02 09:51:42', 2),
+(352, '2024', 10, 47, 141, '2024-04-23 - 2024-04-27', 2, '2024-04-23', '2024-04-27', '4', 'a:3:{i:0;s:10:\"2024-04-24\";i:1;s:10:\"2024-04-25\";i:2;s:10:\"2024-04-26\";}', '_193_2024-04-23 - 2024-04-27_10_', 0, 220, '04', '04', '2024-04-02 09:51:42', 2),
+(353, '2024', 10, 55, 161, '2024-04-23 - 2024-04-27', 2, '2024-04-23', '2024-04-27', '4', 'a:3:{i:0;s:10:\"2024-04-24\";i:1;s:10:\"2024-04-25\";i:2;s:10:\"2024-04-26\";}', '_193_2024-04-23 - 2024-04-27_10_', 0, 200, '04', '04', '2024-04-02 09:51:42', 2),
+(354, '2024', 10, 57, 167, '2024-04-23 - 2024-04-27', 2, '2024-04-23', '2024-04-27', '4', 'a:3:{i:0;s:10:\"2024-04-24\";i:1;s:10:\"2024-04-25\";i:2;s:10:\"2024-04-26\";}', '_193_2024-04-23 - 2024-04-27_10_', 0, 203, '04', '04', '2024-04-02 09:51:42', 2),
+(355, '2024', 10, 56, 163, '2024-04-23 - 2024-04-27', 2, '2024-04-23', '2024-04-27', '4', 'a:3:{i:0;s:10:\"2024-04-24\";i:1;s:10:\"2024-04-25\";i:2;s:10:\"2024-04-26\";}', '_193_2024-04-23 - 2024-04-27_10_', 0, 202, '04', '04', '2024-04-02 09:51:42', 2),
+(356, '2024', 10, 50, 149, '2024-04-23 - 2024-04-27', 2, '2024-04-23', '2024-04-27', '4', 'a:3:{i:0;s:10:\"2024-04-24\";i:1;s:10:\"2024-04-25\";i:2;s:10:\"2024-04-26\";}', '_193_2024-04-23 - 2024-04-27_10_', 0, 221, '04', '04', '2024-04-02 09:51:42', 2);
 
 -- --------------------------------------------------------
 
@@ -163,6 +160,27 @@ INSERT INTO `behaviors` (`id_behaviors`, `name_behaviors`) VALUES
 (13, 'Awesome'),
 (14, 'Gratifying'),
 (16, 'Disorderly');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `booking_status`
+--
+
+CREATE TABLE `booking_status` (
+  `id_booking_status` int(11) NOT NULL,
+  `name_booking_status` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `booking_status`
+--
+
+INSERT INTO `booking_status` (`id_booking_status`, `name_booking_status`) VALUES
+(1, 'Reserved'),
+(2, 'In Use'),
+(3, 'Available'),
+(4, 'Not Available');
 
 -- --------------------------------------------------------
 
@@ -296,6 +314,27 @@ CREATE TABLE `floors` (
 INSERT INTO `floors` (`id_floors`, `name_floors`) VALUES
 (1, 'Ground Floor'),
 (2, 'First Floor');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `forma_pago`
+--
+
+CREATE TABLE `forma_pago` (
+  `id_forma_pago` int(11) NOT NULL,
+  `name_forma_pago` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `forma_pago`
+--
+
+INSERT INTO `forma_pago` (`id_forma_pago`, `name_forma_pago`) VALUES
+(1, 'Cash'),
+(2, 'Debit'),
+(3, 'Credit Card'),
+(4, 'Wire Transfer');
 
 -- --------------------------------------------------------
 
@@ -461,7 +500,8 @@ INSERT INTO `productos` (`id_producto`, `name_producto`, `en_check_in`) VALUES
 (5, 'Breakfast', 3),
 (6, 'Towel', 3),
 (7, 'Laundry', 2),
-(8, 'Café ', 1);
+(8, 'Café ', 1),
+(10, 'Water Bottle', 3);
 
 -- --------------------------------------------------------
 
@@ -583,7 +623,7 @@ INSERT INTO `reporte_incidencias_r` (`id_reporte_incidencias_r`, `id_quien_repor
 (13, 9, 46, '2024-03-17 12:47:27', 3, 1, NULL, NULL),
 (14, 9, 46, '2024-03-17 12:47:31', 6, 1, NULL, NULL),
 (15, 9, 46, '2024-03-17 12:47:36', 9, 5, 9, '2024-03-18 02:58:05'),
-(16, 9, 48, '2024-03-17 12:47:39', 6, 4, 9, '2024-03-20 07:02:44');
+(16, 9, 48, '2024-03-17 12:47:39', 6, 2, 9, '2024-04-01 08:14:34');
 
 -- --------------------------------------------------------
 
@@ -789,7 +829,12 @@ INSERT INTO `tb_data_guests` (`id_data_guests`, `guests_doc_id_pic`, `id_nation_
 (150, 'guests/doc_id_g/213_774887.png', 1, '', '', 12, NULL, 213),
 (151, 'guests/doc_id_g/214_555557.png', 1, '', '', 12, NULL, 214),
 (152, 'guests/doc_id_g/215_7777788.png', 1, '', '', 12, NULL, 215),
-(153, 'guests/doc_id_g/216_9999988.png', 1, '', '', 12, NULL, 216);
+(153, 'guests/doc_id_g/216_9999988.png', 1, '', '', 12, NULL, 216),
+(154, 'guests/doc_id_g/217_000655666.png', 1, '', '', 12, NULL, 217),
+(155, 'guests/doc_id_g/218_77777444.png', 1, '', '', 12, NULL, 218),
+(156, 'guests/doc_id_g/219_887555.png', 1, '', '', 12, NULL, 219),
+(157, 'guests/doc_id_g/220_131379518.png', 1, '', '', 12, NULL, 220),
+(158, 'guests/doc_id_g/221_777778.png', 1, '', '', 12, NULL, 221);
 
 -- --------------------------------------------------------
 
@@ -873,24 +918,12 @@ INSERT INTO `tb_guests` (`id_guests`, `guests_doc_id`, `p_name_g`, `s_name_g`, `
 (213, 774887, '', NULL, '', NULL, NULL, 'c625b85e03b4d637d37c927063b8f5a1', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:38:00'),
 (214, 555557, '', NULL, '', NULL, NULL, 'aee7b02e4f0d4f4fb7a2cd306a425726', 1, 9, '0000-00-00', 0, 3, '2024-03-27 13:52:09'),
 (215, 7777788, '', NULL, '', NULL, NULL, '9150171cb3ef8063abf2e8e0ab544f27', 1, 9, '0000-00-00', 0, 3, '2024-03-27 13:52:20'),
-(216, 9999988, '', NULL, '', NULL, NULL, 'fb23fa1b7d974edcf30fe6dd504cecc9', 1, 9, '0000-00-00', 0, 3, '2024-03-27 13:52:47');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tb_guests_buys`
---
-
-CREATE TABLE `tb_guests_buys` (
-  `id_guests_buys` int(254) NOT NULL,
-  `id_hostel` int(11) NOT NULL,
-  `id_service` int(128) NOT NULL,
-  `monto` varchar(40) NOT NULL,
-  `impuesto` varchar(40) NOT NULL,
-  `descuento` varchar(40) NOT NULL,
-  `total` varchar(40) NOT NULL,
-  `cantidad` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+(216, 9999988, '', NULL, '', NULL, NULL, 'fb23fa1b7d974edcf30fe6dd504cecc9', 1, 9, '0000-00-00', 0, 3, '2024-03-27 13:52:47'),
+(217, 655666, '', NULL, '', NULL, NULL, '7620c57e4779c884f5acdbd9e2542ca2', 1, 9, '0000-00-00', 0, 3, '2024-04-01 18:09:30'),
+(218, 77777444, '', NULL, '', NULL, NULL, 'b085d5f3c1d9e6f4944992a60b701ec6', 1, 9, '0000-00-00', 0, 3, '2024-04-01 18:10:21'),
+(219, 887555, '', NULL, '', NULL, NULL, '4beeed0661bcb594dd68d5c751267eb1', 1, 9, '0000-00-00', 0, 3, '2024-04-02 12:56:52'),
+(220, 131379518, '', NULL, '', NULL, NULL, '49c08340f90e6884639e5a358c984596', 1, 9, '0000-00-00', 0, 3, '2024-04-02 19:52:37'),
+(221, 777778, '', NULL, '', NULL, NULL, 'aaa06bdac21d685090f2cb092cd5c3b9', 1, 9, '0000-00-00', 0, 3, '2024-04-02 19:55:30');
 
 -- --------------------------------------------------------
 
@@ -920,7 +953,10 @@ INSERT INTO `tb_guests_services_check_in` (`id_guests_services_check_in`, `id_ho
 (25, 10, 339, 13, 12, '2024-03-28 20:21:28'),
 (26, 10, 334, 12, 16, '2024-03-28 20:22:54'),
 (28, 10, 341, 12, 16, '2024-03-28 21:11:43'),
-(30, 10, 343, 13, 12, '2024-03-28 21:12:08');
+(30, 10, 343, 13, 12, '2024-03-28 21:12:08'),
+(32, 10, 350, 12, 16, '2024-04-02 20:59:08'),
+(33, 10, 350, 14, 17, '2024-04-02 20:59:08'),
+(34, 10, 354, 13, 12, '2024-04-02 20:59:20');
 
 -- --------------------------------------------------------
 
@@ -931,6 +967,45 @@ INSERT INTO `tb_guests_services_check_in` (`id_guests_services_check_in`, `id_ho
 CREATE TABLE `tb_guests_services_regulares` (
   `id_guests_services_regulares` int(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tb_payment_hospedaje`
+--
+
+CREATE TABLE `tb_payment_hospedaje` (
+  `id_payment_hospedaje` int(254) NOT NULL,
+  `id_hostel` int(64) NOT NULL,
+  `tot_hospedaje_tax_cero` decimal(30,2) NOT NULL DEFAULT 0.00,
+  `tot_hospedaje_con_tax` decimal(30,2) NOT NULL DEFAULT 0.00,
+  `tot_services_tax_cero` decimal(30,2) NOT NULL DEFAULT 0.00,
+  `tot_services_con_tax` decimal(30,2) NOT NULL DEFAULT 0.00,
+  `id_tax_no_cero` int(11) NOT NULL DEFAULT 1,
+  `monto_hospedaje_total` decimal(40,2) NOT NULL DEFAULT 0.00,
+  `primer_pago_hospedaje` decimal(40,2) NOT NULL DEFAULT 0.00,
+  `id_primer_pago_forma` int(11) NOT NULL DEFAULT 1,
+  `primer_pago_fecha` date DEFAULT NULL,
+  `primer_pago_recibo` varchar(30) DEFAULT NULL,
+  `segundo_pago_hospedaje` decimal(40,2) NOT NULL DEFAULT 0.00,
+  `id_segundo_pago_forma` int(11) NOT NULL DEFAULT 1,
+  `segundo_pago_fecha` date DEFAULT NULL,
+  `segundo_pago_recibo` varchar(30) DEFAULT NULL,
+  `tercer_pago_hospedaje` decimal(40,2) NOT NULL DEFAULT 0.00,
+  `id_tercer_pago_forma` int(11) NOT NULL DEFAULT 1,
+  `tercer_pago_fecha` date DEFAULT NULL,
+  `tercer_pago_recibo` varchar(30) DEFAULT NULL,
+  `deuda_hospedaje` decimal(40,2) NOT NULL DEFAULT 0.00,
+  `comentario_hospedaje` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tb_payment_hospedaje`
+--
+
+INSERT INTO `tb_payment_hospedaje` (`id_payment_hospedaje`, `id_hostel`, `tot_hospedaje_tax_cero`, `tot_hospedaje_con_tax`, `tot_services_tax_cero`, `tot_services_con_tax`, `id_tax_no_cero`, `monto_hospedaje_total`, `primer_pago_hospedaje`, `id_primer_pago_forma`, `primer_pago_fecha`, `primer_pago_recibo`, `segundo_pago_hospedaje`, `id_segundo_pago_forma`, `segundo_pago_fecha`, `segundo_pago_recibo`, `tercer_pago_hospedaje`, `id_tercer_pago_forma`, `tercer_pago_fecha`, `tercer_pago_recibo`, `deuda_hospedaje`, `comentario_hospedaje`) VALUES
+(1, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, NULL),
+(2, 10, 0.00, 3198.40, 50.40, 406.00, 3, 4015.24, 1580.00, 2, '2024-04-03', '587', 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 2435.24, 'paga mañana');
 
 -- --------------------------------------------------------
 
@@ -996,7 +1071,10 @@ INSERT INTO `tb_prices_beds` (`id_prices_beds`, `id_hostel`, `id_room_kind`, `na
 (10, 10, 3, 140.00, 1, 1, '2024-03-16 23:10:17', 9),
 (11, 10, 4, 90.00, 1, 1, '2024-03-16 23:10:31', 9),
 (12, 10, 1, 115.00, 1, 4, '2024-03-25 13:21:02', 9),
-(13, 10, 1, 120.00, 3, 4, '2024-03-25 20:54:05', 9);
+(13, 10, 1, 120.00, 3, 4, '2024-03-25 20:54:05', 9),
+(14, 10, 4, 88.00, 3, 4, '2024-04-02 20:09:59', 9),
+(15, 10, 3, 120.00, 4, 1, '2024-04-02 22:11:20', 9),
+(16, 10, 3, 130.00, 3, 1, '2024-04-02 22:15:06', 9);
 
 -- --------------------------------------------------------
 
@@ -1164,7 +1242,9 @@ INSERT INTO `tb_services` (`id_services`, `id_hostal`, `id_product_kind`, `id_pr
 (13, 10, 2, 3, 9, '2024-03-16 23:21:21', 1, '', 1),
 (14, 10, 1, 5, 9, '2024-03-27 14:04:58', 1, '', 1),
 (15, 10, 3, 4, 9, '2024-03-27 19:47:43', 1, '', 1),
-(17, 10, 1, 2, 9, '2024-03-28 20:58:23', 1, '', 1);
+(17, 10, 1, 2, 9, '2024-03-28 20:58:23', 1, '', 1),
+(18, 10, 1, 8, 9, '2024-04-02 21:41:23', 1, '', 1),
+(19, 10, 3, 10, 9, '2024-04-02 22:20:29', 1, '', 1);
 
 -- --------------------------------------------------------
 
@@ -1199,7 +1279,24 @@ INSERT INTO `tb_services_prices` (`id_services_prices`, `id_hostel`, `id_service
 (16, 10, 12, 1, 5, 75.00, 3, 3, '2024-03-27 19:48:38', 9),
 (17, 10, 14, 1, 5, 150.00, 4, 3, '2024-03-27 19:48:45', 9),
 (18, 10, 17, 1, 2, 25.00, 3, 4, '2024-03-28 20:58:53', 9),
-(19, 10, 15, 3, 4, 64.00, 4, 1, '2024-03-28 20:59:21', 9);
+(19, 10, 15, 3, 4, 64.00, 4, 1, '2024-03-28 20:59:21', 9),
+(20, 10, 18, 1, 8, 14.00, 3, 1, '2024-04-02 21:41:55', 9),
+(21, 10, 14, 1, 5, 60.00, 3, 3, '2024-04-02 21:43:18', 9),
+(22, 10, 17, 1, 2, 20.00, 4, 4, '2024-04-02 21:43:46', 9),
+(23, 10, 17, 1, 2, 8.00, 1, 4, '2024-04-02 21:45:13', 9),
+(24, 10, 17, 1, 2, 54.00, 4, 4, '2024-04-02 21:48:11', 9),
+(25, 10, 12, 1, 5, 55.00, 4, 3, '2024-04-02 21:48:49', 9),
+(26, 10, 17, 1, 2, 54.00, 3, 1, '2024-04-02 21:49:04', 9),
+(27, 10, 12, 1, 5, 55.00, 3, 1, '2024-04-02 21:49:41', 9),
+(28, 10, 17, 1, 2, 20.00, 1, 4, '2024-04-02 21:49:51', 9),
+(29, 10, 12, 1, 5, 14.00, 1, 3, '2024-04-02 21:49:59', 9),
+(30, 10, 18, 1, 8, 15.00, 4, 3, '2024-04-02 21:50:11', 9),
+(31, 10, 18, 1, 8, 15.00, 1, 4, '2024-04-02 21:57:57', 9),
+(32, 10, 17, 1, 2, 20.00, 2, 4, '2024-04-02 21:58:12', 9),
+(33, 10, 17, 1, 2, 20.00, 3, 4, '2024-04-02 21:58:23', 9),
+(34, 10, 15, 3, 4, 64.00, 3, 4, '2024-04-02 22:04:26', 9),
+(35, 10, 19, 3, 10, 22.00, 2, 1, '2024-04-02 22:20:47', 9),
+(36, 10, 19, 3, 10, 22.00, 3, 1, '2024-04-02 22:21:39', 9);
 
 -- --------------------------------------------------------
 
@@ -1269,7 +1366,9 @@ ALTER TABLE `bed_booking`
   ADD PRIMARY KEY (`id_bed_booking`),
   ADD KEY `los_hosteless` (`id_hostel`),
   ADD KEY `cuartillos` (`id_room`),
-  ADD KEY `camacama` (`id_room_bed`);
+  ADD KEY `camacama` (`id_room_bed`),
+  ADD KEY `pagos_huesped` (`id_payment_huesped`),
+  ADD KEY `book_statutos` (`booking_status`);
 
 --
 -- Indices de la tabla `bed_kind`
@@ -1294,6 +1393,12 @@ ALTER TABLE `bed_status`
 --
 ALTER TABLE `behaviors`
   ADD PRIMARY KEY (`id_behaviors`);
+
+--
+-- Indices de la tabla `booking_status`
+--
+ALTER TABLE `booking_status`
+  ADD PRIMARY KEY (`id_booking_status`);
 
 --
 -- Indices de la tabla `bunk_level`
@@ -1334,6 +1439,12 @@ ALTER TABLE `exchange_rates`
 --
 ALTER TABLE `floors`
   ADD PRIMARY KEY (`id_floors`);
+
+--
+-- Indices de la tabla `forma_pago`
+--
+ALTER TABLE `forma_pago`
+  ADD PRIMARY KEY (`id_forma_pago`);
 
 --
 -- Indices de la tabla `hostel_area`
@@ -1489,12 +1600,6 @@ ALTER TABLE `tb_guests`
   ADD KEY `sexoi` (`guests_sex`);
 
 --
--- Indices de la tabla `tb_guests_buys`
---
-ALTER TABLE `tb_guests_buys`
-  ADD PRIMARY KEY (`id_guests_buys`);
-
---
 -- Indices de la tabla `tb_guests_services_check_in`
 --
 ALTER TABLE `tb_guests_services_check_in`
@@ -1508,6 +1613,15 @@ ALTER TABLE `tb_guests_services_check_in`
 --
 ALTER TABLE `tb_guests_services_regulares`
   ADD PRIMARY KEY (`id_guests_services_regulares`);
+
+--
+-- Indices de la tabla `tb_payment_hospedaje`
+--
+ALTER TABLE `tb_payment_hospedaje`
+  ADD PRIMARY KEY (`id_payment_hospedaje`),
+  ADD KEY `pago_a` (`id_primer_pago_forma`),
+  ADD KEY `pago_b` (`id_segundo_pago_forma`),
+  ADD KEY `pago_c` (`id_tercer_pago_forma`);
 
 --
 -- Indices de la tabla `tb_personal`
@@ -1605,7 +1719,7 @@ ALTER TABLE `z_hostel`
 -- AUTO_INCREMENT de la tabla `bed_booking`
 --
 ALTER TABLE `bed_booking`
-  MODIFY `id_bed_booking` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=345;
+  MODIFY `id_bed_booking` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=357;
 
 --
 -- AUTO_INCREMENT de la tabla `bed_kind`
@@ -1630,6 +1744,12 @@ ALTER TABLE `bed_status`
 --
 ALTER TABLE `behaviors`
   MODIFY `id_behaviors` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT de la tabla `booking_status`
+--
+ALTER TABLE `booking_status`
+  MODIFY `id_booking_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `bunk_level`
@@ -1666,6 +1786,12 @@ ALTER TABLE `exchange_rates`
 --
 ALTER TABLE `floors`
   MODIFY `id_floors` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `forma_pago`
+--
+ALTER TABLE `forma_pago`
+  MODIFY `id_forma_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `hostel_area`
@@ -1707,7 +1833,7 @@ ALTER TABLE `nationality`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `product_kind`
@@ -1791,7 +1917,7 @@ ALTER TABLE `tb_address`
 -- AUTO_INCREMENT de la tabla `tb_data_guests`
 --
 ALTER TABLE `tb_data_guests`
-  MODIFY `id_data_guests` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
+  MODIFY `id_data_guests` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_data_personal`
@@ -1803,25 +1929,25 @@ ALTER TABLE `tb_data_personal`
 -- AUTO_INCREMENT de la tabla `tb_guests`
 --
 ALTER TABLE `tb_guests`
-  MODIFY `id_guests` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
-
---
--- AUTO_INCREMENT de la tabla `tb_guests_buys`
---
-ALTER TABLE `tb_guests_buys`
-  MODIFY `id_guests_buys` int(254) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_guests` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_guests_services_check_in`
 --
 ALTER TABLE `tb_guests_services_check_in`
-  MODIFY `id_guests_services_check_in` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_guests_services_check_in` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_guests_services_regulares`
 --
 ALTER TABLE `tb_guests_services_regulares`
   MODIFY `id_guests_services_regulares` int(250) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `tb_payment_hospedaje`
+--
+ALTER TABLE `tb_payment_hospedaje`
+  MODIFY `id_payment_hospedaje` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_personal`
@@ -1833,7 +1959,7 @@ ALTER TABLE `tb_personal`
 -- AUTO_INCREMENT de la tabla `tb_prices_beds`
 --
 ALTER TABLE `tb_prices_beds`
-  MODIFY `id_prices_beds` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_prices_beds` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_prices_rooms`
@@ -1857,13 +1983,13 @@ ALTER TABLE `tb_rooms_beds`
 -- AUTO_INCREMENT de la tabla `tb_services`
 --
 ALTER TABLE `tb_services`
-  MODIFY `id_services` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_services` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_services_prices`
 --
 ALTER TABLE `tb_services_prices`
-  MODIFY `id_services_prices` int(128) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_services_prices` int(128) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `z_data_hostel`
@@ -1885,9 +2011,11 @@ ALTER TABLE `z_hostel`
 -- Filtros para la tabla `bed_booking`
 --
 ALTER TABLE `bed_booking`
+  ADD CONSTRAINT `book_statutos` FOREIGN KEY (`booking_status`) REFERENCES `booking_status` (`id_booking_status`) ON UPDATE CASCADE,
   ADD CONSTRAINT `camacama` FOREIGN KEY (`id_room_bed`) REFERENCES `tb_rooms_beds` (`id_rooms_beds`) ON UPDATE CASCADE,
   ADD CONSTRAINT `cuartillos` FOREIGN KEY (`id_room`) REFERENCES `tb_room` (`id_room`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `los_hosteless` FOREIGN KEY (`id_hostel`) REFERENCES `z_hostel` (`id_hostel`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `los_hosteless` FOREIGN KEY (`id_hostel`) REFERENCES `z_hostel` (`id_hostel`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pagos_huesped` FOREIGN KEY (`id_payment_huesped`) REFERENCES `tb_payment_hospedaje` (`id_payment_hospedaje`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `exchange_rates`
@@ -1955,6 +2083,14 @@ ALTER TABLE `tb_guests_services_check_in`
   ADD CONSTRAINT `book_in_in` FOREIGN KEY (`id_bed_booking`) REFERENCES `bed_booking` (`id_bed_booking`) ON UPDATE CASCADE,
   ADD CONSTRAINT `precioso` FOREIGN KEY (`id_service_price_check_in`) REFERENCES `tb_services_prices` (`id_services_prices`) ON UPDATE CASCADE,
   ADD CONSTRAINT `servicial` FOREIGN KEY (`id_del_servicio_check_in`) REFERENCES `tb_services` (`id_services`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `tb_payment_hospedaje`
+--
+ALTER TABLE `tb_payment_hospedaje`
+  ADD CONSTRAINT `pago_a` FOREIGN KEY (`id_primer_pago_forma`) REFERENCES `forma_pago` (`id_forma_pago`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pago_b` FOREIGN KEY (`id_segundo_pago_forma`) REFERENCES `forma_pago` (`id_forma_pago`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pago_c` FOREIGN KEY (`id_tercer_pago_forma`) REFERENCES `forma_pago` (`id_forma_pago`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `tb_personal`
