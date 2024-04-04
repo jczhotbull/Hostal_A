@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2024 a las 17:52:27
+-- Tiempo de generación: 04-04-2024 a las 17:19:06
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -137,29 +137,32 @@ INSERT INTO `bed_status` (`id_bed_status`, `name_bed_status`) VALUES
 
 CREATE TABLE `behaviors` (
   `id_behaviors` int(11) NOT NULL,
-  `name_behaviors` varchar(20) NOT NULL
+  `name_behaviors` varchar(20) NOT NULL,
+  `color_back` varchar(10) NOT NULL DEFAULT '#25e557',
+  `color_text` varchar(10) NOT NULL DEFAULT '#000000',
+  `icon_behaviors` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `behaviors`
 --
 
-INSERT INTO `behaviors` (`id_behaviors`, `name_behaviors`) VALUES
-(1, 'Normal'),
-(2, 'Challenging'),
-(3, 'Addicted'),
-(4, 'Unhygienic'),
-(5, 'Problematic'),
-(6, 'Swindler'),
-(7, 'Thief'),
-(8, 'Excellent'),
-(9, 'Gentile'),
-(10, 'Collaborator'),
-(11, 'Very Good'),
-(12, 'Good'),
-(13, 'Awesome'),
-(14, 'Gratifying'),
-(16, 'Disorderly');
+INSERT INTO `behaviors` (`id_behaviors`, `name_behaviors`, `color_back`, `color_text`, `icon_behaviors`) VALUES
+(1, 'Normal', '#d0f514', '#000000', '<i class=\"fa-regular fa-face-meh\"></i>'),
+(2, 'Challenging', '#e59524', '#000000', '<i class=\"fa-regular fa-face-angry\"></i>'),
+(3, 'Addicted', '#d07225', '#000000', '<i class=\"fa-regular fa-face-flushed\"></i>'),
+(4, 'Unhygienic', '#d07225', '#000000', '<i class=\"fa-regular fa-face-tired\"></i>'),
+(5, 'Problematic', '#fa0000', '#ffffff', '<i class=\"fa-regular fa-face-grimace\"></i>'),
+(6, 'Swindler', '#fa0000', '#ffffff', '<i class=\"fa-regular fa-face-meh-blank\"></i>'),
+(7, 'Thief', '#fa0000', '#ffffff', '<i class=\"fa-regular fa-face-rolling-eyes\"></i>'),
+(8, 'Excellent', '#24d8e5', '#000000', '<i class=\"fa-regular fa-face-grin-beam\"></i>'),
+(9, 'Gentile', '#25e557', '#000000', '<i class=\"fa-regular fa-face-grin-wink\"></i>'),
+(10, 'Collaborator', '#25e557', '#000000', '<i class=\"fa-regular fa-face-laugh-wink\"></i>'),
+(11, 'Very Good', '#24d8e5', '#000000', '<i class=\"fa-regular fa-face-smile-beam\"></i>'),
+(12, 'Good', '#d0f514', '#000000', '<i class=\"fa-regular fa-face-smile-wink\"></i>'),
+(13, 'Awesome', '#24d8e5', '#000000', '<i class=\"fa-regular fa-face-grin-stars\"></i>'),
+(14, 'Gratifying', '#25e557', '#000000', '<i class=\"fa-regular fa-face-grin\"></i>'),
+(16, 'Disorderly', '#e59524', '#000000', '<i class=\"fa-regular fa-face-dizzy\"></i>');
 
 -- --------------------------------------------------------
 
@@ -807,16 +810,16 @@ INSERT INTO `tb_data_guests` (`id_data_guests`, `guests_doc_id_pic`, `id_nation_
 (128, 'guests/doc_id_g/190_17720914776.png', 1, '', '', 12, NULL, 190),
 (129, 'guests/doc_id_g/191_66348.png', 1, '', '', 12, NULL, 191),
 (130, 'guests/doc_id_g/194_157744.png', 1, '', '', 12, NULL, 194),
-(131, 'guests/doc_id_g/193_13137951.png', 1, 'jczhotbull@gmail.com', '04241198683', 12, NULL, 193),
+(131, '', 1, 'jczhotbull@gmail.com', '04241198683', 13, 'El Mejor Programador Web de Venezuela', 193),
 (132, 'guests/doc_id_g/195_99888445.png', 1, '', '', 12, NULL, 195),
 (133, 'guests/doc_id_g/196_9986533.png', 1, '', '', 12, NULL, 196),
 (134, 'guests/doc_id_g/197_3647888.png', 1, '', '', 12, NULL, 197),
 (135, 'guests/doc_id_g/198_8888899.png', 1, '', '', 12, NULL, 198),
-(136, 'guests/doc_id_g/199_77777.png', 1, '', '', 12, NULL, 199),
-(137, 'guests/doc_id_g/200_55555.png', 1, 'jczhotbull@gmail.com', '04241198683', 12, NULL, 200),
+(136, 'guests/doc_id_g/199_77777.png', 1, '', '', 5, NULL, 199),
+(137, '', 1, 'jczhotbull@gmail.com', '04241198683', 12, NULL, 200),
 (138, 'guests/doc_id_g/201_88888.png', 1, '', '', 12, NULL, 201),
-(139, 'guests/doc_id_g/202_000655.png', 1, '', '', 12, NULL, 202),
-(140, 'guests/doc_id_g/203_99999.png', 1, '', '', 12, NULL, 203),
+(139, 'guests/doc_id_g/202_655.png', 1, '', '', 10, NULL, 202),
+(140, '', 1, '', '', 16, NULL, 203),
 (141, 'guests/doc_id_g/204_5555566.png', 1, '', '', 12, NULL, 204),
 (142, 'guests/doc_id_g/205_7777733.png', 1, '', '', 12, NULL, 205),
 (143, 'guests/doc_id_g/206_0006557.png', 1, '', '', 12, NULL, 206),
@@ -833,8 +836,8 @@ INSERT INTO `tb_data_guests` (`id_data_guests`, `guests_doc_id_pic`, `id_nation_
 (154, 'guests/doc_id_g/217_000655666.png', 1, '', '', 12, NULL, 217),
 (155, 'guests/doc_id_g/218_77777444.png', 1, '', '', 12, NULL, 218),
 (156, 'guests/doc_id_g/219_887555.png', 1, '', '', 12, NULL, 219),
-(157, 'guests/doc_id_g/220_131379518.png', 1, '', '', 12, NULL, 220),
-(158, 'guests/doc_id_g/221_777778.png', 1, '', '', 12, NULL, 221);
+(157, '', 1, '', '', 12, NULL, 220),
+(158, '', 1, '', '', 12, NULL, 221);
 
 -- --------------------------------------------------------
 
@@ -895,17 +898,17 @@ INSERT INTO `tb_guests` (`id_guests`, `guests_doc_id`, `p_name_g`, `s_name_g`, `
 (190, 2147483647, '', NULL, '', NULL, NULL, 'b2a503e1d32408c9b96d767e2675bb03', 1, 9, '0000-00-00', 0, 3, '2024-03-24 16:32:18'),
 (191, 66348, '', NULL, '', NULL, NULL, '7ad80cdea9e0ab56d894bc6bd20ac7b3', 1, 9, '0000-00-00', 0, 3, '2024-03-24 16:43:03'),
 (192, 6553333, '', NULL, '', NULL, NULL, '065ee2a78ca42eb522db1900e876a7d6', 1, 9, '0000-00-00', 0, 3, '2024-03-24 17:03:29'),
-(193, 13137951, 'Juan', NULL, 'Guerrero', NULL, NULL, '4ab27d025f4ec1b788b330d48b6eea58', 1, 9, '2024-03-12', 0, 1, '2024-03-25 19:04:27'),
+(193, 13137951, 'Juan', NULL, 'Guerrero', NULL, 'guests/pic_g/193_13137951.png', '4ab27d025f4ec1b788b330d48b6eea58', 1, 9, '2024-03-12', 0, 1, '2024-04-03 22:33:42'),
 (194, 157744, '', NULL, '', NULL, NULL, '972652fd6e13379743f1ca81589a55c6', 1, 9, '0000-00-00', 0, 3, '2024-03-24 20:35:16'),
 (195, 99888445, '', NULL, '', NULL, NULL, '7d9e9409a815abac0e3f913ac34f2e40', 1, 9, '0000-00-00', 0, 3, '2024-03-24 21:22:02'),
 (196, 9986533, '', NULL, '', NULL, NULL, '9f2ffd961d662b7ab7bb85b00958fb70', 1, 9, '0000-00-00', 0, 3, '2024-03-24 21:23:58'),
 (197, 3647888, '', NULL, '', NULL, NULL, 'd20b161f268c2435f6b4c1f76c738aae', 1, 9, '0000-00-00', 0, 3, '2024-03-24 21:24:43'),
 (198, 8888899, '', NULL, '', NULL, NULL, '2a95924704c440dee8b62a751ddb8a42', 1, 9, '0000-00-00', 0, 3, '2024-03-24 21:30:27'),
-(199, 77777, '', NULL, '', NULL, NULL, '90c3e27b5953b363692288c3e499bd7b', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:40:08'),
-(200, 55555, 'Sinai', NULL, 'Guerrero', NULL, NULL, '4bbc286886cc459942f1bd4ec0e0d645', 1, 9, '2024-03-12', 0, 2, '2024-03-25 19:05:00'),
+(199, 77777, '', NULL, '', NULL, NULL, '90c3e27b5953b363692288c3e499bd7b', 7, 9, '0000-00-00', 0, 3, '2024-04-03 22:00:39'),
+(200, 55555, 'Sinai', NULL, 'Guerrero', NULL, 'guests/pic_g/200_55555.png', '4bbc286886cc459942f1bd4ec0e0d645', 1, 9, '2024-03-12', 0, 2, '2024-04-03 21:38:58'),
 (201, 88888, '', NULL, '', NULL, NULL, '2d159b502763ed8f4ffa682620098cda', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:40:50'),
-(202, 655, '', NULL, '', NULL, NULL, 'a6b8470375b38aeb49d699c176997a90', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:41:24'),
-(203, 99999, 'fung', NULL, '', NULL, NULL, '6de378a67c1bed64a828e91cf5cac7b2', 1, 9, '0000-00-00', 0, 3, '2024-03-28 21:08:27'),
+(202, 655, '', NULL, '', NULL, NULL, 'a6b8470375b38aeb49d699c176997a90', 5, 9, '0000-00-00', 0, 3, '2024-04-03 22:00:25'),
+(203, 99999, 'fung', NULL, '', NULL, NULL, '6de378a67c1bed64a828e91cf5cac7b2', 10, 9, '0000-00-00', 0, 3, '2024-04-03 22:00:53'),
 (204, 5555566, '', NULL, '', NULL, NULL, '0842c687ea65d10c832a198cd4ec9824', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:42:04'),
 (205, 7777733, '', NULL, '', NULL, NULL, 'a2369aa89af78a5411a82bb0eb4478b3', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:42:18'),
 (206, 6557, '', NULL, '', NULL, NULL, '3a18824f8b85f2918b4185c3c9681870', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:36:16'),
@@ -922,8 +925,8 @@ INSERT INTO `tb_guests` (`id_guests`, `guests_doc_id`, `p_name_g`, `s_name_g`, `
 (217, 655666, '', NULL, '', NULL, NULL, '7620c57e4779c884f5acdbd9e2542ca2', 1, 9, '0000-00-00', 0, 3, '2024-04-01 18:09:30'),
 (218, 77777444, '', NULL, '', NULL, NULL, 'b085d5f3c1d9e6f4944992a60b701ec6', 1, 9, '0000-00-00', 0, 3, '2024-04-01 18:10:21'),
 (219, 887555, '', NULL, '', NULL, NULL, '4beeed0661bcb594dd68d5c751267eb1', 1, 9, '0000-00-00', 0, 3, '2024-04-02 12:56:52'),
-(220, 131379518, '', NULL, '', NULL, NULL, '49c08340f90e6884639e5a358c984596', 1, 9, '0000-00-00', 0, 3, '2024-04-02 19:52:37'),
-(221, 777778, '', NULL, '', NULL, NULL, 'aaa06bdac21d685090f2cb092cd5c3b9', 1, 9, '0000-00-00', 0, 3, '2024-04-02 19:55:30');
+(220, 131379518, '', NULL, '', NULL, 'guests/pic_g/220_131379518.png', '49c08340f90e6884639e5a358c984596', 1, 9, '0000-00-00', 0, 3, '2024-04-03 21:38:49'),
+(221, 777778, '', NULL, '', NULL, '', 'aaa06bdac21d685090f2cb092cd5c3b9', 1, 9, '0000-00-00', 0, 3, '2024-04-03 21:09:33');
 
 -- --------------------------------------------------------
 
@@ -954,9 +957,7 @@ INSERT INTO `tb_guests_services_check_in` (`id_guests_services_check_in`, `id_ho
 (26, 10, 334, 12, 16, '2024-03-28 20:22:54'),
 (28, 10, 341, 12, 16, '2024-03-28 21:11:43'),
 (30, 10, 343, 13, 12, '2024-03-28 21:12:08'),
-(32, 10, 350, 12, 16, '2024-04-02 20:59:08'),
-(33, 10, 350, 14, 17, '2024-04-02 20:59:08'),
-(34, 10, 354, 13, 12, '2024-04-02 20:59:20');
+(33, 10, 350, 14, 17, '2024-04-02 20:59:08');
 
 -- --------------------------------------------------------
 
@@ -996,16 +997,17 @@ CREATE TABLE `tb_payment_hospedaje` (
   `tercer_pago_fecha` date DEFAULT NULL,
   `tercer_pago_recibo` varchar(30) DEFAULT NULL,
   `deuda_hospedaje` decimal(40,2) NOT NULL DEFAULT 0.00,
-  `comentario_hospedaje` varchar(200) DEFAULT NULL
+  `comentario_hospedaje` varchar(200) DEFAULT NULL,
+  `link_payment` varchar(1500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `tb_payment_hospedaje`
 --
 
-INSERT INTO `tb_payment_hospedaje` (`id_payment_hospedaje`, `id_hostel`, `tot_hospedaje_tax_cero`, `tot_hospedaje_con_tax`, `tot_services_tax_cero`, `tot_services_con_tax`, `id_tax_no_cero`, `monto_hospedaje_total`, `primer_pago_hospedaje`, `id_primer_pago_forma`, `primer_pago_fecha`, `primer_pago_recibo`, `segundo_pago_hospedaje`, `id_segundo_pago_forma`, `segundo_pago_fecha`, `segundo_pago_recibo`, `tercer_pago_hospedaje`, `id_tercer_pago_forma`, `tercer_pago_fecha`, `tercer_pago_recibo`, `deuda_hospedaje`, `comentario_hospedaje`) VALUES
-(1, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, NULL),
-(2, 10, 0.00, 3198.40, 50.40, 406.00, 3, 4015.24, 1580.00, 2, '2024-04-03', '587', 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 2435.24, 'paga mañana');
+INSERT INTO `tb_payment_hospedaje` (`id_payment_hospedaje`, `id_hostel`, `tot_hospedaje_tax_cero`, `tot_hospedaje_con_tax`, `tot_services_tax_cero`, `tot_services_con_tax`, `id_tax_no_cero`, `monto_hospedaje_total`, `primer_pago_hospedaje`, `id_primer_pago_forma`, `primer_pago_fecha`, `primer_pago_recibo`, `segundo_pago_hospedaje`, `id_segundo_pago_forma`, `segundo_pago_fecha`, `segundo_pago_recibo`, `tercer_pago_hospedaje`, `id_tercer_pago_forma`, `tercer_pago_fecha`, `tercer_pago_recibo`, `deuda_hospedaje`, `comentario_hospedaje`, `link_payment`) VALUES
+(1, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, NULL, NULL),
+(2, 10, 0.00, 3198.40, 0.00, 216.00, 3, 3755.84, 2200.00, 4, '2024-04-29', '587', 1000.00, 3, '2024-04-16', '987', 300.00, 2, '2024-04-08', '1087', 255.84, 'paga mañana segun :-(', 'http://localhost/d/z_admin/f_check_in_tres.php?book_year=2024&rango=2024-04-23%20-%202024-04-27&amist_code=_193_2024-04-23%20-%202024-04-27_10_&hora_rey=2024/04/02%2009:51:42&id_papa=2');
 
 -- --------------------------------------------------------
 
@@ -1743,7 +1745,7 @@ ALTER TABLE `bed_status`
 -- AUTO_INCREMENT de la tabla `behaviors`
 --
 ALTER TABLE `behaviors`
-  MODIFY `id_behaviors` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_behaviors` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `booking_status`

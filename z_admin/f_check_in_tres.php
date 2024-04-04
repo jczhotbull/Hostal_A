@@ -90,6 +90,10 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
         $comentario_hospedaje = $_POST['comentario_hospedaje']; 
 
 
+        $url =  isset($_SERVER['HTTPS']) && 
+        $_SERVER['HTTPS'] === 'on' ? "https://" : "http://";   
+     
+        $url .= $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; 
 
         $sql_payment = "UPDATE tb_payment_hospedaje SET tot_hospedaje_tax_cero = '$tot_hospedaje_tax_cero',
                                                         tot_hospedaje_con_tax = '$tot_hospedaje_con_tax',
@@ -106,7 +110,8 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
                                                         primer_pago_recibo = '$primer_pago_recibo',
 
                                                         comentario_hospedaje = '$comentario_hospedaje',
-                                                        deuda_hospedaje = '$deuda_hospedaje'
+                                                        deuda_hospedaje = '$deuda_hospedaje',
+                                                        link_payment = '$url'
 
 
                                          WHERE id_payment_hospedaje='$id_del_registro_pagos' LIMIT 1 ";
@@ -138,6 +143,212 @@ $book_ck_ck = mysqli_query($enlace, $sql_booking_updt) or die(mysqli_error());
     }
 
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  if(isset($_POST['editar_payme_dos']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD y comprueba
+  {
+      $alerta_principal = "2";
+
+      include("../conectar.php");  
+
+      $id_del_registro_pagos = $_POST['editar_payme_dos']; 
+
+      $tot_hospedaje_tax_cero = $_POST['tot_hospedaje_tax_cero'];
+      $tot_hospedaje_con_tax = $_POST['tot_hospedaje_con_tax'];  
+
+      $tot_services_tax_cero = $_POST['tot_services_tax_cero'];  
+      $tot_services_con_tax = $_POST['tot_services_con_tax'];  
+
+      $id_tax_no_cero = $_POST['id_tax_no_cero'];  
+      $monto_hospedaje_total = $_POST['monto_hospedaje_total'];  
+
+
+      $primer_pago_hospedaje = $_POST['monto_primer_pago']; 
+
+      $segundo_pago_hospedaje = $_POST['segundo_pago_hospedaje']; 
+      
+      $suma_par = ($primer_pago_hospedaje + $segundo_pago_hospedaje);
+
+
+      $deuda_hospedaje = ($monto_hospedaje_total-$suma_par);
+
+      $segundo_pago_fecha = $_POST['segundo_pago_fecha']; 
+      $id_segundo_pago_forma = $_POST['id_segundo_pago_forma']; 
+      $segundo_pago_recibo = $_POST['segundo_pago_recibo']; 
+
+      $comentario_hospedaje = $_POST['comentario_hospedaje']; 
+
+
+
+
+      $sql_payment = "UPDATE tb_payment_hospedaje SET tot_hospedaje_tax_cero = '$tot_hospedaje_tax_cero',
+                                                      tot_hospedaje_con_tax = '$tot_hospedaje_con_tax',
+
+                                                      tot_services_tax_cero = '$tot_services_tax_cero',
+                                                      tot_services_con_tax = '$tot_services_con_tax',
+
+                                                      id_tax_no_cero = '$id_tax_no_cero',
+                                                      monto_hospedaje_total = '$monto_hospedaje_total',
+
+                                                      segundo_pago_hospedaje = '$segundo_pago_hospedaje',
+                                                      id_segundo_pago_forma = '$id_segundo_pago_forma',
+                                                      segundo_pago_fecha = '$segundo_pago_fecha',
+                                                      segundo_pago_recibo = '$segundo_pago_recibo',
+
+                                                      comentario_hospedaje = '$comentario_hospedaje',
+                                                      deuda_hospedaje = '$deuda_hospedaje'
+                                                    
+
+
+                                       WHERE id_payment_hospedaje='$id_del_registro_pagos' LIMIT 1 ";
+
+if (!mysqli_query($enlace,$sql_payment))      // actualiza y si no ha logrado ingresar los datos
+{
+$errorZ="- Error Payment. ";
+mysqli_close($enlace);
+
+}
+
+else{   // actualizo la info del pago
+
+
+$exitoZ="- 2nd Payment Save. ";
+mysqli_close($enlace);
+
+
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if(isset($_POST['editar_payme_last']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD y comprueba
+{
+    $alerta_principal = "2";
+
+    include("../conectar.php");  
+
+    $id_del_registro_pagos = $_POST['editar_payme_last']; 
+
+    $tot_hospedaje_tax_cero = $_POST['tot_hospedaje_tax_cero'];
+    $tot_hospedaje_con_tax = $_POST['tot_hospedaje_con_tax'];  
+
+    $tot_services_tax_cero = $_POST['tot_services_tax_cero'];  
+    $tot_services_con_tax = $_POST['tot_services_con_tax'];  
+
+    $id_tax_no_cero = $_POST['id_tax_no_cero'];  
+    $monto_hospedaje_total = $_POST['monto_hospedaje_total'];  
+
+
+    $primer_pago_hospedaje = $_POST['monto_primer_pago']; 
+
+    $segundo_pago_hospedaje = $_POST['monto_segundo_pago']; 
+
+    $tercer_pago_hospedaje = $_POST['tercer_pago_hospedaje'];
+    
+    $suma_par = ($primer_pago_hospedaje + $segundo_pago_hospedaje + $tercer_pago_hospedaje);
+
+
+    $deuda_hospedaje = ($monto_hospedaje_total-$suma_par);
+
+    $tercer_pago_fecha = $_POST['tercer_pago_fecha']; 
+    $id_tercer_pago_forma = $_POST['id_tercer_pago_forma']; 
+    $tercer_pago_recibo = $_POST['tercer_pago_recibo']; 
+
+    $comentario_hospedaje = $_POST['comentario_hospedaje']; 
+
+
+
+
+    $sql_payment = "UPDATE tb_payment_hospedaje SET tot_hospedaje_tax_cero = '$tot_hospedaje_tax_cero',
+                                                    tot_hospedaje_con_tax = '$tot_hospedaje_con_tax',
+
+                                                    tot_services_tax_cero = '$tot_services_tax_cero',
+                                                    tot_services_con_tax = '$tot_services_con_tax',
+
+                                                    id_tax_no_cero = '$id_tax_no_cero',
+                                                    monto_hospedaje_total = '$monto_hospedaje_total',
+
+                                                    tercer_pago_hospedaje = '$tercer_pago_hospedaje',
+                                                    id_tercer_pago_forma = '$id_tercer_pago_forma',
+                                                    tercer_pago_fecha = '$tercer_pago_fecha',
+                                                    tercer_pago_recibo = '$tercer_pago_recibo',
+
+                                                    comentario_hospedaje = '$comentario_hospedaje',
+                                                    deuda_hospedaje = '$deuda_hospedaje'
+                                                  
+
+
+                                     WHERE id_payment_hospedaje='$id_del_registro_pagos' LIMIT 1 ";
+
+if (!mysqli_query($enlace,$sql_payment))      // actualiza y si no ha logrado ingresar los datos
+{
+$errorZ="- Error Payment. ";
+mysqli_close($enlace);
+
+}
+
+else{   // actualizo la info del pago
+
+
+$exitoZ="- Last Payment Save. ";
+mysqli_close($enlace);
+
+
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -269,7 +480,7 @@ if (!mysqli_query($enlace,$queryD))      // si no ha logrado borrar los datos de
               <div class="form-row"> 
 
                 <div class="alert col-md-3 col-lg-3 alert-primary" role="alert">
-                    <i class="fa-solid fa-bolt-lightning fa-lg "></i> &nbsp; &nbsp; Check-In "3" - Services.
+                    <i class="fa-solid fa-bolt-lightning fa-lg "></i> &nbsp; &nbsp; Summary.
                 </div> 
 
  
@@ -1034,6 +1245,28 @@ $usuarios_exchange_b = mysqli_query($enlace, $query_exchange_b) or die(mysqli_er
 $row_usuarios_exchange_b = mysqli_fetch_assoc($usuarios_exchange_b);
 
 
+
+
+
+// detectar si en caso dado se agendo un primer pago, se mostrara el boton de editar
+
+
+
+
+
+$query_hay_pago = "SELECT * FROM tb_payment_hospedaje, forma_pago
+where tb_payment_hospedaje.id_payment_hospedaje = '$id_pay'
+and tb_payment_hospedaje.id_primer_pago_forma = forma_pago.id_forma_pago  limit 1";
+$usuarios_hay_pago = mysqli_query($enlace, $query_hay_pago) or die(mysqli_error());
+$row_usuarios_hay_pago = mysqli_fetch_assoc($usuarios_hay_pago);
+
+
+$tot_prim_pago = $row_usuarios_hay_pago['primer_pago_hospedaje'];
+
+$tot_segun_pago = $row_usuarios_hay_pago['segundo_pago_hospedaje'];
+
+$tot_tercer_pago = $row_usuarios_hay_pago['tercer_pago_hospedaje'];
+
 mysqli_close($enlace);
 
 
@@ -1062,7 +1295,8 @@ $english_sub_total_b = number_format($sub_total_beds_currency_b, 2, '.', '');
 <td class="align-middle" align="center">
 
 
-<span <?php if ( $alerta_principal != '0' ){?>style="display:none"<?php } ?> >  <!-- en caso de agendar un monto oculta el boton -->
+<span <?php if ( $tot_prim_pago >= '1' ){?>style="display:none"<?php } ?> >
+  <!-- en caso de agendar un monto oculta el boton -->
 
 <button type="button" class="btn btn-success btn-block btn-sm" data-toggle="modal"
                   data-target="#payme<?php echo $id_pay;?>" >                                                                       
@@ -1074,12 +1308,61 @@ $english_sub_total_b = number_format($sub_total_beds_currency_b, 2, '.', '');
 <?php include("updates/update_pay_beds_guests.php"); ?>
     
 
-<span <?php if ( $alerta_principal == '0' ){?>style="display:none"<?php } ?> >  <!-- en caso de agendar un monto oculta el boton -->
 
-<button type="button" class="btn btn-success btn-block btn-sm"  >                                                                       
-                  View</button>    
+
+
+
+<span <?php if ( $tot_prim_pago == '0' or $tot_segun_pago >= '1' ){?>style="display:none"<?php } ?> > 
+ <!-- en caso de agendar un monto oculta el boton -->
+
+<button type="button" class="btn btn-success btn-block btn-sm" data-toggle="modal"
+                  data-target="#payme_edit<?php echo $id_pay;?>"  >  
+
+<i class="fa-solid fa-money-bill-transfer fa-2x"></i></button>    
 
 </span>
+
+<?php include("updates/update_pay_edit_beds_guests.php"); ?>
+
+
+
+
+
+
+<span <?php if ( ($tot_prim_pago == '0' and $tot_segun_pago == '0') or $tot_tercer_pago >= '1'  ){?>style="display:none"<?php } ?> > 
+ <!-- en caso de agendar un monto oculta el boton -->
+
+<button type="button" class="btn btn-success btn-block btn-sm" data-toggle="modal"
+                  data-target="#payme_edit_last<?php echo $id_pay;?>"  >  
+
+<i class="fa-solid fa-money-bill-1-wave fa-2x"></i></button>     
+
+</span>
+
+<?php include("updates/update_pay_edit_last_beds_guests.php"); ?>
+
+
+
+
+
+
+
+<span <?php if ( $tot_prim_pago == '0' ){?>style="display:none"<?php } ?>  > 
+ <!-- en caso de no existir ningun pago lo oculta -->
+
+<button type="button" class="btn btn-secondary btn-block mt-2 btn-sm" data-toggle="modal"
+                  data-target="#payme_resume<?php echo $id_pay;?>"  >  
+
+<i class="fa-solid fa-chart-line fa-2x"></i></button>     
+
+</span>  
+
+<?php include("updates/update_pay_resume_guests.php"); ?>
+
+
+
+
+
 
 
 

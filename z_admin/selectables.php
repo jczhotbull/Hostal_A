@@ -782,8 +782,8 @@ href="selecc_00.php?ttabla=sex&idtabla=id_sex&nombdato=name_sex&ttitulo=Genders"
             </div>
             <a class=" card-footer card-footerz text-white clearfix small z-1"     
 
-           href="selecc_0g.php?ttabla=behaviors&idtabla=id_behaviors&nombdato=name_behaviors&ttitulo=Behaviors">       
-           <!-- el 0g esta asociado a los huespedes -->
+           href="selecc_0g_cuatro.php?ttabla=behaviors&idtabla=id_behaviors&nombdato=name_behaviors&ttitulo=Behaviors">       
+           <!-- el 0g_cuatro esta asociado a los huespedes -->
 
               <span class="float-left">View</span>
               <span class="float-right">

@@ -1,7 +1,7 @@
 
 <!-- ini modal editar -->
 
-<div class="modal fade" id="payme<?php echo $id_pay;?>" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="payme_edit<?php echo $id_pay;?>" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">   <!-- modal-lg -->
     <div class="modal-content">
 
@@ -37,7 +37,7 @@
     <tr>
       <td style="background-color:white;" class="align-middle" align="center" ><?php echo $qty;?></td>
 
-      <td style="background-color:white;" class="align-middle" align="right" ><br><br><br><b><?php echo $sub_total_camas_con_tax_a;?></b></td>
+      <td style="background-color:white;" class="align-middle" align="right" ><br><br><b><?php echo $sub_total_camas_con_tax_a;?></b></td>
 
       <td style="background-color:white;" class="align-middle" align="right" ><?php echo $sub_total_camas_con_tax_b;?><br>
     
@@ -46,7 +46,7 @@
     $tot_ivita = ( ($sub_total_camas_con_tax_b/100)*$name_del_tax_no_cero );
     
     
-    echo $tot_ivita;?></span> <br><br>
+    echo $tot_ivita;?></span> <br>
     
     <b><?php
     
@@ -62,7 +62,7 @@
 
 
 
-      <td style="background-color:white;" class="align-middle" align="right" ><br><br><br> <b><?php echo $sub_total_servicios_con_tax_a;?></b></td>
+      <td style="background-color:white;" class="align-middle" align="right" ><br><br><b><?php echo $sub_total_servicios_con_tax_a;?></b></td>
 
 
 
@@ -74,7 +74,7 @@
      $tot_ivita_serv = ( ($sub_total_servicios_con_tax_b/100)*$name_del_tax_no_cero );
      
      
-     echo $tot_ivita_serv;?></span> <br><br>
+     echo $tot_ivita_serv;?></span> <br>
      
      <b><?php
      
@@ -110,6 +110,46 @@
 
 
 
+   <tr>
+
+   <td style="background-color:white;" class="align-middle text-success" align="right" ><b>Amount Owed:</b></td>
+
+   <?php
+   
+   $pago_uno = $row_usuarios_hay_pago['primer_pago_hospedaje'];
+   $pago_dos = $row_usuarios_hay_pago['segundo_pago_hospedaje'];
+   $pago_tres = $row_usuarios_hay_pago['tercer_pago_hospedaje'];
+
+   $pagos_parciales_suma = $pago_uno + $pago_dos + $pago_tres;
+   
+   $deuda_total_act = $total_total - $pagos_parciales_suma;
+   
+
+
+
+   $deuda_total_act_a = ($deuda_total_act / $row_usuarios_exchange_a['currency_A_value'] );
+
+   $deuda_total_act_b = ($deuda_total_act / $row_usuarios_exchange_b['currency_B_value']);
+   
+$english_sub_total_aaa = number_format($deuda_total_act_a, 2, '.', '');
+$english_sub_total_bbb = number_format($deuda_total_act_b, 2, '.', '');
+   
+   
+   ?>
+
+
+ 
+   <td style="background-color:white;" colspan="4" class="align-middle text-success" align="right" ><b><?php echo $deuda_total_act;?></b> <?php echo $row_usuarios_exchange_1['symbol_currency'];?> <br>
+   <b><?php echo $english_sub_total_aaa;?></b> <?php echo $row_usuarios_exchange_a['symbol_currency'];?> <br> 
+  <b><?php echo $english_sub_total_bbb;?></b> <?php echo $row_usuarios_exchange_b['symbol_currency'];?>
+  
+    
+  
+  </td>
+
+   </tr>
+
+
 
 
 
@@ -138,6 +178,8 @@
 
 <input name="monto_hospedaje_total" type="hidden" value="<?php echo $total_total;?>">
 
+<input name="monto_primer_pago" type="hidden" value="<?php echo  $row_usuarios_hay_pago['primer_pago_hospedaje'];?>">
+
 
 
 <div class="form-row margencito"> 
@@ -145,7 +187,7 @@
 
 <div class="col-12 ml-1 mb-1">
 
-<b class="text-success"> Payment: </b>          
+<b class="text-success"> Payment History: </b> 
 
 </div>
 </div> 
@@ -162,7 +204,68 @@
 <span class="input-group-text alert-success" id="basic-addon1"><b>1st Pay:</b></span>  
                                         </div>
 
-<input type="number" maxlength="37" class="form-control " id="primer_pago_hospedaje" name="primer_pago_hospedaje" aria-label="primer_pago_hospedaje" min="0.00" max="<?php echo $total_total;?>" step="0.01" placeholder="0.00"  aria-describedby="basic-addon1" required>
+<input type="number" maxlength="37" class="form-control " id="primer_pago_hospedaje" name="primer_pago_hospedaje" aria-label="primer_pago_hospedaje"  placeholder="<?php echo $row_usuarios_hay_pago['primer_pago_hospedaje'];?>"  aria-describedby="basic-addon1" disabled>
+
+                                            
+</div> 
+
+
+
+<div class="input-group input-group-sm col-3 mb-2">
+                              <div class="input-group-prepend"> 
+ <span class="input-group-text alert-success" id="basic-addon1"><i class="fa-solid fa-calendar-day fa-lg"></i></span>  
+                                        </div>
+<input type="text"  class="form-control" id="primer_pago_fecha" name="primer_pago_fecha"  aria-label="primer_pago_fecha"
+ aria-describedby="basic-addon1" placeholder="<?php echo $row_usuarios_hay_pago['primer_pago_fecha'];?>" disabled> 
+
+</div>
+
+
+
+<div class="input-group input-group-sm col-3 mb-2">
+                              <div class="input-group-prepend"> 
+ <span class="input-group-text alert-success" id="basic-addon1"><i class="fa-solid fa-money-check-dollar fa-lg"></i></span>  
+                                        </div>
+<input type="text"  class="form-control" id="id_primer_pago_forma" name="id_primer_pago_forma"  aria-label="id_primer_pago_forma"
+ aria-describedby="basic-addon1" placeholder="<?php echo $row_usuarios_hay_pago['name_forma_pago'];?>" disabled> 
+
+</div>
+
+
+
+
+
+
+
+
+<div class="input-group input-group-sm  col-3 mb-2">
+<div class="input-group-prepend">
+<span class="input-group-text alert-success" id="basic-addon1"><i class="fa-solid fa-receipt fa-lg"></i></span>  
+</div>
+
+<input type="text" maxlength="29" class="form-control " id="primer_pago_recibo" name="primer_pago_recibo" aria-label="primer_pago_recibo" aria-describedby="basic-addon1" placeholder="<?php echo $row_usuarios_hay_pago['primer_pago_recibo'];?>" disabled>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- segundo pago -->
+
+
+<div class="input-group input-group-sm  col-3 mb-2">
+                              <div class="input-group-prepend">
+<span class="input-group-text alert-success" id="basic-addon1"><b>2nd Pay:</b></span>  
+                                        </div>
+
+<input type="number" maxlength="37" class="form-control " id="segundo_pago_hospedaje" name="segundo_pago_hospedaje" aria-label="segundo_pago_hospedaje" min="0.00" max="<?php echo $deuda_total_act;?>" step="0.01" placeholder="0.00"  aria-describedby="basic-addon1" required>
 
                                             
 </div>
@@ -173,7 +276,7 @@
                               <div class="input-group-prepend"> 
  <span class="input-group-text alert-success" id="basic-addon1"><i class="fa-solid fa-calendar-day fa-lg"></i></span>  
                                         </div>
-<input type="date"  class="form-control" id="primer_pago_fecha" name="primer_pago_fecha"  aria-label="primer_pago_fecha" aria-describedby="basic-addon1" required> 
+<input type="date"  class="form-control" id="segundo_pago_fecha" name="segundo_pago_fecha"  aria-label="segundo_pago_fecha" aria-describedby="basic-addon1" required> 
 
 </div>
 
@@ -187,7 +290,7 @@
                                         </div>
 
 
-                                        <select class="form-control " id="id_primer_pago_forma" name="id_primer_pago_forma" required>
+                                        <select class="form-control " id="id_segundo_pago_forma" name="id_segundo_pago_forma" required>
                                                         
                                                         <option selected disabled value="">Via:</option>
                                                         <option disabled></option>
@@ -196,9 +299,9 @@
 
 include("../conectar.php"); 
 
-    $forma_A = "SELECT * FROM forma_pago  WHERE  name_forma_pago != '.' ORDER BY name_forma_pago ASC";
-    $datos_forma_A = mysqli_query($enlace, $forma_A) or die(mysqli_error());
-    $row_datos_forma_A = mysqli_fetch_assoc($datos_forma_A);
+    $forma_B = "SELECT * FROM forma_pago  WHERE  name_forma_pago != '.' ORDER BY name_forma_pago ASC";
+    $datos_forma_B = mysqli_query($enlace, $forma_B) or die(mysqli_error());
+    $row_datos_forma_B = mysqli_fetch_assoc($datos_forma_B);
 
 mysqli_close($enlace); 
 
@@ -206,9 +309,9 @@ mysqli_close($enlace);
 
                                 <?php do{?>                                
 
-<option value="<?php echo $row_datos_forma_A['id_forma_pago']; ?>"><?php echo $row_datos_forma_A['name_forma_pago']; ?></option>
+<option value="<?php echo $row_datos_forma_B['id_forma_pago']; ?>"><?php echo $row_datos_forma_B['name_forma_pago']; ?></option>
 
-                                <?php } while ($row_datos_forma_A = mysqli_fetch_assoc($datos_forma_A)); ?> 
+                                <?php } while ($row_datos_forma_B = mysqli_fetch_assoc($datos_forma_B)); ?> 
 
 </select>
   
@@ -222,9 +325,35 @@ mysqli_close($enlace);
 <span class="input-group-text alert-success" id="basic-addon1"><i class="fa-solid fa-receipt fa-lg"></i></span>  
 </div>
 
-<input type="text" maxlength="29" class="form-control " id="primer_pago_recibo" name="primer_pago_recibo" aria-label="primer_pago_recibo" aria-describedby="basic-addon1" placeholder="Transaction N°" required>
+<input type="text" maxlength="29" class="form-control " id="segundo_pago_recibo" name="segundo_pago_recibo" aria-label="segundo_pago_recibo" aria-describedby="basic-addon1" placeholder="Transaction N°" required>
 
 </div>
+
+  <!-- cierre segundo pago -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <div class="input-group input-group-sm  col-12 col-lg-12 col-md-12 col-sm-12 mt-2 mb-2"> 
@@ -232,7 +361,7 @@ mysqli_close($enlace);
 <span class="input-group-text alert-success" id="basic-addon1"><i class="fa-regular fa-comments fa-lg"></i></span>  
 </div>
 
-<input type="text" maxlength="199" class="form-control " id="comentario_hospedaje" name="comentario_hospedaje" aria-label="comentario_hospedaje" aria-describedby="basic-addon1" placeholder="Observations...">
+<input type="text" maxlength="199" class="form-control " id="comentario_hospedaje" name="comentario_hospedaje" aria-label="comentario_hospedaje" aria-describedby="basic-addon1" value="<?php echo $row_usuarios_hay_pago['comentario_hospedaje'];?>">
 
 </div>
 
@@ -256,7 +385,7 @@ mysqli_close($enlace);
       <div class="modal-footer">
 
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="submit" name="editar_payme" class="btn btn-success" value="<?php echo $id_pay;?>">
+        <button type="submit" name="editar_payme_dos" class="btn btn-success" value="<?php echo $id_pay;?>">
               <i class="fa-regular fa-floppy-disk fa-lg"></i></button>   
              
       </div>
