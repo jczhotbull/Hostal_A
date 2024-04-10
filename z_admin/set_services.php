@@ -192,7 +192,7 @@ if(isset($_POST['add_service']))  // chequea si se ha enviado algo, de ser si --
                <i class="fa-solid fa-store"></i>
              </div>
              <div class="mr-5 cantidadzzz"></div>
-             <div class="infozzz">Add Products</div>
+             <div class="infozzz">Products</div>
            </div>  
                       
          </div>

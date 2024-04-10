@@ -2,7 +2,7 @@
 <!-- ini modal editar -->
 
 <div class="modal fade" id="modificar<?php echo $row_services_reveal['id_services']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-md" role="document">   <!-- modal-lg -->
+  <div class="modal-dialog modal-lg" role="document">   <!-- modal-lg -->
     <div class="modal-content">
 
       <div class="modal-header"> 
@@ -24,7 +24,7 @@
 
 
 
-<div class="input-group input-group-sm  col-sm-12 col-md-12 col-lg-12 mb-2"> 
+<div class="input-group input-group-sm  col-sm-4 col-md-4 col-lg-4 mb-2"> 
                               <div class="input-group-prepend">
        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-swatchbook fa-lg"></i></span>  
                                         </div> 
@@ -53,7 +53,7 @@ mysqli_close($enlace);
 
 
 
-<div class="input-group input-group-sm  col-sm-12 col-md-12 col-lg-12 mb-2"> 
+<div class="input-group input-group-sm  col-sm-4 col-md-4 col-lg-4 mb-2"> 
                               <div class="input-group-prepend">
        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-store fa-lg"></i></span>  
                                         </div> 
@@ -79,7 +79,7 @@ mysqli_close($enlace);
 
 
 
-<div class="input-group input-group-sm  col-sm-12 col-md-12 col-lg-12 mb-2"> 
+<div class="input-group input-group-sm  col-sm-4 col-md-4 col-lg-4 mb-2"> 
                               <div class="input-group-prepend">
        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-briefcase fa-lg"></i></span>  
                                         </div>  
@@ -120,8 +120,18 @@ echo $tipillo; ?></option>
 
 
 
+<div class="input-group input-group-sm  col-sm-4 col-md-4 col-lg-4 mb-2">  
+<div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1"><b>Stock:</b></span>  
+</div>
+<input type="number" maxlength="10" class="form-control" id="stock_mod" name="stock_mod"
+ aria-label="stock_mod" min="0"  step="1" placeholder="0" aria-describedby="basic-addon1" value="<?php echo $row_services_reveal['service_qty']; ?>" >    
+</div>
 
-<div class="input-group input-group-sm  col-sm-12 col-md-12 col-lg-12 mb-2">  
+
+
+
+<div class="input-group input-group-sm  col-sm-8 col-md-8 col-lg-8 mb-2">  
 <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Characteristics:</span>  
 </div>

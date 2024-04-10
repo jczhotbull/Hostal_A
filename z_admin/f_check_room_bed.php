@@ -3420,6 +3420,9 @@ const picker = new easepick.create({
       one: 'night',
       other: 'nights',
     },
+
+
+
   },
   LockPlugin: {
     minDate: new Date(),

@@ -169,7 +169,7 @@ else {
               <form method="post">
 
               <div class="mb-2 text-center">
-							<input type="hidden"  id="datepicker" name="dates" > 
+							<input id="datepicker" name="dates" > 
               </div>
               
               <div class="col-sm-12 col-md-12 col-lg-12 col-12 mb-2 text-center">
@@ -233,7 +233,12 @@ const picker = new easepick.create({
       one: 'night',
       other: 'nights',
     },
+
+  /*  startDate: '2024-04-11',
+          endDate: '2024-04-13'  */
+
   },
+  
   LockPlugin: {
     minDate: new Date(),
     minDays: 2,

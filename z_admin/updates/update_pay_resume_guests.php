@@ -348,7 +348,7 @@ mysqli_close($enlace);
 
 <div class="input-group input-group-sm  col-3 mb-2">
                               <div class="input-group-prepend">
-<span class="input-group-text alert-success" id="basic-addon1"><b>Last Pay:</b></span>  
+<span class="input-group-text alert-success" id="basic-addon1"><b>3rd Pay:</b></span>  
                                         </div>
 
 <input type="number" maxlength="37" class="form-control " id="tercer_pago_hospedaje" name="tercer_pago_hospedaje" aria-label="tercer_pago_hospedaje"  placeholder="<?php echo $row_usuarios_hay_pago['tercer_pago_hospedaje'];?>"  aria-describedby="basic-addon1" disabled>

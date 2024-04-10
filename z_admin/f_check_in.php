@@ -45,6 +45,11 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
    $month_end =  substr($rango, 18, -3);
 
 
+
+   $rest_aaa = substr($rango, 0, -13);
+   $rest_bbb = substr($rango, 13, 10);
+
+
     $la_room_es = $_GET['id_r'];
     $la_room_cama_es = $_GET['id_rb'];
 
@@ -236,7 +241,7 @@ mysqli_close($enlace);
 
 
                 <div class="alert col-md-6 col-lg-6 alert-primary" role="alert"> 
-                    <i class="fa-solid fa-bolt-lightning fa-lg "></i> &nbsp; &nbsp; Check-In Bed: <b><?php echo $ttitulo ?></b> - <?php echo $rango ?> .   
+                    <i class="fa-solid fa-bolt-lightning fa-lg "></i> &nbsp; &nbsp; Check-In Range: <?php echo $rango ?> .   
                 </div> 
 
  
@@ -275,7 +280,7 @@ mysqli_close($enlace);
 
                                 <div class="col-md-12 ml-1 mb-1">
 
-                                <b class="text-primary"> View Current Reserved Dates: </b>            
+                                <span style="font-size:16px;"> View <span style="color:#3B60D9;"><b>Current</b></span> & <span style="color:#FA3835;"><b>Reserved</b></span> Dates, Bed "<b><?php echo $ttitulo ?></b>": </span>            
 
                         <?php 
                           if ($guests_success!="")
@@ -409,6 +414,12 @@ const picker = new easepick.create({
       one: 'night',
       other: 'nights',
     },
+    
+
+
+    startDate: '<?php echo $rest_aaa; ?>',
+    endDate: '<?php echo $rest_bbb; ?>' 
+
   },
   LockPlugin: {
     minDate: new Date(),
@@ -500,9 +511,9 @@ const picker = new easepick.create({
     <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-pen-to-square fa-lg"></i></span>  
     </div>
-    <input type="text" maxlength="19" class="form-control "
+    <input type="text" maxlength="19" class="form-control importantex "
     id="p_name_guests" name="p_name_guests" placeholder="First Name" aria-label="p_name_guests"
-    aria-describedby="basic-addon1">    
+    aria-describedby="basic-addon1" required>    
 </div>
 
 
@@ -511,9 +522,9 @@ const picker = new easepick.create({
     <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-pen-to-square fa-lg"></i></span>  
     </div>
-    <input type="text" maxlength="19" class="form-control "
+    <input type="text" maxlength="19" class="form-control importantex"
     id="p_surname_guests" name="p_surname_guests" placeholder="Surname" aria-label="p_surname_guests"
-    aria-describedby="basic-addon1">    
+    aria-describedby="basic-addon1" required>    
 </div>
 
 

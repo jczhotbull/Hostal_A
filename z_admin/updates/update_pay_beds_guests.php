@@ -153,6 +153,8 @@
 
 
 
+
+
 <div class="form-row margencito">
 <div class="form-row">
 
@@ -162,10 +164,33 @@
 <span class="input-group-text alert-success" id="basic-addon1"><b>1st Pay:</b></span>  
                                         </div>
 
-<input type="number" maxlength="37" class="form-control " id="primer_pago_hospedaje" name="primer_pago_hospedaje" aria-label="primer_pago_hospedaje" min="0.00" max="<?php echo $total_total;?>" step="0.01" placeholder="0.00"  aria-describedby="basic-addon1" required>
+<input type="number" onchange="findTotal()" maxlength="37" class="form-control fee" id="primer_pago_hospedaje" name="primer_pago_hospedaje" aria-label="primer_pago_hospedaje" min="0.00" max="<?php echo $total_total;?>" step="0.01" placeholder="0.00"  aria-describedby="basic-addon1" required>
 
                                             
 </div>
+
+
+
+
+<script> // realiza una resta del monto total con el monto introducido.
+
+function findTotal() {
+  const fees = document.querySelectorAll(".fee");
+  const total = document.querySelector("#total_fee");
+  let sum = <?php echo $total_total;?>;
+  
+  fees.forEach(fee => {
+     if(fee.valueAsNumber){
+     sum -= fee.valueAsNumber;
+     }      
+  });
+  total.value = sum;    
+}
+
+
+</script>
+
+
 
 
 
@@ -227,7 +252,26 @@ mysqli_close($enlace);
 </div>
 
 
-<div class="input-group input-group-sm  col-12 col-lg-12 col-md-12 col-sm-12 mt-2 mb-2"> 
+
+
+<div class="input-group input-group-sm  col-3 col-lg-3 col-md-3 col-sm-3 mt-2 mb-2"> 
+<div class="input-group-prepend">
+<span class="input-group-text alert-success" id="basic-addon1"><b>Debt:</b></span>  
+</div>
+
+<input type="text" maxlength="199" class="form-control " name="total_fee" id="total_fee"  aria-describedby="basic-addon1" value="" disabled>
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="input-group input-group-sm  col-9 col-lg-9 col-md-9 col-sm-9 mt-2 mb-2"> 
 <div class="input-group-prepend">
 <span class="input-group-text alert-success" id="basic-addon1"><i class="fa-regular fa-comments fa-lg"></i></span>  
 </div>

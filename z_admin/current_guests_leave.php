@@ -65,7 +65,7 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 </div>
 
                 <div class="alert col-md-3 col-lg-3 alert-primary" role="alert">
-<i class="fa-solid fa-bed fa-lg "></i> &nbsp; &nbsp; Today Guests:
+<i class="fa-solid fa-bed fa-lg "></i> &nbsp; &nbsp; Leave Today:
                 </div>
 
  
@@ -327,8 +327,7 @@ and tb_data_guests.guests_behaviors = behaviors.id_behaviors
 and bed_booking.id_room = tb_room.id_room
 and bed_booking.id_hostel = '$mi_hostel_select'
 and bed_booking.booking_status = '2'
-and (bed_booking.arreglo_d LIKE '%".$date_hoy."%' OR bed_booking.date_in LIKE '%".$date_hoy."%' OR bed_booking.date_out LIKE '%".$date_hoy."%' )
-
+and bed_booking.date_out LIKE '%".$date_hoy."%' 
 
 ORDER BY tb_guests.guests_doc_id ASC";
 

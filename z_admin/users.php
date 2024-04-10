@@ -537,7 +537,7 @@ $queryC = "SELECT * FROM tb_personal, tb_data_personal WHERE tb_personal.id_per 
 
                          $queryD = "DELETE FROM tb_data_personal WHERE id_data_per = '$data_a_borrar' LIMIT 1";
 
-                      if (!mysqli_query($enlace,$queryD))      // si no ha logrado borrar los datos de la data del hostel
+                      if (!mysqli_query($enlace,$queryD))      // si no ha logrado borrar los datos de la data del personal
                          {
                           $errorZ=".";
                           }
@@ -553,7 +553,7 @@ $queryC = "SELECT * FROM tb_personal, tb_data_personal WHERE tb_personal.id_per 
 
                            $queryDiss = "DELETE FROM tb_address WHERE id_address = '$direcc_a_borrar' LIMIT 1";
 
-                      if (!mysqli_query($enlace,$queryDiss))      // si no ha logrado borrar los direcc del hostel
+                      if (!mysqli_query($enlace,$queryDiss))      // si no ha logrado borrar los direcc del user
                          {
                           $errorZ=".";
                           }
@@ -572,7 +572,7 @@ $queryC = "SELECT * FROM tb_personal, tb_data_personal WHERE tb_personal.id_per 
 
                             $exitoZ = "<b>--&nbsp; ".$surname_a_borrar." ".$name_a_borrar." &nbsp;--</b> was deleted.";
 
-                      }           // hasta aqui gracias a borrar la data del hostel al estar en cascada se lleva el contenido del hostel.
+                      }           // hasta aqui gracias a borrar la data del personal al estar en cascada se lleva el contenido del personal.
                       
 
                       if ($exitoZ!="")            //  si $exitoZ es distinto de vacío,  es que todo ok
@@ -1209,7 +1209,7 @@ $sql = "UPDATE tb_personal SET doc_per = '".mysqli_real_escape_string($enlace,$_
 
 
 
-              $id_country_es = $_POST["country_per_mod"];    // no esta llegando el id aqui....   
+              $id_country_es = $_POST["country_per_mod"];       
 
             
                 $sql_add = "UPDATE tb_address SET city_address = '".mysqli_real_escape_string($enlace,$_POST['city_per_mod'])."',

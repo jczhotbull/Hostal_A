@@ -71,12 +71,14 @@ $resultCrr = mysqli_query($enlace,$queryCrr);
 
 
     $cha_mod = $_POST['cha_mod']; 
+    $stock_mod = $_POST['stock_mod']; 
   
   
     $query_cambiame_U = "UPDATE tb_services SET id_product_kind = '$type_product',
                                             id_producto = '$the_product',                             
                                             service_charac = '$cha_mod',
-                                            sale_kind = '$ofertado_como'
+                                            sale_kind = '$ofertado_como',
+                                            service_qty = '$stock_mod'
     
      WHERE id_services = '$id_a_editar_es' LIMIT 1 ";
     
@@ -389,7 +391,8 @@ mysqli_close($enlace);
       <tr>                  
         
           <th width="25%">Product Name</th>  <!-- chequear el status -->
-          <th width="60%">characteristics</th>  <!-- chequear el status -->
+          <th width="10%">Stock</th>
+          <th width="50%">Characteristics</th>  <!-- chequear el status -->
           <th width="15%"><i class="fa-solid fa-toolbox fa-lg"></i></th> 
            
 
@@ -449,6 +452,15 @@ echo $tipin; ?></b>
 </div>
 
 </td>
+
+
+<td class="align-middle" align="center">
+
+<b><?php echo $row_services_reveal['service_qty']; ?></b>
+
+</td>  
+
+
 
       
 <td class="align-middle" align="center">

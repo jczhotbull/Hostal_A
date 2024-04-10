@@ -265,10 +265,35 @@ $english_sub_total_bbb = number_format($deuda_total_act_b, 2, '.', '');
 <span class="input-group-text alert-success" id="basic-addon1"><b>2nd Pay:</b></span>  
                                         </div>
 
-<input type="number" maxlength="37" class="form-control " id="segundo_pago_hospedaje" name="segundo_pago_hospedaje" aria-label="segundo_pago_hospedaje" min="0.00" max="<?php echo $deuda_total_act;?>" step="0.01" placeholder="0.00"  aria-describedby="basic-addon1" required>
+<input type="number" onchange="findTotal2()" maxlength="37" class="form-control feee" id="segundo_pago_hospedaje" name="segundo_pago_hospedaje" aria-label="segundo_pago_hospedaje" min="0.00" max="<?php echo $deuda_total_act;?>" step="0.01" placeholder="0.00"  aria-describedby="basic-addon1" required>
 
                                             
 </div>
+
+
+
+
+<script> // realiza una resta del monto total con el monto introducido.
+
+function findTotal2() {
+  const fees = document.querySelectorAll(".feee");
+  const total = document.querySelector("#total_feee");
+  let sume = <?php echo $deuda_total_act;?>;
+  
+  fees.forEach(feee => {
+     if(feee.valueAsNumber){
+     sume -= feee.valueAsNumber;
+     }      
+  });
+  total.value = sume;    
+}
+
+
+</script>
+
+
+
+
 
 
 
@@ -345,6 +370,14 @@ mysqli_close($enlace);
 
 
 
+<div class="input-group input-group-sm  col-3 col-lg-3 col-md-3 col-sm-3 mt-2 mb-2"> 
+<div class="input-group-prepend">
+<span class="input-group-text alert-success" id="basic-addon1"><b>Debt:</b></span>  
+</div>
+
+<input type="text" maxlength="199" class="form-control " name="total_feee" id="total_feee"  aria-describedby="basic-addon1" value="" disabled>
+
+</div>
 
 
 
@@ -355,8 +388,7 @@ mysqli_close($enlace);
 
 
 
-
-<div class="input-group input-group-sm  col-12 col-lg-12 col-md-12 col-sm-12 mt-2 mb-2"> 
+<div class="input-group input-group-sm  col-9 col-lg-9 col-md-9 col-sm-9 mt-2 mb-2"> 
 <div class="input-group-prepend">
 <span class="input-group-text alert-success" id="basic-addon1"><i class="fa-regular fa-comments fa-lg"></i></span>  
 </div>

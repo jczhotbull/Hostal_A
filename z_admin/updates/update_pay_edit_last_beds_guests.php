@@ -343,13 +343,34 @@ mysqli_close($enlace);
 
 <div class="input-group input-group-sm  col-3 mb-2">
                               <div class="input-group-prepend">
-<span class="input-group-text alert-success" id="basic-addon1"><b>3rd Last:</b></span>  
+<span class="input-group-text alert-success" id="basic-addon1"><b>3rd Pay:</b></span>  
                                         </div>
 
-<input type="number" maxlength="37" class="form-control " id="tercer_pago_hospedaje" name="tercer_pago_hospedaje" aria-label="tercer_pago_hospedaje" min="0.00" max="<?php echo $deuda_total_act;?>" step="0.01" placeholder="0.00"  aria-describedby="basic-addon1" required>
+<input type="number" onchange="findTotal3()" maxlength="37" class="form-control feeee" id="tercer_pago_hospedaje" name="tercer_pago_hospedaje" aria-label="tercer_pago_hospedaje" min="0.00" max="<?php echo $deuda_total_act;?>" step="0.01" placeholder="0.00"  aria-describedby="basic-addon1" required>
 
                                             
 </div>
+
+
+
+
+<script> // realiza una resta del monto total con el monto introducido.
+
+function findTotal3() {
+  const fees = document.querySelectorAll(".feeee");
+  const total = document.querySelector("#total_feeee");
+  let sumee = <?php echo $deuda_total_act;?>;
+  
+  fees.forEach(feeee => {
+     if(feeee.valueAsNumber){
+     sumee -= feeee.valueAsNumber;
+     }      
+  });
+  total.value = sumee;    
+}
+
+
+</script>
 
 
 
@@ -421,6 +442,14 @@ mysqli_close($enlace);
 
 
 
+  <div class="input-group input-group-sm  col-3 col-lg-3 col-md-3 col-sm-3 mt-2 mb-2"> 
+<div class="input-group-prepend">
+<span class="input-group-text alert-success" id="basic-addon1"><b>Debt:</b></span>  
+</div>
+
+<input type="text" maxlength="199" class="form-control " name="total_feeee" id="total_feeee"  aria-describedby="basic-addon1" value="" disabled>
+
+</div>
 
 
 
@@ -428,8 +457,7 @@ mysqli_close($enlace);
 
 
 
-
-<div class="input-group input-group-sm  col-12 col-lg-12 col-md-12 col-sm-12 mt-2 mb-2"> 
+<div class="input-group input-group-sm  col-9 col-lg-9 col-md-9 col-sm-9 mt-2 mb-2"> 
 <div class="input-group-prepend">
 <span class="input-group-text alert-success" id="basic-addon1"><i class="fa-regular fa-comments fa-lg"></i></span>  
 </div>
@@ -458,7 +486,7 @@ mysqli_close($enlace);
       <div class="modal-footer">
 
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="submit" name="editar_payme_last" class="btn btn-success" value="<?php echo $id_pay;?>">
+        <button type="submit" name="editar_payme_tres" class="btn btn-success" value="<?php echo $id_pay;?>">
               <i class="fa-regular fa-floppy-disk fa-lg"></i></button>   
              
       </div>

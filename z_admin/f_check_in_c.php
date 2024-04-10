@@ -454,9 +454,9 @@ else {
     <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-pen-to-square fa-lg"></i></span>  
     </div>
-    <input type="text" maxlength="19" class="form-control "
+    <input type="text" maxlength="19" class="form-control importantex"
     id="p_name_guests" name="p_name_guests" placeholder="First Name" aria-label="p_name_guests"
-    aria-describedby="basic-addon1">    
+    aria-describedby="basic-addon1" required>    
 </div>
 
 
@@ -465,9 +465,9 @@ else {
     <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-pen-to-square fa-lg"></i></span>  
     </div>
-    <input type="text" maxlength="19" class="form-control "
+    <input type="text" maxlength="19" class="form-control importantex"
     id="p_surname_guests" name="p_surname_guests" placeholder="Surname" aria-label="p_surname_guests"
-    aria-describedby="basic-addon1">    
+    aria-describedby="basic-addon1" required>    
 </div>
 
 

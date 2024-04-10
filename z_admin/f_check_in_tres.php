@@ -81,7 +81,7 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
         $primer_pago_hospedaje = $_POST['primer_pago_hospedaje']; 
 
-        $deuda_hospedaje = ($monto_hospedaje_total-$primer_pago_hospedaje);
+        $deuda_hospedaje = ($monto_hospedaje_total-$primer_pago_hospedaje);  // solo estara certero tras cada pago
 
         $primer_pago_fecha = $_POST['primer_pago_fecha']; 
         $id_primer_pago_forma = $_POST['id_primer_pago_forma']; 
@@ -90,10 +90,12 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
         $comentario_hospedaje = $_POST['comentario_hospedaje']; 
 
 
-        $url =  isset($_SERVER['HTTPS']) && 
+      /*  $url =  isset($_SERVER['HTTPS']) && 
         $_SERVER['HTTPS'] === 'on' ? "https://" : "http://";   
      
-        $url .= $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; 
+        $url .= $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];  */
+
+        $url = $_SERVER['REQUEST_URI'];    // salvo el link no el host, luego se completa
 
         $sql_payment = "UPDATE tb_payment_hospedaje SET tot_hospedaje_tax_cero = '$tot_hospedaje_tax_cero',
                                                         tot_hospedaje_con_tax = '$tot_hospedaje_con_tax',
@@ -246,7 +248,7 @@ mysqli_close($enlace);
 
 
 
-if(isset($_POST['editar_payme_last']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD y comprueba
+if(isset($_POST['editar_payme_tres']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD y comprueba
 {
     $alerta_principal = "2";
 
@@ -315,7 +317,7 @@ mysqli_close($enlace);
 else{   // actualizo la info del pago
 
 
-$exitoZ="- Last Payment Save. ";
+$exitoZ="- 3rd Payment Save. ";
 mysqli_close($enlace);
 
 
@@ -353,6 +355,88 @@ mysqli_close($enlace);
 
 
 
+if(isset($_POST['nothing']))  // sencillamente para recargar la pagina y borrar las variables
+{
+
+  $exitoZ = "";
+
+}
+
+
+
+if(isset($_POST['save_services_admin']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD y comprueba
+{
+
+  include("../conectar.php");  
+
+  $id_del_servicio_adquirido = $_POST['save_services_admin'];
+
+ $echo_por_este = $_SESSION['id_per'];
+
+        $qtyyy = $_POST['qtyyy'];   // son 3 inputs   
+        $comentariosss = $_POST['comentariosss'];
+        $id_serrr = $_POST['id_serrr'];
+
+
+
+        foreach ( $qtyyy as $keyyy => $qtyyys) {
+
+          if ($qtyyys >= '1') {
+
+
+            $query_services_mod = "INSERT INTO tb_historial_servicios_dados(id_guests_services_check_in,
+            cantidad_dada, nota_de_entrega, id_quien_entrego, id_del_booking) 
+          
+           VALUES (   '$id_serrr[$keyyy]',
+                      '$qtyyys',                     
+                      '$comentariosss[$keyyy]',
+                      ' $echo_por_este',
+                      '$id_del_servicio_adquirido'               
+          
+                   )";
+          
+          $listo_services_mod = mysqli_query($enlace, $query_services_mod) or die(mysqli_error());
+
+
+
+$query_cant_actual_pp = "SELECT id_guests_services_check_in, cant_recibida FROM tb_guests_services_check_in
+ WHERE id_guests_services_check_in = '$id_serrr[$keyyy]' limit 1";
+
+$service_cantidad_pp = mysqli_query($enlace, $query_cant_actual_pp) or die(mysqli_error());
+$row_service_cantidad_pp = mysqli_fetch_assoc($service_cantidad_pp);
+
+
+$tengo = $row_service_cantidad_pp['cant_recibida'];
+          
+
+          
+          $newtotal_pp = $tengo + $qtyyys;
+
+
+
+          $sumar_del_services = "UPDATE tb_guests_services_check_in SET cant_recibida = '$newtotal_pp' 
+          WHERE id_guests_services_check_in = '$id_serrr[$keyyy]' LIMIT 1 ";
+          $lista_sumar = mysqli_query($enlace, $sumar_del_services) or die(mysqli_error());
+
+
+
+
+
+
+          }  /* cierre if */
+
+
+          }  /* cierre for each */
+
+
+          $exitoZ = "Updated History.";
+
+          mysqli_close($enlace); 
+
+
+}
+
+
 
 
 
@@ -363,73 +447,143 @@ mysqli_close($enlace);
 
         include("../conectar.php");  
 
-        $id_booking = $_POST['editar_services']; 
-
-        $ch_defaultCheck = $_POST['defaultCheck'];   // me da los id de los servicios seleccionados
-        
-        foreach ($ch_defaultCheck as $key) {
-
-                                            // verificar que no exista un servicio igual ya agendado
-
-                                            $price_A = "SELECT id_services_prices, id_services, set_this_day FROM tb_services_prices
-                                            WHERE  id_services = '$key' ORDER BY set_this_day DESC limit 1";
-                                            $datos_price_A = mysqli_query($enlace, $price_A) or die(mysqli_error());
-                                            $row_datos_price_A = mysqli_fetch_assoc($datos_price_A);
-                                  
-                                            $find_price = mysqli_query($enlace, $price_A) or die(mysqli_error());
-                                  
-                                            $aqui_es = $row_datos_price_A['id_services_prices'];
+        $id_booking = $_POST['editar_services'];    // para relacionarlo con la persona (una adquiere varios)
 
 
-
-        $query_ck_serv = "SELECT * FROM tb_guests_services_check_in WHERE id_hostel = '$mi_hostel_select'
-                                                                    and id_bed_booking = '$id_booking'
-                                                                    and id_del_servicio_check_in = '$key'
-                                                                    and id_service_price_check_in = '$aqui_es' limit 1";
-        $service_ck_ck = mysqli_query($enlace, $query_ck_serv) or die(mysqli_error());
-        $row_service_ck_ck = mysqli_fetch_assoc($service_ck_ck);
-        $totalRows_service_ck_ck = mysqli_num_rows($service_ck_ck);
+        $qty = $_POST['qty'];   // son 4 cadenas de inputs   
+        $id_price = $_POST['id_price'];
+        $id_ser = $_POST['id_ser'];
+        $comentarios = $_POST['comentarios'];
 
 
-        if ($totalRows_service_ck_ck >= '1') {
-         
-          $repit = $repit + 1;
+        foreach ( $qty  as $key => $qtys) {
 
-        }
-
-
-        else { 
+          if ($qtys >= '1') {
+           
+  /* $exitoZ.= '' . $qtys . '-' . $id_price[$key] . '-' . $id_ser[$key] . '-' . $comentarios[$key] . ',';   me permite ver si esta almacenando bien */
 
 
-          $query_services_add = "INSERT INTO tb_guests_services_check_in(id_hostel, id_bed_booking,
-          id_del_servicio_check_in, id_service_price_check_in) 
-     
-         VALUES (   '$mi_hostel_select',
-                    '$id_booking',
-                    '$key',
-                    '$aqui_es'                    
-     
-                 )";
+                   //  detectar si el servicio ya fue creado  (si fue creado actualizar aumentar total)
 
-            $listo_services = mysqli_query($enlace, $query_services_add) or die(mysqli_error());
+                   $query_ck_serv = "SELECT * FROM tb_guests_services_check_in WHERE id_hostel = '$mi_hostel_select'
+                   and id_bed_booking = '$id_booking'
+                   and id_del_servicio_check_in = '$id_ser[$key]'
+                   and id_service_price_check_in = '$id_price[$key]' limit 1";
+$service_ck_ck = mysqli_query($enlace, $query_ck_serv) or die(mysqli_error());
+$row_service_ck_ck = mysqli_fetch_assoc($service_ck_ck);
+$totalRows_service_ck_ck = mysqli_num_rows($service_ck_ck);
 
 
-        }
+if ($totalRows_service_ck_ck >= '1') {
+
+$repit = $repit + 1;
+
+$id_a_actualizarse = $row_service_ck_ck['id_guests_services_check_in'];
+
+$total_corrienteee = $row_service_ck_ck['cant_adquirida'];
+
+$nueva_cuenta = $row_service_ck_ck['cant_adquirida'] + $qtys;
+
+
+$sumar_del_services_ext = "UPDATE tb_guests_services_check_in SET cant_adquirida = '$nueva_cuenta',
+                                                                    service_note = '$comentarios[$key]' 
+WHERE id_guests_services_check_in = '$id_a_actualizarse' LIMIT 1 ";
+$lista_sumar_ext = mysqli_query($enlace, $sumar_del_services_ext) or die(mysqli_error());
+
+
+/* actualizar la cantidad disponible del servicio */
+
+
+$query_cant_actual_vax = "SELECT id_services, service_qty FROM tb_services WHERE id_services = '$id_ser[$key]' limit 1";
+$service_cantidad_vax = mysqli_query($enlace, $query_cant_actual_vax) or die(mysqli_error());
+$row_service_cantidad_vax = mysqli_fetch_assoc($service_cantidad_vax);
+
+
+$tenemos_vax = $row_service_cantidad_vax['service_qty'];
+$solicitados_vax = $qtys;
+
+$newtotal_vax = $tenemos_vax - $solicitados_vax;
+
+
+
+$restar_del_services_vax = "UPDATE tb_services SET service_qty = '$newtotal_vax' WHERE id_services = '$id_ser[$key]' LIMIT 1 ";
+$lista_resta_vax = mysqli_query($enlace, $restar_del_services_vax) or die(mysqli_error());
 
 
 
 
-        }
+$exitoZ .= "- The Quantity Has Been Updated. ";
 
-        $exitoZ="- Services Have Been Saved. ";
+}
 
+
+
+else  {
+       
+  $query_services_add = "INSERT INTO tb_guests_services_check_in(id_hostel, id_bed_booking,
+  id_del_servicio_check_in, id_service_price_check_in, cant_adquirida, service_note) 
+
+ VALUES (   '$mi_hostel_select',
+            '$id_booking',
+            '$id_ser[$key]',
+            '$id_price[$key]',
+            '$qtys',
+            '$comentarios[$key]'                
+
+         )";
+
+$listo_services = mysqli_query($enlace, $query_services_add) or die(mysqli_error());
+
+
+
+$query_cant_actual = "SELECT id_services, service_qty FROM tb_services WHERE id_services = '$id_ser[$key]' limit 1";
+$service_cantidad = mysqli_query($enlace, $query_cant_actual) or die(mysqli_error());
+$row_service_cantidad = mysqli_fetch_assoc($service_cantidad);
+
+
+$tenemos = $row_service_cantidad['service_qty'];
+$solicitados = $qtys;
+
+$newtotal = $tenemos - $solicitados;
+
+
+
+$restar_del_services = "UPDATE tb_services SET service_qty = '$newtotal' WHERE id_services = '$id_ser[$key]' LIMIT 1 ";
+$lista_resta = mysqli_query($enlace, $restar_del_services) or die(mysqli_error());
+
+
+}
+
+
+                         }  /* cierre detector de cantidades mayores a 1 */
+       
+
+        }   /* cierre del loop */
+
+
+        $exitoZ .= "- New Services Saved.";
 
         mysqli_close($enlace); 
-
-
     
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $good = '0';
 $bad = '0';
@@ -439,12 +593,15 @@ $bad = '0';
     if(isset($_POST['borrar_service_serv']))
     {
 
-
+      include("../conectar.php");  
 
 
 $id_a_borrar = $_POST['borrar_service_serv'];
 
-include("../conectar.php");  
+
+$id_del_servicio_a_borrar = $_POST['service_id'];   // para aumentar stock
+$quedan_estos = $_POST['quedan'];   // para aumentar stock
+
 
 
 
@@ -453,17 +610,106 @@ $queryD = "DELETE FROM tb_guests_services_check_in WHERE id_guests_services_chec
 if (!mysqli_query($enlace,$queryD))      // si no ha logrado borrar los datos de la data del hostel
    {
        $bad = $bad +1;
-       mysqli_close($enlace); 
+      
     }
 
 
     else {
        $good = $good +1;
-       mysqli_close($enlace); 
+      
 
     }
 
+
+    $query_cant_actual = "SELECT id_services, service_qty FROM tb_services WHERE id_services = '$id_del_servicio_a_borrar' limit 1";
+    $service_cantidad = mysqli_query($enlace, $query_cant_actual) or die(mysqli_error());
+    $row_service_cantidad = mysqli_fetch_assoc($service_cantidad);
+        
+    $tenemos = $row_service_cantidad['service_qty'];
+    $newtotal_a = $tenemos + $quedan_estos;
+
+    $aumentar_del_services = "UPDATE tb_services SET service_qty = '$newtotal_a' WHERE id_services = '$id_del_servicio_a_borrar' LIMIT 1 ";
+    $lista_aumenta = mysqli_query($enlace, $aumentar_del_services) or die(mysqli_error());
+
+
+
+    $exitoZ = "Services Removed.";
+    mysqli_close($enlace); 
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+    if(isset($_POST['borrar_service_serv_restantes']))
+    {
+
+      include("../conectar.php");  
+
+
+$id_a_borrar = $_POST['borrar_service_serv_restantes'];
+
+
+$id_del_servicio_a_borrar = $_POST['service_id'];   // para aumentar stock
+$quedan_estos = $_POST['quedan'];   // para aumentar stock
+
+$disfrutados = $_POST['disfrutados'];   // para restablecer el total deseado
+
+
+/* debo actualizar la cantidad que realmente desea el huesped, sera lo que ya consumio */
+
+$queryD_update = "UPDATE tb_guests_services_check_in SET cant_adquirida = '$disfrutados'
+ WHERE id_guests_services_check_in = '$id_a_borrar' LIMIT 1 ";
+
+if (!mysqli_query($enlace,$queryD_update))      // si no ha logrado borrar los datos de la data del hostel
+   {
+       $bad = $bad +1;
+      
+    }
+
+    else {
+       $good = $good +1;
+      
+    }
+
+
+
+
+
+    $query_cant_actual = "SELECT id_services, service_qty FROM tb_services WHERE id_services = '$id_del_servicio_a_borrar' limit 1";
+    $service_cantidad = mysqli_query($enlace, $query_cant_actual) or die(mysqli_error());
+    $row_service_cantidad = mysqli_fetch_assoc($service_cantidad);
+        
+    $tenemos = $row_service_cantidad['service_qty'];
+    $newtotal_a = $tenemos + $quedan_estos;
+
+    $aumentar_del_services = "UPDATE tb_services SET service_qty = '$newtotal_a' WHERE id_services = '$id_del_servicio_a_borrar' LIMIT 1 ";
+    $lista_aumenta = mysqli_query($enlace, $aumentar_del_services) or die(mysqli_error());
+
+
+
+    $exitoZ = "Service Update.";
+    mysqli_close($enlace); 
+
+
+
+    }
+
+
+
+
+
+
+
+
 
 
 
@@ -476,74 +722,7 @@ if (!mysqli_query($enlace,$queryD))      // si no ha logrado borrar los datos de
 
 
 
-
-              <div class="form-row"> 
-
-                <div class="alert col-md-3 col-lg-3 alert-primary" role="alert">
-                    <i class="fa-solid fa-bolt-lightning fa-lg "></i> &nbsp; &nbsp; Summary.
-                </div> 
-
- 
-
-                <?php  
-                  if ($errorZ!="")
-                  { echo "<div class=\"alert col-md-9 col-lg-9 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
-                ?>
-                                       <!-- SOLO ES VISIBLE SI LA VARIABLE DE ERROR TIENE ALGO-->
-
-
-                <?php 
-                  if ($exitoZ!="")
-                  { echo "<div class=\"alert col-md-9 col-lg-9 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
-                ?>
-                                       <!-- SOLO ES VISIBLE SI LA VARIABLE DE ÉXITO TIENE ALGO-->
-
-
-                  
-            </div>    <!-- CIERRE FORM SUPERIOR INFORMATIVO O DE CABECERA-->
-
-
-
-            <div class="card mx-auto">
-              <div class="card-body">
-      
-                       
-<form  method="POST" data-persist="garlic"  data-expires="360" enctype="multipart/form-data"  name="add_user">                           
-
-
-                            <div class="form-row margencito"> 
-
-
-
-                            <div class="form-row">  <!-- datos principales -->
-
-                                <div class="col-md-12 ml-1 mb-1">
-
-                                <b class="text-info"> Guest List: </b>            
-
-                        <?php 
-                          if ($guests_success!="")
-{ echo "<i class=\"text-success\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Saved.\">".$user_success."</i>"; }
-                        ?>
-
-                        <?php 
-                          if ($guests_danger!="")
-{ echo "<i class=\"text-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Not Saved.\">".$user_danger."</i>"; }
-                        ?>
-                            <!-- SOLO ES VISIBLE SI LA VARIABLE TIENE ALGO-->
-
-
-                                </div>
-
-                            </div>
-
-                        </div>   <!-- cierre margencito-->
-
-
-
-
-
-<?php
+            <?php
 
 include ("../conectar.php");
 
@@ -592,15 +771,57 @@ $sub_total_servicios_con_tax_b = '0';  // de los que si pagan impuesto
 
 
 
-<div class="form-row margencito">   
+
+
+
+
+
+
+
+
+              <div class="form-row"> 
+
+                <div class="alert col-md-5 col-lg-5 alert-primary" role="alert">
+                    <i class="fa-regular fa-rectangle-list fa-lg "></i> &nbsp;<b><?php echo $row_huespedes['nights'];?></b> Night(s), from <b><?php echo $row_huespedes['date_in'];?></b> to <b><?php echo $row_huespedes['date_out'];?></b>.
+                </div> 
+
+ 
+
+                <?php  
+                  if ($errorZ!="")
+                  { echo "<div class=\"alert col-md-7 col-lg-7 alert-danger text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\" >".$errorZ."</div>"; }
+                ?>
+                                       <!-- SOLO ES VISIBLE SI LA VARIABLE DE ERROR TIENE ALGO-->
+
+
+                <?php 
+                  if ($exitoZ!="")
+                  { echo "<div class=\"alert col-md-7 col-lg-7 alert-success text-truncate\" id=\"basic-addon1\" role=\"alert\" align=\"center\">".$exitoZ."</div>"; }
+                ?>
+                                       <!-- SOLO ES VISIBLE SI LA VARIABLE DE ÉXITO TIENE ALGO-->
+
+
+                  
+            </div>    <!-- CIERRE FORM SUPERIOR INFORMATIVO O DE CABECERA-->
+
+
+
+
+
+
+
+
+
+<div class="card-body border border-info mb-2" >
+<div class="table-responsive">
       
 <table class="table table-sm table-hover table-bordered mt-4">
   <thead>
     <tr>
-      <th scope="col">#</th>
+
       <th scope="col">Guest</th>
       <th scope="col">Room/Bed</th>
-      <th scope="col">Cost-Night</th>
+      <td><b style="font-size:12px;">Cost x Night</b></td>
       <th scope="col">Discount</th> 
       <th scope="col">Tax</th> 
       <th scope="col">Sub</th> 
@@ -637,19 +858,18 @@ mysqli_close($enlace);
 
 
 
-      <td class="align-middle" align="center" >
-      <?php  $qty=$qty +1; echo $qty;?> 
-      </td>
+
 
 
       <td class="align-middle" align="center" >
 
-
+      
 <div data-toggle="tooltip" data-placement="top"
 title="Registered by: <?php echo $row_usuarios_whoL['p_surname_per'];?> <?php echo $row_usuarios_whoL['p_name_per'];?>. " >
 
-    <b style="color:orange;">Doc:</b> <?php echo $row_huespedes['guests_doc_id'];?> <br><?php echo $row_huespedes['p_name_g'];?>
-    <br><span style="color:purple;"><?php echo $row_huespedes['guests_email'];?></span>
+<b> <span style="font-size:10px;">#</span><?php  $qty=$qty +1; echo $qty;?>.</b> <br><br>
+ <b style="color:orange;">Doc:</b> <?php echo $row_huespedes['guests_doc_id'];?> <br><?php echo $row_huespedes['p_name_g'];?>
+    <br><span style="color:purple; font-size:14px;"><?php echo $row_huespedes['guests_email'];?></span>
     <br><i class="fa-solid fa-phone"></i> : <?php echo $row_huespedes['guests_phone'];?>
 
 </div>
@@ -803,7 +1023,7 @@ mysqli_close($enlace);
 
 echo $row_usuarios_room['name_room_number'];?>,<br><?php echo $row_usuarios_room_type['name_room_kind'];?> <br>
 <b style="color:orange;"><?php echo $row_usuarios_floor['name_floors'];?></b>.<br>
-<b>Bed:</b> <?php echo $row_usuarios_rb['name_bed_number'];?>, Lv:<?php echo $row_usuarios_rb['id_bunk_level'];?>, <br> <b style="color:grey;"><?php echo $book;?></b>. 
+<span style="font-size:14px;"><b>Bed:</b> <?php echo $row_usuarios_rb['name_bed_number'];?>, Lv:<?php echo $row_usuarios_rb['id_bunk_level'];?></span>, <br> <b style="color:grey;"><?php echo $book;?></b>. 
 
       </td>
 
@@ -813,8 +1033,8 @@ echo $row_usuarios_room['name_room_number'];?>,<br><?php echo $row_usuarios_room
 
       <td class="align-middle" align="right" >
 
-      <?php echo $row_usuarios_bed_price['name_prices_beds'];?> x <?php echo $y_noches;?><br>
-     <b style="font-size:10px;"> ( <?php echo $sub_bed;?> <?php echo $row_usuarios_exchange_1['symbol_currency'];?> )</b> 
+      <?php echo $row_usuarios_bed_price['name_prices_beds'];?> x<?php echo $y_noches;?><br>
+     <b style="font-size:10px;"> <?php echo $sub_bed;?> <?php echo $row_usuarios_exchange_1['symbol_currency'];?></b> 
 
 
 
@@ -829,7 +1049,7 @@ echo $row_usuarios_room['name_room_number'];?>,<br><?php echo $row_usuarios_room
       <b><span style="color:orange;" > <?php echo $disc;?> <?php echo $porcentaje;?> <?php echo $palabra;?></span></b>
     <br> <b style="font-size:10px;"  >
     
-    ( <?php echo $english_disc_sub_bed_up;?> )</b> </span>
+    <?php echo $english_disc_sub_bed_up;?></b> </span>
 
       </td>
 
@@ -874,10 +1094,10 @@ echo $row_usuarios_room['name_room_number'];?>,<br><?php echo $row_usuarios_room
       
       
       
-      ?> % <br>
+      ?>%<br>
 
 
-        <span style="font-size:10px;" > ( <b style="color:purple;" ><?php echo $english_tax;?> </b> )</span>
+        <span style="font-size:10px;" ><b style="color:purple;" ><?php echo $english_tax;?> </b></span>
 
       </td>
 
@@ -889,7 +1109,7 @@ echo $row_usuarios_room['name_room_number'];?>,<br><?php echo $row_usuarios_room
 
 $sub_total_beds = $sub_total_beds + $english_sub_total;
 
-echo $english_sub_total;?><br><?php echo $row_usuarios_exchange_1['symbol_currency'];?> 
+echo $english_sub_total;?><br> <span style="font-size:10px;"><b><?php echo $row_usuarios_exchange_1['symbol_currency'];?></b></span>
 
 
 
@@ -922,7 +1142,7 @@ $new_services_sub = '0';
 
 
 
-      <td class="align-middle" align="center" style="font-size:12px;" >
+      <td class="align-middle" align="center"  >
 
 
 <table class="table table-sm table-striped" <?php if ( $totalRows_services_listos == '0' ){?>style="display:none"<?php } ?> >
@@ -935,8 +1155,11 @@ $new_services_sub = '0';
 
     <td>
 
+   
 
-    <span data-toggle="tooltip" data-placement="top" title="Remove" >
+
+
+    <span data-toggle="tooltip" data-placement="top" title="Remove" <?php if ( $row_usuarios_services_listos['cant_recibida'] >= '1' ){?>style="display:none"<?php } ?> >
   <a href="" class="btn-danger"
   data-toggle="modal"
  data-target="#delete_service<?php echo $row_usuarios_services_listos['id_guests_services_check_in']; ?>"
@@ -946,9 +1169,33 @@ $new_services_sub = '0';
   <?php include("deletes/delete_service_serv.php"); ?>
 
 
+
+
+
+  <span data-toggle="tooltip" data-placement="top"
+   title="End Service" <?php if ( $row_usuarios_services_listos['cant_recibida'] == '0' or ($row_usuarios_services_listos['cant_adquirida'] == $row_usuarios_services_listos['cant_recibida'] ) ){?>style="display:none"<?php } ?> >
+
+
+
+
+
+
+  <a href="" class="btn-danger"
+  data-toggle="modal"
+ data-target="#delete_service_restantes<?php echo $row_usuarios_services_listos['id_guests_services_check_in']; ?>"
+  
+  ><i class="fa-solid fa-filter-circle-xmark"></i></a></span> 
+
+  <?php include("deletes/delete_service_serv_restantes.php"); ?>
+
+
+
+
+
+
     </td>
 
-      <td><?php
+      <td style="font-size:12px;" ><?php
       
       $productiviris = $row_usuarios_services_listos['id_services'];
     
@@ -969,7 +1216,7 @@ $new_services_sub = '0';
       
 $mi_price_pa = $row_services_pa['the_price'];
 
-$sub_price_serv_pa = ($mi_price_pa * $y_noches);
+$sub_price_serv_pa = ($mi_price_pa * $row_usuarios_services_listos['cant_adquirida']);
 
 $english_price_serv_pa = number_format($sub_price_serv_pa, 2, '.', '');
 
@@ -1029,12 +1276,47 @@ else {
  }
 
 
- $sub_total_beds_services_pa = $english_disc_sub_bed_up_da + $english_tax_ta;  
+ $sub_total_beds_services_pa = $english_disc_sub_bed_up_da + $english_tax_ta;   
+
+ 
+ $ojillo = '';
+ 
+ if ($row_usuarios_services_listos['service_note'] != ''  ) {
+ 
+$ojillo = '<i class="fa-regular fa-comment-dots"></i>';
+
+ }
+
+
+ 
+
+
       
+      echo $row_usuarios_services_listos['name_producto'];?> <b>x <?php echo $row_usuarios_services_listos['cant_adquirida'];?></b>
+
+
       
+    
+      &nbsp;&nbsp;
+      <span style="color: blue;">
       
-      echo $row_usuarios_services_listos['name_producto'];?></td>
-      <td> <?php 
+      <span data-toggle="tooltip" data-placement="top" title="Note: <?php echo $row_usuarios_services_listos['service_note'];?>" >
+      <?php echo $ojillo;?></span> </span>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </td>  
+
+
+      <td style="font-size:12px;" > <?php 
       
       $new_services_sub = $new_services_sub + $sub_total_beds_services_pa;
       
@@ -1044,8 +1326,41 @@ else {
 
     <?php } while ($row_usuarios_services_listos = mysqli_fetch_assoc($query_services_listos)); ?>
 
+
+
+
+
+
+
     <tr>
-      <td colspan="2" class="align-middle" align="right"><b>Sub:</b></td>
+
+
+
+
+
+    <td class="align-middle" align="left">
+
+
+
+    <span data-toggle="tooltip" data-placement="top" title="Manage Services" >
+  <a href="" class="btn-primary"
+  data-toggle="modal"
+ data-target="#servicios<?php echo $row_huespedes['id_bed_booking']; ?>"
+  
+  ><i class="fa-solid fa-boxes-stacked fa-lg"></i></a> </span>
+
+  <?php include("updates/admin_services_guests.php"); ?>
+
+
+
+
+
+    </td>
+
+
+
+
+      <td  class="align-middle" align="right" ><b>Sub:</b></td>
 
 
       <td>
@@ -1093,7 +1408,6 @@ else {
     
     
     
-    
     </td>
 
 
@@ -1121,7 +1435,7 @@ else {
 
     <tr>
 
-    <td colspan="6" class="align-middle" style="padding-top: 20px; padding-bottom: 20px;" align="right" ><b>Sub-Total:</b></td> 
+    <td colspan="5" class="align-middle" style="padding-top: 20px; padding-bottom: 20px;" align="right" ><b>Sub-Total:</b></td> 
 
     <td class="align-middle" align="center" ><b><?php echo $sub_total_beds;?></b> <?php echo $row_usuarios_exchange_1['symbol_currency'];?> <br> 
   
@@ -1203,7 +1517,7 @@ mysqli_close($enlace);
 
     <tr>
 
-    <td colspan="6" class="align-middle" style="padding-top: 40px; padding-bottom: 40px;" align="right" ><b>Total:</b></td> 
+    <td colspan="5" class="align-middle" style="padding-top: 40px; padding-bottom: 40px;" align="right" ><b>Total:</b></td> 
 
 
 
@@ -1329,7 +1643,7 @@ $english_sub_total_b = number_format($sub_total_beds_currency_b, 2, '.', '');
 
 
 
-<span <?php if ( ($tot_prim_pago == '0' and $tot_segun_pago == '0') or $tot_tercer_pago >= '1'  ){?>style="display:none"<?php } ?> > 
+<span <?php if ( $tot_prim_pago == '0' or $tot_segun_pago == '0' or $tot_tercer_pago >= '1'  ){?>style="display:none"<?php } ?> > 
  <!-- en caso de agendar un monto oculta el boton -->
 
 <button type="button" class="btn btn-success btn-block btn-sm" data-toggle="modal"
@@ -1347,7 +1661,7 @@ $english_sub_total_b = number_format($sub_total_beds_currency_b, 2, '.', '');
 
 
 
-<span <?php if ( $tot_prim_pago == '0' ){?>style="display:none"<?php } ?>  > 
+<span <?php if ( $tot_prim_pago == '0' or $tot_segun_pago == '0' or $tot_tercer_pago == '0' ){?>style="display:none"<?php } ?>  > 
  <!-- en caso de no existir ningun pago lo oculta -->
 
 <button type="button" class="btn btn-secondary btn-block mt-2 btn-sm" data-toggle="modal"
@@ -1375,10 +1689,18 @@ $english_sub_total_b = number_format($sub_total_beds_currency_b, 2, '.', '');
     
   </tbody>
 </table>
+</div>
+</div>
 
 
 
-</div>   <!-- cierre margencito-->
+
+
+
+
+
+
+
 
 
 
