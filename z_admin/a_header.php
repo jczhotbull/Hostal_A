@@ -140,7 +140,7 @@ mysqli_close($enlace);
         class="nav-item separacionpequenaa hovering" data-toggle="tooltip" data-placement="right" title="Lodging">
           <a class="nav-link" style="color:#FFFFFF;"   href="lodging.php">
             <i class="fa-solid fa-cart-flatbed-suitcase fa-lg"></i>  
-            <span class="nav-link-text">&nbsp;Lodging</span> 
+            <span class="nav-link-text">&nbsp;Reception</span> 
           </a>
         </li>
 

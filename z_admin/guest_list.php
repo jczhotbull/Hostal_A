@@ -78,13 +78,10 @@ title="Registered by: <?php echo $row_usuarios_whoL['p_surname_per'];?> <?php ec
 
 <div data-toggle="tooltip" data-placement="top" title="<?php echo $row_usuarios['name_behaviors']; ?>" >
 
-
-
-
     <button class="button"
 data-toggle="modal" data-target="#edit_status_guest<?php echo $row_usuarios["id_guests"]; ?>"
 
-style="background-color: <?php echo $row_usuarios["color_back"]; ?>;
+style="border:0px; background-color: <?php echo $row_usuarios["color_back"]; ?>;
 color: <?php echo$row_usuarios["color_text"]; ?>" >
     
     <i class="fa-lg"><?php echo $row_usuarios["icon_behaviors"]; ?></i></button>

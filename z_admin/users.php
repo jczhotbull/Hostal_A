@@ -1258,40 +1258,15 @@ $sql = "UPDATE tb_personal SET doc_per = '".mysqli_real_escape_string($enlace,$_
                      $exitoZ = " <i class=\"far fa-thumbs-up fa-lg\"></i>  &nbsp; <b> Updated. </b>"; 
                      mysqli_close($enlace);   
 
-
                                         }
 
  }
 
-
-
-
-
-
                                         }
-
-                                
-
-
-
-
+      
                                 }
 
-
-
-               }  
-
-
-
-
-
-
-
-
-
-
-
-
+}  
 
 
 
@@ -1393,7 +1368,7 @@ include ("a_header.php"); ?>
                               <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-id-card fa-lg"></i></span>  
                                         </div>
-                                            <input type="text" maxlength="12" class="form-control importantex" id="doc_per" name="doc_per" placeholder="Doc or Id Number" aria-label="doc_per" aria-describedby="basic-addon1" required>    
+                                            <input type="text" maxlength="29" class="form-control importantex" id="doc_per" name="doc_per" placeholder="Doc or Id Number" aria-label="doc_per" aria-describedby="basic-addon1" required>    
                               </div>
 
 
@@ -1814,16 +1789,13 @@ mysqli_close($enlace);
 
                   <th><i class="fa-solid fa-passport fa-lg"></i></th>
                     <th><i class="fa-solid fa-gears fa-lg"></i></th>
-
-                 
-                 
-
-                  <th><i class="fa-solid fa-phone fa-lg"></i> / <i class="fa-solid fa-at fa-lg"></i></th>
-            <!--      <th><i class="fa-regular fa-paper-plane fa-lg"></i></th> -->
-              
-                  <th><i class="fa-solid fa-ellipsis-vertical fa-lg"></i></th> 
+                                  
+                    
+                  <th><i class="fa-regular fa-address-book fa-lg"></i></th>
+                      
+                  <th><i class="fa-solid fa-user-gear fa-lg"></i></th> 
                 </tr>
-              </thead>
+              </thead> 
 
 
            

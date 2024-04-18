@@ -66,10 +66,10 @@ if (array_key_exists("Logout",$_GET))  // Si hubiese un logout, entonces
                    header ("Location: z_admin/main.php");
                 }               
 
-                if ($_SESSION['id_rol_per'] == '3')
+                if ($_SESSION['id_rol_per'] == '3')      /* Guest Only */
 
                 {  
-                   header ("Location: z_admin/main.php");
+                   header ("Location: index.php");
 
                } 
 
@@ -77,7 +77,7 @@ if (array_key_exists("Logout",$_GET))  // Si hubiese un logout, entonces
                if ($_SESSION['id_rol_per'] == '4')
 
                 {  
-                   header ("Location: z_admin/main.php");
+                  header ("Location: index.php");
                 
                } 
 
@@ -85,7 +85,7 @@ if (array_key_exists("Logout",$_GET))  // Si hubiese un logout, entonces
                if ($_SESSION['id_rol_per'] == '5')
 
                 {  
-                   header ("Location: z_admin/main.php");
+                  header ("Location: index.php");
                 
                } 
 
@@ -168,13 +168,13 @@ if (isset($fila))   // si tengo algo en la fila significa que existe la ci, ahor
                                      mysqli_close($enlace);
                                     }
             
-                                    if ($_SESSION['id_rol_per'] == '2')  //  Por Definir
+                                    if ($_SESSION['id_rol_per'] == '2')  //  Voluntario
                                      {  header ("Location: z_admin/main.php"); 
                                       mysqli_close($enlace);
                                     }
             
-                                    if ($_SESSION['id_rol_per'] == '3')  //  Por Definir
-                                     { header ("Location: z_admin/main.php");  
+                                    if ($_SESSION['id_rol_per'] == '3')  //  Guest Only
+                                     { $errorZ="- Invalid Username or Password. "; 
                                       mysqli_close($enlace);
                                     }
             

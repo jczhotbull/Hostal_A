@@ -80,11 +80,7 @@ if(isset($_POST['add_guests']))  // chequea si se ha enviado algo, de ser si -->
     $resultGG = mysqli_query($enlace,$queryGG) or die(mysqli_error());
     $row_guest_info = mysqli_fetch_assoc($resultGG);
    
-    $id_found = $row_guest_info['id_guests'];
-    $name_found = $row_guest_info['p_name_g'];
-    $ape_found = $row_guest_info['p_surname_g'];
-    $birth_found = $row_guest_info['guests_birth'];
-    $sex_found = $row_guest_info['guests_sex'];
+
    
     $upd_name = mysqli_real_escape_string($enlace,$_POST['p_name_guests']);
     $upd_ape = mysqli_real_escape_string($enlace,$_POST['p_surname_guests']);
@@ -94,6 +90,14 @@ if(isset($_POST['add_guests']))  // chequea si se ha enviado algo, de ser si -->
    
             if (mysqli_num_rows($resultGG)>0 )    // si ya esta en la bd  actualizar los datos
             { 
+
+
+              $id_found = $row_guest_info['id_guests'];
+              $name_found = $row_guest_info['p_name_g'];
+              $ape_found = $row_guest_info['p_surname_g'];
+              $birth_found = $row_guest_info['guests_birth'];
+              $sex_found = $row_guest_info['guests_sex'];
+
 
 
               
@@ -238,7 +242,98 @@ $passwordHasheada=md5( md5 ($id_del_g) . $pass_per ) ;
 
 $query_hash = " UPDATE tb_guests SET guests_pass = '$passwordHasheada' WHERE id_guests = '$id_del_g' LIMIT 1 "; 
 $sale_y_vale = mysqli_query($enlace, $query_hash) or die(mysqli_error());
+
+
+
+
+
+
+$condicion_en_hostel = $_POST['dispuesto_como'];
+
+if ($condicion_en_hostel == '2') {         // si es voluntario lo registro aqui. 
+ 
+
+// verificar que el doc no este registrado....
+
+
+$queryC_dvv = "SELECT doc_per FROM tb_personal WHERE doc_per ='".mysqli_real_escape_string($enlace,$_POST['doc_guests'])."' LIMIT 1";
+$resultC_dvv = mysqli_query($enlace,$queryC_dvv);
+
+if (mysqli_num_rows($resultC_dvv)>0)   /* ya esta registrado no hago nada */
+{
+$errorZ.="";
+}
+
+else {   /* no esta registrado lo registro */
+
+// proceso de insercion y creacion de la direccion del huesped como voluntario  
+
+$query_dv = "INSERT INTO tb_address(city_address, id_country) 
+
+VALUES (   '.',
+           '1'                                      
+        )";
+
+$sale_y_vale_dv = mysqli_query($enlace, $query_dv) or die(mysqli_error());
+
+
+
+//  proceso de insercion y creacion de la data del usuario
+
+$direcc_id_personal = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado direcc.
+
+
+$phone_per_dv = mysqli_real_escape_string($enlace,$_POST['telf_guests']);
+$email_per_dv =  mysqli_real_escape_string($enlace,$_POST['email_guests']);
+$query_p_dv = "INSERT INTO tb_data_personal(a_phone_per, email_per)   
+VALUES ('$phone_per_dv', '$email_per_dv')"; 
+
+$sale_y_vale_email_dv = mysqli_query($enlace, $query_p_dv) or die(mysqli_error());
+
+
+
+// ahora a registrar al personal como tal
+
+$id_datos_per = mysqli_insert_id($enlace); // almacena el id insertado en el query pasado id_datos_per...
+
+                        
+                        $nationality_per = $_POST['nationality_g'];                         
+                        $hostel_rol_per = '2';    /* el dos es voluntario */
+
+
+$query_per_per_dv = "INSERT INTO tb_personal(doc_per, passport_per, p_name_per, p_surname_per,  
+                                             birth_per,  id_address, id_sex, id_nationality, 
+                                             id_rol_per, id_hostel, id_data_per, per_registered_by)   
+
+   VALUES ('$doc', '$doc', '$upd_name', '$upd_ape', 
+      '$date_g', '$direcc_id_personal', '$sex_g', '$nationality_per', '$hostel_rol_per',
+
+       '$mi_hostel_select', '$id_datos_per', '$quien_lo_registra' )"; 
+
+$sale_y_vale_todo_dv = mysqli_query($enlace, $query_per_per_dv) or die(mysqli_error());
+
+
+
+
+/* actualizo el pssword en base al id de la tabla personal */
+
+
+$id_del_g_dvvv = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado.
+$passwordHasheada_dvvv=md5( md5 ($id_del_g_dvvv) . $doc ) ;
+
+$query_hash_dvvv = " UPDATE tb_personal SET password_per = '$passwordHasheada_dvvv' WHERE id_per = '$id_del_g_dvvv' LIMIT 1 "; 
+$sale_y_valeeeee = mysqli_query($enlace, $query_hash_dvvv) or die(mysqli_error());
+
+
+
+}
+
+
+}
+
+
 mysqli_close($enlace); 
+
 
 header("Location: f_check_in_dos_c.php?zv=ve87&pass=6tz@bv&zp=$doc&ri=$id_del_g&mil=57tr@jh&em=$email_guests&tf=$telf_guests&na=$nationality_g&ran=$rango&prz=$la_room_es&pbz=$la_room_cama_es&ttitulo_kind=$ttitulo_kind&id_kind=$id_kind&compi=$compatriota&cuenta_ami=$cuenta_ami&hora_rey=$la_hora_rey&id_papa=$id_pay", TRUE, 301);
 
@@ -277,6 +372,13 @@ $row_datos_nacionality = mysqli_fetch_assoc($datos_nacionality);
 $query_sex = "SELECT * FROM sex where name_sex !='.' ORDER BY name_sex ASC";
 $datos_sex = mysqli_query($enlace, $query_sex) or die(mysqli_error());
 $row_datos_sex = mysqli_fetch_assoc($datos_sex);
+
+
+$query_rol = "SELECT * FROM roles where name_rol !='.' ORDER BY name_rol ASC";
+
+$datos_rol = mysqli_query($enlace, $query_rol) or die(mysqli_error());
+
+$row_datos_rol = mysqli_fetch_assoc($datos_rol);
 
 
 mysqli_close($enlace); 
@@ -381,7 +483,10 @@ else {
 
 
 
-
+<script type="text/javascript" src="00_auto/jquery-1.12.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="00_auto/jquery-ui.css">
+  <script type="text/javascript" src="00_auto/jquery-ui.js"></script>
+  <script type="text/javascript" src="00_auto/jquery.ui.autocomplete.scroll.min.js"></script> 
 
 
 
@@ -389,10 +494,30 @@ else {
 
 <div class="form-row margencito">   
 
-<b class="ml-2 mb-2 mt-3 text-info"> Register </b>&nbsp;<b class="mb-2 mt-3 text-primary"><?php  echo $cuenta_ami; ?>°</b>&nbsp;<b class="mb-2 mt-3 text-info"> Companion of </b>
-<b class="ml-2 mb-2 mt-3 text-primary"> <?php  echo $nombrecillo; ?>
-<?php  echo $comilla; ?></b> <b class="ml-2 mb-2 mt-3 text-info"> Doc:</b> <b class="ml-2 mb-2 mt-3 text-primary">
+<b class="ml-2  text-info"> Register </b>&nbsp;<b class="text-primary"><?php  echo $cuenta_ami; ?>°</b>&nbsp;<b class=" text-info"> Companion of </b>
+<b class="ml-2  text-primary"> <?php  echo $nombrecillo; ?>
+<?php  echo $comilla; ?></b> <b class="ml-2  text-info"> Doc:</b> <b class="ml-2  text-primary">
     <?php  echo $row_compa['guests_doc_id']; ?>.</b>  
+
+</div>
+
+
+
+<div class="form-row margencito mt-3 mb-3">
+
+<b class="ml-2 text-secondary"> Obs:</b>
+
+<p class="font-weight-light ml-2" id="observ"></p>   
+
+<div class="ml-1" data-toggle="tooltip" data-bs-placement="top" id= "name_b" title="" >
+
+<button class="button ml-1" id="iconito" style="border:0px;" disabled >
+
+<p2 id= "icon"></p2></button>
+
+</div>
+
+
 
 </div>
 
@@ -409,23 +534,27 @@ else {
 
 
 
+
+
+
+
 <div class="form-row margencito">   <!-- Pre-Carga Pasaporte-->
 
   
 
       
-<div class="input-group col-sm-12 col-md-6 col-lg-3 mb-2">  
+<div class="input-group col-sm-12 col-md-6 col-lg-4 mb-2">  
     <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-id-card fa-lg"></i></span>  
     </div>
-    <input type="text" maxlength="19" class="form-control importantex"
+    <input type="text" maxlength="29" class="form-control importantex"
     id="doc_guests" name="doc_guests" placeholder="Doc or Id Number" aria-label="doc_guests"
     aria-describedby="basic-addon1" required>    
 </div>
 
 
 
-<div class="input-group  col-sm-12 col-md-6 col-lg-3 mb-2">
+<div class="input-group  col-sm-12 col-md-6 col-lg-4 mb-2">
                               <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-flag fa-lg"></i></span>  
                                         </div>
@@ -450,7 +579,7 @@ else {
 
 
 
-<div class="input-group col-sm-12 col-md-6 col-lg-3 mb-2">  
+<div class="input-group col-sm-12 col-md-6 col-lg-4 mb-2">  
     <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-pen-to-square fa-lg"></i></span>  
     </div>
@@ -461,7 +590,7 @@ else {
 
 
 
-<div class="input-group col-sm-12 col-md-6 col-lg-3 mb-2">  
+<div class="input-group col-sm-12 col-md-6 col-lg-4 mb-2">  
     <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-pen-to-square fa-lg"></i></span>  
     </div>
@@ -472,7 +601,19 @@ else {
 
 
 
-<div class="input-group col-sm-12 col-md-6 col-lg-3 mb-2">  
+
+<div class="input-group col-sm-12 col-md-6 col-lg-4 mb-2">  
+    <div class="input-group-prepend">  
+    <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at fa-lg"></i></span>  
+    </div>
+    <input type="email" maxlength="59" class="form-control importantex"
+    id="email_guests" name="email_guests" placeholder="Email" aria-label="email_guests"
+    aria-describedby="basic-addon1" required>    
+</div>
+
+
+
+<div class="input-group col-sm-12 col-md-6 col-lg-4 mb-2">  
     <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone fa-lg"></i></span>  
     </div>
@@ -482,14 +623,6 @@ else {
 </div>  
 
 
-<div class="input-group col-sm-12 col-md-6 col-lg-3 mb-2">  
-    <div class="input-group-prepend">  
-    <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at fa-lg"></i></span>  
-    </div>
-    <input type="email" maxlength="59" class="form-control "
-    id="email_guests" name="email_guests" placeholder="Email" aria-label="email_guests"
-    aria-describedby="basic-addon1">    
-</div>
 
 
 
@@ -500,7 +633,8 @@ else {
 
 
 
-                              <div class="input-group   col-sm-12 col-md-6 col-lg-3 mb-2">
+
+                              <div class="input-group   col-sm-12 col-md-6 col-lg-4 mb-2">
                               <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-cake-candles fa-lg"></i></span>  
                                         </div>
@@ -511,7 +645,7 @@ else {
 
 
 
-                              <div class="input-group   col-sm-12 col-md-6 col-lg-3 mb-2"> 
+                              <div class="input-group   col-sm-12 col-md-6 col-lg-4 mb-2"> 
                               <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-mars-and-venus-burst fa-lg"></i></span>  
                                         </div>
@@ -537,6 +671,118 @@ else {
                               </div>  
 
 
+
+
+                              <div class="input-group   col-sm-12 col-md-6 col-lg-4 mb-2"> 
+                              <div class="input-group-prepend">
+ <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-clipboard-user fa-lg"></i></span>  
+                                        </div>
+                                        <select class="form-control" id="dispuesto_como" name="dispuesto_como" required>
+                                                        
+                                        <option selected disabled value="">Role:</option>
+                                                        <option disabled></option>                                          
+                                                        
+
+                               <?php do{?>                                
+
+<option value="<?php echo $row_datos_rol['id_rol_per']; ?>"><?php echo $row_datos_rol['name_rol']; ?></option>
+
+                                <?php } while ($row_datos_rol = mysqli_fetch_assoc($datos_rol)); ?> 
+
+
+                             </select>  
+                              </div>  
+
+
+
+
+
+
+
+
+
+
+
+
+                              <?php
+include("../conectar.php");
+      $query_bus_doc = "SELECT * FROM  tb_guests        
+        WHERE  guests_status = 1 group by guests_doc_id ";
+
+$datos_plantilla_bus_doc = mysqli_query($enlace, $query_bus_doc) or die(mysqli_error());
+$totalRows_datos_plantilla_bus_doc = mysqli_num_rows($datos_plantilla_bus_doc); 
+
+$el_listado_doc = array();
+
+while ($row_doc = mysqli_fetch_array($datos_plantilla_bus_doc)) {
+        /*  $estudiantesNN = $row['nombre_estu'].' '.$row['apellidos_estu']; */
+          $estudiantes_doc = $row_doc['guests_doc_id'];
+          array_push ($el_listado_doc, $estudiantes_doc );          
+}
+mysqli_close($enlace);
+?>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+      var items_doc = <?= json_encode($el_listado_doc);  ?>
+
+$("#doc_guests").autocomplete({
+  source: items_doc,
+  minLength: 3,
+  autoFocus: true,
+  maxShowItems: 5,
+  select:function (event,ui) {
+
+  var val = ui.item.value;
+ /* console.log("El valor del input es:" +val); */
+
+$.ajax({
+  url:'000.php',
+  method:'POST',
+  data:{val},
+success:
+function(response){
+  console.log(response);
+ var res = JSON.parse(response);
+
+$("#p_name_guests").val(res.p_name);
+ $("#p_surname_guests").val(res.p_surname);
+ $("#nationality_g").val(res.id_nation);
+
+ $("#telf_guests").val(res.g_phone);
+ $("#email_guests").val(res.g_email);
+
+ $("#date_birth_g").val(res.g_birth);
+ $("#sex_g").val(res.g_sex);
+
+ /*$("#observ").val(res.g_observ);*/
+
+document.getElementById("icon").innerHTML = res.icon_behaviors.toString();
+document.getElementById("observ").innerHTML = res.g_observ.toString(); 
+
+
+$("#iconito").css({
+  'background-color':res.color_back,
+  'color':res.color_text,
+});
+
+$("#name_b").attr('title',res.name_behaviors);
+
+},
+error:function (xhr,status,error){
+  console.error(xhr.responseText);
+}
+
+})
+
+},
+
+});
+
+   });
+
+  </script>
 
 
 			    

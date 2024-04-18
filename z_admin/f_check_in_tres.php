@@ -61,6 +61,48 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
 
 
 
+
+
+
+
+
+
+
+if ($alerta_principal != '2') {
+
+  $alerta_principal = "5";
+  
+  include("../conectar.php");  
+
+  $url_det = $_SERVER['REQUEST_URI'];    // salvo el link no el host siempre ya que si no, hace ningun pago no lo salvaria
+
+  $sql_payment_up = "UPDATE tb_payment_hospedaje SET  link_payment = '$url_det'
+        WHERE id_payment_hospedaje = '$id_pay' LIMIT 1 ";
+
+   $link_up = mysqli_query($enlace, $sql_payment_up) or die(mysqli_error());
+
+  mysqli_close($enlace);
+
+
+
+}
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if(isset($_POST['editar_payme']))  // chequea si se ha enviado algo, de ser si --> se conecta a la BD y comprueba
     {
         $alerta_principal = "2";

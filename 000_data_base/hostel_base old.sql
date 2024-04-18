@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-04-2024 a las 21:28:26
+-- Tiempo de generación: 15-04-2024 a las 23:38:01
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -48,6 +48,50 @@ CREATE TABLE `bed_booking` (
   `id_payment_huesped` int(254) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `bed_booking`
+--
+
+INSERT INTO `bed_booking` (`id_bed_booking`, `booking_year`, `id_hostel`, `id_room`, `id_room_bed`, `date_range`, `booking_status`, `date_in`, `date_out`, `nights`, `arreglo_d`, `codigo_amistades`, `amistad_rey`, `id_guests`, `month_ini`, `month_end`, `hora_rey`, `id_payment_huesped`) VALUES
+(349, '2024', 10, 58, 174, '2024-04-23 - 2024-04-27', 1, '2024-04-23', '2024-04-27', '4', 'a:3:{i:0;s:10:\"2024-04-24\";i:1;s:10:\"2024-04-25\";i:2;s:10:\"2024-04-26\";}', '_193_2024-04-23 - 2024-04-27_10_', 1, 193, '04', '04', '2024-04-02 09:50:16', 1),
+(350, '2024', 10, 47, 138, '2024-04-23 - 2024-04-27', 2, '2024-04-23', '2024-04-27', '4', 'a:3:{i:0;s:10:\"2024-04-24\";i:1;s:10:\"2024-04-25\";i:2;s:10:\"2024-04-26\";}', '_193_2024-04-23 - 2024-04-27_10_', 1, 193, '04', '04', '2024-04-02 09:51:42', 2),
+(351, '2024', 10, 47, 139, '2024-04-23 - 2024-04-27', 2, '2024-04-23', '2024-04-27', '4', 'a:3:{i:0;s:10:\"2024-04-24\";i:1;s:10:\"2024-04-25\";i:2;s:10:\"2024-04-26\";}', '_193_2024-04-23 - 2024-04-27_10_', 0, 199, '04', '04', '2024-04-02 09:51:42', 2),
+(352, '2024', 10, 47, 141, '2024-04-23 - 2024-04-27', 2, '2024-04-23', '2024-04-27', '4', 'a:3:{i:0;s:10:\"2024-04-24\";i:1;s:10:\"2024-04-25\";i:2;s:10:\"2024-04-26\";}', '_193_2024-04-23 - 2024-04-27_10_', 0, 220, '04', '04', '2024-04-02 09:51:42', 2),
+(353, '2024', 10, 55, 161, '2024-04-23 - 2024-04-27', 2, '2024-04-23', '2024-04-27', '4', 'a:3:{i:0;s:10:\"2024-04-24\";i:1;s:10:\"2024-04-25\";i:2;s:10:\"2024-04-26\";}', '_193_2024-04-23 - 2024-04-27_10_', 0, 200, '04', '04', '2024-04-02 09:51:42', 2),
+(354, '2024', 10, 57, 167, '2024-04-23 - 2024-04-27', 2, '2024-04-23', '2024-04-27', '4', 'a:3:{i:0;s:10:\"2024-04-24\";i:1;s:10:\"2024-04-25\";i:2;s:10:\"2024-04-26\";}', '_193_2024-04-23 - 2024-04-27_10_', 0, 203, '04', '04', '2024-04-02 09:51:42', 2),
+(355, '2024', 10, 56, 163, '2024-04-23 - 2024-04-27', 2, '2024-04-23', '2024-04-27', '4', 'a:3:{i:0;s:10:\"2024-04-24\";i:1;s:10:\"2024-04-25\";i:2;s:10:\"2024-04-26\";}', '_193_2024-04-23 - 2024-04-27_10_', 0, 202, '04', '04', '2024-04-02 09:51:42', 2),
+(356, '2024', 10, 50, 149, '2024-04-23 - 2024-04-27', 2, '2024-04-23', '2024-04-27', '4', 'a:3:{i:0;s:10:\"2024-04-24\";i:1;s:10:\"2024-04-25\";i:2;s:10:\"2024-04-26\";}', '_193_2024-04-23 - 2024-04-27_10_', 0, 221, '04', '04', '2024-04-02 09:51:42', 2),
+(357, '2024', 10, 58, 174, '2024-04-04 - 2024-04-09', 2, '2024-04-04', '2024-04-09', '5', 'a:4:{i:0;s:10:\"2024-04-05\";i:1;s:10:\"2024-04-06\";i:2;s:10:\"2024-04-07\";i:3;s:10:\"2024-04-08\";}', '_193_2024-04-04 - 2024-04-09_10_', 1, 193, '04', '04', '2024-04-04 06:10:27', 3),
+(358, '2024', 10, 48, 142, '2024-04-04 - 2024-04-09', 2, '2024-04-04', '2024-04-09', '5', 'a:4:{i:0;s:10:\"2024-04-05\";i:1;s:10:\"2024-04-06\";i:2;s:10:\"2024-04-07\";i:3;s:10:\"2024-04-08\";}', '_193_2024-04-04 - 2024-04-09_10_', 0, 200, '04', '04', '2024-04-04 06:10:27', 3),
+(359, '2024', 10, 50, 149, '2024-04-04 - 2024-04-09', 2, '2024-04-04', '2024-04-09', '5', 'a:4:{i:0;s:10:\"2024-04-05\";i:1;s:10:\"2024-04-06\";i:2;s:10:\"2024-04-07\";i:3;s:10:\"2024-04-08\";}', '_193_2024-04-04 - 2024-04-09_10_', 0, 201, '04', '04', '2024-04-04 06:10:27', 3),
+(361, '2024', 10, 58, 175, '2024-04-24 - 2024-04-27', 2, '2024-04-24', '2024-04-27', '3', 'a:2:{i:0;s:10:\"2024-04-25\";i:1;s:10:\"2024-04-26\";}', '_199_2024-04-24 - 2024-04-27_10_', 1, 199, '04', '04', '2024-04-04 09:29:28', 4),
+(362, '2024', 10, 58, 173, '2024-04-24 - 2024-04-27', 2, '2024-04-24', '2024-04-27', '3', 'a:2:{i:0;s:10:\"2024-04-25\";i:1;s:10:\"2024-04-26\";}', '_199_2024-04-24 - 2024-04-27_10_', 0, 193, '04', '04', '2024-04-04 09:29:28', 4),
+(363, '2024', 10, 48, 142, '2024-04-24 - 2024-04-27', 2, '2024-04-24', '2024-04-27', '3', 'a:2:{i:0;s:10:\"2024-04-25\";i:1;s:10:\"2024-04-26\";}', '_199_2024-04-24 - 2024-04-27_10_', 0, 203, '04', '04', '2024-04-04 09:29:28', 4),
+(364, '2024', 10, 50, 151, '2024-04-24 - 2024-04-27', 2, '2024-04-24', '2024-04-27', '3', 'a:2:{i:0;s:10:\"2024-04-25\";i:1;s:10:\"2024-04-26\";}', '_199_2024-04-24 - 2024-04-27_10_', 0, 202, '04', '04', '2024-04-04 09:29:28', 4),
+(365, '2024', 10, 48, 142, '2024-04-17 - 2024-04-19', 1, '2024-04-17', '2024-04-19', '2', 'a:1:{i:0;s:10:\"2024-04-18\";}', '_193_2024-04-17 - 2024-04-19_10_', 1, 193, '04', '04', '2024-04-05 04:00:42', 5),
+(366, '2024', 10, 59, 177, '2024-05-15 - 2024-05-18', 1, '2024-05-15', '2024-05-18', '3', 'a:2:{i:0;s:10:\"2024-05-16\";i:1;s:10:\"2024-05-17\";}', '_201_2024-05-15 - 2024-05-18_10_', 1, 201, '05', '05', '2024-04-08 07:52:16', 6),
+(367, '2024', 10, 55, 158, '2024-05-28 - 2024-05-31', 1, '2024-05-28', '2024-05-31', '3', 'a:2:{i:0;s:10:\"2024-05-29\";i:1;s:10:\"2024-05-30\";}', '_201_2024-05-28 - 2024-05-31_10_', 1, 201, '05', '05', '2024-04-08 07:54:30', 7),
+(368, '2024', 10, 58, 175, '2024-04-08 - 2024-04-10', 1, '2024-04-08', '2024-04-10', '2', 'a:1:{i:0;s:10:\"2024-04-09\";}', '_200_2024-04-08 - 2024-04-10_10_', 1, 200, '04', '04', '2024-04-08 08:08:50', 8),
+(369, '2024', 10, 47, 138, '2024-04-08 - 2024-04-10', 2, '2024-04-08', '2024-04-10', '2', 'a:1:{i:0;s:10:\"2024-04-09\";}', '_199_2024-04-08 - 2024-04-10_10_', 1, 199, '04', '04', '2024-04-08 08:13:31', 9),
+(370, '2024', 10, 58, 174, '2024-04-29 - 2024-05-04', 2, '2024-04-29', '2024-05-04', '5', 'a:4:{i:0;s:10:\"2024-04-30\";i:1;s:10:\"2024-05-01\";i:2;s:10:\"2024-05-02\";i:3;s:10:\"2024-05-03\";}', '_222_2024-04-29 - 2024-05-04_10_', 1, 222, '04', '05', '2024-04-08 11:22:39', 10),
+(371, '2024', 10, 58, 173, '2024-04-29 - 2024-05-04', 2, '2024-04-29', '2024-05-04', '5', 'a:4:{i:0;s:10:\"2024-04-30\";i:1;s:10:\"2024-05-01\";i:2;s:10:\"2024-05-02\";i:3;s:10:\"2024-05-03\";}', '_222_2024-04-29 - 2024-05-04_10_', 0, 223, '04', '05', '2024-04-08 11:22:39', 10),
+(372, '2024', 10, 50, 149, '2024-04-29 - 2024-05-04', 2, '2024-04-29', '2024-05-04', '5', 'a:4:{i:0;s:10:\"2024-04-30\";i:1;s:10:\"2024-05-01\";i:2;s:10:\"2024-05-02\";i:3;s:10:\"2024-05-03\";}', '_222_2024-04-29 - 2024-05-04_10_', 0, 224, '04', '05', '2024-04-08 11:22:39', 10),
+(373, '2024', 10, 58, 174, '2024-04-16 - 2024-04-18', 1, '2024-04-16', '2024-04-18', '2', 'a:1:{i:0;s:10:\"2024-04-17\";}', '_225_2024-04-16 - 2024-04-18_10_', 1, 225, '04', '04', '2024-04-11 04:27:01', 11),
+(374, '2024', 10, 58, 175, '2024-04-16 - 2024-04-18', 1, '2024-04-16', '2024-04-18', '2', 'a:1:{i:0;s:10:\"2024-04-17\";}', '_225_2024-04-16 - 2024-04-18_10_', 0, 193, '04', '04', '2024-04-11 04:27:01', 11),
+(375, '2024', 10, 51, 153, '2024-04-16 - 2024-04-18', 1, '2024-04-16', '2024-04-18', '2', 'a:1:{i:0;s:10:\"2024-04-17\";}', '_225_2024-04-16 - 2024-04-18_10_', 0, 187, '04', '04', '2024-04-11 04:27:01', 11),
+(376, '2024', 10, 58, 174, '2024-04-11 - 2024-04-12', 1, '2024-04-11', '2024-04-12', '1', 'a:0:{}', '_193_2024-04-11 - 2024-04-12_10_', 1, 193, '04', '04', '2024-04-11 05:33:43', 12),
+(377, '2024', 10, 58, 173, '2024-04-17 - 2024-04-21', 1, '2024-04-17', '2024-04-21', '4', 'a:3:{i:0;s:10:\"2024-04-18\";i:1;s:10:\"2024-04-19\";i:2;s:10:\"2024-04-20\";}', '_200_2024-04-17 - 2024-04-21_10_', 1, 200, '04', '04', '2024-04-11 05:38:44', 13),
+(378, '2024', 10, 48, 143, '2024-04-17 - 2024-04-20', 1, '2024-04-17', '2024-04-20', '3', 'a:2:{i:0;s:10:\"2024-04-18\";i:1;s:10:\"2024-04-19\";}', '_193_2024-04-17 - 2024-04-20_10_', 1, 193, '04', '04', '2024-04-11 05:54:06', 14),
+(379, '2024', 10, 49, 144, '2024-04-16 - 2024-04-18', 1, '2024-04-16', '2024-04-18', '2', 'a:1:{i:0;s:10:\"2024-04-17\";}', '_193_2024-04-16 - 2024-04-18_10_', 1, 193, '04', '04', '2024-04-11 11:56:04', 15),
+(380, '2024', 10, 58, 174, '2024-04-12 - 2024-04-14', 1, '2024-04-12', '2024-04-14', '2', 'a:1:{i:0;s:10:\"2024-04-13\";}', '_235_2024-04-12 - 2024-04-14_10_', 1, 235, '04', '04', '2024-04-12 11:59:55', 16),
+(381, '2024', 10, 47, 138, '2024-04-12 - 2024-04-14', 1, '2024-04-12', '2024-04-14', '2', 'a:1:{i:0;s:10:\"2024-04-13\";}', '_235_2024-04-12 - 2024-04-14_10_', 0, 236, '04', '04', '2024-04-12 11:59:55', 16),
+(382, '2024', 10, 58, 175, '2024-04-12 - 2024-04-14', 1, '2024-04-12', '2024-04-14', '2', 'a:1:{i:0;s:10:\"2024-04-13\";}', '_237_2024-04-12 - 2024-04-14_10_', 1, 237, '04', '04', '2024-04-13 12:06:51', 17),
+(383, '2024', 10, 58, 173, '2024-04-12 - 2024-04-14', 1, '2024-04-12', '2024-04-14', '2', 'a:1:{i:0;s:10:\"2024-04-13\";}', '_237_2024-04-12 - 2024-04-14_10_', 0, 238, '04', '04', '2024-04-13 12:06:51', 17),
+(384, '2024', 10, 48, 142, '2024-04-12 - 2024-04-14', 1, '2024-04-12', '2024-04-14', '2', 'a:1:{i:0;s:10:\"2024-04-13\";}', '_239_2024-04-12 - 2024-04-14_10_', 1, 239, '04', '04', '2024-04-13 12:09:40', 18),
+(385, '2024', 10, 48, 143, '2024-04-12 - 2024-04-14', 1, '2024-04-12', '2024-04-14', '2', 'a:1:{i:0;s:10:\"2024-04-13\";}', '_239_2024-04-12 - 2024-04-14_10_', 0, 240, '04', '04', '2024-04-13 12:09:40', 18),
+(386, '2024', 10, 49, 144, '2024-04-12 - 2024-04-14', 1, '2024-04-12', '2024-04-14', '2', 'a:1:{i:0;s:10:\"2024-04-13\";}', '_241_2024-04-12 - 2024-04-14_10_', 1, 241, '04', '04', '2024-04-13 12:21:53', 19),
+(387, '2024', 10, 47, 139, '2024-04-12 - 2024-04-14', 1, '2024-04-12', '2024-04-14', '2', 'a:1:{i:0;s:10:\"2024-04-13\";}', '_241_2024-04-12 - 2024-04-14_10_', 0, 242, '04', '04', '2024-04-13 12:21:53', 19);
+
 -- --------------------------------------------------------
 
 --
@@ -84,47 +128,17 @@ CREATE TABLE `bed_number` (
 --
 
 INSERT INTO `bed_number` (`id_bed_number`, `name_bed_number`) VALUES
-(1, 'F6-1'),
-(2, 'F6-2'),
-(3, 'F6-3'),
-(4, 'F6-4'),
-(5, 'F6-5'),
-(6, 'F6-6'),
+(1, '1'),
+(2, '2'),
+(3, '3'),
+(4, '4'),
+(5, '5'),
+(6, '6'),
+(7, '7'),
+(8, '8'),
+(9, '9'),
 (10, 'None'),
-(12, 'F7-1'),
-(13, 'F7-2'),
-(14, 'F7-3'),
-(15, 'F7-4'),
-(16, 'F7-5'),
-(17, 'F7-6'),
-(18, 'F3-1'),
-(19, 'F3-2'),
-(20, 'F3-3'),
-(21, 'F3-4'),
-(22, 'F3-5'),
-(23, 'F3-6'),
-(24, 'M1-1'),
-(25, 'M1-2'),
-(26, 'M1-3'),
-(27, 'M1-4'),
-(28, 'M1-5'),
-(29, 'M1-6'),
-(30, 'M4-1'),
-(31, 'M4-2'),
-(32, 'M4-3'),
-(33, 'M4-4'),
-(34, 'M4-5'),
-(35, 'M4-6'),
-(36, 'M9-1'),
-(37, 'M9-2'),
-(38, 'M9-4'),
-(39, 'M9-5'),
-(40, 'M9-6'),
-(41, 'P8-1'),
-(42, 'P8-2'),
-(43, 'P2-1'),
-(44, 'P2-2'),
-(45, 'M9-3');
+(11, 'aaaa');
 
 -- --------------------------------------------------------
 
@@ -238,140 +252,7 @@ CREATE TABLE `country` (
 
 INSERT INTO `country` (`id_country`, `name_country`) VALUES
 (1, 'USA'),
-(7, 'Mexico'),
-(8, 'Venezuela'),
-(9, 'Colombia'),
-(10, 'Argentina'),
-(11, 'Australia'),
-(12, 'Austria'),
-(13, 'Madagascar'),
-(14, 'Malaysia'),
-(15, 'Malta'),
-(16, 'Monaco'),
-(17, 'Morocco'),
-(18, 'Bahamas'),
-(19, 'Barbados'),
-(20, 'Belgium'),
-(21, 'Belize'),
-(22, 'Bolivia'),
-(23, 'Nepal'),
-(24, 'Netherlands'),
-(25, 'New Zealand'),
-(26, 'Nicaragua'),
-(27, 'Nigeria'),
-(28, 'Norway'),
-(29, 'North Macedonia'),
-(30, 'Brazil'),
-(31, 'Brunei'),
-(32, 'Bulgaria'),
-(33, 'Cabo Verde'),
-(34, 'Cambodia'),
-(35, 'Cameroon'),
-(36, 'Canada'),
-(37, 'Cayman Islands'),
-(38, 'Pakistan'),
-(39, 'Panama'),
-(40, 'Papua New Guinea'),
-(41, 'Paraguay'),
-(42, 'Peru'),
-(43, 'Philippines'),
-(44, 'Poland'),
-(45, 'Portugal'),
-(46, 'Central African Rep'),
-(47, 'Chile'),
-(48, 'China'),
-(49, 'Costa Rica'),
-(50, 'Cote d’Ivoire'),
-(51, 'Croatia'),
-(52, 'Cuba'),
-(53, 'Czechia'),
-(54, 'Czechoslovakia'),
-(55, 'Qatar'),
-(56, 'South Korea'),
-(57, 'Denmark'),
-(58, 'Republic of the Con'),
-(59, 'Romania'),
-(60, 'Russia'),
-(61, 'Rwanda'),
-(62, 'Dominica'),
-(63, 'Dominican Republic'),
-(64, 'Saint Lucia'),
-(65, 'Samoa'),
-(66, 'San Marino'),
-(67, 'Saudi Arabia'),
-(68, 'Senegal'),
-(69, 'Serbia'),
-(70, 'Sierra Leone'),
-(71, 'Singapore'),
-(72, 'Slovakia'),
-(73, 'Slovenia'),
-(74, 'Somalia'),
-(75, 'South Africa'),
-(76, 'Ecuador'),
-(77, 'Egypt'),
-(78, 'El Salvador'),
-(79, 'Equatorial Guinea'),
-(80, 'Estonia'),
-(81, 'Ethiopia'),
-(82, 'Fiji'),
-(83, 'Finland'),
-(84, 'France'),
-(85, 'South Sudan'),
-(86, 'Spain'),
-(87, 'Sri Lanka'),
-(88, 'Sudan'),
-(89, 'Suriname'),
-(90, 'Sweden'),
-(91, 'Switzerland'),
-(92, 'Syria'),
-(93, 'Georgia'),
-(94, 'Germany'),
-(95, 'Ghana'),
-(96, 'Greece'),
-(97, 'Grenada'),
-(98, 'Guatemala'),
-(99, 'Guinea'),
-(100, 'Guyana'),
-(101, 'Tanzania'),
-(102, 'Thailand'),
-(103, 'Trinidad and Tobago'),
-(104, 'Turkey'),
-(105, 'Haiti'),
-(106, 'Hawaii'),
-(107, 'Honduras'),
-(108, 'Hungary'),
-(109, 'Uganda'),
-(110, 'Ukraine'),
-(111, 'United Arab Emirate'),
-(112, 'United Kingdom'),
-(113, 'Uruguay'),
-(114, 'Uzbekistan'),
-(115, 'Iceland'),
-(116, 'India'),
-(117, 'Indonesia'),
-(118, 'Iran'),
-(119, 'Iraq'),
-(120, 'Ireland'),
-(121, 'Israel'),
-(122, 'Italy'),
-(123, 'Jamaica'),
-(124, 'Vietnam'),
-(125, 'Japan'),
-(126, 'Jordan'),
-(127, 'Yemen'),
-(128, 'Zambia'),
-(129, 'Zimbabwe'),
-(130, 'Kazakhstan'),
-(131, 'Kenya'),
-(132, 'Korea'),
-(133, 'Kosovo'),
-(134, 'Kuwait'),
-(135, 'Laos'),
-(136, 'Latvia'),
-(137, 'Liberia'),
-(138, 'Libya'),
-(139, 'Lithuania'),
-(140, 'Luxembourg');
+(7, 'Mexico');
 
 -- --------------------------------------------------------
 
@@ -444,7 +325,9 @@ CREATE TABLE `exchange_rates` (
 --
 
 INSERT INTO `exchange_rates` (`id_exchange_rates`, `id_hostel`, `id_hostel_currency`, `id_currency_A`, `currency_A_value`, `id_currency_B`, `currency_B_value`, `id_currency_C`, `currency_C_value`, `id_currency_D`, `currency_D_value`, `id_currency_E`, `currency_E_value`, `all_set_this_time`) VALUES
-(30, 17, 2, 1, 17.10, 3, 18.20, NULL, NULL, NULL, NULL, NULL, NULL, '2024-04-18 18:27:10');
+(26, 10, 2, 1, 130.00, 3, 145.00, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-16 23:08:40'),
+(27, 10, 2, 1, 135.00, 3, 149.00, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-18 14:03:42'),
+(28, 10, 2, 1, 16.80, 3, 18.20, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-22 02:14:55');
 
 -- --------------------------------------------------------
 
@@ -625,175 +508,7 @@ CREATE TABLE `nationality` (
 
 INSERT INTO `nationality` (`id_nationality`, `name_nationality`) VALUES
 (1, 'American'),
-(7, '.'),
-(9, 'Afghan'),
-(10, 'Albanian'),
-(11, 'Algerian'),
-(12, 'Andorran'),
-(13, 'Angolan'),
-(14, 'Australian'),
-(15, 'Argentine'),
-(16, 'Austrian'),
-(17, 'Bahamian'),
-(18, 'Bangladeshi'),
-(19, 'Barbadian'),
-(20, 'Belarusian'),
-(21, 'Belgian'),
-(22, 'Beninese'),
-(23, 'Bermudian'),
-(24, 'Bolivian'),
-(25, 'Brazilian'),
-(26, 'British'),
-(27, 'Bruneian'),
-(28, 'Bulgarian'),
-(29, 'Burmese'),
-(30, 'Cambodian'),
-(31, 'Cameroonian'),
-(32, 'Canadian'),
-(33, 'Cape Verdean'),
-(34, 'Cayman Islander'),
-(35, 'Central African'),
-(36, 'Chilean'),
-(37, 'Chinese'),
-(38, 'Colombian'),
-(39, 'Comoran'),
-(40, 'Cook Islander'),
-(41, 'Costa Rican'),
-(42, 'Croatian'),
-(43, 'Cuban'),
-(44, 'Cymraes'),
-(45, 'Czech'),
-(46, 'Danish'),
-(47, 'Dominican'),
-(48, 'Dutch'),
-(49, 'East Timorese'),
-(50, 'Ecuadorean'),
-(51, 'Egyptian'),
-(52, 'Emirati'),
-(53, 'English'),
-(54, 'Estonian'),
-(55, 'Ethiopian'),
-(56, 'Fijian'),
-(57, 'Filipino'),
-(58, 'French'),
-(59, 'Georgian'),
-(60, 'German'),
-(61, 'Greek'),
-(62, 'Greenlandic'),
-(63, 'Grenadian'),
-(64, 'Guatemalan'),
-(65, 'Guinean'),
-(66, 'Guyanese'),
-(67, 'Haitian'),
-(68, 'Honduran'),
-(69, 'Hong Konger	'),
-(70, 'Hungarian'),
-(71, 'Icelandic'),
-(72, 'Indian'),
-(73, 'Indonesian'),
-(74, 'Iranian'),
-(75, 'Iraqi'),
-(76, 'Irish'),
-(77, 'Israeli'),
-(78, 'Italian'),
-(79, 'Ivorian'),
-(80, 'Jamaican'),
-(81, 'Japanese'),
-(82, 'Jordanian'),
-(83, 'Kazakh'),
-(84, 'Kenyan'),
-(85, 'Citizen of Kiribati'),
-(86, 'Kosovan'),
-(87, 'Kuwaiti'),
-(88, 'Lao'),
-(89, 'Latvian'),
-(90, 'Lebanese'),
-(91, 'Liberian'),
-(92, 'Other'),
-(93, 'Libyan'),
-(94, 'Lithuanian'),
-(95, 'Luxembourger'),
-(96, 'Macanese'),
-(97, 'Macedonian'),
-(98, 'Malawian'),
-(99, 'Malagasy'),
-(100, 'Malaysian'),
-(101, 'Maldivian'),
-(102, 'Maltese'),
-(103, 'Marshallese'),
-(104, 'Mauritian'),
-(105, 'Mexican'),
-(106, 'Moldovan'),
-(107, 'Mongolian'),
-(108, 'Montserratian'),
-(109, 'Moroccan'),
-(110, 'Mozambican'),
-(111, 'Namibian'),
-(112, 'Nepalese'),
-(113, 'New Zealander'),
-(114, 'Nicaraguan'),
-(115, 'Nigerian'),
-(116, 'Nigerien'),
-(117, 'North Korean'),
-(118, 'Northern Irish'),
-(119, 'Norwegian'),
-(120, 'Omani'),
-(121, 'Qatari'),
-(122, 'Pakistani'),
-(123, 'Palauan'),
-(124, 'Palestinian'),
-(125, 'Panamanian'),
-(126, 'Paraguayan'),
-(127, 'Peruvian'),
-(128, 'Polish'),
-(129, 'Portuguese'),
-(130, 'Puerto Rican'),
-(131, 'Romanian'),
-(132, 'Russian'),
-(133, 'Rwandan'),
-(134, 'Salvadorean'),
-(135, 'Samoan'),
-(136, 'Saudi Arabian'),
-(137, 'Scottish'),
-(138, 'Senegalese'),
-(139, 'Serbian'),
-(140, 'Sierra Leonean'),
-(141, 'Singaporean'),
-(142, 'Slovak'),
-(143, 'Slovenian'),
-(144, 'Somali'),
-(145, 'South African'),
-(146, 'South Korean'),
-(147, 'South Sudanese'),
-(148, 'Spanish'),
-(149, 'Sri Lankan'),
-(150, 'St Lucian'),
-(151, 'Sudanese'),
-(152, 'Surinamese'),
-(153, 'Swedish'),
-(154, 'Swiss'),
-(155, 'Syrian'),
-(156, 'Taiwanese'),
-(157, 'Tajik'),
-(158, 'Tanzanian'),
-(159, 'Thai'),
-(160, 'Tongan'),
-(161, 'Trinidadian'),
-(162, 'Tristanian'),
-(163, 'Tunisian'),
-(164, 'Turkish'),
-(165, 'Ugandan'),
-(166, 'Ukrainian'),
-(167, 'Uruguayan'),
-(168, 'Uzbek'),
-(169, 'Vatican citizen'),
-(170, 'Venezuelan'),
-(171, 'Vietnamese'),
-(172, 'Wallisian'),
-(173, 'Welsh'),
-(174, 'Yemeni'),
-(175, 'Zambian'),
-(176, 'Zimbabwean');
+(7, '.');
 
 -- --------------------------------------------------------
 
@@ -872,19 +587,6 @@ CREATE TABLE `quien_y_cuando_per` (
   `historial_status` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `quien_y_cuando_per`
---
-
-INSERT INTO `quien_y_cuando_per` (`id_q_y_c_per`, `id_quien_act_o_desact`, `id_per_act_o_desact`, `fecha_act_o_desact`, `text_act_o_desact`, `historial_status`) VALUES
-(13, 26, 27, '2024-04-18 19:17:27', '', 0),
-(14, 26, 27, '2024-04-18 19:17:58', '', 1),
-(15, 26, 27, '2024-04-18 19:21:00', 'aaa', 0),
-(16, 26, 27, '2024-04-18 19:21:14', 'aaaa', 1),
-(17, 26, 27, '2024-04-18 19:22:27', 'ssss', 0),
-(18, 26, 27, '2024-04-18 19:26:13', 'sss', 1),
-(19, 26, 27, '2024-04-18 19:26:27', 'ee', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -917,6 +619,19 @@ CREATE TABLE `reporte_incidencias_b` (
   `update_fecha_inc_b` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `reporte_incidencias_b`
+--
+
+INSERT INTO `reporte_incidencias_b` (`id_reporte_incidencias_b`, `id_quien_reporto_b`, `id_de_la_bed_b`, `fecha_incidencia_b`, `id_de_incidencia_b`, `id_incidencia_b_status`, `id_quien_actualizo_b`, `update_fecha_inc_b`) VALUES
+(1, 9, 130, '2024-03-17 01:29:03', 6, 4, 9, '2024-03-17 02:27:57'),
+(2, 9, 135, '2024-03-17 01:29:14', 4, 5, 9, '2024-04-08 11:37:06'),
+(3, 9, 129, '2024-03-17 01:29:19', 9, 1, NULL, NULL),
+(6, 9, 130, '2024-03-17 01:58:32', 7, 4, 9, '2024-03-18 03:00:11'),
+(7, 9, 130, '2024-03-17 01:58:36', 4, 5, 9, '2024-03-17 02:27:31'),
+(8, 9, 129, '2024-03-17 01:58:40', 3, 1, NULL, NULL),
+(9, 9, 145, '2024-03-17 01:58:45', 6, 3, 9, '2024-03-17 02:28:20');
+
 -- --------------------------------------------------------
 
 --
@@ -933,6 +648,16 @@ CREATE TABLE `reporte_incidencias_r` (
   `id_quien_actualizo_r` int(24) DEFAULT NULL,
   `update_fecha_inc_r` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `reporte_incidencias_r`
+--
+
+INSERT INTO `reporte_incidencias_r` (`id_reporte_incidencias_r`, `id_quien_reporto_r`, `id_de_la_room_r`, `fecha_incidencia_r`, `id_de_incidencia_r`, `id_incidencia_r_status`, `id_quien_actualizo_r`, `update_fecha_inc_r`) VALUES
+(13, 9, 46, '2024-03-17 12:47:27', 3, 1, NULL, NULL),
+(14, 9, 46, '2024-03-17 12:47:31', 6, 1, NULL, NULL),
+(15, 9, 46, '2024-03-17 12:47:36', 9, 5, 9, '2024-03-18 02:58:05'),
+(16, 9, 48, '2024-03-17 12:47:39', 6, 2, 9, '2024-04-01 08:14:34');
 
 -- --------------------------------------------------------
 
@@ -952,9 +677,7 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id_rol_per`, `name_rol`) VALUES
 (1, 'Super Admin'),
 (2, 'Volunteer'),
-(3, 'Guest Only'),
-(4, 'Admin'),
-(5, 'Chief of Volunteers');
+(3, 'Guest Only');
 
 -- --------------------------------------------------------
 
@@ -992,14 +715,19 @@ CREATE TABLE `room_number` (
 --
 
 INSERT INTO `room_number` (`id_room_number`, `name_room_number`) VALUES
-(1, 'FEM-3'),
-(2, 'FEM-6'),
-(3, 'MIX-9'),
-(4, 'MIX-1'),
-(5, 'MIX-4'),
-(6, 'PRI-8'),
-(14, 'FEM-7'),
-(15, 'PRI-2');
+(1, '1'),
+(2, '2'),
+(3, '3'),
+(4, '4'),
+(5, '5'),
+(6, '6'),
+(7, '7'),
+(8, '8'),
+(9, '9'),
+(10, '10'),
+(11, '11'),
+(12, '12'),
+(13, 'Aventura');
 
 -- --------------------------------------------------------
 
@@ -1080,9 +808,24 @@ CREATE TABLE `tb_address` (
 --
 
 INSERT INTO `tb_address` (`id_address`, `city_address`, `id_country`, `post_code_address`, `name_address`) VALUES
-(47, 'Tulum', 7, 0, ''),
-(48, 'Caracas', 8, 1010, ''),
-(49, 'Caracas', 8, 1050, 'San Martín');
+(18, 'Tulum', 1, 0, ''),
+(19, '.', 1, 10100, ''),
+(20, 'Caracas', 1, 1010, 'Av Casanova con Calle Villaflor'),
+(21, 'Caracas', 1, 1010, 'Delicias a San Francisquito Pasaje San Carlos'),
+(22, '.', 1, NULL, NULL),
+(23, '.', 1, NULL, NULL),
+(24, '.', 1, NULL, NULL),
+(25, '.', 1, NULL, NULL),
+(26, '.', 1, NULL, NULL),
+(27, '.', 1, NULL, NULL),
+(28, '.', 1, NULL, NULL),
+(29, '.', 1, NULL, NULL),
+(30, '.', 1, NULL, NULL),
+(31, '.', 1, NULL, NULL),
+(32, '.', 1, NULL, NULL),
+(33, '.', 1, NULL, NULL),
+(34, '.', 1, NULL, NULL),
+(35, '.', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1100,6 +843,59 @@ CREATE TABLE `tb_data_guests` (
   `guests_observ` varchar(200) DEFAULT NULL,
   `id_guests` int(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tb_data_guests`
+--
+
+INSERT INTO `tb_data_guests` (`id_data_guests`, `guests_doc_id_pic`, `id_nation_g`, `guests_email`, `guests_phone`, `guests_behaviors`, `guests_observ`, `id_guests`) VALUES
+(124, 'guests/doc_id_g/186_13139999.png', 1, '', '', 12, NULL, 186),
+(125, 'guests/doc_id_g/187_17720914.png', 1, '', '', 12, NULL, 187),
+(126, 'guests/doc_id_g/188_666643315555.png', 1, '', '', 12, NULL, 188),
+(127, 'guests/doc_id_g/189_177209146.png', 1, '', '', 12, NULL, 189),
+(128, 'guests/doc_id_g/190_17720914776.png', 1, '', '', 12, NULL, 190),
+(129, 'guests/doc_id_g/191_66348.png', 1, '', '', 12, NULL, 191),
+(130, 'guests/doc_id_g/194_157744.png', 1, '', '', 12, NULL, 194),
+(131, 'guests/doc_id_g/193_13137951.png', 1, 'jczhotbull@gmail.com', '04241198683', 14, 'Esto es una prueba', 193),
+(132, 'guests/doc_id_g/195_99888445.png', 1, '', '', 12, NULL, 195),
+(133, 'guests/doc_id_g/196_9986533.png', 1, '', '', 12, NULL, 196),
+(134, 'guests/doc_id_g/197_3647888.png', 1, '', '', 12, NULL, 197),
+(135, 'guests/doc_id_g/198_8888899.png', 1, '', '', 12, NULL, 198),
+(136, 'guests/doc_id_g/199_77777.png', 1, 'jczhoteeeebull@gmail.com', '04241198683111', 16, 'aaatttteerr', 199),
+(137, 'guests/doc_id_g/200_55555.png', 1, 'jczhotbull@gmail.com', '04241198683', 12, 'Prueba de Observación', 200),
+(138, 'guests/doc_id_g/201_88888.png', 1, 'the_one@skynet.com', ' 1222555555555', 12, NULL, 201),
+(139, 'guests/doc_id_g/202_000655.png', 1, 'jczhotbull@gmail.com', '04241198683', 10, NULL, 202),
+(140, 'guests/doc_id_g/203_99999.png', 1, 'jczhotbull@gmail.com', '04241198683', 16, NULL, 203),
+(141, 'guests/doc_id_g/204_5555566.png', 1, '', '', 12, NULL, 204),
+(142, 'guests/doc_id_g/205_7777733.png', 1, '', '', 12, NULL, 205),
+(143, 'guests/doc_id_g/206_0006557.png', 1, '', '', 12, NULL, 206),
+(144, 'guests/doc_id_g/207_777778999.png', 1, '', '', 12, NULL, 207),
+(145, 'guests/doc_id_g/208_000655999.png', 1, '', '', 12, NULL, 208),
+(146, 'guests/doc_id_g/209_99999777.png', 1, '', '', 12, NULL, 209),
+(147, 'guests/doc_id_g/210_777774122.png', 1, '', '', 12, NULL, 210),
+(148, 'guests/doc_id_g/211_00065599.png', 1, '', '', 12, NULL, 211),
+(149, 'guests/doc_id_g/212_11444.png', 1, '', '', 12, NULL, 212),
+(150, 'guests/doc_id_g/213_774887.png', 1, '', '', 12, NULL, 213),
+(151, 'guests/doc_id_g/214_555557.png', 1, '', '', 12, NULL, 214),
+(152, 'guests/doc_id_g/215_7777788.png', 1, '', '', 12, NULL, 215),
+(153, 'guests/doc_id_g/216_9999988.png', 1, '', '', 12, NULL, 216),
+(154, 'guests/doc_id_g/217_000655666.png', 1, '', '', 12, NULL, 217),
+(155, 'guests/doc_id_g/218_77777444.png', 1, '', '', 12, NULL, 218),
+(156, 'guests/doc_id_g/219_887555.png', 1, '', '', 12, NULL, 219),
+(157, '', 1, '', '', 12, NULL, 220),
+(158, '', 1, '', '', 12, NULL, 221),
+(159, 'guests/doc_id_g/222_5447774468.png', 1, '', '', 12, NULL, 222),
+(160, 'guests/doc_id_g/223_8754588.png', 1, '', '', 8, NULL, 223),
+(161, 'guests/doc_id_g/224_985687746.png', 1, '', '', 12, NULL, 224),
+(162, 'guests/doc_id_g/225_13137952.png', 1, 'aaa@ddd.com', '9855654', 12, NULL, 225),
+(163, 'guests/doc_id_g/235_35353535.png', 1, 'aaa@aaa.com', '', 12, NULL, 235),
+(164, 'guests/doc_id_g/236_26282724.png', 1, 'hhhe@ssss.com', '', 12, NULL, 236),
+(165, 'guests/doc_id_g/237_22222.png', 1, 'pp@pp.com', '', 12, NULL, 237),
+(166, 'guests/doc_id_g/238_44444.png', 1, 'yy@yy.com', '', 12, NULL, 238),
+(167, 'guests/doc_id_g/239_141414.png', 1, 'ccc@ccc.com', '', 12, NULL, 239),
+(168, 'guests/doc_id_g/240_151515.png', 1, 'quin@qqq.com', '', 12, NULL, 240),
+(169, 'guests/doc_id_g/241_373737.png', 1, 'tre@sev.com', '', 12, NULL, 241),
+(170, 'guests/doc_id_g/242_383838.png', 1, 'tres@ocho.com', '', 12, NULL, 242);
 
 -- --------------------------------------------------------
 
@@ -1122,8 +918,17 @@ CREATE TABLE `tb_data_personal` (
 --
 
 INSERT INTO `tb_data_personal` (`id_data_per`, `a_phone_per`, `b_phone_per`, `email_per`, `pic_per`, `pic_doc_per`, `pic_passport_per`) VALUES
-(26, '04241198683', '', 'jczhotbull@gmail.com', 'img_per/26_13137951.png', 'img_doc_per/26_13137951.png', 'img_passport_per/26_13137951.png'),
-(27, '04242772573', '', 'sinaiguerrero@gmail.com', 'img_per/27_17720914.png', NULL, NULL);
+(9, '', '', 'jczhotbull@gmail.com', 'img_per/9_13137951.png', NULL, NULL),
+(10, '04241198683', '', 'jczhotbull@gmail.com', NULL, NULL, NULL),
+(11, '', NULL, 'nove@noveno.com', NULL, NULL, NULL),
+(12, '', NULL, 'aaa@aaa.com', NULL, NULL, NULL),
+(13, '', NULL, 'hhhe@ssss.com', NULL, NULL, NULL),
+(14, '', NULL, 'pp@pp.com', NULL, NULL, NULL),
+(15, '', NULL, 'yy@yy.com', NULL, NULL, NULL),
+(16, '', NULL, 'ccc@ccc.com', NULL, NULL, NULL),
+(17, '', NULL, 'quin@qqq.com', NULL, NULL, NULL),
+(18, '', NULL, 'tre@sev.com', NULL, NULL, NULL),
+(19, '', NULL, 'tres@ocho.com', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1148,6 +953,69 @@ CREATE TABLE `tb_guests` (
   `guests_today` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `tb_guests`
+--
+
+INSERT INTO `tb_guests` (`id_guests`, `guests_doc_id`, `p_name_g`, `s_name_g`, `p_surname_g`, `s_surname_g`, `guests_pic`, `guests_pass`, `guests_status`, `guests_register_by`, `guests_birth`, `guests_mod`, `guests_sex`, `guests_today`) VALUES
+(186, 13139999, '', NULL, '', NULL, NULL, '84c39300619e9b32a3d92dfe11c94a8a', 1, 9, '0000-00-00', 0, 3, '2024-03-24 16:20:35'),
+(187, 17720914, 'Ermo', NULL, 'Jam', NULL, NULL, '6c9eb0f571672a22c060f04a73703984', 1, 9, '0000-00-00', 0, 3, '2024-04-11 14:27:35'),
+(188, 2147483647, '', NULL, '', NULL, NULL, 'e78a51be4f6c64a3ebabe53129e5aeda', 1, 9, '0000-00-00', 0, 3, '2024-03-24 16:24:24'),
+(189, 177209146, '', NULL, '', NULL, NULL, 'ad38dd764cab520028988d7cc17b7f40', 1, 9, '0000-00-00', 0, 3, '2024-03-24 16:24:47'),
+(190, 2147483647, '', NULL, '', NULL, NULL, 'b2a503e1d32408c9b96d767e2675bb03', 1, 9, '0000-00-00', 0, 3, '2024-03-24 16:32:18'),
+(191, 66348, '', NULL, '', NULL, NULL, '7ad80cdea9e0ab56d894bc6bd20ac7b3', 1, 9, '0000-00-00', 0, 3, '2024-03-24 16:43:03'),
+(192, 6553333, '', NULL, '', NULL, NULL, '065ee2a78ca42eb522db1900e876a7d6', 1, 9, '0000-00-00', 0, 3, '2024-03-24 17:03:29'),
+(193, 13137951, 'Sinai', '', 'Guerrero', '', 'guests/pic_g/193_13137951.png', '4ab27d025f4ec1b788b330d48b6eea58', 1, 9, '2024-03-12', 1, 1, '2024-04-11 15:10:44'),
+(194, 157744, '', NULL, '', NULL, NULL, '972652fd6e13379743f1ca81589a55c6', 1, 9, '0000-00-00', 0, 3, '2024-03-24 20:35:16'),
+(195, 99888445, '', NULL, '', NULL, NULL, '7d9e9409a815abac0e3f913ac34f2e40', 1, 9, '0000-00-00', 0, 3, '2024-03-24 21:22:02'),
+(196, 9986533, '', NULL, '', NULL, NULL, '9f2ffd961d662b7ab7bb85b00958fb70', 1, 9, '0000-00-00', 0, 3, '2024-03-24 21:23:58'),
+(197, 3647888, '', NULL, '', NULL, NULL, 'd20b161f268c2435f6b4c1f76c738aae', 1, 9, '0000-00-00', 0, 3, '2024-03-24 21:24:43'),
+(198, 8888899, '', NULL, '', NULL, NULL, '2a95924704c440dee8b62a751ddb8a42', 1, 9, '0000-00-00', 0, 3, '2024-03-24 21:30:27'),
+(199, 77777, 'Fredddd', 'gggg', 'Torres', 'yyyttteerr', NULL, '500a3930dcefee807c00551f3a25329e', 1, 9, '2024-04-22', 1, 1, '2024-04-10 20:40:42'),
+(200, 55555, 'Katia', '', 'Sur', '', 'guests/pic_g/200_55555.png', '4bbc286886cc459942f1bd4ec0e0d645', 1, 9, '2024-03-12', 1, 2, '2024-04-11 15:35:35'),
+(201, 88888, 'John', NULL, 'Connor', NULL, 'guests/pic_g/201_88888.png', '2d159b502763ed8f4ffa682620098cda', 1, 9, '2024-04-05', 0, 1, '2024-04-08 17:54:24'),
+(202, 655, 'Juan', NULL, 'Zuñiga', NULL, NULL, 'a6b8470375b38aeb49d699c176997a90', 5, 9, '0000-00-00', 0, 3, '2024-04-04 19:30:19'),
+(203, 99999, 'Sinai', NULL, 'Guerrero', NULL, NULL, '6de378a67c1bed64a828e91cf5cac7b2', 10, 9, '0000-00-00', 0, 3, '2024-04-04 19:30:02'),
+(204, 5555566, '', NULL, '', NULL, NULL, '0842c687ea65d10c832a198cd4ec9824', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:42:04'),
+(205, 7777733, '', NULL, '', NULL, NULL, 'a2369aa89af78a5411a82bb0eb4478b3', 1, 9, '0000-00-00', 0, 3, '2024-03-25 13:42:18'),
+(206, 6557, '', NULL, '', NULL, NULL, '3a18824f8b85f2918b4185c3c9681870', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:36:16'),
+(207, 777778999, '', NULL, '', NULL, NULL, '4670d1d706aa4ebeb3d0beff4d740645', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:36:35'),
+(208, 655999, '', NULL, '', NULL, NULL, 'e20d26b4a23d968c20b431c0f0eecd2a', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:36:49'),
+(209, 99999777, '', NULL, '', NULL, NULL, '3658b475275b41fd22cb6e56475a7f12', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:37:12'),
+(210, 777774122, '', NULL, '', NULL, NULL, 'f2ef409e481e8171de6bf276e47e1799', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:37:25'),
+(211, 65599, '', NULL, '', NULL, NULL, '112deca267294e17a59018a45ef558cb', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:37:39'),
+(212, 11444, '', NULL, '', NULL, NULL, '25b94ed557973f30842a0e9736ab304c', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:37:49'),
+(213, 774887, '', NULL, '', NULL, NULL, 'c625b85e03b4d637d37c927063b8f5a1', 1, 9, '0000-00-00', 0, 3, '2024-03-25 16:38:00'),
+(214, 555557, '', NULL, '', NULL, NULL, 'aee7b02e4f0d4f4fb7a2cd306a425726', 1, 9, '0000-00-00', 0, 3, '2024-03-27 13:52:09'),
+(215, 7777788, '', NULL, '', NULL, NULL, '9150171cb3ef8063abf2e8e0ab544f27', 1, 9, '0000-00-00', 0, 3, '2024-03-27 13:52:20'),
+(216, 9999988, '', NULL, '', NULL, NULL, 'fb23fa1b7d974edcf30fe6dd504cecc9', 1, 9, '0000-00-00', 0, 3, '2024-03-27 13:52:47'),
+(217, 655666, '', NULL, '', NULL, NULL, '7620c57e4779c884f5acdbd9e2542ca2', 1, 9, '0000-00-00', 0, 3, '2024-04-01 18:09:30'),
+(218, 77777444, '', NULL, '', NULL, NULL, 'b085d5f3c1d9e6f4944992a60b701ec6', 1, 9, '0000-00-00', 0, 3, '2024-04-01 18:10:21'),
+(219, 887555, '', NULL, '', NULL, NULL, '4beeed0661bcb594dd68d5c751267eb1', 1, 9, '0000-00-00', 0, 3, '2024-04-02 12:56:52'),
+(220, 131379518, '', NULL, '', NULL, 'guests/pic_g/220_131379518.png', '49c08340f90e6884639e5a358c984596', 1, 9, '0000-00-00', 0, 3, '2024-04-03 21:38:49'),
+(221, 777778, '', NULL, '', NULL, '', 'aaa06bdac21d685090f2cb092cd5c3b9', 1, 9, '0000-00-00', 0, 3, '2024-04-03 21:09:33'),
+(222, 2147483647, 'Fabian', NULL, 'García ', NULL, NULL, '50b8c15816e09a3c861a3454da33d87d', 1, 9, '0000-00-00', 0, 3, '2024-04-08 21:21:53'),
+(223, 8754588, 'Hhhhhk', NULL, 'Uygt', NULL, NULL, '93deb7a38644df5c8f4cc1df58fd6033', 1, 9, '0000-00-00', 0, 3, '2024-04-08 21:23:07'),
+(224, 985687746, 'Jhgjj', NULL, 'Jhhhh', NULL, NULL, '0bb5f48fa8e5aaf4f50ab4a94e5debac', 1, 9, '0000-00-00', 0, 3, '2024-04-08 21:24:01'),
+(225, 13137952, 'yulmi', NULL, 'castillo', NULL, NULL, '458ced2f84c87d55dd3dc289c5555618', 1, 9, '1980-05-27', 0, 2, '2024-04-11 14:26:49'),
+(226, 17171717, 'Mio', NULL, 'Tuyo', NULL, NULL, 'be9e6b78414fa1a52811510584efe8c4', 1, 9, '0000-00-00', 0, 3, '2024-04-12 21:29:00'),
+(227, 19191919, 'yoyo', NULL, 'yoyin', NULL, NULL, 'a5edafbcadeeb4319d0cc4878fa36d09', 1, 9, '0000-00-00', 0, 3, '2024-04-12 21:32:15'),
+(228, 25252525, 'tercero', NULL, 'teeeercero', NULL, NULL, '1e32830284493641af4ec5740316abf0', 1, 9, '0000-00-00', 0, 3, '2024-04-12 21:33:01'),
+(229, 2147483647, 'cuarto', NULL, 'cuartillo', NULL, NULL, '7ede1a2d30b0e78205bc2282e9812bf3', 1, 9, '0000-00-00', 0, 3, '2024-04-12 21:36:17'),
+(230, 52525252, 'quintillo', NULL, 'cintillo', NULL, NULL, '57a6b9131b02368b347cc0df42b11ac2', 1, 9, '0000-00-00', 0, 3, '2024-04-12 21:36:51'),
+(231, 36363636, 'sexto', NULL, 'camilo', NULL, NULL, '34f32c9cdc119860ecc9e33214bf69ab', 1, 9, '0000-00-00', 0, 3, '2024-04-12 21:39:19'),
+(232, 78787878, 'septimo', NULL, 'vencido', NULL, NULL, '10bc234172db718998941da445ff329a', 1, 9, '0000-00-00', 0, 3, '2024-04-12 21:40:15'),
+(233, 54545454, 'octavo', NULL, 'octavio', NULL, NULL, 'd56782d8afec8e53ed41852f6ea35bcb', 1, 9, '0000-00-00', 0, 3, '2024-04-12 21:43:15'),
+(234, 94949494, 'novena', NULL, 'novenario', NULL, NULL, '6856b47c83ce117297cadb74463c1316', 1, 9, '0000-00-00', 0, 3, '2024-04-12 21:44:49'),
+(235, 35353535, 'treintra', NULL, 'trees', NULL, NULL, '962c02cc8a49f76d0bf5ad0ef2f239b5', 1, 9, '0000-00-00', 0, 3, '2024-04-12 21:59:44'),
+(236, 26282724, 'john', NULL, 'heeee', NULL, NULL, 'bdf80a53c190d9b1ef7c6252d9f12b50', 1, 9, '0000-00-00', 0, 3, '2024-04-12 22:00:25'),
+(237, 22222, 'gomes', NULL, 'pablo', NULL, NULL, '83cca1b38056e16294c37ef3ee712e8c', 1, 9, '0000-00-00', 0, 3, '2024-04-12 22:06:44'),
+(238, 44444, 'yeir', NULL, 'yair', NULL, NULL, 'e59388f92d3dc13415c14694c9cdfcbc', 1, 9, '0000-00-00', 0, 3, '2024-04-12 22:07:25'),
+(239, 141414, 'catorce', NULL, 'ccc', NULL, NULL, '597e2e34187a9246e8354156207a2e96', 1, 9, '0000-00-00', 0, 3, '2024-04-12 22:09:32'),
+(240, 151515, 'quinc', NULL, 'q', NULL, NULL, 'f25b57dcbcf8ac374e4372e6a9d9e4fb', 1, 9, '0000-00-00', 0, 3, '2024-04-12 22:09:57'),
+(241, 373737, 'treseven', NULL, 'seventree', NULL, NULL, '68932e61797a6fb9c8d757a7839217b3', 1, 9, '2024-04-16', 0, 3, '2024-04-12 22:21:46'),
+(242, 383838, 'tres', NULL, 'ocho', NULL, NULL, '4f70aa5d9e56d3741ecaff91f17db928', 1, 9, '2024-04-15', 0, 3, '2024-04-12 22:22:16');
+
 -- --------------------------------------------------------
 
 --
@@ -1165,6 +1033,29 @@ CREATE TABLE `tb_guests_services_check_in` (
   `service_note` varchar(250) NOT NULL,
   `cant_recibida` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tb_guests_services_check_in`
+--
+
+INSERT INTO `tb_guests_services_check_in` (`id_guests_services_check_in`, `id_hostel`, `id_bed_booking`, `id_del_servicio_check_in`, `id_service_price_check_in`, `adquirido_el_check_in`, `cant_adquirida`, `service_note`, `cant_recibida`) VALUES
+(64, 10, 366, 18, 39, '2024-04-08 17:52:43', 10, 'Tomo todos.', 0),
+(65, 10, 367, 14, 38, '2024-04-08 17:54:39', 2, '', 0),
+(66, 10, 367, 19, 36, '2024-04-08 17:54:39', 3, '', 0),
+(67, 10, 368, 18, 39, '2024-04-08 18:09:00', 1, 'Una noche', 0),
+(68, 10, 369, 14, 38, '2024-04-08 18:13:52', 3, 'Diario', 0),
+(69, 10, 369, 18, 39, '2024-04-10 20:35:59', 7, '', 6),
+(70, 10, 369, 19, 36, '2024-04-08 20:12:55', 1, '', 0),
+(71, 10, 359, 13, 12, '2024-04-09 20:14:58', 5, 'cincooooo', 5),
+(72, 10, 359, 14, 38, '2024-04-09 20:14:58', 3, 'dar uno diario', 3),
+(73, 10, 370, 13, 12, '2024-04-08 21:26:17', 2, '', 0),
+(75, 10, 372, 14, 38, '2024-04-08 21:30:22', 2, '', 0),
+(76, 10, 358, 13, 12, '2024-04-09 20:59:14', 2, '', 2),
+(79, 10, 358, 18, 39, '2024-04-12 13:10:40', 4, '', 4),
+(81, 10, 357, 13, 12, '2024-04-12 13:15:29', 2, '', 2),
+(82, 10, 359, 19, 36, '2024-04-12 13:14:19', 2, '', 0),
+(83, 10, 361, 13, 12, '2024-04-12 13:56:51', 3, '', 0),
+(84, 10, 350, 13, 12, '2024-04-12 22:31:17', 4, '', 4);
 
 -- --------------------------------------------------------
 
@@ -1191,6 +1082,25 @@ CREATE TABLE `tb_historial_servicios_dados` (
   `id_quien_entrego` int(128) NOT NULL,
   `id_del_booking` int(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tb_historial_servicios_dados`
+--
+
+INSERT INTO `tb_historial_servicios_dados` (`id_historial_servicios_dados`, `id_guests_services_check_in`, `cantidad_dada`, `nota_de_entrega`, `fecha_entrega`, `id_quien_entrego`, `id_del_booking`) VALUES
+(12, 71, 2, 'aa', '2024-04-09 20:14:05', 9, 359),
+(13, 72, 1, 'a', '2024-04-09 20:14:05', 9, 359),
+(14, 71, 1, 'aaa', '2024-04-09 20:14:30', 9, 359),
+(15, 72, 1, 'listo', '2024-04-09 20:14:30', 9, 359),
+(16, 71, 2, 'yaa', '2024-04-09 20:14:58', 9, 359),
+(17, 72, 1, 'ee', '2024-04-09 20:14:58', 9, 359),
+(18, 76, 2, 'ochoooo', '2024-04-09 20:18:07', 9, 358),
+(19, 79, 4, 'porq si', '2024-04-09 21:02:07', 9, 358),
+(20, 69, 4, '', '2024-04-09 21:17:24', 9, 369),
+(21, 69, 2, '', '2024-04-10 20:35:59', 9, 369),
+(22, 81, 2, 'retiro en tienda', '2024-04-12 13:12:49', 9, 357),
+(23, 84, 1, '', '2024-04-12 22:30:03', 9, 350),
+(24, 84, 3, '', '2024-04-12 22:30:38', 9, 350);
 
 -- --------------------------------------------------------
 
@@ -1237,6 +1147,31 @@ CREATE TABLE `tb_payment_hospedaje` (
   `deuda_hospedaje` decimal(40,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `tb_payment_hospedaje`
+--
+
+INSERT INTO `tb_payment_hospedaje` (`id_payment_hospedaje`, `id_hostel`, `tot_hospedaje_tax_cero`, `tot_hospedaje_con_tax`, `tot_services_tax_cero`, `tot_services_con_tax`, `id_tax_no_cero`, `monto_hospedaje_total`, `monto_servicio_total`, `primer_pago_hospedaje`, `id_primer_pago_forma`, `primer_pago_fecha`, `primer_pago_recibo`, `segundo_pago_hospedaje`, `id_segundo_pago_forma`, `segundo_pago_fecha`, `segundo_pago_recibo`, `tercer_pago_hospedaje`, `id_tercer_pago_forma`, `tercer_pago_fecha`, `tercer_pago_recibo`, `cuarto_pago_hospedaje`, `id_cuarto_pago_forma`, `cuarto_pago_fecha`, `cuarto_pago_recibo`, `quinto_pago_hospedaje`, `id_quinto_pago_forma`, `quinto_pago_fecha`, `quinto_pago_recibo`, `sexto_pago_hospedaje`, `id_sexto_pago_forma`, `sexto_pago_fecha`, `sexto_pago_recibo`, `comentario_hospedaje`, `link_payment`, `deuda_hospedaje`) VALUES
+(1, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, NULL, NULL, 0.00),
+(2, 10, 0.00, 3198.40, 0.00, 216.00, 3, 3755.84, 0.00, 2200.00, 4, '2024-04-29', '587', 1000.00, 3, '2024-04-16', '987', 300.00, 2, '2024-04-08', '1087', 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 'paga mañana segun :-(', '/d/z_admin/f_check_in_tres.php?book_year=2024&rango=2024-04-23%20-%202024-04-27&amist_code=_193_2024-04-23%20-%202024-04-27_10_&hora_rey=2024/04/02%2009:51:42&id_papa=2', 0.00),
+(3, 10, 0.00, 1670.00, 63.75, 347.50, 3, 2283.00, 0.00, 500.00, 2, '2024-04-04', '122', 1783.00, 1, '2024-04-22', '8', 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 'Debe 1458', '/d/z_admin/f_check_in_tres.php?book_year=2024&rango=2024-04-04%20-%202024-04-09&amist_code=_193_2024-04-04%20-%202024-04-09_10_&hora_rey=2024/04/04%2006:10:27&id_papa=3', 0.00),
+(4, 10, 0.00, 1308.00, 0.00, 0.00, 3, 1438.80, 0.00, 501.00, 3, '2024-04-22', '855', 500.00, 1, '2024-04-16', '877', 333.00, 3, '2024-04-23', '158', 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, '', '/d/z_admin/f_check_in_tres.php?book_year=2024&rango=2024-04-24%20-%202024-04-27&amist_code=_199_2024-04-24%20-%202024-04-27_10_&hora_rey=2024/04/04%2009:29:28&id_papa=4', 0.00),
+(5, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, NULL, NULL, 0.00),
+(6, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, NULL, NULL, 0.00),
+(7, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, NULL, NULL, 0.00),
+(8, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, NULL, NULL, 0.00),
+(9, 10, 0.00, 260.00, 0.00, 150.00, 3, 451.00, 0.00, 1.00, 1, '2024-04-23', '8569', 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, '', '/d/z_admin/f_check_in_tres.php?book_year=2024&rango=2024-04-08%20-%202024-04-10&amist_code=_199_2024-04-08%20-%202024-04-10_10_&hora_rey=2024/04/08%2008:13:31&id_papa=9', 0.00),
+(10, 10, 0.00, 1670.00, 0.00, 195.00, 3, 2051.50, 0.00, 500.00, 2, '2024-04-08', '5543', 200.00, 1, '2024-04-18', '6654', 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 'Paga mañana', '/d/z_admin/f_check_in_tres.php?book_year=2024&rango=2024-04-29%20-%202024-05-04&amist_code=_222_2024-04-29%20-%202024-05-04_10_&hora_rey=2024/04/08%2011:22:39&id_papa=10', 1351.50),
+(11, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, NULL, '/d/z_admin/f_check_in_tres.php?book_year=2024&rango=2024-04-16%20-%202024-04-18&amist_code=_225_2024-04-16%20-%202024-04-18_10_&hora_rey=2024/04/11%2004:27:01&id_papa=11', 0.00),
+(12, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, NULL, NULL, 0.00),
+(13, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, NULL, NULL, 0.00),
+(14, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, NULL, NULL, 0.00),
+(15, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, NULL, NULL, 0.00),
+(16, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, NULL, '/d/z_admin/f_check_in_tres.php?book_year=2024&rango=2024-04-12%20-%202024-04-14&amist_code=_235_2024-04-12%20-%202024-04-14_10_&hora_rey=2024/04/12%2011:59:55&id_papa=16', 0.00),
+(17, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, NULL, '/d/z_admin/f_check_in_tres.php?book_year=2024&rango=2024-04-12%20-%202024-04-14&amist_code=_237_2024-04-12%20-%202024-04-14_10_&hora_rey=2024/04/13%2012:06:51&id_papa=17', 0.00),
+(18, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, NULL, '/d/z_admin/f_check_in_tres.php?book_year=2024&rango=2024-04-12%20-%202024-04-14&amist_code=_239_2024-04-12%20-%202024-04-14_10_&hora_rey=2024/04/13%2012:09:40&id_papa=18', 0.00),
+(19, 10, 0.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, 0.00, 1, NULL, NULL, NULL, '/d/z_admin/f_check_in_tres.php?book_year=2024&rango=2024-04-12%20-%202024-04-14&amist_code=_241_2024-04-12%20-%202024-04-14_10_&hora_rey=2024/04/13%2012:21:53&id_papa=19', 0.00);
+
 -- --------------------------------------------------------
 
 --
@@ -1272,8 +1207,17 @@ CREATE TABLE `tb_personal` (
 --
 
 INSERT INTO `tb_personal` (`id_per`, `doc_per`, `passport_per`, `p_name_per`, `s_name_per`, `p_surname_per`, `s_surname_per`, `birth_per`, `id_address`, `id_sex`, `id_nationality`, `password_per`, `id_rol_per`, `info_send_per`, `id_hostel`, `id_data_per`, `per_was_mod`, `per_registered_by`, `status`, `pass_was_mod`, `creado_el`) VALUES
-(26, 13137951, 'VZ13137VEN', 'Juan', '', 'Zuñiga', '', '1978-11-24', 48, 1, 170, '6bcdabbf45e8b873e4cb460082c4da0d', 1, 'No', 17, 26, 1, 26, 1, 1, '2024-04-18 18:32:04'),
-(27, 17720914, 'VZ17720VEN', 'Sinai', '', 'Guerrero', 'Salazar', '0986-06-24', 49, 2, 170, 'b4b5c31027a3b50933bab16b64fea76b', 5, 'No', 17, 27, 0, 26, 0, 0, '2024-04-18 19:26:27');
+(9, 13137951, '', 'Juan', '', 'Zuñiga', '', '1978-11-24', 19, 1, 1, '84eafe3ac0e8f6722de034ad39be0631', 1, 'No', 10, 9, 1, 9, 1, 1, '2024-03-16 22:57:12'),
+(10, 17720914, 'a17720914', 'Sinai', '', 'Guerrero', 'Salazar', '2024-03-12', 20, 2, 1, '746784e5aa0f9e1aae1a605079ec5ade', 3, 'No', 10, 10, 1, 9, 1, 1, '2024-04-15 21:03:37'),
+(11, 94949494, NULL, 'novena', NULL, 'novenario', NULL, '0000-00-00', 27, 3, 1, '6856b47c83ce117297cadb74463c1316', 2, 'No', 10, 11, 0, 9, 1, 0, '2024-04-12 21:44:49'),
+(12, 35353535, '35353535', 'treintra', NULL, 'trees', NULL, '0000-00-00', 28, 3, 1, '962c02cc8a49f76d0bf5ad0ef2f239b5', 2, 'No', 10, 12, 0, 9, 1, 0, '2024-04-12 21:59:44'),
+(13, 26282724, '26282724', 'john', NULL, 'heeee', NULL, '0000-00-00', 29, 3, 1, '26fe5f5ddf1340d569b6ecb71e763452', 2, 'No', 10, 13, 0, 9, 1, 0, '2024-04-12 22:05:59'),
+(14, 22222, '22222', 'gomes', NULL, 'pablo', NULL, '0000-00-00', 30, 3, 1, '83cca1b38056e16294c37ef3ee712e8c', 2, 'No', 10, 14, 0, 9, 1, 0, '2024-04-12 22:06:44'),
+(15, 44444, '44444', 'yeir', NULL, 'yair', NULL, '0000-00-00', 31, 3, 1, 'e59388f92d3dc13415c14694c9cdfcbc', 2, 'No', 10, 15, 0, 9, 1, 0, '2024-04-12 22:07:25'),
+(16, 141414, '141414', 'catorce', NULL, 'ccc', NULL, '0000-00-00', 32, 3, 1, '597e2e34187a9246e8354156207a2e96', 2, 'No', 10, 16, 0, 9, 1, 0, '2024-04-12 22:09:32'),
+(17, 151515, '151515', 'quinc', NULL, 'q', NULL, '0000-00-00', 33, 3, 1, '8184a5a053a3b242ddc63e88079ca880', 2, 'No', 10, 17, 0, 9, 1, 0, '2024-04-12 22:16:52'),
+(18, 373737, '373737', 'treseven', NULL, 'seventree', NULL, '2024-04-16', 34, 3, 1, 'abd3e6a696f7604d248e904f6112c57f', 2, 'No', 10, 18, 0, 9, 1, 0, '2024-04-12 22:21:46'),
+(19, 383838, '383838', 'tres', NULL, 'ocho', NULL, '2024-04-15', 35, 3, 1, 'dc887f54e3a06c61b57eb1e7867771fd', 2, 'No', 10, 19, 0, 9, 1, 0, '2024-04-12 22:22:16');
 
 -- --------------------------------------------------------
 
@@ -1297,9 +1241,14 @@ CREATE TABLE `tb_prices_beds` (
 --
 
 INSERT INTO `tb_prices_beds` (`id_prices_beds`, `id_hostel`, `id_room_kind`, `name_prices_beds`, `taxes_beds`, `discount_beds`, `set_prices_date_b`, `prices_set_by_who_b`) VALUES
-(17, 17, 1, 90.00, 2, 3, '2024-04-18 18:47:49', 26),
-(18, 17, 3, 100.00, 2, 1, '2024-04-18 18:48:04', 26),
-(19, 17, 4, 140.00, 2, 3, '2024-04-18 18:48:19', 26);
+(9, 10, 1, 110.00, 1, 1, '2024-03-16 23:10:05', 9),
+(10, 10, 3, 140.00, 1, 1, '2024-03-16 23:10:17', 9),
+(11, 10, 4, 90.00, 1, 1, '2024-03-16 23:10:31', 9),
+(12, 10, 1, 115.00, 1, 4, '2024-03-25 13:21:02', 9),
+(13, 10, 1, 120.00, 3, 4, '2024-03-25 20:54:05', 9),
+(14, 10, 4, 88.00, 3, 4, '2024-04-02 20:09:59', 9),
+(15, 10, 3, 120.00, 4, 1, '2024-04-02 22:11:20', 9),
+(16, 10, 3, 130.00, 3, 1, '2024-04-02 22:15:06', 9);
 
 -- --------------------------------------------------------
 
@@ -1323,9 +1272,12 @@ CREATE TABLE `tb_prices_rooms` (
 --
 
 INSERT INTO `tb_prices_rooms` (`id_prices_rooms`, `id_hostel`, `id_room_kind`, `name_prices_rooms`, `taxes_room`, `discount_room`, `set_prices_date`, `prices_set_by_who`) VALUES
-(20, 17, 1, 600.00, 2, 5, '2024-04-18 18:49:45', 26),
-(21, 17, 3, 600.00, 2, 1, '2024-04-18 18:49:57', 26),
-(22, 17, 4, 700.00, 2, 1, '2024-04-18 18:50:08', 26);
+(14, 10, 1, 220.00, 1, 1, '2024-03-16 23:09:17', 9),
+(15, 10, 3, 150.00, 1, 1, '2024-03-16 23:09:39', 9),
+(16, 10, 4, 260.00, 1, 1, '2024-03-16 23:09:52', 9),
+(17, 10, 1, 100.00, 1, 5, '2024-03-20 21:26:24', 9),
+(18, 10, 4, 170.00, 1, 3, '2024-03-22 02:15:46', 9),
+(19, 10, 1, 550.00, 1, 5, '2024-03-22 12:47:44', 9);
 
 -- --------------------------------------------------------
 
@@ -1352,14 +1304,19 @@ CREATE TABLE `tb_room` (
 --
 
 INSERT INTO `tb_room` (`id_room`, `id_hostel`, `id_room_kind`, `id_room_number`, `id_floors`, `id_hostel_area`, `creada_por`, `room_date`, `room_status`, `room_observ`, `room_status_temp`) VALUES
-(66, 17, 1, 1, 1, 1, 26, '2024-04-18 18:37:12', 1, '', 1),
-(67, 17, 1, 2, 2, 1, 26, '2024-04-18 18:42:25', 1, '', 1),
-(68, 17, 1, 14, 2, 1, 26, '2024-04-18 18:43:12', 1, '', 1),
-(69, 17, 3, 4, 1, 1, 26, '2024-04-18 18:44:14', 1, '', 1),
-(70, 17, 3, 5, 1, 1, 26, '2024-04-18 18:45:03', 1, '', 1),
-(71, 17, 3, 3, 2, 1, 26, '2024-04-18 18:45:45', 1, '', 1),
-(72, 17, 4, 15, 1, 1, 26, '2024-04-18 18:46:21', 1, '', 1),
-(73, 17, 4, 6, 2, 1, 26, '2024-04-18 18:46:42', 1, '', 1);
+(46, 10, 1, 13, 2, 1, 9, '2024-03-19 21:21:07', 1, '', 1),
+(47, 10, 3, 1, 1, 1, 9, '2024-03-16 22:59:21', 1, '', 1),
+(48, 10, 1, 2, 2, 1, 9, '2024-03-16 22:59:32', 1, '', 1),
+(49, 10, 1, 3, 2, 1, 9, '2024-03-16 22:59:48', 1, '', 1),
+(50, 10, 3, 2, 2, 1, 9, '2024-03-16 23:00:05', 1, '', 1),
+(51, 10, 4, 1, 2, 1, 9, '2024-03-16 23:00:17', 1, '', 1),
+(53, 10, 4, 3, 2, 1, 9, '2024-03-16 23:04:39', 1, '', 1),
+(54, 10, 4, 5, 1, 1, 9, '2024-03-16 23:05:06', 1, '', 1),
+(55, 10, 3, 4, 2, 1, 9, '2024-03-16 23:06:02', 1, '', 1),
+(56, 10, 4, 6, 2, 1, 9, '2024-03-16 23:06:19', 1, '', 1),
+(57, 10, 4, 11, 2, 1, 9, '2024-03-17 16:35:05', 1, '', 1),
+(58, 10, 1, 11, 2, 1, 9, '2024-03-23 21:39:49', 1, '', 1),
+(59, 10, 4, 12, 2, 1, 9, '2024-03-20 21:12:16', 1, '', 1);
 
 -- --------------------------------------------------------
 
@@ -1384,46 +1341,53 @@ CREATE TABLE `tb_rooms_beds` (
 --
 
 INSERT INTO `tb_rooms_beds` (`id_rooms_beds`, `id_hostel`, `id_room`, `id_room_kind`, `id_bed_kind`, `id_bed_number`, `note`, `bed_status_temp`, `id_bunk_level`) VALUES
-(215, 17, 66, 1, 1, 18, '', 1, 1),
-(216, 17, 66, 1, 1, 19, '', 1, 1),
-(217, 17, 66, 1, 1, 20, '', 1, 1),
-(218, 17, 66, 1, 1, 21, '', 1, 2),
-(219, 17, 66, 1, 1, 22, '', 1, 2),
-(220, 17, 66, 1, 1, 23, '', 1, 2),
-(221, 17, 67, 1, 1, 1, '', 1, 1),
-(222, 17, 67, 1, 1, 2, '', 1, 1),
-(223, 17, 67, 1, 1, 3, '', 1, 1),
-(224, 17, 67, 1, 1, 4, '', 1, 2),
-(225, 17, 67, 1, 1, 5, '', 1, 2),
-(226, 17, 67, 1, 1, 6, '', 1, 2),
-(227, 17, 68, 1, 1, 12, '', 1, 1),
-(228, 17, 68, 1, 1, 13, '', 1, 1),
-(229, 17, 68, 1, 1, 14, '', 1, 1),
-(230, 17, 68, 1, 1, 15, '', 1, 2),
-(231, 17, 68, 1, 1, 16, '', 1, 2),
-(232, 17, 68, 1, 1, 17, '', 1, 2),
-(233, 17, 69, 3, 1, 24, '', 1, 1),
-(234, 17, 69, 3, 1, 25, '', 1, 1),
-(235, 17, 69, 3, 1, 26, '', 1, 1),
-(236, 17, 69, 3, 1, 27, '', 1, 2),
-(237, 17, 69, 3, 1, 28, '', 1, 2),
-(238, 17, 69, 3, 1, 29, '', 1, 2),
-(239, 17, 70, 3, 1, 30, '', 1, 1),
-(240, 17, 70, 3, 1, 31, '', 1, 1),
-(241, 17, 70, 3, 1, 32, '', 1, 1),
-(242, 17, 70, 3, 1, 33, '', 1, 2),
-(243, 17, 70, 3, 1, 34, '', 1, 2),
-(244, 17, 70, 3, 1, 35, '', 1, 2),
-(245, 17, 71, 3, 1, 36, '', 1, 1),
-(246, 17, 71, 3, 1, 37, '', 1, 1),
-(247, 17, 71, 3, 1, 45, '', 1, 1),
-(248, 17, 71, 3, 1, 38, '', 1, 2),
-(249, 17, 71, 3, 1, 39, '', 1, 2),
-(250, 17, 71, 3, 1, 40, '', 1, 2),
-(251, 17, 72, 4, 2, 43, '', 1, 1),
-(252, 17, 72, 4, 2, 44, '', 1, 1),
-(253, 17, 73, 4, 2, 41, '', 1, 1),
-(254, 17, 73, 4, 2, 42, '', 1, 1);
+(129, 10, 46, 1, 1, 11, '', 1, 1),
+(130, 10, 46, 1, 1, 2, '', 1, 2),
+(131, 10, 46, 1, 1, 3, '', 1, 2),
+(132, 10, 46, 1, 1, 4, '', 1, 2),
+(133, 10, 46, 1, 1, 5, '', 1, 1),
+(134, 10, 46, 1, 1, 6, '', 1, 1),
+(135, 10, 46, 1, 1, 7, '', 1, 1),
+(138, 10, 47, 3, 1, 1, '', 1, 1),
+(139, 10, 47, 3, 1, 2, '', 1, 1),
+(140, 10, 47, 3, 1, 3, '', 1, 1),
+(141, 10, 47, 3, 1, 4, '', 1, 1),
+(142, 10, 48, 1, 1, 1, '', 1, 1),
+(143, 10, 48, 1, 1, 2, '', 1, 2),
+(144, 10, 49, 1, 1, 1, '', 1, 1),
+(145, 10, 49, 1, 1, 2, '', 1, 1),
+(146, 10, 49, 1, 1, 3, '', 1, 1),
+(147, 10, 49, 1, 1, 4, '', 1, 1),
+(148, 10, 50, 3, 1, 1, '', 7, 1),
+(149, 10, 50, 3, 1, 2, '', 1, 1),
+(150, 10, 50, 3, 1, 3, '', 1, 1),
+(151, 10, 50, 3, 1, 4, '', 1, 1),
+(152, 10, 51, 4, 2, 1, '', 7, 1),
+(153, 10, 51, 4, 2, 1, '', 1, 1),
+(154, 10, 53, 4, 2, 1, '', 7, 1),
+(155, 10, 54, 4, 2, 1, '', 1, 1),
+(156, 10, 54, 4, 2, 2, '', 1, 1),
+(157, 10, 54, 4, 2, 3, '', 1, 1),
+(158, 10, 55, 3, 1, 1, '', 1, 1),
+(159, 10, 55, 3, 1, 2, '', 1, 1),
+(160, 10, 55, 3, 1, 3, '', 1, 1),
+(161, 10, 55, 3, 1, 4, '', 1, 1),
+(162, 10, 55, 3, 1, 5, '', 1, 1),
+(163, 10, 56, 4, 2, 11, '', 1, 1),
+(164, 10, 57, 4, 2, 2, '', 7, 1),
+(165, 10, 57, 4, 2, 2, '', 7, 2),
+(166, 10, 57, 4, 2, 4, '', 1, 1),
+(167, 10, 57, 4, 2, 5, '', 1, 2),
+(168, 10, 57, 4, 2, 5, '', 1, 2),
+(169, 10, 57, 4, 2, 8, '', 1, 1),
+(170, 10, 57, 4, 2, 7, '', 1, 1),
+(171, 10, 57, 4, 2, 7, '', 1, 1),
+(172, 10, 57, 4, 2, 7, '', 1, 1),
+(173, 10, 58, 1, 1, 11, '', 1, 1),
+(174, 10, 58, 1, 1, 3, '', 1, 2),
+(175, 10, 58, 1, 1, 4, '', 1, 2),
+(176, 10, 59, 4, 2, 4, '', 1, 1),
+(177, 10, 59, 4, 2, 8, '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1444,6 +1408,19 @@ CREATE TABLE `tb_services` (
   `service_qty` int(6) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `tb_services`
+--
+
+INSERT INTO `tb_services` (`id_services`, `id_hostal`, `id_product_kind`, `id_producto`, `creado_por_el`, `service_date`, `service_status`, `service_charac`, `sale_kind`, `service_qty`) VALUES
+(13, 10, 2, 3, 9, '2024-04-12 22:31:17', 1, '', 1, 12),
+(14, 10, 1, 5, 9, '2024-04-08 21:30:22', 1, '', 1, 4),
+(15, 10, 3, 4, 9, '2024-04-05 19:32:22', 1, '', 1, 10),
+(17, 10, 1, 2, 9, '2024-04-05 19:32:42', 1, '', 1, 11),
+(18, 10, 1, 8, 9, '2024-04-12 13:10:40', 1, '', 1, 52),
+(19, 10, 3, 10, 9, '2024-04-12 13:14:19', 1, '', 1, 65),
+(20, 10, 3, 11, 9, '2024-04-12 13:10:37', 1, 'Contiene maní ', 1, 36);
+
 -- --------------------------------------------------------
 
 --
@@ -1463,6 +1440,44 @@ CREATE TABLE `tb_services_prices` (
   `set_by_this_per` int(32) NOT NULL,
   `my_cost` decimal(20,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tb_services_prices`
+--
+
+INSERT INTO `tb_services_prices` (`id_services_prices`, `id_hostel`, `id_services`, `id_product_kind`, `id_product`, `the_price`, `tax_services`, `discount_type`, `set_this_day`, `set_by_this_per`, `my_cost`) VALUES
+(10, 10, 12, 1, 5, 110.00, 3, 5, '2024-03-27 14:35:35', 9, 0.00),
+(11, 10, 14, 1, 5, 330.00, 2, 4, '2024-03-27 14:35:46', 9, 0.00),
+(12, 10, 13, 2, 3, 50.00, 3, 2, '2024-03-27 14:36:24', 9, 0.00),
+(13, 10, 12, 1, 5, 150.00, 3, 1, '2024-03-27 19:48:08', 9, 0.00),
+(14, 10, 14, 1, 5, 200.00, 3, 4, '2024-03-27 19:48:17', 9, 0.00),
+(15, 10, 16, 1, 2, 50.00, 1, 1, '2024-03-27 19:48:26', 9, 0.00),
+(16, 10, 12, 1, 5, 75.00, 3, 3, '2024-03-27 19:48:38', 9, 0.00),
+(17, 10, 14, 1, 5, 150.00, 4, 3, '2024-03-27 19:48:45', 9, 0.00),
+(18, 10, 17, 1, 2, 25.00, 3, 4, '2024-03-28 20:58:53', 9, 0.00),
+(19, 10, 15, 3, 4, 64.00, 4, 1, '2024-03-28 20:59:21', 9, 0.00),
+(20, 10, 18, 1, 8, 14.00, 3, 1, '2024-04-02 21:41:55', 9, 0.00),
+(21, 10, 14, 1, 5, 60.00, 3, 3, '2024-04-02 21:43:18', 9, 0.00),
+(22, 10, 17, 1, 2, 20.00, 4, 4, '2024-04-02 21:43:46', 9, 0.00),
+(23, 10, 17, 1, 2, 8.00, 1, 4, '2024-04-02 21:45:13', 9, 0.00),
+(24, 10, 17, 1, 2, 54.00, 4, 4, '2024-04-02 21:48:11', 9, 0.00),
+(25, 10, 12, 1, 5, 55.00, 4, 3, '2024-04-02 21:48:49', 9, 0.00),
+(26, 10, 17, 1, 2, 54.00, 3, 1, '2024-04-02 21:49:04', 9, 0.00),
+(27, 10, 12, 1, 5, 55.00, 3, 1, '2024-04-02 21:49:41', 9, 0.00),
+(28, 10, 17, 1, 2, 20.00, 1, 4, '2024-04-02 21:49:51', 9, 0.00),
+(29, 10, 12, 1, 5, 14.00, 1, 3, '2024-04-02 21:49:59', 9, 0.00),
+(30, 10, 18, 1, 8, 15.00, 4, 3, '2024-04-02 21:50:11', 9, 0.00),
+(31, 10, 18, 1, 8, 15.00, 1, 4, '2024-04-02 21:57:57', 9, 0.00),
+(32, 10, 17, 1, 2, 20.00, 2, 4, '2024-04-02 21:58:12', 9, 0.00),
+(33, 10, 17, 1, 2, 20.00, 3, 4, '2024-04-02 21:58:23', 9, 0.00),
+(34, 10, 15, 3, 4, 64.00, 3, 4, '2024-04-02 22:04:26', 9, 0.00),
+(35, 10, 19, 3, 10, 22.00, 2, 1, '2024-04-02 22:20:47', 9, 0.00),
+(36, 10, 19, 3, 10, 22.00, 3, 1, '2024-04-02 22:21:39', 9, 0.00),
+(37, 10, 12, 1, 5, 40.00, 3, 2, '2024-04-05 15:20:53', 9, 20.00),
+(38, 10, 14, 1, 5, 50.00, 3, 1, '2024-04-05 15:21:12', 9, 33.00),
+(39, 10, 18, 1, 8, 40.00, 1, 1, '2024-04-05 15:21:31', 9, 22.50),
+(40, 10, 17, 1, 2, 32.00, 1, 1, '2024-04-05 15:21:48', 9, 19.71),
+(41, 10, 20, 3, 11, 20.00, 3, 1, '2024-04-08 21:33:51', 9, 10.00);
 
 -- --------------------------------------------------------
 
@@ -1489,7 +1504,8 @@ CREATE TABLE `z_data_hostel` (
 --
 
 INSERT INTO `z_data_hostel` (`id_data_hostel`, `a_phone_hostel`, `b_phone_hostel`, `c_phone_hostel`, `a_web_hostel`, `b_web_hostel`, `reg_number_hostel`, `ranking_hostel`, `a_email_hostel`, `b_email_hostel`, `c_email_hostel`) VALUES
-(17, '+529841652384', '', '', '', '', '', '1', '', '', '');
+(10, '', '', '', '', '', '', '1', '', '', ''),
+(11, '04242772573', '04242772573', '', 'Delicias a San Francisquito Pasaje San ', 'Casa Numero 5, Parroquia San Juan', '5555', '222', 'sinaicel@gmail.com', 'sinaicel@gmail.com', 'sinaicel@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -1517,7 +1533,8 @@ CREATE TABLE `z_hostel` (
 --
 
 INSERT INTO `z_hostel` (`id_hostel`, `name_hostel`, `nick_name_hostel`, `code_hostel`, `id_address`, `id_data_hostel`, `logo_hostel`, `hostel_was_mod`, `hostel_registered_by`, `status_hostel`, `abierto_el`, `id_currency`) VALUES
-(17, 'Freelance Hostel', '', 'FL001', 47, 17, NULL, 1, 26, 1, '2024-04-18 18:26:28', 2);
+(10, 'Freelance', '', '001', 18, 10, NULL, 1, 9, 1, '2024-03-16 22:57:20', 2),
+(11, 'Sinai Guerrero S', 'pp', '11111', 21, 11, NULL, 0, 9, 1, '2024-03-18 13:51:26', 1);
 
 --
 -- Índices para tablas volcadas
@@ -1901,7 +1918,7 @@ ALTER TABLE `bed_kind`
 -- AUTO_INCREMENT de la tabla `bed_number`
 --
 ALTER TABLE `bed_number`
-  MODIFY `id_bed_number` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_bed_number` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `bed_status`
@@ -1931,7 +1948,7 @@ ALTER TABLE `bunk_level`
 -- AUTO_INCREMENT de la tabla `country`
 --
 ALTER TABLE `country`
-  MODIFY `id_country` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `id_country` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `currency`
@@ -1949,7 +1966,7 @@ ALTER TABLE `discounts`
 -- AUTO_INCREMENT de la tabla `exchange_rates`
 --
 ALTER TABLE `exchange_rates`
-  MODIFY `id_exchange_rates` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_exchange_rates` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `floors`
@@ -1997,7 +2014,7 @@ ALTER TABLE `incident_r_status`
 -- AUTO_INCREMENT de la tabla `nationality`
 --
 ALTER TABLE `nationality`
-  MODIFY `id_nationality` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
+  MODIFY `id_nationality` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -2021,7 +2038,7 @@ ALTER TABLE `quien_y_cuando_host`
 -- AUTO_INCREMENT de la tabla `quien_y_cuando_per`
 --
 ALTER TABLE `quien_y_cuando_per`
-  MODIFY `id_q_y_c_per` int(48) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_q_y_c_per` int(48) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `quien_y_cuando_room`
@@ -2045,7 +2062,7 @@ ALTER TABLE `reporte_incidencias_r`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_rol_per` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_rol_per` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `room_kind`
@@ -2057,7 +2074,7 @@ ALTER TABLE `room_kind`
 -- AUTO_INCREMENT de la tabla `room_number`
 --
 ALTER TABLE `room_number`
-  MODIFY `id_room_number` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_room_number` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `room_status`
@@ -2081,7 +2098,7 @@ ALTER TABLE `taxes`
 -- AUTO_INCREMENT de la tabla `tb_address`
 --
 ALTER TABLE `tb_address`
-  MODIFY `id_address` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_address` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_data_guests`
@@ -2093,7 +2110,7 @@ ALTER TABLE `tb_data_guests`
 -- AUTO_INCREMENT de la tabla `tb_data_personal`
 --
 ALTER TABLE `tb_data_personal`
-  MODIFY `id_data_per` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_data_per` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_guests`
@@ -2129,31 +2146,31 @@ ALTER TABLE `tb_payment_hospedaje`
 -- AUTO_INCREMENT de la tabla `tb_personal`
 --
 ALTER TABLE `tb_personal`
-  MODIFY `id_per` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_per` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_prices_beds`
 --
 ALTER TABLE `tb_prices_beds`
-  MODIFY `id_prices_beds` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_prices_beds` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_prices_rooms`
 --
 ALTER TABLE `tb_prices_rooms`
-  MODIFY `id_prices_rooms` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_prices_rooms` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_room`
 --
 ALTER TABLE `tb_room`
-  MODIFY `id_room` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id_room` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_rooms_beds`
 --
 ALTER TABLE `tb_rooms_beds`
-  MODIFY `id_rooms_beds` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
+  MODIFY `id_rooms_beds` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_services`
@@ -2171,13 +2188,13 @@ ALTER TABLE `tb_services_prices`
 -- AUTO_INCREMENT de la tabla `z_data_hostel`
 --
 ALTER TABLE `z_data_hostel`
-  MODIFY `id_data_hostel` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_data_hostel` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `z_hostel`
 --
 ALTER TABLE `z_hostel`
-  MODIFY `id_hostel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_hostel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas

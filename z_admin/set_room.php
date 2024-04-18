@@ -113,7 +113,35 @@ if(isset($_POST['add_room']))  // chequea si se ha enviado algo, de ser si --> s
           
                   $the_room_id = mysqli_insert_id($enlace);  // almacena el id insertado en el query pasado room nueva
                   
-          
+
+
+
+
+/*  todas deben ingresar solo si  todos los 3 campos tienen algo, ya que si por error se selecciona
+un bed kind pero no se llena el resto da error  y no se puede deseleccionar */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           
           
                   $bed_kind_1 = $_POST["bed_kind_1"];

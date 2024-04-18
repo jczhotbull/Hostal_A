@@ -62,7 +62,7 @@ $alerta_principal = "0";   // usado para que aparezca alguna nota al ingresar en
               <div class="form-row"> 
 
                 <div class="alert col-md-3 col-lg-3 alert-primary" role="alert">
-                    <i class="fa-solid fa-cart-flatbed-suitcase fa-lg "></i> &nbsp; &nbsp; Lodging
+                    <i class="fa-solid fa-cart-flatbed-suitcase fa-lg "></i> &nbsp; &nbsp; Reception
                 </div> 
 
  

@@ -10,8 +10,7 @@ header("Content-type: text/html;charset=\"utf-8\"");                  // Necesar
 	$exitoZ="";  // acumula los mensajes de éxito
 
 	
-	if ($_SESSION ['id_rol_per'] != '1' && $_SESSION ['id_rol_per'] != '2' && $_SESSION ['id_rol_per'] != '3' &&
-	   $_SESSION ['id_rol_per'] != '4'  && $_SESSION ['id_rol_per'] != '5' )
+	if ($_SESSION ['id_rol_per'] != '1' && $_SESSION ['id_rol_per'] != '2'  )
 
 		{
 
@@ -52,7 +51,7 @@ if (array_key_exists("id_per",$_SESSION))    // si existe la clave id para mi ar
 		}
 
 		if ($_SESSION ['id_rol_per'] == '3' )
-		{$abrev = "";
+		{$abrev = "Guest";
 		}
 
 		if ($_SESSION ['id_rol_per'] == '4' )

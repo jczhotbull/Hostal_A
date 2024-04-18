@@ -7,7 +7,7 @@
 
 
 
-$query_String_nacionalitys = "SELECT COUNT(*) AS total_nacionalitys FROM nationality";
+$query_String_nacionalitys = "SELECT COUNT(*) AS total_nacionalitys FROM nationality WHERE name_nationality != '.' ";
 
 $query_nacionalitys = mysqli_query($enlace, $query_String_nacionalitys);
 
@@ -16,7 +16,7 @@ $row_nacionalitys = mysqli_fetch_object($query_nacionalitys);
 
 
 
-	    $query_String_sexos = "SELECT COUNT(*) AS total_sexos FROM sex";
+	    $query_String_sexos = "SELECT COUNT(*) AS total_sexos FROM sex WHERE name_sex != '.' ";
 
         $query_sexos = mysqli_query($enlace, $query_String_sexos);
 
@@ -25,7 +25,7 @@ $row_nacionalitys = mysqli_fetch_object($query_nacionalitys);
 
 
 
-$query_String_paises = "SELECT COUNT(*) AS total_paises FROM country";
+$query_String_paises = "SELECT COUNT(*) AS total_paises FROM country WHERE name_country != '.' ";
 
 $query_paises = mysqli_query($enlace, $query_String_paises);
 
@@ -34,7 +34,7 @@ $row_paises = mysqli_fetch_object($query_paises);
 
 
 
-        $query_String_rols = "SELECT COUNT(*) AS total_rols FROM roles";
+        $query_String_rols = "SELECT COUNT(*) AS total_rols FROM roles WHERE name_rol != '.' ";
 
         $query_rols = mysqli_query($enlace, $query_String_rols);
 
@@ -50,7 +50,7 @@ $row_paises = mysqli_fetch_object($query_paises);
 
 
 
-        $query_String_floors = "SELECT COUNT(*) AS total_floors FROM floors";
+        $query_String_floors = "SELECT COUNT(*) AS total_floors FROM floors WHERE name_floors != '.' ";
 
         $query_floors = mysqli_query($enlace, $query_String_floors);
         
@@ -93,7 +93,7 @@ $row_paises = mysqli_fetch_object($query_paises);
 
 
 
-        $query_String_taxes = "SELECT COUNT(*) AS total_taxes FROM taxes";
+        $query_String_taxes = "SELECT COUNT(*) AS total_taxes FROM taxes WHERE name_taxes != '.' ";
 
         $query_taxes = mysqli_query($enlace, $query_String_taxes);
         
@@ -101,7 +101,7 @@ $row_paises = mysqli_fetch_object($query_paises);
 
 
         
-        $query_String_forma_pago = "SELECT COUNT(*) AS total_forma_pago FROM forma_pago";
+        $query_String_forma_pago = "SELECT COUNT(*) AS total_forma_pago FROM forma_pago WHERE name_forma_pago != '.' ";
 
         $query_forma_pago = mysqli_query($enlace, $query_String_forma_pago);
         
@@ -110,7 +110,7 @@ $row_paises = mysqli_fetch_object($query_paises);
 
 
 
-        $query_String_discounts = "SELECT COUNT(*) AS total_discounts FROM discounts";
+        $query_String_discounts = "SELECT COUNT(*) AS total_discounts FROM discounts WHERE name_discounts != '.' ";
 
         $query_discounts = mysqli_query($enlace, $query_String_discounts);
         
@@ -119,7 +119,7 @@ $row_paises = mysqli_fetch_object($query_paises);
 
 
 
-        $query_String_currency = "SELECT COUNT(*) AS total_currency FROM currency";
+        $query_String_currency = "SELECT COUNT(*) AS total_currency FROM currency WHERE name_currency != '.' ";
 
         $query_currency = mysqli_query($enlace, $query_String_currency);
         

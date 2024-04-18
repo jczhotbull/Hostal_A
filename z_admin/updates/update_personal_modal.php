@@ -45,7 +45,7 @@
                               <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-id-card fa-lg"></i></span>  
                                         </div>
-         <input type="text" maxlength="12" class="form-control importantex" id="doc_per_mod" name="doc_per_mod" 
+         <input type="text" maxlength="29" class="form-control importantex" id="doc_per_mod" name="doc_per_mod" 
          value="<?php echo $row_usuarios['doc_per']; ?>" aria-label="doc_per_mod" aria-describedby="basic-addon1" required>    
                               </div> 
 
