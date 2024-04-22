@@ -633,7 +633,7 @@ $filenameUP = "00_croppie/pic_per_".$id_update_perU."_".$update_doc_perdU.".png"
 
             $extU = 'png';
            
-            $newfilenameU = "img_per/".$update_pic_perdU."_".$update_doc_perdU.".".$extU;
+            $newfilenameU = "img_personal/pic/".$update_pic_perdU."_".$update_doc_perdU.".".$extU;
 
 
              
@@ -745,7 +745,7 @@ $filenameUP = "00_croppie/doc_per_".$id_update_perU."_".$update_doc_perdU.".png"
 
             $extU = 'png';
            
-            $newfilenameU = "img_doc_per/".$update_pic_perdU."_".$update_doc_perdU.".".$extU;
+            $newfilenameU = "img_personal/doc/".$update_pic_perdU."_".$update_doc_perdU.".".$extU;
 
 
              
@@ -860,7 +860,7 @@ $filenameUP = "00_croppie/passport_per_".$id_update_perU."_".$update_doc_perdU."
 
             $extU = 'png';
            
-            $newfilenameU = "img_passport_per/".$id_update_perU."_".$update_doc_perdU.".".$extU;
+            $newfilenameU = "img_personal/passport/".$id_update_perU."_".$update_doc_perdU.".".$extU;
 
 
              
@@ -1896,7 +1896,7 @@ title="Registered by: <?php echo $row_usuarios_whoL['p_surname_per'];?> <?php ec
 
 
                   <img id="myImg" src="<?php echo $row_usuarios['pic_per']; ?>?nocache=<?php echo time(); ?>"
-                  alt="Not Available"  onerror="this.src='img_per/000.jpg';" width="80px" /> 
+                  alt="Not Available"  onerror="this.src='img_personal/pic/000.jpg';" width="80px" /> 
 
 <br><span style="color: #fb8e36;">"<b><?php echo $row_usuarios['name_rol']; ?></b>"</span>
 
@@ -1961,7 +1961,7 @@ title="Registered by: <?php echo $row_usuarios_whoL['p_surname_per'];?> <?php ec
 <br>
 
                   <img id="myImg" src="<?php echo $row_usuarios['pic_doc_per']; ?>?nocache=<?php echo time(); ?>"
-                  alt="Not Available"  onerror="this.src='img_doc_per/000.jpg';" width="105px" />
+                  alt="Not Available"  onerror="this.src='img_personal/doc/000.jpg';" width="105px" />
 
 </td>
 
@@ -2029,7 +2029,7 @@ title="Registered by: <?php echo $row_usuarios_whoL['p_surname_per'];?> <?php ec
 <br>
 
                    <img id="myImg" src="<?php echo $row_usuarios['pic_passport_per']; ?>?nocache=<?php echo time(); ?>"
-                  alt="Not Available"  onerror="this.src='img_passport_per/000.jpg';" width="65px" />
+                  alt="Not Available"  onerror="this.src='img_personal/passport/000.jpg';" width="65px" />
 
 </td>
 
